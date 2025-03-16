@@ -2,13 +2,31 @@ import { acceptAction } from '../../setup/general/accept-action.js';
 import { refreshBoardImages } from '../../setup/sizing/refresh-board.js';
 
 export function loadImportData() {
-  const importDataJSON = document.getElementById('importDataJSON')?.textContent;
-  if (importDataJSON && importDataJSON.trim() !== '') {
-    const importData = JSON.parse(importDataJSON);
-    let actions = importData.filter((obj) => !('version' in obj)); // Remove any objects containing version property
-    actions.forEach((data) => {
-      acceptAction(data.user, data.action, data.parameters, true);
-    });
-    refreshBoardImages();
-  }
+  const urlParams = new URLSearchParams(window.location.search);
+  const importKey = urlParams.get('importKey');
+
+  if (importKey) {
+      fetch(`/import/${importKey}`)
+        .then(handleImportDataResponse)
+        .catch((error) => {
+          console.error('Error fetching import data:', error);
+        });
+      }
 }
+
+function handleImportDataResponse(response) {
+  response.json()
+    .then(handleImportDataJson)
+    .catch((error) => {
+      console.error('Error parsing import data JSON:', error);
+    });
+}
+
+function handleImportDataJson(data): any {
+  let actions = data.actions.filter((obj) => !('version' in obj)); // Remove any objects containing version property
+  actions.forEach((action) => {
+    acceptAction(action.user, action.action, action.parameters, true);
+  });
+  refreshBoardImages();
+}
+

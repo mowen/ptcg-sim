@@ -462,7 +462,7 @@ export const initializeSocketEventListeners = () => {
   //     VSTARGXFunction(data.user, data.type, data.emit)
   // });
   socket.on('exportGameStateSuccessful', (key) => {
-    const url = `https://ptcgsim.online/import?key=${key}`;
+    const url = `http://localhost:4000?importKey=${key}`;
     appendMessage('self', url, 'announcement', false);
   });
   socket.on('exportGameStateFailed', (message) => {

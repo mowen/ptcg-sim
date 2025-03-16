@@ -18,7 +18,7 @@ const clientDir = path.join(__dirname, '../../client/dist');
 const envFilePath = path.join(__dirname, 'socket-admin-password.env');
 dotenv.config({ path: envFilePath });
 
-function generateRandomKey(length) {
+function generateRandomKey(length: number) {
   const characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let key = '';
@@ -95,8 +95,8 @@ async function main() {
 
   app.use(cors());
   app.use(express.static(clientDir));
-  app.get('/import', (req, res) => {
-    const key = req.query.key;
+  app.get('/import/:key', (req: express.Request, res: express.Response): any => {
+    const key = req.params.key;
     if (!key) {
       return res.status(400).json({ error: 'Key parameter is missing' });
     }
@@ -109,7 +109,7 @@ async function main() {
           return res.status(500).json({ error: 'Internal server error' });
         }
         if (row) {
-          res.render('index', { importDataJSON: row.value });
+          return res.json({ actions: JSON.parse(row.value) });
         } else {
           res.status(404).json({ error: 'Key not found' });
         }
@@ -131,7 +131,7 @@ async function main() {
   //Socket.IO Connection Handling
   io.on('connection', async (socket) => {
     // Function to handle disconnections (unintended)
-    const disconnectHandler = (roomId, username) => {
+    const disconnectHandler = (roomId: string, username: string) => {
       if (!socket.data.leaveRoom) {
         socket.to(roomId).emit('userDisconnected', username);
       }
@@ -152,7 +152,7 @@ async function main() {
       }
     };
     // Function to handle event emission
-    const emitToRoom = (eventName, data) => {
+    const emitToRoom = (eventName: string, data: any) => {
       socket.broadcast.to(data.roomId).emit(eventName, data);
       if (eventName === 'leaveRoom') {
         socket.leave(data.roomId);
