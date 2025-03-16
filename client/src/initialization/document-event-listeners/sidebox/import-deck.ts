@@ -8,10 +8,10 @@ import { show } from '../../../setup/home-header/header-toggle.js';
 import { systemState } from '../../global-variables/global-variables.js';
 
 export const initializeImport = () => {
-  const altDeckImportInput = document.getElementById('altDeckImportInput');
+  const altDeckImportInput = document.getElementById('altDeckImportInput') as HTMLInputElement;
   const failedText = document.getElementById('failedText');
   const invalidText = document.getElementById('invalidText');
-  const mainDeckImportInput = document.getElementById('mainDeckImportInput');
+  const mainDeckImportInput = document.getElementById('mainDeckImportInput') as HTMLInputElement;
   const successText = document.getElementById('successText');
   const loadingText = document.getElementById('loadingText');
   const updateLoadingText = () => {
@@ -88,8 +88,9 @@ export const initializeImport = () => {
   const importButton = document.getElementById('importButton');
   importButton.addEventListener('click', () => {
     const user = mainDeckImportInput.style.display !== 'none' ? 'self' : 'opp';
+    const spectatorModeCheckbox = document.getElementById('spectatorModeCheckbox') as HTMLInputElement
     const notSpectator = !(
-      document.getElementById('spectatorModeCheckbox').checked &&
+      spectatorModeCheckbox.checked &&
       systemState.isTwoPlayer
     );
     const notOpp2P = !(systemState.isTwoPlayer && user === 'opp');
@@ -102,7 +103,7 @@ export const initializeImport = () => {
 
   const randomButton = document.getElementById('randomButton');
   randomButton.addEventListener('click', () => {
-    const input =
+    const input: HTMLInputElement =
       mainDeckImportInput.style.display !== 'none'
         ? mainDeckImportInput
         : altDeckImportInput;

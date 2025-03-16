@@ -21,9 +21,10 @@ export const initializeHeaderButtons = () => {
         'Are you sure you want to leave the room? Battle log will be erased.'
       )
     ) {
+      const spectatorModeCheckbox = document.getElementById('spectatorModeCheckbox') as HTMLInputElement;
       const isSpectator =
         systemState.isTwoPlayer &&
-        document.getElementById('spectatorModeCheckbox').checked;
+        spectatorModeCheckbox.checked;
       const username = isSpectator
         ? systemState.spectatorUsername
         : systemState.p2SelfUsername;
@@ -31,7 +32,7 @@ export const initializeHeaderButtons = () => {
         roomId: systemState.roomId,
         username: username,
         isSpectator:
-          document.getElementById('spectatorModeCheckbox').checked &&
+          spectatorModeCheckbox.checked &&
           systemState.isTwoPlayer,
       };
       socket.emit('leaveRoom', data);
@@ -48,7 +49,7 @@ export const initializeHeaderButtons = () => {
 
       // repopulate self deck with the correct current decklist
       systemState.selfDeckData = '';
-      let decklistTable = document.getElementById('selfCurrentDecklistTable');
+      let decklistTable = document.getElementById('selfCurrentDecklistTable') as HTMLTableElement;
       if (decklistTable) {
         let rows = decklistTable.rows;
         let deckData = [];
@@ -64,7 +65,8 @@ export const initializeHeaderButtons = () => {
           deckData.push(cardData);
         }
         if (deckData.length > 0) {
-          systemState.selfDeckData = deckData;
+          // TODO: Is this conversion of deckData correct? 
+          systemState.selfDeckData = deckData[0];
         }
       }
 

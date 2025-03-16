@@ -1,19 +1,19 @@
 import express from 'express';
 import cors from 'cors';
-import http from 'http';
+import * as http from 'http';
 import { Server } from 'socket.io';
 import { instrument } from '@socket.io/admin-ui';
 import bcrypt from 'bcryptjs';
-import path from 'path';
-import dotenv from 'dotenv';
+import * as path from 'path';
+import * as dotenv from 'dotenv';
 import sqlite3 from 'sqlite3';
-import fs from 'fs';
+import * as fs from 'fs';
 import { fileURLToPath } from 'url';
 
 // Handle __dirname in ES modules and adjust for client folder
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const clientDir = path.join(__dirname, '../client');
+const clientDir = path.join(__dirname, '../../client');
 
 const envFilePath = path.join(__dirname, 'socket-admin-password.env');
 dotenv.config({ path: envFilePath });
@@ -38,7 +38,11 @@ async function main() {
   const io = new Server(server, {
     connectionStateRecovery: {},
     cors: {
-      origin: ['https://admin.socket.io', 'https://ptcgsim.online/'],
+      origin: [
+        'https://admin.socket.io',
+        'https://ptcgsim.online/',
+        'http://localhost:4000',
+      ],
       credentials: true,
     },
   });
@@ -102,7 +106,7 @@ async function main() {
       return res.status(400).json({ error: 'Key parameter is missing' });
     }
 
-    db.get(
+    db.get<{ value: string }>(
       'SELECT value FROM KeyValuePairs WHERE key = ?',
       [key],
       (err, row) => {
@@ -165,7 +169,7 @@ async function main() {
         }
       }
     };
-    socket.on('storeGameState', (exportData) => {
+    socket.on('storeGameState', (exportData: string) => {
       if (isDatabaseCapacityReached) {
         socket.emit(
           'exportGameStateFailed',

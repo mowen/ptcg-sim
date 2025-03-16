@@ -1,17 +1,19 @@
 /* eslint-disable no-undef */
+import { io, Socket } from "socket.io-client";
+
 import { preloadImage } from '../../setup/general/preload-image.js';
 import { getZone } from '../../setup/zones/get-zone.js';
 
 export const version = '1.5.1';
 
 // exports a WebSocket connection using the Socket.IO library, loaded via CDN in index.ejs
-export const socket = io('https://ptcgsim.online');
-// export const socket = io('http://localhost:4000/');
+// export const socket = io('https://ptcgsim.online');
+export const socket: Socket = io('http://localhost:4000/');
 
 // export references to HTML elements 'selfContainer' and 'oppContainer', and their respective content window documents for ease of access to the iframes
-export const selfContainer = document.getElementById('selfContainer');
+export const selfContainer = document.getElementById('selfContainer') as HTMLIFrameElement;
 export const selfContainerDocument = selfContainer.contentWindow.document;
-export const oppContainer = document.getElementById('oppContainer');
+export const oppContainer = document.getElementById('oppContainer') as HTMLIFrameElement;
 export const oppContainerDocument = oppContainer.contentWindow.document;
 // create globally accessible variable systemState, which holds information relevant to the state of the user's game
 export const systemState = {

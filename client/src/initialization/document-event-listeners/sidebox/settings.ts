@@ -16,7 +16,7 @@ export const initializeSettings = () => {
   const showZonesCheckbox = document.getElementById('showZonesCheckbox');
   showZonesCheckbox.addEventListener('change', showOutlines);
 
-  const hideHandCheckbox = document.getElementById('hideHandCheckbox');
+  const hideHandCheckbox = document.getElementById('hideHandCheckbox') as HTMLInputElement;
   hideHandCheckbox.addEventListener('change', () => {
     if (hideHandCheckbox.checked) {
       if (systemState.initiator === 'self' && !systemState.isTwoPlayer) {

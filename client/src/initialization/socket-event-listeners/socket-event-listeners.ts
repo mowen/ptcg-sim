@@ -48,12 +48,13 @@ export const initializeSocketEventListeners = () => {
     cleanActionData('self');
     cleanActionData('opp');
     reset('opp', true, false, false, false);
+    const coachingModeCheckbox = document.getElementById('coachingModeCheckbox') as HTMLInputElement;
     exchangeData(
       'self',
       systemState.p2SelfUsername,
       systemState.selfDeckData,
       systemState.cardBackSrc,
-      document.getElementById('coachingModeCheckbox').checked
+      coachingModeCheckbox.checked
     );
 
     //initialize sync checker, which will routinely make sure game are synced
@@ -116,8 +117,9 @@ export const initializeSocketEventListeners = () => {
     });
   });
   socket.on('connect', () => {
+    const spectatorModeCheckbox = document.getElementById('spectatorModeCheckbox') as HTMLInputElement;
     const notSpectator = !(
-      document.getElementById('spectatorModeCheckbox').checked &&
+      spectatorModeCheckbox.checked &&
       systemState.isTwoPlayer
     );
     if (systemState.isTwoPlayer) {
@@ -145,9 +147,10 @@ export const initializeSocketEventListeners = () => {
   });
   socket.on('disconnect', () => {
     if (systemState.isTwoPlayer) {
+    const spectatorModeCheckbox = document.getElementById('spectatorModeCheckbox') as HTMLInputElement;
       const isSpectator =
         systemState.isTwoPlayer &&
-        document.getElementById('spectatorModeCheckbox').checked;
+        spectatorModeCheckbox.checked;
       const username = isSpectator
         ? systemState.spectatorUsername
         : systemState.p2SelfUsername;
@@ -167,8 +170,9 @@ export const initializeSocketEventListeners = () => {
     appendMessage(data.user, data.message, data.type, data.emit);
   });
   socket.on('requestAction', (data) => {
+    const spectatorModeCheckbox = document.getElementById('spectatorModeCheckbox') as HTMLInputElement;
     const notSpectator = !(
-      document.getElementById('spectatorModeCheckbox').checked &&
+      spectatorModeCheckbox.checked &&
       systemState.isTwoPlayer
     );
     if (
@@ -190,15 +194,16 @@ export const initializeSocketEventListeners = () => {
     isImporting = false;
   });
   socket.on('pushAction', (data) => {
+    const spectatorModeCheckbox = document.getElementById('spectatorModeCheckbox') as HTMLInputElement;
     const notSpectator = !(
-      document.getElementById('spectatorModeCheckbox').checked &&
+      spectatorModeCheckbox.checked &&
       systemState.isTwoPlayer
     );
     if (notSpectator) {
       if (data.action === 'exchangeData') {
         cleanActionData('opp');
       }
-      if (data.counter === parseInt(systemState.oppCounter) + 1) {
+      if (data.counter === systemState.oppCounter + 1) {
         systemState.oppCounter++;
         // systemState.spectatorActionData.push({user: 'opp', emit: true, action: data.action, parameters: data.parameters});
         if (data.action !== 'exchangeData' && data.action !== 'loadDeckData') {
@@ -211,7 +216,7 @@ export const initializeSocketEventListeners = () => {
         }
         startKeybindsSleep();
         acceptAction('opp', data.action, data.parameters);
-      } else if (data.counter > parseInt(systemState.oppCounter) + 1) {
+      } else if (data.counter > systemState.oppCounter + 1) {
         const data = {
           roomId: systemState.roomId,
           counter: systemState.oppCounter,
@@ -221,8 +226,9 @@ export const initializeSocketEventListeners = () => {
     }
   });
   socket.on('resyncActions', () => {
+    const spectatorModeCheckbox = document.getElementById('spectatorModeCheckbox') as HTMLInputElement;
     const notSpectator = !(
-      document.getElementById('spectatorModeCheckbox').checked &&
+      spectatorModeCheckbox.checked &&
       systemState.isTwoPlayer
     );
     if (notSpectator) {
@@ -230,8 +236,9 @@ export const initializeSocketEventListeners = () => {
     }
   });
   socket.on('catchUpActions', (data) => {
+    const spectatorModeCheckbox = document.getElementById('spectatorModeCheckbox') as HTMLInputElement;
     const notSpectator = !(
-      document.getElementById('spectatorModeCheckbox').checked &&
+      spectatorModeCheckbox.checked &&
       systemState.isTwoPlayer
     );
     if (notSpectator) {
@@ -239,11 +246,12 @@ export const initializeSocketEventListeners = () => {
     }
   });
   socket.on('syncCheck', (data) => {
+    const spectatorModeCheckbox = document.getElementById('spectatorModeCheckbox') as HTMLInputElement;
     const notSpectator = !(
-      document.getElementById('spectatorModeCheckbox').checked &&
+      spectatorModeCheckbox.checked &&
       systemState.isTwoPlayer
     );
-    if (notSpectator && data.counter >= parseInt(systemState.oppCounter) + 1) {
+    if (notSpectator && data.counter >= systemState.oppCounter + 1) {
       const data = {
         roomId: systemState.roomId,
         counter: systemState.oppCounter,

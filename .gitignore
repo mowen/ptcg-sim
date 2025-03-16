@@ -1,2 +1,5 @@
 node_modules/
 server/database/db.sqlite
+server/dist
+client/dist
+tsconfig.tsbuildinfo
