@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "start": "pnpm -C server start",
-    "build": "tsc -b server && tsc -b client",
+    "build": "tsc -b server && pnpm -C client build",
     "clean": "rm -rf server/dist client/dist",
     "lint": "eslint .",
     "format": "prettier --write \"**/*.{js,json,md}\""

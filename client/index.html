@@ -16,8 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="src/assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="src/css/index.css">
-    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
-    <script type="module" src="dist/src/front-end.js"></script>
+    <script type="module" src="src/front-end.ts"></script>
     <script>
         window.onload = () => {
             var isMobile = /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -29,7 +28,7 @@
     </script>
 </head>
 <body>
-    <div id="importDataJSON" style="display: none;"><%= importDataJSON %></div>
+    <div id="importDataJSON" style="display: none;"></div>
     <div id="cover"></div>
     <iframe id="selfContainer" class="self" src="./self-containers.html"></iframe>
     <iframe id="oppContainer" class="opp" src="./opp-containers.html"></iframe>
@@ -429,13 +428,13 @@
         <p><strong>SoulSilver sponsors: </strong>Arielle Lok, Bertie Vos, Jack Shwartz, Morgan Gallant & Anonymous.<br>
         <strong>HeartGold sponsors: </strong>Ciaran Farah!</p>
 
-        <p>Happy early Valentine's Day <3</p>
+        <p>Happy early Valentine's Day &lt;3</p>
         <strong>- XXL</strong>
         <br><br>
         <hr>
 
         <h2>v1.5.0 Update 12/30/24</h2>
-        <p>HAPPY HOLIDAYS!!! I've missed you guys... I can't believe it's already been a year since PTCG-sim was launched — the past 365 days have brought incredible changes to my life, and it's all thanks to you guys <3</p>
+        <p>HAPPY HOLIDAYS!!! I've missed you guys... I can't believe it's already been a year since PTCG-sim was launched — the past 365 days have brought incredible changes to my life, and it's all thanks to you guys &lt;3</p>
 
         <p><strong>NEW FEATURE</strong></p>
         <ul style="list-style-type: disc; padding-left: 20px; margin-top: 10px; margin-bottom: 20px;">
@@ -453,7 +452,7 @@
         <p><strong>COMING SOON</strong></p>
         <ul style="list-style-type: disc; padding-left: 20px; margin-top: 10px; margin-bottom: 20px;">
         <li style="font-size: 16px; margin-bottom: 10px;">As many of you know, PTCG-sim was my first ever coding project. As such, the codebase has some very, VERY, questionable, gnarly, unfathomable, inexplicable code 😅. I've decided to completely revamp the simulator in the future - there's simply too much technical debt, but I'm incredibly proud of how far we've come!</li>
-        <li style="font-size: 16px; margin-bottom: 10px;">I'm also SUPER excited to dive deep into developing a game AI for the Pokemon TCG. If you're interested in collaborating on this, definitely reach out - I'd love to chat! :)</li>
+        <li style="font-size: 16px; margin-bottom: 10px;">I'm also SUPER excited to dive deep into developing a game AI for the Pokemon TCG. If you're interested in collaborating on this, definitely reach out - I'd love to chat! 😀</li>
         </ul>
 
         <p><strong>As always, a HUGE THANKS TO:</strong></p>
@@ -461,11 +460,11 @@
         <strong>HeartGold sponsors:</strong> Arielle Lok.</p>
 
         <p>Enjoy the holidays everyone, and cheers to 2025! 🍻</p>
-        <strong>- XXL <3 :D</strong>
+        <strong>- XXL &lt;3 :D</strong>
         <br><br>
         <hr>
         <h2>v1.4.0 Update 05/08/24</h2>
-        <p>Yoyoyo! It's been a fat second guys — life has been busy, but I'm super happy to release this update :)</p>
+        <p>Yoyoyo! It's been a fat second guys — life has been busy, but I'm super happy to release this update 😀</p>
 
         <p><strong>NEW FEATURE</strong></p>
         <ul style="list-style-type: disc; padding-left: 20px; margin-top: 10px; margin-bottom: 20px;">
@@ -500,7 +499,7 @@
         <strong>HeartGold sponsors:</strong> Arielle Lok.</p>
 
         <p>That's all for now! As always, please reach out if you have any suggestions.</p>
-        <strong>- XXL <3 :D</strong>
+        <strong>- XXL &lt;3 :D</strong>
         <br><br>
         <hr>
         <h2>v1.3.2 Mini Update 02/28/24</h2>
@@ -531,19 +530,19 @@
         <strong>HeartGold sponsors:</strong> Arielle Lok.</p>
 
         <p>More to come soon! If you have any features or suggestions, please message me and/or join the Discord.</p>
-        <strong>- XXL <3</strong>
+        <strong>- XXL &lt;3</strong>
         <br><br>
         <hr>
         <h2>v1.3.1 Announcement 02/26/24</h2>
-        <p>Hi :) Two quick things:</p>
+        <p>Hi 😀 Two quick things:</p>
         <li style="font-size: 16px; margin-bottom: 10px;"><strong>Fukuako Decklists: </strong>Looking to test the upcoming format? I've made a folder containing the top 16 decks from the Champions League Fukuako, which took place in Japan earlier this month. All of the decklists are in English and can be found <a href="https://drive.google.com/drive/folders/1Vk04FldAH9dTzOI38O_KCUP4zPhm6pyn?usp=sharing" target="_blank" style="font-weight: bold;">here</a>. Simply download the decklist(s) and upload them on the Import tab or the Deck Builder. Also, check out new English proxies <a href="https://www.justinbasil.com/proxies/sv5" target="_blank" style="font-weight: bold;">here</a>.</li>
         <li style="font-size: 16px; margin-bottom: 10px;"><strong>Cube Koga Support: </strong>PTCG-sim now has full support for decklist imports from <a href="https://cubekoga.net/" target="_blank">Cube Koga</a> thanks to the work of Cealgair. Set codes for POP series, several promo sets, and select cases from Limitless should be patched. Please export from Cube Koga using the PTCGO export option.</li>
         <p>A bigger update is on the way. Hope everyone and their pets (if you have any) are doing superb!!</p>
-        <strong>- XXL <3</strong>
+        <strong>- XXL &lt;3</strong>
         <br><br>
         <hr>
         <h2>v1.3.0 Update 02/12/24</h2>
-        <p>Hi everyone! This is a small update but I hope y'all like the new features + stylistic improvements :)</p>
+        <p>Hi everyone! This is a small update but I hope y'all like the new features + stylistic improvements 😀</p>
 
         <p><strong>NEW FEATURES</strong></p>
         <ul style="list-style-type: disc; padding-left: 20px; margin-top: 10px; margin-bottom: 20px;">
@@ -576,18 +575,18 @@
         <br><br>
         <hr>
         <h2>v1.2.0 Update 01/21/24</h2>
-        <p>This update was HUGE. Proud to have pushed it; lots of requested changes have been implemented, and I’m relieved to release them. Also, <a href="https://github.com/sponsors/xxmichaellong?o=esc" target="_blank" style="text-decoration: underline;">my Github Sponsors page</a> was finally approved if you want to support the continuous open-source development of the sim!</p>
+        <p>This update was HUGE. Proud to have pushed it; lots of requested changes have been implemented, and I'm relieved to release them. Also, <a href="https://github.com/sponsors/xxmichaellong?o=esc" target="_blank" style="text-decoration: underline;">my Github Sponsors page</a> was finally approved if you want to support the continuous open-source development of the sim!</p>
 
         <p><strong>HUGE SHOUTOUTS</strong> (the sim is run by your generosity!!!):</p>
         <p><strong>One-time sponsors:</strong> Robert Weidman, Jay Cristiano, Robin Schulz, & Song You.<br>
         <strong>SoulSilver sponsors:</strong> Bertie Vos, Jack Shwartz, Morgan Gallant & Anonymous.<br>
-        <strong>HeartGold sponsors:</strong> Arielle Lok <3.</p>        
+        <strong>HeartGold sponsors:</strong> Arielle Lok &lt;3.</p>        
 
         <p><strong>NEW FEATURES</strong></p>
         <ul style="list-style-type: disc; padding-left: 20px; margin-top: 10px; margin-bottom: 20px;">
-        <li style="font-size: 16px; margin-bottom: 10px;"><strong>Coaching Mode/Safe Play: </strong>Enable the ‘Flip Board’ function for 2P so you can switch to your student’s POV and tutor/analyze their play! Also, flipping the board now automatically reveals the opponent’s hand and hides your own hand — this feature can be turned on for 1P mode as well (see Settings) for authentic solo testing.</li>
+        <li style="font-size: 16px; margin-bottom: 10px;"><strong>Coaching Mode/Safe Play: </strong>Enable the 'Flip Board' function for 2P so you can switch to your student's POV and tutor/analyze their play! Also, flipping the board now automatically reveals the opponent's hand and hides your own hand — this feature can be turned on for 1P mode as well (see Settings) for authentic solo testing.</li>
         <li style="font-size: 16px; margin-bottom: 10px;"><strong>Spectator Mode: </strong>Enable Spectator mode in 2P so you can watch and comment on games!</li>
-        <li style="font-size: 16px; margin-bottom: 10px;"><strong>2 Player Undo: </strong>Undo moves in 2P using the ‘Undo’ button or ‘u’ keybind.</li>
+        <li style="font-size: 16px; margin-bottom: 10px;"><strong>2 Player Undo: </strong>Undo moves in 2P using the 'Undo' button or 'u' keybind.</li>
         <li style="font-size: 16px; margin-bottom: 10px;"><strong>Custom Card Backs: </strong>Import your own card backs on the Import page.</li>
         <li style="font-size: 16px; margin-bottom: 10px;"><strong>Change Card Language: </strong>Change the language of cards on the Import page.</li>
         <li style="font-size: 16px; margin-bottom: 10px;"><strong>Save Current Deck: </strong>Save your decklist after play/testing on the Import page.</li>
@@ -597,7 +596,7 @@
         <ul style="list-style-type: disc; padding-left: 20px; margin-top: 10px; margin-bottom: 20px;">
         <li style="font-size: 16px; margin-bottom: 10px;">“Shuffle to Bottom” button added when viewing cards from the top or bottom of the deck (e.g. to handle the ability of Metang from Temporal Forces).</li>
         <li style="font-size: 16px; margin-bottom: 10px;">Ability/effect toggle added to the keybinds and right-click menu of cards in the Stadium and Discard (for cards like Ho-Oh EX).</li>
-        <li style="font-size: 16px; margin-bottom: 10px;">‘Sort’ toggle added for the Hand.</li>
+        <li style="font-size: 16px; margin-bottom: 10px;">'Sort' toggle added for the Hand.</li>
         <li style="font-size: 16px; margin-bottom: 10px;">Tools are now attached sideways when in play.</li>
         <li style="font-size: 16px; margin-bottom: 10px;">“Shuffle Deck” keybind now automatically closes the view of the Deck (if open).</li>
         <li style="font-size: 16px; margin-bottom: 10px;">Special energies with the same name as basic energy cards (e.g. Metal Energy from past sets like Neo Genesis) are now properly imported.</li>
@@ -626,14 +625,14 @@
         <hr>
 
         <h2>v1.1.0 Update 01/12/24</h2>
-        Welcome to the new year! I’ve been working through some major fixes and adding new features to PTCG-sim. I’m pretty stoked to be getting the sim polished up.<br><br>
+        Welcome to the new year! I've been working through some major fixes and adding new features to PTCG-sim. I'm pretty stoked to be getting the sim polished up.<br><br>
 
-        I’ve also created a <a href="https://www.paypal.com/donate/?hosted_button_id=VWFSCL73GDHF4" target="_blank" style="text-decoration: underline;">donation page</a> if you want to support my journey in building open-source tools for tabletop card games (entirely optional, but greatly appreciated). More on this below!<br><br>
+        I've also created a <a href="https://www.paypal.com/donate/?hosted_button_id=VWFSCL73GDHF4" target="_blank" style="text-decoration: underline;">donation page</a> if you want to support my journey in building open-source tools for tabletop card games (entirely optional, but greatly appreciated). More on this below!<br><br>
         
-        Now, let’s get into v1.1.0: <br><br>
+        Now, let's get into v1.1.0: <br><br>
         
         <strong>MAJOR CHANGES</strong><br><br>
-        <li style="font-size: 16px; margin-bottom: 10px;"><strong>Open source:</strong> The PTCG-sim repo is now <a href="https://github.com/xxmichaellong/ptcg-sim" target="_blank" style="text-decoration: underline;">open-source on GitHub!</a> I’m currently figuring out the best way to go about receiving contributions, but in the meantime, feel free to explore the codebase and play around with the sim. I'm happy to answer any questions and I'm always open to suggestions.</li>
+        <li style="font-size: 16px; margin-bottom: 10px;"><strong>Open source:</strong> The PTCG-sim repo is now <a href="https://github.com/xxmichaellong/ptcg-sim" target="_blank" style="text-decoration: underline;">open-source on GitHub!</a> I'm currently figuring out the best way to go about receiving contributions, but in the meantime, feel free to explore the codebase and play around with the sim. I'm happy to answer any questions and I'm always open to suggestions.</li>
         <li style="font-size: 16px; margin-bottom: 10px;"><strong>Fixed desync issues:</strong> This has been continuously reported since launch, and a lot of work was put into finding a solution to players disconnecting/reconnecting and seeing different/no cards being put in play. The main issue stemmed from one or both players losing connection. Now, any moves that are missed on either side will automatically be updated upon reconnection. If you continue to see any more problems re: desyncing, please report it on the #bugs-and-suggestions channel.</li>
         <li style="font-size: 16px; margin-bottom: 10px;"><strong>Undo button:</strong> There is now the option to undo your last move, and it is stackable (ie. you can undo X times to undo your last X moves). This is currently only available in 1P mode, but will soon be implemented for 2P.</li>
         <br>
@@ -644,7 +643,7 @@
             <li style="font-size: 16px; margin-bottom: 10px;">Fixed highlighting of bench zone when hovering a card from active to bench.</li>
             <li style="font-size: 16px; margin-bottom: 10px;">Fixed positioning of cards when reloading the board.</li>
             <li style="font-size: 16px; margin-bottom: 10px;">Fixed positioning of special condition markers when certain images are appended.</li>
-            <li style="font-size: 16px; margin-bottom: 10px;">Fixed bug where the Escape key did not work for exiting the full preview of an image on the opponent’s side.</li>
+            <li style="font-size: 16px; margin-bottom: 10px;">Fixed bug where the Escape key did not work for exiting the full preview of an image on the opponent's side.</li>
             <li style="font-size: 16px; margin-bottom: 10px;">Fixed battlelog message when viewing top cards of the opponent's deck when playing from the opponent's side.</li>
             <li style="font-size: 16px; margin-bottom: 10px;">Added a battlelog message for when you look through a deck (yours or your opponents).</li>
             <li style="font-size: 16px; margin-bottom: 10px;">Battlelog message changed from "P1 setup" to "P1 drew 7 cards and set aside 6 prizes".</li>
@@ -745,7 +744,7 @@
             <li style="font-size: 16px; margin-bottom: 10px;">Feature to draw arrows to/from cards.</li>
         </ul>
         
-        And that’s all for 2023, folks. See you next year!!!
+        And that's all for 2023, folks. See you next year!!!
         <br><br>
 
         <strong>-XXL &lt;3</strong>
@@ -755,33 +754,33 @@
         
         <h2>v1.0.0 Update 12/29/2023</h2>
         
-        Hi everyone! Thank you all for your support during PTCG-sim’s launch. The feedback and general reception has been overwhelming (in a great way), and I’m happy that so many people in the community are finding great usage out of the sim. If you haven’t already, <strong><a href="https://discord.gg/jMfhQa38mh" target="_blank">join our Discord server here</a></strong> to receive the latest updates, report bugs, find matches, share decklists, and more! You can also read the previous Changelog (v0.9.1) following the below.
+        Hi everyone! Thank you all for your support during PTCG-sim's launch. The feedback and general reception has been overwhelming (in a great way), and I'm happy that so many people in the community are finding great usage out of the sim. If you haven't already, <strong><a href="https://discord.gg/jMfhQa38mh" target="_blank">join our Discord server here</a></strong> to receive the latest updates, report bugs, find matches, share decklists, and more! You can also read the previous Changelog (v0.9.1) following the below.
         <br><br>
         
-        <strong>Without further ado, let’s dive right into v1.0.0:</strong><br><br>
+        <strong>Without further ado, let's dive right into v1.0.0:</strong><br><br>
         
         <strong>DECK SUPPORT</strong><br>
         <ul style="list-style-type: disc; padding-left: 20px; margin-top: 10px; margin-bottom: 20px;">
             <li style="font-size: 16px; margin-bottom: 10px;"><strong>Legacy Formats:</strong> All expansions prior to 2011 have been added. A spreadsheet containing all information related to cards, including decklist syntax for PTCG-sim imports, will be available in the Discord server.</li>
-            <li style="font-size: 16px; margin-bottom: 10px;"><strong>Decklist Library:</strong> Popular legacy decklists have now been added to the library. We’d like to extend our thanks to <a href="https://jklaczPokémon.com/" target="_blank">Jason K</a> for being an awesome Pokémon archivist.</li>
+            <li style="font-size: 16px; margin-bottom: 10px;"><strong>Decklist Library:</strong> Popular legacy decklists have now been added to the library. We'd like to extend our thanks to <a href="https://jklaczPokémon.com/" target="_blank">Jason K</a> for being an awesome Pokémon archivist.</li>
             <li style="font-size: 16px; margin-bottom: 10px;"><strong>Import/Export Decks:</strong> Importing a deck now breaks down cards by quantity, name, type, and image URL. Decklists can also now be saved using the “Save” button to export CSV files.</li>
             <li style="font-size: 16px; margin-bottom: 10px;"><strong>Custom Image Imports:</strong> With the above feature, you can now upload your own image URLs. This means every card is now supported on PTCG-sim!</li>
         </ul>
         
         <strong>BUG FIXES</strong><br>
         <ul style="list-style-type: disc; padding-left: 20px; margin-top: 10px; margin-bottom: 20px;">
-        <li style="font-size: 16px; margin-bottom: 10px;">Fixed issue where stadium toggle doesn’t disappear on reset.</li>
+        <li style="font-size: 16px; margin-bottom: 10px;">Fixed issue where stadium toggle doesn't disappear on reset.</li>
         </ul>
 
         <strong>COMING SOON</strong><br>
         <ul style="list-style-type: disc; padding-left: 20px; margin-top: 10px; margin-bottom: 20px;">
             <li style="font-size: 16px; margin-bottom: 10px;">Selecting multiple cards at once.</li>
-            <li style="font-size: 16px; margin-bottom: 10px;">Attaching cards on opponent’s side (e.g. Head Ringer).</li>
+            <li style="font-size: 16px; margin-bottom: 10px;">Attaching cards on opponent's side (e.g. Head Ringer).</li>
             <li style="font-size: 16px; margin-bottom: 10px;">Fixing appending/overlap issues.</li>
         </ul>
-        There have been reports of desyncing issues. We’re looking into this - if you’ve experienced anything similar, please share on our Discord server in the #bugs-and-suggestions channel!<br><br>
+        There have been reports of desyncing issues. We're looking into this - if you've experienced anything similar, please share on our Discord server in the #bugs-and-suggestions channel!<br><br>
         
-        I’ll continue adding new features to the sim + fixing bugs as they come up. Wishing you all a happy new year and see you at the next update!
+        I'll continue adding new features to the sim + fixing bugs as they come up. Wishing you all a happy new year and see you at the next update!
         <br><br>
         
         <strong>-XXL &lt;3</strong>
@@ -835,11 +834,11 @@
 
         <p>Hi everyone! I'm Michael/Xiao Xiao Long. I'm a 21-year-old from Guelph, Canada, who started programming in the fall of 2023. I've been playing the Pokémon TCG for over 8 years, and I spent the last 3 months building PTCG-sim, a free tool for the community to use to test and play our favorite card game.</p>
 
-        <p>I publicly launched the sim on Christmas, and it has already grown an incredible community of players and developers. There’s a lot more to do, and I could use as much help as I can get!</p>
+        <p>I publicly launched the sim on Christmas, and it has already grown an incredible community of players and developers. There's a lot more to do, and I could use as much help as I can get!</p>
 
-        <p>Should you find joy in using the sim and wish to support its ongoing development, you can sponsor me/the project through one of the links below. However, please know that sponsorship is completely optional. Your enjoyment of the sim is contribution enough, and I’m thrilled to have you as part of our community :)</p>
+        <p>Should you find joy in using the sim and wish to support its ongoing development, you can sponsor me/the project through one of the links below. However, please know that sponsorship is completely optional. Your enjoyment of the sim is contribution enough, and I'm thrilled to have you as part of our community 😀</p>
 
-        <p>-XXL <3</p>
+        <p>-XXL &lt;3</p>
 
         <h3><a href="https://github.com/sponsors/xxmichaellong?o=esc" target="_blank" style="color: rgb(91, 91, 173); text-decoration: underline;">Github Sponsors Link</a></h3>
         <h3><a href="https://www.paypal.com/donate/?hosted_button_id=VWFSCL73GDHF4" target="_blank"  style="color: rgb(91, 91, 173); text-decoration: underline;">Paypal Donation Link</a></h3>

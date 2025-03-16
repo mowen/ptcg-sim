@@ -13,7 +13,7 @@ import { fileURLToPath } from 'url';
 // Handle __dirname in ES modules and adjust for client folder
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const clientDir = path.join(__dirname, '../../client');
+const clientDir = path.join(__dirname, '../../client/dist');
 
 const envFilePath = path.join(__dirname, 'socket-admin-password.env');
 dotenv.config({ path: envFilePath });
@@ -93,13 +93,8 @@ async function main() {
     mode: 'development',
   });
 
-  app.set('view engine', 'ejs');
-  app.set('views', clientDir);
   app.use(cors());
   app.use(express.static(clientDir));
-  app.get('/', (_, res) => {
-    res.render('index', { importDataJSON: null });
-  });
   app.get('/import', (req, res) => {
     const key = req.query.key;
     if (!key) {
@@ -249,38 +244,6 @@ async function main() {
       'spectatorActionData',
       'initiateImport',
       'endImport',
-      // 'exchangeData',
-      // 'loadDeckData',
-      // 'reset',
-      // 'setup',
-      // 'takeTurn',
-      // 'draw',
-      // 'moveCardBundle',
-      // 'shuffleIntoDeck',
-      // 'moveToDeckTop',
-      // 'switchWithDeckTop',
-      // 'viewDeck',
-      // 'shuffleAll',
-      // 'discardAll',
-      // 'lostZoneAll',
-      // 'handAll',
-      // 'leaveAll',
-      // 'discardAndDraw',
-      // 'shuffleAndDraw',
-      // 'shuffleBottomAndDraw',
-      // 'shuffleZone',
-      // 'useAbility',
-      // 'removeAbilityCounter',
-      // 'addDamageCounter',
-      // 'updateDamageCounter',
-      // 'removeDamageCounter',
-      // 'addSpecialCondition',
-      // 'updateSpecialCondition',
-      // 'removeSpecialCondition',
-      // 'discardBoard',
-      // 'handBoard',
-      // 'shuffleBoard',
-      // 'lostZoneBoard',
       'lookAtCards',
       'stopLookingAtCards',
       'revealCards',
@@ -289,12 +252,6 @@ async function main() {
       'hideShortcut',
       'lookShortcut',
       'stopLookingShortcut',
-      // 'playRandomCardFaceDown',
-      // 'rotateCard',
-      // 'changeType',
-      // 'attack',
-      // 'pass',
-      // 'VSTARGXFunction',
     ];
 
     // Register event listeners using the common function

@@ -28,10 +28,11 @@ export const initializeBoardButtons = () => {
 
   const selfVSTARButton = selfContainerDocument.getElementById('VSTARButton');
   selfVSTARButton.addEventListener('click', () => {
+    const spectatorModeCheckbox = document.getElementById('spectatorModeCheckbox') as HTMLInputElement;
     if (
       !(
         systemState.isTwoPlayer &&
-        document.getElementById('spectatorModeCheckbox').checked
+        spectatorModeCheckbox.checked
       ) &&
       !systemState.isReplay
     ) {
@@ -41,10 +42,11 @@ export const initializeBoardButtons = () => {
 
   const selfGXButton = selfContainerDocument.getElementById('GXButton');
   selfGXButton.addEventListener('click', () => {
+    const spectatorModeCheckbox = document.getElementById('spectatorModeCheckbox') as HTMLInputElement;
     if (
       !(
         systemState.isTwoPlayer &&
-        document.getElementById('spectatorModeCheckbox').checked
+        spectatorModeCheckbox.checked
       ) &&
       !systemState.isReplay
     ) {
@@ -54,10 +56,11 @@ export const initializeBoardButtons = () => {
 
   const oppVSTARButton = oppContainerDocument.getElementById('VSTARButton');
   oppVSTARButton.addEventListener('click', () => {
+    const spectatorModeCheckbox = document.getElementById('spectatorModeCheckbox') as HTMLInputElement;
     if (
       !(
         systemState.isTwoPlayer &&
-        document.getElementById('spectatorModeCheckbox').checked
+        spectatorModeCheckbox.checked
       ) &&
       !systemState.isReplay
     ) {
@@ -67,10 +70,11 @@ export const initializeBoardButtons = () => {
 
   const oppGXButton = oppContainerDocument.getElementById('GXButton');
   oppGXButton.addEventListener('click', () => {
+    const spectatorModeCheckbox = document.getElementById('spectatorModeCheckbox') as HTMLInputElement;
     if (
       !(
         systemState.isTwoPlayer &&
-        document.getElementById('spectatorModeCheckbox').checked
+        spectatorModeCheckbox.checked
       ) &&
       !systemState.isReplay
     ) {
