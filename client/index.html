@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="src/assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="src/css/index.css">
-    <script type="module" src="src/front-end.ts"></script>
+    <script type="module" src="src/front-end.tsx"></script>
     <script>
         window.onload = () => {
             var isMobile = /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -29,32 +29,10 @@
 </head>
 <body>
     <div id="cover"></div>
-    <iframe id="selfContainer" class="self" src="./self-containers.html"></iframe>
-    <iframe id="oppContainer" class="opp" src="./opp-containers.html"></iframe>
-    <div id="stadium" class="outline"></div>
+    <!-- <iframe id="selfContainer" class="self" src="./self-containers.html"></iframe>
+    <iframe id="oppContainer" class="opp" src="./opp-containers.html"></iframe> -->
+    <div id="root"></div>
     
-    <div id="selfResizer" class="self-color"></div>
-    <div id="oppResizer" class="opp-color"></div>
-
-    <div id="boardButtonContainer">
-        <div class="tooltip" id="turnButton">
-            <button>+Turn</button>
-            <span class="tooltiptext">Start turn</span>
-        </div>
-        <div class="tooltip" id="flipCoinButton">
-            <button>Coin</button>
-            <span class="tooltiptext">Flip coin</span>
-        </div>
-        <div class="tooltip" id="flipBoardButton">
-            <button>⇅</button>
-            <span class="tooltiptext">Flip board</span>
-        </div>
-        <div class="tooltip" id="refreshButton">
-            <button><div id="refreshIcon">↻</div><div id="loadingCircle"></div></button>
-            <span class="tooltiptext">Refresh images</span>
-        </div>
-    </div>
-
     <div id="topButtonContainer">
         <button id="p1Button" class="selected-page">1P</button>
         <button id="p2Button" class="not-selected-page">2P</button>
@@ -229,56 +207,6 @@
         </div>
     </div>
       
-    <div id="cardContextMenu" class="card-context-menu">
-        <ul>
-            <li id="abilityCounterButton">Toggle ability/effect</li>
-            <li id="damageCounterButton">Damage counter</li>
-            <li id="specialConditionButton">Special condition</li>
-
-            <li id="prizesHeader">Prizes</li>
-            <li id="shufflePrizesButton">Shuffle prizes</li>
-            <li id="revealHidePrizesButton">Reveal/hide prizes</li>
-            <li id="lookPrizesButton">Look/cover prizes</li>
-
-            <li id="handHeader">Hand</li>
-            <li id="discardHandButton">Discard hand</li>
-            <li id="shuffleHandButton">Shuffle hand into deck</li>
-            <li id="shuffleHandBottomButton">Shuffle hand to bottom</li>
-            <li id="lookHandButton">Look/cover hand</li>
-            <li id="randomHandButton">Pick random card</li>
-
-            <li id="deckHeader">Deck</li>
-            <li id="shuffleDeckButton">Shuffle deck</li>
-            <li id="drawButton">Draw card(s)</li>
-            <li id="viewTopButton">View top card(s)</li>
-            <li id="viewBottomButton">View bottom card(s)</li>
-
-            <li id="boardHeader">Playboard</li>
-            <li id="discardBoardButton">Discard all</li>
-            <li id="handBoardButton">Move all to hand</li>
-            <li id="shuffleBoardButton">Shuffle all into deck</li>
-            <li id="lostZoneBoardButton">Lost Zone all</li>
-
-            <li id="moveButton">Move card...
-                <ul class="card-sub-menu">
-                    <li id="moveToBoardButton">to Board</li>
-                    <li id="moveToTopButton">to Deck (top)</li>
-                    <li id="moveToBottomButton">to Deck (bottom)</li>
-                    <li id="switchWithTopButton">to Deck (switch)</li>
-                    <li id="shuffleIntoDeckButton">to Deck (shuffle)</li>
-                </ul>
-            </li>
-            <li id="revealHideButton">Reveal/hide card</li>
-            <li id="changeButton">Change type...
-                <ul class="card-sub-menu">
-                    <li id="changeToEnergyButton">to Energy</li>
-                    <li id="changeToToolButton">to Tool</li>
-                    <li id="changeToPokémonButton">to Pokémon</li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-
     <div id="optionsContextMenu">
         <div id="exitReplay" style="display:none">Exit replay mode</div>
         <div id="jsonReplayDiv"><label for="jsonReplay" id="importReplay" style="cursor: pointer;">Enter replay mode</label>

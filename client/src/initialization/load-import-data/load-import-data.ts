@@ -23,7 +23,7 @@ function handleImportDataResponse(response) {
 }
 
 function handleImportDataJson(data): any {
-  let actions = data.actions.filter((obj) => !('version' in obj)); // Remove any objects containing version property
+  const actions = data.actions.filter((obj) => !('version' in obj)); // Remove any objects containing version property
   actions.forEach((action) => {
     acceptAction(action.user, action.action, action.parameters, true);
   });

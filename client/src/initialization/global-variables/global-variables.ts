@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+ 
 import { io, Socket } from "socket.io-client";
 
 import { preloadImage } from '../../setup/general/preload-image.js';
@@ -11,10 +11,10 @@ export const version = '1.5.1';
 export const socket: Socket = io('http://localhost:4000/');
 
 // export references to HTML elements 'selfContainer' and 'oppContainer', and their respective content window documents for ease of access to the iframes
-export const selfContainer = document.getElementById('selfContainer') as HTMLIFrameElement;
-export const selfContainerDocument = selfContainer.contentWindow.document;
-export const oppContainer = document.getElementById('oppContainer') as HTMLIFrameElement;
-export const oppContainerDocument = oppContainer.contentWindow.document;
+// export const selfContainer = document.getElementById('selfContainer') as HTMLIFrameElement;
+// export const selfContainerDocument = selfContainer.contentWindow.document;
+// export const oppContainer = document.getElementById('oppContainer') as HTMLIFrameElement;
+// export const oppContainerDocument = oppContainer.contentWindow.document;
 // create globally accessible variable systemState, which holds information relevant to the state of the user's game
 export const systemState = {
   coachingMode: false,
@@ -31,7 +31,7 @@ export const systemState = {
   replayActionData: [],
   turn: 0,
   get initiator() {
-    return selfContainer.classList.contains('self') ? 'self' : 'opp';
+    return 'self'; //selfContainer.classList.contains('self') ? 'self' : 'opp';
     //refers to the user on the bottom half of the screen, e.g., initiator === 'self' means that the bottom half is the 'self' user
   },
   roomId: '',
