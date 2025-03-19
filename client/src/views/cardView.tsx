@@ -1,5 +1,5 @@
-function CardView({ imageUrl }) {
-  return <img src={imageUrl} alt="card" />;
+function CardView({ name, imageUrl }) {
+  return <img src={imageUrl} alt={name} />;
 }
 
 export default CardView;

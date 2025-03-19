@@ -46,12 +46,22 @@ const initialState = {
   selfBoardState: {
     gxUsed: false,
     vstarUsed: false,
-    cards: [],
+    cards: {},
+    handIndices: [],
+    prizeIndices: [],
+    deckIndices: [],
+    benchIndices: [],
+    activeIndices: [],
   },
   oppBoardState: {
     gxUsed: false,
     vstarUsed: false,
-    cards: [],
+    cards: {},
+    handIndices: [],
+    prizeIndices: [],
+    deckIndices: [],
+    benchIndices: [],
+    activeIndices: [],
   },
 };
 
@@ -61,493 +71,393 @@ const initialState2 = {
   selfBoardState: {
     gxUsed: false,
     vstarUsed: false,
-    cards: [
-      {
+    cards: {
+      '0': {
         name: 'Dreepy',
         type: 'Pokémon',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN.png',
-        index: 3,
-        location: 'hand',
       },
-      {
+      '1': {
         name: 'Dreepy',
         type: 'Pokémon',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN.png',
-        index: 56,
-        location: 'deck',
       },
-      {
+      '2': {
         name: 'Dreepy',
         type: 'Pokémon',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN.png',
-        index: 31,
-        location: 'deck',
       },
-      {
+      '3': {
         name: 'Dreepy',
         type: 'Pokémon',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN.png',
-        index: 41,
-        location: 'deck',
       },
-      {
+      '4': {
         name: 'Drakloak',
         type: 'Pokémon',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN.png',
-        index: 32,
-        location: 'deck',
       },
-      {
+      '5': {
         name: 'Drakloak',
         type: 'Pokémon',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN.png',
-        index: 0,
-        location: 'bench',
       },
-      {
+      '6': {
         name: 'Drakloak',
         type: 'Pokémon',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN.png',
-        index: 47,
-        location: 'deck',
       },
-      {
+      '7': {
         name: 'Drakloak',
         type: 'Pokémon',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN.png',
-        index: 48,
-        location: 'deck',
       },
-      {
+      '8': {
         name: 'Dragapult ex',
         type: 'Pokémon',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_130_R_EN.png',
-        index: 9,
-        location: 'prize',
       },
-      {
+      '9': {
         name: 'Dragapult ex',
         type: 'Pokémon',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_130_R_EN.png',
-        index: 14,
-        location: 'deck',
       },
-      {
+      '10': {
         name: 'Lumineon V',
         type: 'Pokémon',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/BRS/BRS_040_R_EN.png',
-        index: 21,
-        location: 'deck',
       },
-      {
+      '11': {
         name: 'Lumineon V',
         type: 'Pokémon',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/BRS/BRS_040_R_EN.png',
-        index: 35,
-        location: 'deck',
       },
-      {
+      '12': {
         name: 'Budew',
         type: 'Pokémon',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PRE/PRE_004_R_EN.png',
-        index: 1,
-        location: 'hand',
       },
-      {
+      '13': {
         name: 'Budew',
         type: 'Pokémon',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PRE/PRE_004_R_EN.png',
-        index: 16,
-        location: 'deck',
       },
-      {
+      '14': {
         name: 'Radiant Alakazam',
         type: 'Pokémon',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SIT/SIT_059_R_EN.png',
-        index: 52,
-        location: 'deck',
       },
-      {
+      '15': {
         name: 'Bloodmoon Ursaluna ex',
         type: 'Pokémon',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_141_R_EN.png',
-        index: 36,
-        location: 'deck',
       },
-      {
+      '16': {
         name: 'Klefki',
         type: 'Pokémon',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_096_R_EN.png',
-        index: 57,
-        location: 'deck',
       },
-      {
+      '17': {
         name: 'Fezandipiti ex',
         type: 'Pokémon',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SFA/SFA_038_R_EN.png',
-        index: 15,
-        location: 'deck',
       },
-      {
+      '18': {
         name: 'Munkidori',
         type: 'Pokémon',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_095_R_EN.png',
-        index: 53,
-        location: 'deck',
       },
-      {
+      '19': {
         name: 'Arven',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/OBF/OBF_186_R_EN.png',
-        index: 38,
-        location: 'deck',
       },
-      {
+      '20': {
         name: 'Arven',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/OBF/OBF_186_R_EN.png',
-        index: 10,
-        location: 'prize',
       },
-      {
+      '21': {
         name: 'Arven',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/OBF/OBF_186_R_EN.png',
-        index: 42,
-        location: 'deck',
       },
-      {
+      '22': {
         name: 'Arven',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/OBF/OBF_186_R_EN.png',
-        index: 18,
-        location: 'deck',
       },
-      {
+      '23': {
         name: 'Lance',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SIT/SIT_159_R_EN.png',
-        index: 29,
-        location: 'deck',
       },
-      {
+      '24': {
         name: 'Lance',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SIT/SIT_159_R_EN.png',
-        index: 22,
-        location: 'deck',
       },
-      {
+      '25': {
         name: 'Lance',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SIT/SIT_159_R_EN.png',
-        index: 7,
-        location: 'prize',
       },
-      {
+      '26': {
         name: "Professor Turo's Scenario",
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAR/PAR_171_R_EN.png',
-        index: 40,
-        location: 'deck',
       },
-      {
+      '27': {
         name: "Professor Turo's Scenario",
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAR/PAR_171_R_EN.png',
-        index: 13,
-        location: 'deck',
       },
-      {
+      '28': {
         name: 'Iono',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAL/PAL_185_R_EN.png',
-        index: 37,
-        location: 'deck',
       },
-      {
+      '29': {
         name: 'Iono',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAL/PAL_185_R_EN.png',
-        index: 5,
-        location: 'active',
       },
-      {
+      '30': {
         name: "Boss's Orders",
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAL/PAL_172_R_EN.png',
-        index: 44,
-        location: 'deck',
       },
-      {
+      '31': {
         name: 'Crispin',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SCR/SCR_133_R_EN.png',
-        index: 58,
-        location: 'deck',
       },
-      {
+      '32': {
         name: 'Buddy-Buddy Poffin',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TEF/TEF_144_R_EN.png',
-        index: 55,
-        location: 'deck',
       },
-      {
+      '33': {
         name: 'Buddy-Buddy Poffin',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TEF/TEF_144_R_EN.png',
-        index: 51,
-        location: 'deck',
       },
-      {
+      '34': {
         name: 'Buddy-Buddy Poffin',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TEF/TEF_144_R_EN.png',
-        index: 46,
-        location: 'deck',
       },
-      {
+      '35': {
         name: 'Buddy-Buddy Poffin',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TEF/TEF_144_R_EN.png',
-        index: 28,
-        location: 'deck',
       },
-      {
+      '36': {
         name: 'Ultra Ball',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_196_R_EN.png',
-        index: 2,
-        location: 'hand',
       },
-      {
+      '37': {
         name: 'Ultra Ball',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_196_R_EN.png',
-        index: 43,
-        location: 'deck',
       },
-      {
+      '38': {
         name: 'Ultra Ball',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_196_R_EN.png',
-        index: 8,
-        location: 'prize',
       },
-      {
+      '39': {
         name: 'Nest Ball',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_181_R_EN.png',
-        index: 45,
-        location: 'deck',
       },
-      {
+      '40': {
         name: 'Nest Ball',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_181_R_EN.png',
-        index: 20,
-        location: 'deck',
       },
-      {
+      '41': {
         name: 'Counter Catcher',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAR/PAR_160_R_EN.png',
-        index: 39,
-        location: 'deck',
       },
-      {
+      '42': {
         name: 'Counter Catcher',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAR/PAR_160_R_EN.png',
-        index: 19,
-        location: 'deck',
       },
-      {
+      '43': {
         name: 'Super Rod',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAL/PAL_188_R_EN.png',
-        index: 59,
-        location: 'deck',
       },
-      {
+      '44': {
         name: 'Unfair Stamp',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_165_R_EN.png',
-        index: 34,
-        location: 'deck',
       },
-      {
+      '45': {
         name: 'Switch',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_194_R_EN.png',
-        index: 6,
-        location: 'hand',
       },
-      {
+      '46': {
         name: 'Earthen Vessel',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAR/PAR_163_R_EN.png',
-        index: 11,
-        location: 'prize',
       },
-      {
+      '47': {
         name: 'Defiance Vest',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAR/PAR_162_R_EN.png',
-        index: 12,
-        location: 'prize',
       },
-      {
+      '48': {
         name: 'Forest Seal Stone',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SIT/SIT_156_R_EN.png',
-        index: 49,
-        location: 'deck',
       },
-      {
+      '49': {
         name: 'Rescue Board',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TEF/TEF_159_R_EN.png',
-        index: 17,
-        location: 'deck',
       },
-      {
+      '50': {
         name: 'Lost City',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/LOR/LOR_161_R_EN.png',
-        index: 25,
-        location: 'deck',
       },
-      {
+      '51': {
         name: 'Temple of Sinnoh',
         type: 'Trainer',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/ASR/ASR_155_R_EN.png',
-        index: 26,
-        location: 'deck',
       },
-      {
+      '52': {
         name: 'Psychic Energy',
         type: 'Energy',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png',
-        index: 30,
-        location: 'deck',
       },
-      {
+      '53': {
         name: 'Psychic Energy',
         type: 'Energy',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png',
-        index: 27,
-        location: 'deck',
       },
-      {
+      '54': {
         name: 'Psychic Energy',
         type: 'Energy',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png',
-        index: 50,
-        location: 'deck',
       },
-      {
+      '55': {
         name: 'Psychic Energy',
         type: 'Energy',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png',
-        index: 24,
-        location: 'deck',
       },
-      {
+      '56': {
         name: 'Fire Energy',
         type: 'Energy',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN.png',
-        index: 54,
-        location: 'deck',
       },
-      {
+      '57': {
         name: 'Fire Energy',
         type: 'Energy',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN.png',
-        index: 23,
-        location: 'deck',
       },
-      {
+      '58': {
         name: 'Fire Energy',
         type: 'Energy',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN.png',
-        index: 33,
-        location: 'deck',
       },
-      {
+      '59': {
         name: 'Darkness Energy',
         type: 'Energy',
         imageUrl:
           'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_015_R_EN.png',
-        index: 4,
-        location: 'hand',
       },
+    },
+    handIndices: [3, 56, 31, 41, 32, 47],
+    prizeIndices: [48, 9, 14, 21, 35, 1],
+    deckIndices: [
+      16, 52, 36, 57, 15, 53, 38, 10, 42, 18, 29, 22, 7, 40, 13, 37, 5, 44, 58,
+      55, 51, 46, 28, 2, 43, 8, 45, 20, 39, 19, 59, 34, 6, 11, 12, 49, 17, 25,
+      26, 30, 27, 50, 24, 54, 23, 33, 4,
     ],
+    benchIndices: [5],
+    activeIndices: [0],
+    boardIndices: [],
+    discardIndices: [],
+    lostZoneIndices: [],
   },
   oppBoardState: {
     gxUsed: false,
     vstarUsed: false,
-    cards: [],
+    cards: {},
+    handIndices: [],
+    prizeIndices: [],
+    deckIndices: [],
+    benchIndices: [],
+    activeIndices: [],
+    boardIndices: [],
+    discardIndices: [],
+    lostZoneIndices: [],
   },
 };
 

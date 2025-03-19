@@ -9,12 +9,22 @@ const initialState = {
   selfBoardState: {
     gxUsed: false,
     vstarUsed: false,
-    cards: [],
+    cards: {},
+    handIndices: [],
+    prizeIndices: [],
+    deckIndices: [],
+    benchIndices: [],
+    activeIndices: [],
   },
   oppBoardState: {
     gxUsed: false,
     vstarUsed: false,
-    cards: [],
+    cards: {},
+    handIndices: [],
+    prizeIndices: [],
+    deckIndices: [],
+    benchIndices: [],
+    activeIndices: [],
   },
 };
 
@@ -224,43 +234,39 @@ const selfSetupAction = new Action('self', true, 'setup', [
   ],
 ]);
 
-//   {"user":"self","emit":true,"action":"moveCardBundle","parameters":["self","hand","active",0,0,"move"]}]}
-
 test('self loadDeckData and opp loadDeckData are independent', () => {
   const oppLoadDeckDataAction = new Action('opp', true, 'loadDeckData', [[]]);
 
   let state = actionReducer(initialState, selfLoadDeckDataAction);
   state = actionReducer(state, oppLoadDeckDataAction);
-  expect(state.selfBoardState.cards.length).toBe(60);
-  expect(state.oppBoardState.cards.length).toBe(0);
+  expect(Object.keys(state.selfBoardState.cards).length).toBe(60);
+  expect(Object.keys(state.oppBoardState.cards).length).toBe(0);
 });
 
 test('setup', () => {
   let state = actionReducer(initialState, selfLoadDeckDataAction);
   state = actionReducer(state, selfSetupAction);
 
-  const firstCard = state.selfBoardState.cards[0] as Card;
+  const firstCardId = state.selfBoardState.handIndices[0];
+  const firstCard = state.selfBoardState.cards[firstCardId] as Card;
+
   expect(firstCard.name).toBe('Dreepy');
-  expect(firstCard.index).toBe(3);
+  expect(firstCardId).toBe(3);
   expect(firstCard.type).toBe('Pokémon');
-  expect(firstCard.location).toBe(CardLocation.Hand);
 
-  const lastCard = state.selfBoardState.cards[59] as Card;
-  expect(lastCard.name).toBe('Darkness Energy');
-  expect(lastCard.index).toBe(4);
-  expect(lastCard.type).toBe('Energy');
-  expect(lastCard.location).toBe(CardLocation.Deck);
-
-  const firstCardInHand = state.selfBoardState.cards[5] as Card;
-  expect(firstCardInHand.index).toBe(0);
-  expect(firstCardInHand.location).toBe(CardLocation.Hand);
+  const lastCardId =
+    state.selfBoardState.deckIndices[
+      state.selfBoardState.deckIndices.length - 1
+    ];
+  const lastCard = state.selfBoardState.cards[lastCardId] as Card;
+  expect(lastCard.name).toBe('Drakloak');
+  expect(lastCardId).toBe(4);
+  expect(lastCard.type).toBe('Pokémon');
 });
 
 test('moveCardBundle', () => {
   let state = actionReducer(initialState, selfLoadDeckDataAction);
   state = actionReducer(state, selfSetupAction);
-
-  // user, initiator, oZoneId, dZoneId, index, targetIndex, action, (emit = true);
 
   const moveToActiveAction = new Action('self', true, 'moveCardBundle', [
     'self',
@@ -273,11 +279,12 @@ test('moveCardBundle', () => {
 
   state = actionReducer(state, moveToActiveAction);
 
-  const activeCards = state.selfBoardState.cards.filter(
-    (card) => (card as Card).location === CardLocation.Active
+  let activeCards = state.selfBoardState.activeIndices.map(
+    (i) => state.selfBoardState.cards[i]
   );
   expect(activeCards).toBeDefined();
   expect(activeCards.length).toBe(1);
+  expect(activeCards[0].name).toBe('Drakloak');
 
   const moveToBenchAction = new Action('self', true, 'moveCardBundle', [
     'self',
@@ -290,11 +297,35 @@ test('moveCardBundle', () => {
 
   state = actionReducer(state, moveToBenchAction);
 
-  const benchedCards = state.selfBoardState.cards.filter(
-    (card) => (card as Card).location === CardLocation.Bench
+  let benchedCards = state.selfBoardState.benchIndices.map(
+    (i) => state.selfBoardState.cards[i]
   );
   expect(benchedCards).toBeDefined();
   expect(benchedCards.length).toBe(1);
+
+  const firstCardInHand =
+    state.selfBoardState.cards[state.selfBoardState.handIndices[0]];
+  const moveHandToActiveAction = new Action('self', true, 'moveCardBundle', [
+    'self',
+    'hand',
+    'active',
+    0,
+    0,
+    'move',
+  ]);
+  state = actionReducer(state, moveHandToActiveAction);
+
+  benchedCards = state.selfBoardState.benchIndices.map(
+    (i) => state.selfBoardState.cards[i]
+  );
+  expect(state.selfBoardState.benchIndices.length).toBe(2); // Active moved to bench
+  expect(benchedCards[0].name).toBe('Drakloak'); // Active moved to bench
+
+  activeCards = state.selfBoardState.activeIndices.map(
+    (i) => state.selfBoardState.cards[i]
+  );
+  expect(activeCards.length).toBe(1);
+  expect(activeCards[0].name).toBe(firstCardInHand.name);
 });
 
 test('self gxUsed and opp gxUsed independently', () => {

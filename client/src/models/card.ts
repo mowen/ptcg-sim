@@ -13,14 +13,11 @@ class Card {
   name: string;
   type: string;
   imageUrl: string;
-  index?: number;
-  location: string = CardLocation.Deck;
 
   constructor(name: string, type: string, imageUrl: string) {
     this.name = name;
     this.type = type;
     this.imageUrl = imageUrl;
-    this.index = null;
   }
 }
 

@@ -4,7 +4,7 @@ import { adjustAlignment } from '../../setup/sizing/adjust-alignment';
 import GxVStarButton from '../buttons/GxVStarButton';
 
 import './oppContainers.css';
-import { Card, CardLocation } from '../../models/card';
+import { Card } from '../../models/card';
 import CardView from '../cardView';
 
 const scrollToBottom = (element) => {
@@ -74,13 +74,15 @@ function OppContainers({ state }) {
     subtree: true,
   });
 
-  const activeCards = state.cards.filter(
-    (c) => c.location === CardLocation.Active
-  );
-  const handCards = state.cards.filter((c) => c.location === CardLocation.Hand);
-  const benchCards = state.cards.filter(
-    (c) => c.location === CardLocation.Bench
-  );
+  const filterCards = (indices: number[]) => indices.map((i) => state.cards[i]);
+  const deckCards = filterCards(state.deckIndices);
+  const activeCards = filterCards(state.activeIndices);
+  const handCards = filterCards(state.handIndices);
+  const benchCards = filterCards(state.benchIndices);
+  const prizeCards = filterCards(state.prizeIndices);
+  const discardCards = filterCards(state.discardIndices);
+  const boardCards = filterCards(state.boardIndices);
+  const lostZoneCards = filterCards(state.lostZoneIndices);
 
   return (
     <div id="oppContainer" className="opp">
@@ -90,7 +92,7 @@ function OppContainers({ state }) {
       </div>
 
       <div id="deckText" className="opp-text">
-        (<span id="deckCount">0</span>)
+        (<span id="deckCount">{deckCards.length}</span>)
       </div>
       <div id="deck" className="zone opp-view">
         <div className="zone-button-container">
@@ -105,7 +107,7 @@ function OppContainers({ state }) {
         </div>
       </div>
       <div id="discardText" className="opp-text">
-        (<span id="discardCount">0</span>)
+        (<span id="discardCount">{discardCards.length}</span>)
       </div>
       <div id="discard" className="zone opp-view">
         <div className="zone-button-container">
@@ -120,7 +122,7 @@ function OppContainers({ state }) {
         </div>
       </div>
       <div id="lostZoneText" className="opp-text">
-        (<span id="lostZoneCount">0</span>)
+        (<span id="lostZoneCount">{lostZoneCards.length}</span>)
       </div>
       <div id="lostZone" className="zone opp-view">
         <div className="zone-button-container">
@@ -145,11 +147,11 @@ function OppContainers({ state }) {
         </label>
       </div>
       <div id="handText" className="opp-text">
-        (<span id="handCount">0</span>)
+        (<span id="handCount">{handCards.length}</span>)
       </div>
       <div id="hand" ref={handRef}>
         {handCards.map((c: Card) => (
-          <CardView imageUrl={c.imageUrl}></CardView>
+          <CardView name={c.name} imageUrl={c.imageUrl}></CardView>
         ))}
       </div>
       <div id="discardCover" className="outline"></div>
@@ -157,16 +159,24 @@ function OppContainers({ state }) {
       <div id="lostZoneCover" className="outline"></div>
       <div id="bench" className="outline">
         {benchCards.map((c: Card) => (
-          <CardView imageUrl={c.imageUrl}></CardView>
+          <CardView name={c.name} imageUrl={c.imageUrl}></CardView>
         ))}
       </div>
       <div id="active" className="outline">
         {activeCards.map((c: Card) => (
-          <CardView imageUrl={c.imageUrl}></CardView>
+          <CardView name={c.name} imageUrl={c.imageUrl}></CardView>
         ))}
       </div>
-      <div id="prizes" className="outline" ref={prizesRef}></div>
-      <div id="board" className="opp-board" ref={boardRef}></div>
+      <div id="prizes" className="outline" ref={prizesRef}>
+        {prizeCards.map((c: Card) => (
+          <CardView name={c.name} imageUrl={c.imageUrl}></CardView>
+        ))}
+      </div>
+      <div id="board" className="opp-board" ref={boardRef}>
+        {boardCards.map((c: Card) => (
+          <CardView name={c.name} imageUrl={c.imageUrl}></CardView>
+        ))}
+      </div>
 
       <div
         id="specialMoveButtonContainer"
