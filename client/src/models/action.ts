@@ -1,4 +1,4 @@
-export default class Action {
+class Action {
   user: string;
   action: string;
   emit: boolean;
@@ -16,3 +16,5 @@ export default class Action {
     this.parameters = parameters;
   }
 }
+
+export { Action };

@@ -1,11 +1,11 @@
 import { useRef } from 'react';
 import useMutationObserver from '../../hooks/useMutationObserver';
-import { adjustAlignment } from '../../setup/sizing/adjust-alignment';
+import { adjustAlignment } from '../../../setup/sizing/adjust-alignment';
 import GxVStarButton from '../buttons/GxVStarButton';
 
-import './oppContainers.css';
-import { Card } from '../../models/card';
+import './containers.css';
 import CardView from '../cardView';
+import { Card, BoardState } from '../../../models';
 
 const scrollToBottom = (element) => {
   element.scrollTop = element.scrollHeight;
@@ -27,29 +27,32 @@ const handleHandMutations = (element, mutations) => {
   });
 };
 
-// Function to adjust image size based on the number of images
-const adjustImageSize = (element) => {
-  const images = element.getElementsByTagName('img');
-  const numImages = images.length;
-  const classList = numImages <= 6 ? 'prizes-normal-size' : 'prizes-small-size';
+function Prizes({ prizeCards }: { prizeCards: Array<Card> }) {
+  const classList =
+    prizeCards.length <= 6 ? 'prizes-normal-size' : 'prizes-small-size';
 
-  for (const image of images) {
-    image.classList.remove('prizes-normal-size', 'prizes-small-size');
-    image.classList.add(classList);
-  }
-};
+  return (
+    <div id="prizes" className="outline">
+      {prizeCards.map((c: Card) => (
+        <CardView
+          name={c.name}
+          imageUrl={c.imageUrl}
+          className={classList}
+        ></CardView>
+      ))}
+    </div>
+  );
+}
 
-// Callback function for the Mutation Observer
-const handlePrizeMutations = (element, mutations) => {
-  for (const mutation of mutations) {
-    if (mutation.type === 'childList') {
-      // Child nodes have been added or removed, adjust image size
-      adjustImageSize(mutation.target);
-    }
-  }
-};
-
-function OppContainers({ state }) {
+function Containers({
+  user,
+  deckList,
+  state,
+}: {
+  user: string;
+  deckList: Array<Card>;
+  state: BoardState;
+}) {
   const boardRef = useRef<HTMLDivElement>(null);
   useMutationObserver(boardRef, handleBoardMutations, {
     attributes: false,
@@ -66,35 +69,28 @@ function OppContainers({ state }) {
     subtree: false,
   });
 
-  const prizesRef = useRef<HTMLDivElement>(null);
-  useMutationObserver(prizesRef, handlePrizeMutations, {
-    attributes: false,
-    characterData: false,
-    childList: true,
-    subtree: true,
-  });
-
-  const filterCards = (indices: number[]) => indices.map((i) => state.cards[i]);
-  const deckCards = filterCards(state.deckIndices);
-  const activeCards = filterCards(state.activeIndices);
-  const handCards = filterCards(state.handIndices);
-  const benchCards = filterCards(state.benchIndices);
-  const prizeCards = filterCards(state.prizeIndices);
-  const discardCards = filterCards(state.discardIndices);
-  const boardCards = filterCards(state.boardIndices);
-  const lostZoneCards = filterCards(state.lostZoneIndices);
+  const filterCards = (indices: number[]) =>
+    indices?.map((i) => deckList[i]) ?? [];
+  const deckCards = filterCards(state.deck);
+  const activeCards = filterCards(state.active);
+  const handCards = filterCards(state.hand);
+  const benchCards = filterCards(state.bench);
+  const prizeCards = filterCards(state.prize);
+  const discardCards = filterCards(state.discard);
+  const boardCards = filterCards(state.board);
+  const lostZoneCards = filterCards(state.lostZone);
 
   return (
-    <div id="oppContainer" className="opp">
+    <div id={`${user}Container`} className={user}>
       <div id="boardCenterDesign">
         <div id="boardCircle"></div>
         <div id="innerCircle"></div>
       </div>
 
-      <div id="deckText" className="opp-text">
+      <div id="deckText" className={`${user}-text`}>
         (<span id="deckCount">{deckCards.length}</span>)
       </div>
-      <div id="deck" className="zone opp-view">
+      <div id="deck" className={`zone ${user}-view`}>
         <div className="zone-button-container">
           <button id="shuffleDeckButton" className="zone-button">
             Shuffle
@@ -106,10 +102,10 @@ function OppContainers({ state }) {
           <label htmlFor="sortDeckCheckbox">Sort</label>
         </div>
       </div>
-      <div id="discardText" className="opp-text">
+      <div id="discardText" className={`${user}-text`}>
         (<span id="discardCount">{discardCards.length}</span>)
       </div>
-      <div id="discard" className="zone opp-view">
+      <div id="discard" className={`zone ${user}-view`}>
         <div className="zone-button-container">
           <button id="shuffleDiscardButton" className="zone-button">
             Shuffle all to Deck
@@ -121,10 +117,10 @@ function OppContainers({ state }) {
           <label htmlFor="sortDiscardCheckbox">Sort</label>
         </div>
       </div>
-      <div id="lostZoneText" className="opp-text">
+      <div id="lostZoneText" className={`${user}-text`}>
         (<span id="lostZoneCount">{lostZoneCards.length}</span>)
       </div>
-      <div id="lostZone" className="zone opp-view">
+      <div id="lostZone" className={`zone ${user}-view`}>
         <div className="zone-button-container">
           <button id="closeLostZoneButton" className="zone-button">
             Close
@@ -135,18 +131,22 @@ function OppContainers({ state }) {
       </div>
 
       <div id="handLabel">
-        <input type="checkbox" className="opp-text" id="sortHandCheckbox" />
+        <input
+          type="checkbox"
+          id="sortHandCheckbox"
+          className={`${user}-text`}
+        />
         <label style={{ cursor: 'pointer' }} htmlFor="sortHandCheckbox">
           <div
             id="sortHandText"
-            className="opp-text"
+            className={`${user}-text`}
             style={{ display: 'inline-block' }}
           >
             Sort
           </div>
         </label>
       </div>
-      <div id="handText" className="opp-text">
+      <div id="handText" className={`${user}-text`}>
         (<span id="handCount">{handCards.length}</span>)
       </div>
       <div id="hand" ref={handRef}>
@@ -154,9 +154,21 @@ function OppContainers({ state }) {
           <CardView name={c.name} imageUrl={c.imageUrl}></CardView>
         ))}
       </div>
-      <div id="discardCover" className="outline"></div>
-      <div id="deckCover" className="outline"></div>
-      <div id="lostZoneCover" className="outline"></div>
+      <div id="discardCover" className="outline">
+        {discardCards.map((c: Card) => (
+          <CardView name={c.name} imageUrl={c.imageUrl}></CardView>
+        ))}
+      </div>
+      <div id="deckCover" className="outline">
+        {deckCards.map((c: Card) => (
+          <CardView name={c.name} imageUrl={c.imageUrl}></CardView>
+        ))}
+      </div>
+      <div id="lostZoneCover" className="outline">
+        {lostZoneCards.map((c: Card) => (
+          <CardView name={c.name} imageUrl={c.imageUrl}></CardView>
+        ))}
+      </div>
       <div id="bench" className="outline">
         {benchCards.map((c: Card) => (
           <CardView name={c.name} imageUrl={c.imageUrl}></CardView>
@@ -167,32 +179,27 @@ function OppContainers({ state }) {
           <CardView name={c.name} imageUrl={c.imageUrl}></CardView>
         ))}
       </div>
-      <div id="prizes" className="outline" ref={prizesRef}>
-        {prizeCards.map((c: Card) => (
-          <CardView name={c.name} imageUrl={c.imageUrl}></CardView>
-        ))}
-      </div>
-      <div id="board" className="opp-board" ref={boardRef}>
+      <Prizes prizeCards={prizeCards} />
+      <div id="board" className="self-board" ref={boardRef}>
         {boardCards.map((c: Card) => (
           <CardView name={c.name} imageUrl={c.imageUrl}></CardView>
         ))}
       </div>
-
       <div
         id="specialMoveButtonContainer"
-        className="opp-special-move-button-container"
+        className={`${user}-special-move-button-container`}
       >
-        <GxVStarButton user="opp" type="VSTAR" used={state.vstarUsed} />
-        <GxVStarButton user="opp" type="GX" used={state.gxUsed} />
+        <GxVStarButton user={user} type="VSTAR" used={state.vstarUsed} />
+        <GxVStarButton user={user} type="GX" used={state.gxUsed} />
       </div>
 
-      <div id="attachedCards" className="opp-view">
-        <div id="attachedCardsHeader" className="header opp-header">
-          Opponent moving cards...
+      <div id="attachedCards" className={`${user}-view`}>
+        <div id="attachedCardsHeader" className="header self-header">
+          Move attached cards
         </div>
         <div
           id="attachedCardsButtonContainer"
-          className="opp-zone-button-container"
+          className="self-zone-button-container"
         >
           <button id="discardAttachedCardsButton" className="zone-button">
             Discard all
@@ -212,13 +219,13 @@ function OppContainers({ state }) {
         </div>
       </div>
 
-      <div id="viewCards" className="opp-view flip-image">
-        <div id="viewCardsHeader" className="header opp-header">
+      <div id="viewCards" className={`${user}-view`}>
+        <div id="viewCardsHeader" className={`header ${user}-header`}>
           Looking at cards...
         </div>
         <div
           id="viewCardsButtonContainer"
-          className="opp-zone-button-container"
+          className="self-zone-button-container"
         >
           <button id="discardViewCardsButton" className="zone-button">
             Discard all
@@ -241,4 +248,4 @@ function OppContainers({ state }) {
   );
 }
 
-export default OppContainers;
+export default Containers;

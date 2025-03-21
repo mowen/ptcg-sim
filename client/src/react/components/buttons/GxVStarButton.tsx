@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import { systemState } from '../../front-end.js';
-import { appendMessage } from '../../setup/chatbox/append-message.js';
-import { determineUsername } from '../../setup/general/determine-username.js';
-import Action from '../../reducer/action.js';
+import { systemState } from '../../../front-end.js';
+import { appendMessage } from '../../../setup/chatbox/append-message.js';
+import { determineUsername } from '../../../setup/general/determine-username.js';
 import { AppDispatchContext } from '../../context/appContext.js';
+import { Action } from '../../../models';
 
 function GxVStarButton({ user, type, used }) {
   const processAction = useContext(AppDispatchContext);
