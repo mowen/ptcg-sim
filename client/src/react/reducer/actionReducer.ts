@@ -1,6 +1,16 @@
-import { Action, Card, CardLocation, GameState } from '../../models';
+import {
+  Action,
+  BoardState,
+  Card,
+  CardLocation,
+  GameState,
+} from '../../models';
 
 export default function reducer(state: GameState, action: Action) {
+  const deckSize: number = 60;
+  const handSize: number = 7;
+  const prizeCount: number = 6;
+
   switch (action.action) {
     case 'VSTARGXFunction': {
       const type: string = (action.parameters[0] as string).toLowerCase();
@@ -36,17 +46,20 @@ export default function reducer(state: GameState, action: Action) {
         ...state,
         [user]: {
           ...state[user],
-          hand: indices.slice(0, 7),
-          prize: indices.slice(7, 13),
-          deck: indices.slice(13, 60),
+          hand: indices.slice(0, handSize),
+          prize: indices.slice(handSize, handSize + prizeCount),
+          deck: indices.slice(handSize + prizeCount, deckSize),
         },
       };
     }
     case 'moveCardBundle': {
       const user = action.user;
-      const oZoneId = action.parameters[1] as string;
-      const dZoneId = action.parameters[2] as string;
-      const sourceIndex = action.parameters[3] as number;
+      const [, oZoneId, dZoneId, sourceIndex] = action.parameters as [
+        unknown,
+        string,
+        string,
+        number
+      ];
       const targetIndex = (action.parameters[4] as number) || 0;
 
       const sourceCardIndex = state[user][oZoneId][sourceIndex];
@@ -88,6 +101,56 @@ export default function reducer(state: GameState, action: Action) {
           },
         };
       }
+    }
+    case 'takeTurn': {
+      const user = action.user;
+      const deck = state[user].deck;
+      const hand = state[user].hand;
+      const topDeckId = deck[0];
+      return {
+        ...state,
+        [user]: {
+          ...state[user],
+          hand: [...hand, topDeckId],
+          deck: [...deck.slice(1, deck.length)],
+        },
+      };
+    }
+    case 'reset': {
+      const user = action.user;
+      const boardState = new BoardState();
+      boardState.deck = [...Array(60).keys()];
+      return {
+        ...state,
+        [user]: boardState,
+      };
+    }
+    case 'shuffleAll': {
+      const [user, zoneId, newIndices] = action.parameters as [
+        string,
+        string,
+        Array<number>
+      ];
+      return {
+        ...state,
+        [user]: {
+          ...state[user],
+          [zoneId]: newIndices,
+        },
+      };
+    }
+    case 'discardBoard': {
+      const user = action.user;
+      const board = state[user].board;
+      const discard = state[user].discard;
+      return {
+        ...state,
+        [user]: {
+          ...state[user],
+          board: [],
+          discard: [board, ...discard].flat(1),
+        },
+      };
     }
     default:
       return state;

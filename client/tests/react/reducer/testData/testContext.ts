@@ -199,6 +199,215 @@ export const selfLoadDeckDataAction = new Action('self', true, 'loadDeckData', [
   ],
 ]);
 
+export const oppLoadDeckDataAction = new Action('opp', true, 'loadDeckData', [
+  [
+    [
+      '4',
+      'Gimmighoul',
+      'Pokémon',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SSP/SSP_097_R_EN.png',
+    ],
+    [
+      '4',
+      'Gholdengo ex',
+      'Pokémon',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAR/PAR_139_R_EN.png',
+    ],
+    [
+      '1',
+      'Gholdengo',
+      'Pokémon',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SSP/SSP_131_R_EN.png',
+    ],
+    [
+      '1',
+      'Fezandipiti ex',
+      'Pokémon',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SFA/SFA_038_R_EN.png',
+    ],
+    [
+      '1',
+      'Radiant Greninja',
+      'Pokémon',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/ASR/ASR_046_R_EN.png',
+    ],
+    [
+      '1',
+      'Munkidori',
+      'Pokémon',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_095_R_EN.png',
+    ],
+    [
+      '1',
+      'Spiritomb',
+      'Pokémon',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAL/PAL_089_R_EN.png',
+    ],
+    [
+      '3',
+      'Arven',
+      'Trainer',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/OBF/OBF_186_R_EN.png',
+    ],
+    [
+      '3',
+      "Ciphermaniac's Codebreaking",
+      'Trainer',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TEF/TEF_145_R_EN.png',
+    ],
+    [
+      '2',
+      "Boss's Orders",
+      'Trainer',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAL/PAL_172_R_EN.png',
+    ],
+    [
+      '1',
+      "Professor Turo's Scenario",
+      'Trainer',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAR/PAR_171_R_EN.png',
+    ],
+    [
+      '1',
+      'Roxanne',
+      'Trainer',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/ASR/ASR_150_R_EN.png',
+    ],
+    [
+      '4',
+      'Superior Energy Retrieval',
+      'Trainer',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAL/PAL_189_R_EN.png',
+    ],
+    [
+      '4',
+      'Buddy-Buddy Poffin',
+      'Trainer',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TEF/TEF_144_R_EN.png',
+    ],
+    [
+      '2',
+      'Nest Ball',
+      'Trainer',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_181_R_EN.png',
+    ],
+    [
+      '2',
+      'Ultra Ball',
+      'Trainer',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_196_R_EN.png',
+    ],
+    [
+      '2',
+      'Night Stretcher',
+      'Trainer',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SFA/SFA_061_R_EN.png',
+    ],
+    [
+      '2',
+      'Pokégear 3.0',
+      'Trainer',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_186_R_EN.png',
+    ],
+    [
+      '1',
+      'Energy Search Pro',
+      'Trainer',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SSP/SSP_176_R_EN.png',
+    ],
+    [
+      '1',
+      'Earthen Vessel',
+      'Trainer',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAR/PAR_163_R_EN.png',
+    ],
+    [
+      '1',
+      'Hisuian Heavy Ball',
+      'Trainer',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/ASR/ASR_146_R_EN.png',
+    ],
+    [
+      '1',
+      'Switch',
+      'Trainer',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_194_R_EN.png',
+    ],
+    [
+      '1',
+      'Pal Pad',
+      'Trainer',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_182_R_EN.png',
+    ],
+    [
+      '1',
+      'Lost Vacuum',
+      'Trainer',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/LOR/LOR_162_R_EN.png',
+    ],
+    [
+      '1',
+      'Technical Machine: Evolution',
+      'Trainer',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAR/PAR_178_R_EN.png',
+    ],
+    [
+      '2',
+      'PokéStop',
+      'Trainer',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PGO/PGO_068_R_EN.png',
+    ],
+    [
+      '3',
+      'Metal Energy',
+      'Energy',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_016_R_EN.png',
+    ],
+    [
+      '2',
+      'Darkness Energy',
+      'Energy',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_015_R_EN.png',
+    ],
+    [
+      '2',
+      'Water Energy',
+      'Energy',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_011_R_EN.png',
+    ],
+    [
+      '1',
+      'Grass Energy',
+      'Energy',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_009_R_EN.png',
+    ],
+    [
+      '1',
+      'Fire Energy',
+      'Energy',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN.png',
+    ],
+    [
+      '1',
+      'Lightning Energy',
+      'Energy',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_012_R_EN.png',
+    ],
+    [
+      '1',
+      'Psychic Energy',
+      'Energy',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png',
+    ],
+    [
+      '1',
+      'Fighting Energy',
+      'Energy',
+      'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_014_R_EN.png',
+    ],
+  ],
+]);
+
 declare module 'vitest' {
   export interface TestContext {
     setupState: GameState;
@@ -219,9 +428,20 @@ export const reducerTest = test.extend({
       ],
     ]);
 
+    const oppSetupAction = new Action('opp', true, 'setup', [
+      [
+        27, 26, 49, 58, 59, 43, 46, 29, 55, 45, 56, 4, 36, 47, 44, 57, 5, 50,
+        12, 51, 38, 17, 15, 10, 8, 2, 33, 40, 24, 14, 3, 16, 1, 37, 32, 20, 19,
+        53, 7, 13, 31, 52, 30, 48, 18, 23, 0, 41, 39, 25, 34, 22, 35, 11, 28,
+        42, 54, 9, 21, 6,
+      ],
+    ]);
+
     const initialState = new GameState();
     setupState = actionReducer(initialState, selfLoadDeckDataAction);
+    setupState = actionReducer(setupState, oppLoadDeckDataAction);
     setupState = actionReducer(setupState, selfSetupAction);
+    setupState = actionReducer(setupState, oppSetupAction);
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     await use(setupState);

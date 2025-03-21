@@ -1,7 +1,6 @@
-import { assert, describe, expect, test } from 'vitest';
-import actionReducer from '../../../src/react/reducer/actionReducer';
-import { Action, Card, GameState } from '../../../src/models';
-import { reducerTest, selfLoadDeckDataAction } from './testData/testContext';
+import { describe, expect } from 'vitest';
+import { Card } from '../../../src/models';
+import { reducerTest } from './testData/testContext';
 
 describe('setup', () => {
   reducerTest('first card in hand is Dreepy', ({ setupState }) => {
