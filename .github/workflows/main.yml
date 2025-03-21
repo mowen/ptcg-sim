@@ -33,3 +33,6 @@ jobs:
         # Only works if you set `reportOnFailure: true` in your vite config
         if: always()
         uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          working-directory: ./client
+          name: ptcg-sim client unit tests
