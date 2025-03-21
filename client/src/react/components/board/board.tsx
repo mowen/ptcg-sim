@@ -2,10 +2,9 @@ import { useRef } from 'react';
 import useMutationObserver from '../../hooks/useMutationObserver';
 import { adjustAlignment } from '../../../setup/sizing/adjust-alignment';
 import GxVStarButton from '../buttons/GxVStarButton';
-
-import './containers.css';
 import CardView from '../cardView';
 import { Card, BoardState } from '../../../models';
+import './board.css';
 
 const scrollToBottom = (element) => {
   element.scrollTop = element.scrollHeight;
@@ -33,10 +32,11 @@ function Prizes({ prizeCards }: { prizeCards: Array<Card> }) {
 
   return (
     <div id="prizes" className="outline">
-      {prizeCards.map((c: Card) => (
+      {prizeCards.map((c: Card, i) => (
         <CardView
-          name={c.name}
-          imageUrl={c.imageUrl}
+          key={i}
+          card={c}
+          faceUp={false}
           className={classList}
         ></CardView>
       ))}
@@ -44,14 +44,14 @@ function Prizes({ prizeCards }: { prizeCards: Array<Card> }) {
   );
 }
 
-function Containers({
+function Board({
   user,
   deckList,
-  state,
+  boardState,
 }: {
   user: string;
   deckList: Array<Card>;
-  state: BoardState;
+  boardState: BoardState;
 }) {
   const boardRef = useRef<HTMLDivElement>(null);
   useMutationObserver(boardRef, handleBoardMutations, {
@@ -69,16 +69,16 @@ function Containers({
     subtree: false,
   });
 
-  const filterCards = (indices: number[]) =>
-    indices?.map((i) => deckList[i]) ?? [];
-  const deckCards = filterCards(state.deck);
-  const activeCards = filterCards(state.active);
-  const handCards = filterCards(state.hand);
-  const benchCards = filterCards(state.bench);
-  const prizeCards = filterCards(state.prize);
-  const discardCards = filterCards(state.discard);
-  const boardCards = filterCards(state.board);
-  const lostZoneCards = filterCards(state.lostZone);
+  const filterCards = (indices: number[]): Array<Card> =>
+    indices?.map((i) => deckList[i]) ?? new Array<Card>();
+  const deckCards = filterCards(boardState.deck);
+  const activeCards = filterCards(boardState.active);
+  const handCards = filterCards(boardState.hand);
+  const benchCards = filterCards(boardState.bench);
+  const prizeCards = filterCards(boardState.prize);
+  const discardCards = filterCards(boardState.discard);
+  const boardCards = filterCards(boardState.board);
+  const lostZoneCards = filterCards(boardState.lostZone);
 
   return (
     <div id={`${user}Container`} className={user}>
@@ -150,47 +150,47 @@ function Containers({
         (<span id="handCount">{handCards.length}</span>)
       </div>
       <div id="hand" ref={handRef}>
-        {handCards.map((c: Card) => (
-          <CardView name={c.name} imageUrl={c.imageUrl}></CardView>
+        {handCards.map((c: Card, i) => (
+          <CardView key={i} card={c}></CardView>
         ))}
       </div>
       <div id="discardCover" className="outline">
-        {discardCards.map((c: Card) => (
-          <CardView name={c.name} imageUrl={c.imageUrl}></CardView>
-        ))}
+        {discardCards.length > 0 ? (
+          <CardView card={discardCards[0]}></CardView>
+        ) : null}
       </div>
       <div id="deckCover" className="outline">
-        {deckCards.map((c: Card) => (
-          <CardView name={c.name} imageUrl={c.imageUrl}></CardView>
-        ))}
+        {deckCards.length > 0 ? (
+          <CardView card={deckCards[0]} faceUp={false}></CardView>
+        ) : null}
       </div>
       <div id="lostZoneCover" className="outline">
-        {lostZoneCards.map((c: Card) => (
-          <CardView name={c.name} imageUrl={c.imageUrl}></CardView>
+        {lostZoneCards.map((c: Card, i) => (
+          <CardView key={i} card={c}></CardView>
         ))}
       </div>
       <div id="bench" className="outline">
-        {benchCards.map((c: Card) => (
-          <CardView name={c.name} imageUrl={c.imageUrl}></CardView>
+        {benchCards.map((c: Card, i) => (
+          <CardView key={i} card={c}></CardView>
         ))}
       </div>
       <div id="active" className="outline">
-        {activeCards.map((c: Card) => (
-          <CardView name={c.name} imageUrl={c.imageUrl}></CardView>
+        {activeCards.map((c: Card, i) => (
+          <CardView key={i} card={c}></CardView>
         ))}
       </div>
       <Prizes prizeCards={prizeCards} />
       <div id="board" className="self-board" ref={boardRef}>
-        {boardCards.map((c: Card) => (
-          <CardView name={c.name} imageUrl={c.imageUrl}></CardView>
+        {boardCards.map((c: Card, i) => (
+          <CardView key={i} card={c}></CardView>
         ))}
       </div>
       <div
         id="specialMoveButtonContainer"
         className={`${user}-special-move-button-container`}
       >
-        <GxVStarButton user={user} type="VSTAR" used={state.vstarUsed} />
-        <GxVStarButton user={user} type="GX" used={state.gxUsed} />
+        <GxVStarButton user={user} type="VSTAR" used={boardState.vstarUsed} />
+        <GxVStarButton user={user} type="GX" used={boardState.gxUsed} />
       </div>
 
       <div id="attachedCards" className={`${user}-view`}>
@@ -248,4 +248,4 @@ function Containers({
   );
 }
 
-export default Containers;
+export default Board;

@@ -1,8 +1,8 @@
-import { assert, describe, expect, test } from 'vitest';
-import actionReducer from '../../../src/react/reducer/actionReducer';
-import { Action, Card, GameState } from '../../../src/models';
+import { test } from 'vitest';
+import { Action, GameState } from '../../../../src/models';
+import actionReducer from '../../../../src/react/reducer/actionReducer';
 
-const selfLoadDeckDataAction = new Action('self', true, 'loadDeckData', [
+export const selfLoadDeckDataAction = new Action('self', true, 'loadDeckData', [
   [
     [
       '4',
@@ -229,109 +229,4 @@ export const reducerTest = test.extend({
     // cleanup the fixture after each test function
     setupState = new GameState();
   },
-});
-
-describe('loadDeckData', () => {
-  reducerTest('selfDeckList has 60 cards', () => {
-    const oppLoadDeckDataAction = new Action('opp', true, 'loadDeckData', [[]]);
-
-    const initialState = new GameState();
-    let state = actionReducer(initialState, selfLoadDeckDataAction);
-    state = actionReducer(state, oppLoadDeckDataAction);
-    expect(state.selfDeckList.length).toBe(60);
-  });
-
-  reducerTest('oppDeckList has 0 cards', () => {
-    const oppLoadDeckDataAction = new Action('opp', true, 'loadDeckData', [[]]);
-
-    const initialState = new GameState();
-    let state = actionReducer(initialState, selfLoadDeckDataAction);
-    state = actionReducer(state, oppLoadDeckDataAction);
-    expect(state.oppDeckList.length).toBe(0);
-  });
-});
-
-describe('setup', () => {
-  reducerTest('first card in hand is Dreepy', ({ setupState }) => {
-    const firstCardId = setupState.self.hand[0];
-    const firstCard = setupState.selfDeckList[firstCardId] as Card;
-
-    expect(firstCard.name).toBe('Dreepy');
-    expect(firstCardId).toBe(3);
-    expect(firstCard.type).toBe('Pokémon');
-  });
-
-  reducerTest('last card in deck is Drakloak', ({ setupState }) => {
-    const lastCardId = setupState.self.deck[setupState.self.deck.length - 1];
-    const lastCard = setupState.selfDeckList[lastCardId] as Card;
-    expect(lastCard.name).toBe('Drakloak');
-    expect(lastCardId).toBe(4);
-    expect(lastCard.type).toBe('Pokémon');
-  });
-});
-
-describe('moveCardBundle', () => {
-  reducerTest('move from hand to active', ({ setupState }) => {
-    assert.sameOrderedMembers(setupState.self.hand, [3, 56, 31, 41, 32, 0, 47]);
-
-    const moveToActiveAction = new Action('self', true, 'moveCardBundle', [
-      'self',
-      'hand',
-      'active',
-      5,
-      false,
-      'move',
-    ]);
-
-    setupState = actionReducer(setupState, moveToActiveAction);
-
-    expect(setupState.self.active[0]).toBe(0);
-    assert.sameOrderedMembers(setupState.self.hand, [3, 56, 31, 41, 32, 47]);
-
-    let activeCards = setupState.self.active.map(
-      (i) => setupState.selfDeckList[i]
-    );
-    expect(activeCards).toBeDefined();
-    expect(activeCards.length).toBe(1);
-    expect(activeCards[0].name).toBe('Dreepy');
-
-    const moveToBenchAction = new Action('self', true, 'moveCardBundle', [
-      'self',
-      'hand',
-      'bench',
-      0,
-      false,
-      'move',
-    ]);
-
-    setupState = actionReducer(setupState, moveToBenchAction);
-
-    expect(setupState.self.active[0]).toBe(0);
-    assert.sameOrderedMembers(setupState.self.hand, [56, 31, 41, 32, 47]);
-    assert.sameOrderedMembers(setupState.self.bench, [3]);
-
-    const firstCardInHand = setupState.selfDeckList[setupState.self.hand[0]];
-    const moveHandToActiveAction = new Action('self', true, 'moveCardBundle', [
-      'self',
-      'hand',
-      'active',
-      0,
-      0,
-      'move',
-    ]);
-    setupState = actionReducer(setupState, moveHandToActiveAction);
-
-    assert.sameOrderedMembers(setupState.self.active, [56]);
-    assert.sameOrderedMembers(setupState.self.bench, [0, 3]);
-
-    const benchedCards = setupState.self.bench.map(
-      (i) => setupState.selfDeckList[i]
-    );
-    expect(setupState.self.bench.length).toBe(2); // Active moved to bench
-    expect(benchedCards[0].name).toBe('Dreepy'); // Active moved to bench
-
-    activeCards = setupState.self.active.map((i) => setupState.selfDeckList[i]);
-    expect(activeCards.length).toBe(1);
-    expect(activeCards[0].name).toBe(firstCardInHand.name);
-  });
 });

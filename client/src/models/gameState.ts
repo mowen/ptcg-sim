@@ -20,7 +20,7 @@ class GameState {
   public self: BoardState = new BoardState();
   public oppDeckList: Array<Card> = new Array<Card>();
   public opp: BoardState = new BoardState();
-  public stadium: number;
+  public stadium?: number;
   public oppIsActive: boolean = false;
   public turn: number = 0;
 }

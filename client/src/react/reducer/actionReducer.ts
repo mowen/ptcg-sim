@@ -89,12 +89,6 @@ export default function reducer(state: GameState, action: Action) {
         };
       }
     }
-    case 'flipBoard': {
-      return {
-        ...state,
-        oppIsActive: !state.oppIsActive,
-      };
-    }
     default:
       return state;
   }

@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
 import { mouseClick, systemState } from './front-end';
 import {
   discardBoard,
@@ -11,7 +11,7 @@ import { takeTurn } from './actions/general/take-turn';
 import { refreshBoardImages } from './setup/sizing/refresh-board';
 import actionReducer from './react/reducer/actionReducer';
 import { AppContext, AppDispatchContext } from './react/context/appContext';
-import Containers from './react/components/containers/containers';
+import Board from './react/components/board/board';
 import { Action } from './models';
 
 // const zoneIds = ['lostZone', 'deck', 'discard', 'attachedCards', 'viewCards'];
@@ -433,13 +433,15 @@ const initialState2 = {
     board: [],
     lostZone: [],
   },
-  stadium: undefined,
+  stadium: null,
   oppIsActive: false,
   turn: 0,
 };
 
 function App() {
   const [state, processAction] = useReducer(actionReducer, initialState2);
+  const [isSelfActive, setIsSelfActive] = useState(true);
+
   // const stadiumRef = useRef<HTMLDivElement>(null);
   // useMutationObserver(stadiumRef, handleStadiumMutations, {
   //   attributes: true,
@@ -448,16 +450,16 @@ function App() {
   //   subtree: false,
   // });
 
-  const p1DeckList = state.oppIsActive ? state.oppDeckList : state.selfDeckList;
-  const p2DeckList = state.oppIsActive ? state.selfDeckList : state.oppDeckList;
-  const p1State = state.oppIsActive ? state.opp : state.self;
-  const p2State = state.oppIsActive ? state.self : state.opp;
+  const p1DeckList = isSelfActive ? state.selfDeckList : state.oppDeckList;
+  const p2DeckList = isSelfActive ? state.oppDeckList : state.selfDeckList;
+  const p1State = isSelfActive ? state.self : state.opp;
+  const p2State = isSelfActive ? state.opp : state.self;
 
   return (
     <AppContext.Provider value={state}>
       <AppDispatchContext.Provider value={processAction}>
-        <Containers user="opp" deckList={p2DeckList} state={p2State} />
-        <Containers user="self" deckList={p1DeckList} state={p1State} />
+        <Board user="opp" deckList={p2DeckList} boardState={p2State} />
+        <Board user="self" deckList={p1DeckList} boardState={p1State} />
 
         <div id="stadium" className="outline"></div>
 
@@ -482,13 +484,7 @@ function App() {
             <span className="tooltiptext">Flip coin</span>
           </div>
           <div className="tooltip" id="flipBoardButton">
-            <button
-              onClick={() =>
-                processAction(new Action('self', true, 'flipBoard', []))
-              }
-            >
-              ⇅
-            </button>
+            <button onClick={() => setIsSelfActive(!isSelfActive)}>⇅</button>
             <span className="tooltiptext">Flip board</span>
           </div>
           <div className="tooltip" id="refreshButton">

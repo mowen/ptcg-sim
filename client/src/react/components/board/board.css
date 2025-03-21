@@ -103,8 +103,8 @@ button {
 }
 #handText {
   position: fixed;
-  right: 2%;
-  bottom: 30%;
+  right: 25%;
+  bottom: 14%;
   color: rgba(90, 110, 188, 0.864);
 }
 #handLabel {
@@ -118,7 +118,7 @@ button {
   position: fixed;
   bottom: 17%;
   left: 10%;
-  width: 66%;
+  width: 55%;
   height: 15%;
   display: flex;
   justify-content: center;
@@ -151,10 +151,10 @@ button {
 }
 #prizes {
   position: fixed;
-  bottom: 36%;
+  bottom: 18%;
   left: 1%;
   width: 6%;
-  height: 43%;
+  height: 21%;
   z-index: 0;
   padding: 5px;
 }
@@ -193,14 +193,14 @@ button {
 #lostZoneText {
   position: fixed;
   left: 8.5%;
-  bottom: 90%;
+  bottom: 46%;
 }
 #deckCover {
   position: fixed;
-  bottom: 66%;
-  right: 1%;
+  bottom: 35%;
+  right: 25%;
   width: 8%;
-  height: 25%;
+  height: 16%;
   z-index: 0;
   display: flex;
   justify-content: center;
@@ -217,8 +217,8 @@ button {
 }
 #deckText {
   position: fixed;
-  right: 2%;
-  bottom: 91%;
+  right: 25%;
+  bottom: 48%;
 }
 .self-text {
   font-size: clamp(10px, 4vh, 20px);
@@ -229,15 +229,15 @@ button {
 }
 #discardText {
   position: fixed;
-  right: 2%;
-  bottom: 60%;
+  right: 25%;
+  bottom: 31%;
 }
 #discardCover {
   position: fixed;
-  bottom: 36%;
-  right: 1%;
+  bottom: 18%;
+  right: 25%;
   width: 8%;
-  height: 23%;
+  height: 16%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -294,7 +294,7 @@ button {
   position: fixed;
   height: 6%;
   width: 10%;
-  right: 67%;
+  right: 75%;
   display: flex;
   align-items: center;
   justify-content: flex-end;

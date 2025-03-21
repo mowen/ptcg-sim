@@ -1,0 +1,1674 @@
+[
+  {
+    "version": "1.5.1"
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "loadDeckData",
+    "parameters": [
+      [
+        [
+          "4",
+          "Dreepy",
+          "Pokémon",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN.png"
+        ],
+        [
+          "4",
+          "Drakloak",
+          "Pokémon",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN.png"
+        ],
+        [
+          "2",
+          "Dragapult ex",
+          "Pokémon",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_130_R_EN.png"
+        ],
+        [
+          "2",
+          "Lumineon V",
+          "Pokémon",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/BRS/BRS_040_R_EN.png"
+        ],
+        [
+          "2",
+          "Budew",
+          "Pokémon",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PRE/PRE_004_R_EN.png"
+        ],
+        [
+          "1",
+          "Radiant Alakazam",
+          "Pokémon",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SIT/SIT_059_R_EN.png"
+        ],
+        [
+          "1",
+          "Bloodmoon Ursaluna ex",
+          "Pokémon",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_141_R_EN.png"
+        ],
+        [
+          "1",
+          "Klefki",
+          "Pokémon",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_096_R_EN.png"
+        ],
+        [
+          "1",
+          "Fezandipiti ex",
+          "Pokémon",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SFA/SFA_038_R_EN.png"
+        ],
+        [
+          "1",
+          "Munkidori",
+          "Pokémon",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_095_R_EN.png"
+        ],
+        [
+          "4",
+          "Arven",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/OBF/OBF_186_R_EN.png"
+        ],
+        [
+          "3",
+          "Lance",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SIT/SIT_159_R_EN.png"
+        ],
+        [
+          "2",
+          "Professor Turo's Scenario",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAR/PAR_171_R_EN.png"
+        ],
+        [
+          "2",
+          "Iono",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAL/PAL_185_R_EN.png"
+        ],
+        [
+          "1",
+          "Boss's Orders",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAL/PAL_172_R_EN.png"
+        ],
+        [
+          "1",
+          "Crispin",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SCR/SCR_133_R_EN.png"
+        ],
+        [
+          "4",
+          "Buddy-Buddy Poffin",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TEF/TEF_144_R_EN.png"
+        ],
+        [
+          "3",
+          "Ultra Ball",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_196_R_EN.png"
+        ],
+        [
+          "2",
+          "Nest Ball",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_181_R_EN.png"
+        ],
+        [
+          "2",
+          "Counter Catcher",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAR/PAR_160_R_EN.png"
+        ],
+        [
+          "1",
+          "Super Rod",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAL/PAL_188_R_EN.png"
+        ],
+        [
+          "1",
+          "Unfair Stamp",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_165_R_EN.png"
+        ],
+        [
+          "1",
+          "Switch",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_194_R_EN.png"
+        ],
+        [
+          "1",
+          "Earthen Vessel",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAR/PAR_163_R_EN.png"
+        ],
+        [
+          "1",
+          "Defiance Vest",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAR/PAR_162_R_EN.png"
+        ],
+        [
+          "1",
+          "Forest Seal Stone",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SIT/SIT_156_R_EN.png"
+        ],
+        [
+          "1",
+          "Rescue Board",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TEF/TEF_159_R_EN.png"
+        ],
+        [
+          "1",
+          "Lost City",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/LOR/LOR_161_R_EN.png"
+        ],
+        [
+          "1",
+          "Temple of Sinnoh",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/ASR/ASR_155_R_EN.png"
+        ],
+        [
+          "4",
+          "Psychic Energy",
+          "Energy",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png"
+        ],
+        [
+          "3",
+          "Fire Energy",
+          "Energy",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN.png"
+        ],
+        [
+          "1",
+          "Darkness Energy",
+          "Energy",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_015_R_EN.png"
+        ]
+      ]
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "loadDeckData",
+    "parameters": [
+      [
+        [
+          "4",
+          "Gimmighoul",
+          "Pokémon",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SSP/SSP_097_R_EN.png"
+        ],
+        [
+          "4",
+          "Gholdengo ex",
+          "Pokémon",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAR/PAR_139_R_EN.png"
+        ],
+        [
+          "1",
+          "Gholdengo",
+          "Pokémon",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SSP/SSP_131_R_EN.png"
+        ],
+        [
+          "1",
+          "Fezandipiti ex",
+          "Pokémon",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SFA/SFA_038_R_EN.png"
+        ],
+        [
+          "1",
+          "Radiant Greninja",
+          "Pokémon",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/ASR/ASR_046_R_EN.png"
+        ],
+        [
+          "1",
+          "Munkidori",
+          "Pokémon",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_095_R_EN.png"
+        ],
+        [
+          "1",
+          "Spiritomb",
+          "Pokémon",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAL/PAL_089_R_EN.png"
+        ],
+        [
+          "3",
+          "Arven",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/OBF/OBF_186_R_EN.png"
+        ],
+        [
+          "3",
+          "Ciphermaniac's Codebreaking",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TEF/TEF_145_R_EN.png"
+        ],
+        [
+          "2",
+          "Boss's Orders",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAL/PAL_172_R_EN.png"
+        ],
+        [
+          "1",
+          "Professor Turo's Scenario",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAR/PAR_171_R_EN.png"
+        ],
+        [
+          "1",
+          "Roxanne",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/ASR/ASR_150_R_EN.png"
+        ],
+        [
+          "4",
+          "Superior Energy Retrieval",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAL/PAL_189_R_EN.png"
+        ],
+        [
+          "4",
+          "Buddy-Buddy Poffin",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TEF/TEF_144_R_EN.png"
+        ],
+        [
+          "2",
+          "Nest Ball",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_181_R_EN.png"
+        ],
+        [
+          "2",
+          "Ultra Ball",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_196_R_EN.png"
+        ],
+        [
+          "2",
+          "Night Stretcher",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SFA/SFA_061_R_EN.png"
+        ],
+        [
+          "2",
+          "Pokégear 3.0",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_186_R_EN.png"
+        ],
+        [
+          "1",
+          "Energy Search Pro",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SSP/SSP_176_R_EN.png"
+        ],
+        [
+          "1",
+          "Earthen Vessel",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAR/PAR_163_R_EN.png"
+        ],
+        [
+          "1",
+          "Hisuian Heavy Ball",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/ASR/ASR_146_R_EN.png"
+        ],
+        [
+          "1",
+          "Switch",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_194_R_EN.png"
+        ],
+        [
+          "1",
+          "Pal Pad",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVI/SVI_182_R_EN.png"
+        ],
+        [
+          "1",
+          "Lost Vacuum",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/LOR/LOR_162_R_EN.png"
+        ],
+        [
+          "1",
+          "Technical Machine: Evolution",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PAR/PAR_178_R_EN.png"
+        ],
+        [
+          "2",
+          "PokéStop",
+          "Trainer",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/PGO/PGO_068_R_EN.png"
+        ],
+        [
+          "3",
+          "Metal Energy",
+          "Energy",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_016_R_EN.png"
+        ],
+        [
+          "2",
+          "Darkness Energy",
+          "Energy",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_015_R_EN.png"
+        ],
+        [
+          "2",
+          "Water Energy",
+          "Energy",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_011_R_EN.png"
+        ],
+        [
+          "1",
+          "Grass Energy",
+          "Energy",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_009_R_EN.png"
+        ],
+        [
+          "1",
+          "Fire Energy",
+          "Energy",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN.png"
+        ],
+        [
+          "1",
+          "Lightning Energy",
+          "Energy",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_012_R_EN.png"
+        ],
+        [
+          "1",
+          "Psychic Energy",
+          "Energy",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png"
+        ],
+        [
+          "1",
+          "Fighting Energy",
+          "Energy",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_014_R_EN.png"
+        ]
+      ]
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "setup",
+    "parameters": [
+      [
+        30,
+        15,
+        14,
+        53,
+        58,
+        10,
+        25,
+        31,
+        6,
+        29,
+        5,
+        54,
+        33,
+        45,
+        1,
+        59,
+        34,
+        51,
+        37,
+        9,
+        42,
+        41,
+        38,
+        47,
+        50,
+        43,
+        7,
+        11,
+        28,
+        4,
+        12,
+        24,
+        3,
+        17,
+        52,
+        26,
+        44,
+        18,
+        20,
+        16,
+        22,
+        27,
+        21,
+        23,
+        35,
+        55,
+        40,
+        48,
+        46,
+        32,
+        2,
+        57,
+        36,
+        13,
+        39,
+        8,
+        0,
+        49,
+        56,
+        19
+      ]
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "setup",
+    "parameters": [
+      [
+        27,
+        26,
+        49,
+        58,
+        59,
+        43,
+        46,
+        29,
+        55,
+        45,
+        56,
+        4,
+        36,
+        47,
+        44,
+        57,
+        5,
+        50,
+        12,
+        51,
+        38,
+        17,
+        15,
+        10,
+        8,
+        2,
+        33,
+        40,
+        24,
+        14,
+        3,
+        16,
+        1,
+        37,
+        32,
+        20,
+        19,
+        53,
+        7,
+        13,
+        31,
+        52,
+        30,
+        48,
+        18,
+        23,
+        0,
+        41,
+        39,
+        25,
+        34,
+        22,
+        35,
+        11,
+        28,
+        42,
+        54,
+        9,
+        21,
+        6
+      ]
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "hand",
+      "active",
+      2,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "reset",
+    "parameters": [
+      false,
+      true,
+      true
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "setup",
+    "parameters": [
+      [
+        4,
+        28,
+        57,
+        34,
+        15,
+        25,
+        38,
+        27,
+        56,
+        44,
+        30,
+        5,
+        58,
+        36,
+        16,
+        22,
+        19,
+        32,
+        37,
+        54,
+        13,
+        48,
+        45,
+        26,
+        49,
+        24,
+        43,
+        53,
+        52,
+        2,
+        1,
+        0,
+        3,
+        6,
+        11,
+        14,
+        50,
+        7,
+        33,
+        31,
+        8,
+        59,
+        35,
+        41,
+        21,
+        20,
+        23,
+        39,
+        51,
+        46,
+        42,
+        47,
+        10,
+        55,
+        17,
+        29,
+        9,
+        40,
+        18,
+        12
+      ]
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "reset",
+    "parameters": [
+      false,
+      true,
+      true
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "setup",
+    "parameters": [
+      [
+        48,
+        50,
+        38,
+        8,
+        58,
+        52,
+        34,
+        51,
+        55,
+        42,
+        4,
+        20,
+        21,
+        54,
+        43,
+        19,
+        46,
+        23,
+        26,
+        33,
+        39,
+        40,
+        2,
+        32,
+        53,
+        11,
+        44,
+        6,
+        57,
+        17,
+        10,
+        16,
+        30,
+        25,
+        24,
+        49,
+        5,
+        14,
+        9,
+        36,
+        22,
+        28,
+        56,
+        47,
+        27,
+        3,
+        29,
+        41,
+        7,
+        18,
+        15,
+        1,
+        37,
+        35,
+        31,
+        59,
+        45,
+        0,
+        13,
+        12
+      ]
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "reset",
+    "parameters": [
+      false,
+      true,
+      true
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "setup",
+    "parameters": [
+      [
+        27,
+        7,
+        45,
+        43,
+        11,
+        55,
+        48,
+        33,
+        31,
+        21,
+        38,
+        30,
+        50,
+        25,
+        15,
+        39,
+        14,
+        5,
+        56,
+        34,
+        36,
+        41,
+        47,
+        40,
+        8,
+        18,
+        17,
+        35,
+        54,
+        22,
+        16,
+        3,
+        10,
+        26,
+        20,
+        6,
+        32,
+        51,
+        28,
+        2,
+        19,
+        52,
+        1,
+        9,
+        37,
+        44,
+        46,
+        23,
+        29,
+        58,
+        13,
+        24,
+        59,
+        12,
+        57,
+        4,
+        49,
+        0,
+        42,
+        53
+      ]
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "hand",
+      "active",
+      4,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "takeTurn",
+    "parameters": [
+      "self"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "pass",
+    "parameters": []
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "takeTurn",
+    "parameters": [
+      "opp"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "hand",
+      "board",
+      0,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "deck",
+      "bench",
+      43,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "deck",
+      "bench",
+      28,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "shuffleAll",
+    "parameters": [
+      "opp",
+      "deck",
+      [
+        36,
+        4,
+        43,
+        6,
+        7,
+        35,
+        25,
+        31,
+        42,
+        17,
+        1,
+        20,
+        38,
+        37,
+        18,
+        11,
+        27,
+        10,
+        29,
+        15,
+        28,
+        32,
+        12,
+        41,
+        8,
+        16,
+        30,
+        26,
+        39,
+        9,
+        40,
+        5,
+        14,
+        3,
+        13,
+        22,
+        0,
+        34,
+        2,
+        21,
+        24,
+        33,
+        23,
+        19
+      ]
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "discardBoard",
+    "parameters": [
+      "opp",
+      true
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "hand",
+      "bench",
+      4,
+      1,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "bench",
+      "active",
+      2,
+      0,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "hand",
+      "active",
+      1,
+      0,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "deck",
+      "board",
+      30,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "deck",
+      "board",
+      32,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "shuffleAll",
+    "parameters": [
+      "opp",
+      "deck",
+      [
+        6,
+        27,
+        39,
+        7,
+        8,
+        15,
+        5,
+        28,
+        16,
+        41,
+        29,
+        10,
+        12,
+        4,
+        18,
+        19,
+        3,
+        31,
+        21,
+        2,
+        24,
+        22,
+        37,
+        0,
+        13,
+        33,
+        23,
+        20,
+        26,
+        36,
+        9,
+        1,
+        38,
+        34,
+        25,
+        35,
+        30,
+        40,
+        32,
+        17,
+        14,
+        11
+      ]
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "board",
+      "bench",
+      0,
+      0,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "board",
+      "bench",
+      0,
+      2,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "active",
+      "discard",
+      2,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "attack",
+    "parameters": []
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "takeTurn",
+    "parameters": [
+      "self"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "hand",
+      "bench",
+      7,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "hand",
+      "board",
+      5,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "deck",
+      "board",
+      17,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "deck",
+      "board",
+      34,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "deck",
+      "board",
+      11,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "shuffleAll",
+    "parameters": [
+      "self",
+      "deck",
+      [
+        38,
+        4,
+        6,
+        41,
+        2,
+        37,
+        3,
+        33,
+        16,
+        30,
+        19,
+        9,
+        5,
+        40,
+        26,
+        20,
+        29,
+        12,
+        8,
+        24,
+        27,
+        32,
+        34,
+        15,
+        28,
+        36,
+        39,
+        31,
+        10,
+        13,
+        23,
+        0,
+        21,
+        11,
+        7,
+        1,
+        18,
+        17,
+        35,
+        22,
+        14,
+        25
+      ]
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "board",
+      "bench",
+      1,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "board",
+      "bench",
+      1,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "board",
+      "hand",
+      1,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "discardBoard",
+    "parameters": [
+      "self",
+      true
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "hand",
+      "board",
+      5,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "bench",
+      "active",
+      1,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "discardBoard",
+    "parameters": [
+      "self",
+      true
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "undo",
+    "parameters": [
+      null
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "undo",
+    "parameters": [
+      null
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "board",
+      "hand",
+      0,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "hand",
+      "bench",
+      2,
+      0,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "pass",
+    "parameters": []
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "takeTurn",
+    "parameters": [
+      "opp"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "hand",
+      "bench",
+      4,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "hand",
+      "bench",
+      2,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "undo",
+    "parameters": [
+      null
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "hand",
+      "active",
+      2,
+      0,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "undo",
+    "parameters": [
+      null
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "deck",
+      "hand",
+      19,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "shuffleAll",
+    "parameters": [
+      "opp",
+      "deck",
+      [
+        20,
+        15,
+        30,
+        16,
+        1,
+        13,
+        14,
+        29,
+        21,
+        28,
+        5,
+        33,
+        22,
+        24,
+        8,
+        26,
+        9,
+        7,
+        37,
+        19,
+        25,
+        38,
+        11,
+        31,
+        6,
+        12,
+        27,
+        36,
+        3,
+        32,
+        17,
+        34,
+        18,
+        4,
+        39,
+        10,
+        23,
+        2,
+        35,
+        0
+      ]
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "hand",
+      "stadium",
+      4,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "hand",
+      "lostZone",
+      0,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "hand",
+      "lostZone",
+      4,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "hand",
+      "lostZone",
+      4,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "hand",
+      "board",
+      3,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "hand",
+      "board",
+      2,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "hand",
+      "board",
+      2,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "hand",
+      "board",
+      1,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "deck",
+      "hand",
+      18,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "shuffleAll",
+    "parameters": [
+      "self",
+      "deck",
+      [
+        11,
+        32,
+        13,
+        36,
+        9,
+        29,
+        20,
+        28,
+        14,
+        17,
+        15,
+        16,
+        38,
+        25,
+        40,
+        27,
+        24,
+        30,
+        3,
+        31,
+        26,
+        1,
+        22,
+        4,
+        21,
+        34,
+        10,
+        5,
+        0,
+        12,
+        7,
+        33,
+        18,
+        19,
+        37,
+        2,
+        8,
+        39,
+        35,
+        23,
+        6
+      ]
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "hand",
+      "active",
+      2,
+      0,
+      "move"
+    ]
+  }
+]
