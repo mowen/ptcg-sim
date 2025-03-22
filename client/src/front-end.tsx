@@ -1,5 +1,3 @@
-export * from './initialization/global-variables/global-variables.js'; // Initialize all globally accessible variables
-
 import { initializeDOMEventListeners } from './initialization/document-event-listeners/initialize-document-event-listeners.js';
 import { loadImportData } from './initialization/load-import-data/load-import-data.js';
 import { initializeSocketEventListeners } from './initialization/socket-event-listeners/socket-event-listeners.js';
@@ -7,13 +5,37 @@ import { initializeSocketEventListeners } from './initialization/socket-event-li
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.js';
+import testState from '../tests/react/reducer/testData/data.json';
+import { GameState } from './models/gameState.js';
+import { Action } from './models/action.js';
+import actionReducer from './react/reducer/actionReducer.js';
+import { Undoable, undoableReducer } from './react/reducer/undoableReducer.js';
+
+let initialState = new Undoable<GameState>(new GameState());
+const actions = testState.filter((obj) => !('version' in obj)); // Remove any objects containing version property
+actions.forEach((a) => {
+  const action = new Action(a.user, a.emit, a.action, a.parameters);
+  const undoableActionReducer = undoableReducer(actionReducer);
+  initialState = undoableActionReducer(initialState, action);
+});
+
+console.debug(`Initial state:`, initialState);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <App initialState={initialState} />
   </StrictMode>
 );
 
 initializeSocketEventListeners(); // Initializes all event listeners for socket events
 initializeDOMEventListeners(); // Initializes all event listeners for user's actions on html elements and the window
 loadImportData(); // get the importData (if there is any), and load the content.
+
+export const selfContainer = document.getElementById('selfContainer')!;
+export const selfContainerDocument =
+  document.getElementById('selfContainer')!.ownerDocument;
+export const oppContainer = document.getElementById('oppContainer')!;
+export const oppContainerDocument =
+  document.getElementById('oppContainer')!.ownerDocument;
+// eslint-disable-next-line react-refresh/only-export-components
+export * from './initialization/global-variables/global-variables.js'; // Initialize all globally accessible variables

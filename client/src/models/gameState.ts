@@ -11,6 +11,7 @@ class BoardState {
   public discard: Array<number> = new Array<number>();
   public board: Array<number> = new Array<number>();
   public lostZone: Array<number> = new Array<number>();
+  public stadium: Array<number> = new Array<number>();
 }
 
 class GameState {
@@ -20,7 +21,6 @@ class GameState {
   public self: BoardState = new BoardState();
   public oppDeckList: Array<Card> = new Array<Card>();
   public opp: BoardState = new BoardState();
-  public stadium?: number;
   public oppIsActive: boolean = false;
   public turn: number = 0;
 }

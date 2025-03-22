@@ -66,3 +66,39 @@ reducerTest('move from hand to active', ({ setupState }) => {
   expect(activeCards.length).toBe(1);
   expect(activeCards[0].name).toBe(firstCardInHand.name);
 });
+
+reducerTest(
+  'move card from hand to stadium bumps opponents current stadium',
+  ({ setupState }) => {
+    const selfMoveCardFromHandToStadiumAction = new Action(
+      'self',
+      true,
+      'moveCardBundle',
+      ['self', 'hand', 'stadium', 4, false, 'move']
+    );
+    setupState = actionReducer(setupState, selfMoveCardFromHandToStadiumAction);
+
+    assert.sameOrderedMembers(setupState.self.hand, [3, 56, 31, 41, 0, 47]);
+    assert.sameOrderedMembers(setupState.self.stadium, [32]);
+
+    const oppMoveCardFromHandToStadiumAction = new Action(
+      'opp',
+      true,
+      'moveCardBundle',
+      ['opp', 'hand', 'stadium', 4, false, 'move']
+    );
+    setupState = actionReducer(setupState, oppMoveCardFromHandToStadiumAction);
+
+    assert.sameOrderedMembers(setupState.opp.hand, [27, 26, 49, 58, 43, 46]);
+    assert.sameOrderedMembers(setupState.opp.stadium, [59]);
+    assert.sameOrderedMembers(setupState.self.stadium, []);
+    expect(setupState.self.discard[0]).toBe(32);
+  }
+);
+
+reducerTest(
+  'move card from hand to stadium bumps own current stadium',
+  ({ setupState }) => {
+    reducerTest.todo('not implemented yet');
+  }
+);

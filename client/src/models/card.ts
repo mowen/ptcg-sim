@@ -6,7 +6,8 @@ class CardLocation {
   public static Prize: string = 'prize';
   public static Discard: string = 'discard';
   public static Board: string = 'board';
-  public static Lost: string = 'lost';
+  public static Lost: string = 'lostZone';
+  public static Stadium: string = 'stadium';
 }
 
 class Card {

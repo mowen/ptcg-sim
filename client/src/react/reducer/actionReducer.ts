@@ -6,7 +6,7 @@ import {
   GameState,
 } from '../../models';
 
-export default function reducer(state: GameState, action: Action) {
+export default function reducer(state: GameState, action: Action): GameState {
   const deckSize: number = 60;
   const handSize: number = 7;
   const prizeCount: number = 6;
@@ -64,6 +64,15 @@ export default function reducer(state: GameState, action: Action) {
 
       const sourceCardIndex = state[user][oZoneId][sourceIndex];
 
+      if (!sourceCardIndex) {
+        const source = state[user][oZoneId];
+        console.warn(
+          `souceCardIndex in moveCardBundle is undefined (${sourceIndex} out of ${source.length})`,
+          user,
+          oZoneId
+        );
+      }
+
       const oZone = state[user][oZoneId];
       const newOZone = [
         ...oZone.slice(0, sourceIndex),
@@ -84,6 +93,23 @@ export default function reducer(state: GameState, action: Action) {
               ...state[user].bench,
             ],
             [oZoneId]: newOZone, // Could be bench and overwrite bench above
+          },
+        };
+      } else if (dZoneId === CardLocation.Stadium) {
+        // Only one stadium can be active
+        const otherUser = user === 'self' ? 'opp' : 'self';
+        const existingStadiumIndex = state[otherUser].stadium[0];
+        return {
+          ...state,
+          [user]: {
+            ...state[user],
+            [oZoneId]: newOZone,
+            stadium: [sourceCardIndex],
+          },
+          [otherUser]: {
+            ...state[otherUser],
+            stadium: [], // Discard the other user's stadium
+            discard: [existingStadiumIndex, ...state[otherUser].discard],
           },
         };
       } else {
