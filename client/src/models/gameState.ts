@@ -1,54 +1,62 @@
-import { Card, CardLocation } from './card';
+import { BoardState, BoardStateDTO } from './boardState';
+import { Card } from './card';
 
-class BoardState {
-  public gxUsed: boolean = false;
-  public vstarUsed: boolean = false;
-  public hand: Array<number> = new Array<number>();
-  public prize: Array<number> = new Array<number>();
-  public deck: Array<number> = new Array<number>();
-  public bench: Array<number> = new Array<number>();
-  public active: Array<number> = new Array<number>();
-  public discard: Array<number> = new Array<number>();
-  public board: Array<number> = new Array<number>();
-  public lostZone: Array<number> = new Array<number>();
-  public stadium: Array<number> = new Array<number>();
+class UserType {
+  public static readonly Self: string = 'self';
+  public static readonly Opp: string = 'opp';
 }
 
-class GameState {
-  public initiator: string = 'self';
+class GameStateDTO {
+  public initiator: string = UserType.Self;
   public isTwoPlayer: boolean = false;
   public selfDeckList: Array<Card> = new Array<Card>();
-  public self: BoardState = new BoardState();
+  public self: BoardStateDTO = new BoardStateDTO();
   public oppDeckList: Array<Card> = new Array<Card>();
-  public opp: BoardState = new BoardState();
+  public opp: BoardStateDTO = new BoardStateDTO();
   public oppIsActive: boolean = false;
   public turn: number = 0;
 }
 
-class GameStateHelper {
-  constructor(private _gameState: GameState) {}
+class GameState {
+  private readonly _selfBoard: BoardState;
+  private readonly _oppBoard: BoardState;
+
+  constructor(private readonly _gameState: GameStateDTO) {
+    this._selfBoard = new BoardState(_gameState.self, _gameState.selfDeckList);
+    this._oppBoard = new BoardState(_gameState.opp, _gameState.oppDeckList);
+  }
+
+  public get selfActive(): Array<Card> {
+    return this._selfBoard.active;
+  }
 
   public get selfHand(): Array<Card> {
-    return this.getCards('self', CardLocation.Hand);
+    return this._selfBoard.hand;
   }
 
   public get selfBench(): Array<Card> {
-    return this.getCards('self', CardLocation.Bench);
+    return this._selfBoard.bench;
+  }
+
+  public get selfDeck(): Array<Card> {
+    return this._selfBoard.deck;
+  }
+
+  public get oppActive(): Array<Card> {
+    return this._oppBoard.active;
   }
 
   public get oppHand(): Array<Card> {
-    return this.getCards('opp', CardLocation.Hand);
+    return this._oppBoard.hand;
   }
 
   public get oppBench(): Array<Card> {
-    return this.getCards('opp', CardLocation.Bench);
+    return this._oppBoard.bench;
   }
 
-  private getCards(user: string, zoneId: string): Array<Card> {
-    return this[`${user}${zoneId}`].map(
-      (i: number) => this._gameState[`${user}DeckList`][i]
-    );
+  public get oppDeck(): Array<Card> {
+    return this._oppBoard.deck;
   }
 }
 
-export { BoardState, GameState, GameStateHelper };
+export { BoardStateDTO, GameStateDTO, GameState, UserType };

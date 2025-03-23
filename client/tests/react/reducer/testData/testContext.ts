@@ -1,5 +1,5 @@
 import { test } from 'vitest';
-import { Action, GameState } from '../../../../src/models';
+import { Action, GameStateDTO } from '../../../../src/models';
 import actionReducer from '../../../../src/react/reducer/actionReducer';
 
 export const selfLoadDeckDataAction = new Action('self', true, 'loadDeckData', [
@@ -410,11 +410,11 @@ export const oppLoadDeckDataAction = new Action('opp', true, 'loadDeckData', [
 
 declare module 'vitest' {
   export interface TestContext {
-    setupState: GameState;
+    setupState: GameStateDTO;
   }
 }
 
-let setupState = new GameState();
+let setupState = new GameStateDTO();
 
 export const reducerTest = test.extend({
   // eslint-disable-next-line no-empty-pattern
@@ -437,7 +437,7 @@ export const reducerTest = test.extend({
       ],
     ]);
 
-    const initialState = new GameState();
+    const initialState = new GameStateDTO();
     setupState = actionReducer(initialState, selfLoadDeckDataAction);
     setupState = actionReducer(setupState, oppLoadDeckDataAction);
     setupState = actionReducer(setupState, selfSetupAction);
@@ -447,6 +447,6 @@ export const reducerTest = test.extend({
     await use(setupState);
 
     // cleanup the fixture after each test function
-    setupState = new GameState();
+    setupState = new GameStateDTO();
   },
 });

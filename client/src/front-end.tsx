@@ -6,12 +6,12 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.js';
 import testState from '../tests/react/reducer/testData/data.json';
-import { GameState } from './models/gameState.js';
+import { GameStateDTO } from './models/gameState.js';
 import { Action } from './models/action.js';
 import actionReducer from './react/reducer/actionReducer.js';
 import { Undoable, undoableReducer } from './react/reducer/undoableReducer.js';
 
-let initialState = new Undoable<GameState>(new GameState());
+let initialState = new Undoable<GameStateDTO>(new GameStateDTO());
 const actions = testState.filter((obj) => !('version' in obj)); // Remove any objects containing version property
 actions.forEach((a) => {
   const action = new Action(a.user, a.emit, a.action, a.parameters);
@@ -31,10 +31,12 @@ initializeSocketEventListeners(); // Initializes all event listeners for socket 
 initializeDOMEventListeners(); // Initializes all event listeners for user's actions on html elements and the window
 loadImportData(); // get the importData (if there is any), and load the content.
 
-export const selfContainer = document.getElementById('selfContainer')!;
+export const selfContainer = new HTMLIFrameElement();
+selfContainer.innerHTML = "<html><body><div id='selfContainer'></div></body></html>"
 export const selfContainerDocument =
   document.getElementById('selfContainer')!.ownerDocument;
-export const oppContainer = document.getElementById('oppContainer')!;
+export const oppContainer = new HTMLIFrameElement();
+oppContainer.innerHTML = "<html><body><div id='oppContainer'></div></body></html>"
 export const oppContainerDocument =
   document.getElementById('oppContainer')!.ownerDocument;
 // eslint-disable-next-line react-refresh/only-export-components

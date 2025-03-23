@@ -3,8 +3,9 @@ import useMutationObserver from '../../hooks/useMutationObserver';
 import { adjustAlignment } from '../../../setup/sizing/adjust-alignment';
 import GxVStarButton from '../buttons/GxVStarButton';
 import CardView from '../cardView';
-import { Card, BoardState } from '../../../models';
+import { Card, BoardStateDTO } from '../../../models';
 import './board.css';
+import { BoardState } from '../../../models/boardState';
 
 const scrollToBottom = (element) => {
   element.scrollTop = element.scrollHeight;
@@ -51,7 +52,7 @@ function Board({
 }: {
   user: string;
   deckList: Array<Card>;
-  boardState: BoardState;
+  boardState: BoardStateDTO;
 }) {
   const boardRef = useRef<HTMLDivElement>(null);
   useMutationObserver(boardRef, handleBoardMutations, {
@@ -69,16 +70,7 @@ function Board({
     subtree: false,
   });
 
-  const filterCards = (indices: number[]): Array<Card> =>
-    indices?.map((i) => deckList[i]) ?? new Array<Card>();
-  const deckCards = filterCards(boardState.deck);
-  const activeCards = filterCards(boardState.active);
-  const handCards = filterCards(boardState.hand);
-  const benchCards = filterCards(boardState.bench);
-  const prizeCards = filterCards(boardState.prize);
-  const discardCards = filterCards(boardState.discard);
-  const boardCards = filterCards(boardState.board);
-  const lostZoneCards = filterCards(boardState.lostZone);
+  const board = new BoardState(boardState, deckList);
 
   return (
     <div id={`${user}Container`} className={user}>
@@ -88,7 +80,7 @@ function Board({
       </div>
 
       <div id="deckText" className={`${user}-text`}>
-        (<span id="deckCount">{deckCards.length}</span>)
+        (<span id="deckCount">{board.deck.length}</span>)
       </div>
       <div id="deck" className={`zone ${user}-view`}>
         <div className="zone-button-container">
@@ -103,7 +95,7 @@ function Board({
         </div>
       </div>
       <div id="discardText" className={`${user}-text`}>
-        (<span id="discardCount">{discardCards.length}</span>)
+        (<span id="discardCount">{board.discard.length}</span>)
       </div>
       <div id="discard" className={`zone ${user}-view`}>
         <div className="zone-button-container">
@@ -118,7 +110,7 @@ function Board({
         </div>
       </div>
       <div id="lostZoneText" className={`${user}-text`}>
-        (<span id="lostZoneCount">{lostZoneCards.length}</span>)
+        (<span id="lostZoneCount">{board.lostZone.length}</span>)
       </div>
       <div id="lostZone" className={`zone ${user}-view`}>
         <div className="zone-button-container">
@@ -147,41 +139,41 @@ function Board({
         </label>
       </div>
       <div id="handText" className={`${user}-text`}>
-        (<span id="handCount">{handCards.length}</span>)
+        (<span id="handCount">{board.hand.length}</span>)
       </div>
       <div id="hand" ref={handRef}>
-        {handCards.map((c: Card, i) => (
+        {board.hand.map((c: Card, i) => (
           <CardView key={i} card={c}></CardView>
         ))}
       </div>
       <div id="discardCover" className="outline">
-        {discardCards.length > 0 ? (
-          <CardView card={discardCards[0]}></CardView>
+        {board.discard.length > 0 ? (
+          <CardView card={board.discard[0]}></CardView>
         ) : null}
       </div>
       <div id="deckCover" className="outline">
-        {deckCards.length > 0 ? (
-          <CardView card={deckCards[0]} faceUp={false}></CardView>
+        {board.deck.length > 0 ? (
+          <CardView card={board.deck[0]} faceUp={false}></CardView>
         ) : null}
       </div>
       <div id="lostZoneCover" className="outline">
-        {lostZoneCards.map((c: Card, i) => (
+        {board.lostZone.map((c: Card, i) => (
           <CardView key={i} card={c}></CardView>
         ))}
       </div>
       <div id="bench" className="outline">
-        {benchCards.map((c: Card, i) => (
+        {board.bench.map((c: Card, i) => (
           <CardView key={i} card={c}></CardView>
         ))}
       </div>
       <div id="active" className="outline">
-        {activeCards.map((c: Card, i) => (
+        {board.active.map((c: Card, i) => (
           <CardView key={i} card={c}></CardView>
         ))}
       </div>
-      <Prizes prizeCards={prizeCards} />
+      <Prizes prizeCards={board.prize} />
       <div id="board" className="self-board" ref={boardRef}>
-        {boardCards.map((c: Card, i) => (
+        {board.board.map((c: Card, i) => (
           <CardView key={i} card={c}></CardView>
         ))}
       </div>

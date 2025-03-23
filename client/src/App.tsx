@@ -12,7 +12,7 @@ import { refreshBoardImages } from './setup/sizing/refresh-board';
 import actionReducer from './react/reducer/actionReducer';
 import { AppContext, AppDispatchContext } from './react/context/appContext';
 import Board from './react/components/board/board';
-import { GameState } from './models';
+import { GameStateDTO } from './models';
 import { Undoable, undoableReducer } from './react/reducer/undoableReducer';
 
 // const zoneIds = ['lostZone', 'deck', 'discard', 'attachedCards', 'viewCards'];
@@ -40,7 +40,7 @@ import { Undoable, undoableReducer } from './react/reducer/undoableReducer';
 //   boardButtonContainer.style.zIndex = '0';
 // };
 
-function App({ initialState }: { initialState: Undoable<GameState> }) {
+function App({ initialState }: { initialState: Undoable<GameStateDTO> }) {
   const [isSelfActive, setIsSelfActive] = useState(true);
 
   const undoableActionReducer = undoableReducer(actionReducer);

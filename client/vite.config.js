@@ -13,11 +13,19 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html')
       },
+      output: {
+        manualChunks: {
+          socketio: ['socket.io-client'],
+          react: ['react', 'react-dom']
+        }
+      }
     },
   },
   test: {
     include: ['tests/**/*.test.ts'],
     coverage: {
+      // Just focusing on new TS code for now
+      include: ['src/models/**/*.ts', 'src/react/reducer/**/*.ts'],
       reporter: ['text', 'json-summary', 'json'], // clover, html
       reportOnFailure: true,
     },

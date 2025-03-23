@@ -1,5 +1,14 @@
 import { Action } from './action';
 import { Card, CardLocation } from './card';
-import { BoardState, GameState } from './gameState';
+import { GameState, GameStateDTO, UserType } from './gameState';
+import { BoardStateDTO } from './boardState';
 
-export { Action, Card, CardLocation, GameState, BoardState };
+export {
+  Action,
+  Card,
+  CardLocation,
+  GameState,
+  GameStateDTO,
+  BoardStateDTO,
+  UserType,
+};

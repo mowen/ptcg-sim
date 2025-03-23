@@ -20,8 +20,8 @@ overlay.style.bottom = 0;
 overlay.style.left = 0;
 overlay.style.zIndex = 1000; // Adjust as needed
 
-const handElement = selfContainerDocument.getElementById('hand');
-const oppHandElement = oppContainerDocument.getElementById('hand');
+// const handElement = selfContainerDocument.getElementById('hand');
+// const oppHandElement = oppContainerDocument.getElementById('hand');
 const boardButtonContainer = document.getElementById('boardButtonContainer');
 const stadiumElement = document.getElementById('stadium');
 const selfResizer = document.getElementById('selfResizer');

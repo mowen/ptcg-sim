@@ -1,13 +1,13 @@
 class CardLocation {
-  public static Deck: string = 'deck';
-  public static Hand: string = 'hand';
-  public static Active: string = 'active';
-  public static Bench: string = 'bench';
-  public static Prize: string = 'prize';
-  public static Discard: string = 'discard';
-  public static Board: string = 'board';
-  public static Lost: string = 'lostZone';
-  public static Stadium: string = 'stadium';
+  public static readonly Deck: string = 'deck';
+  public static readonly Hand: string = 'hand';
+  public static readonly Active: string = 'active';
+  public static readonly Bench: string = 'bench';
+  public static readonly Prize: string = 'prize';
+  public static readonly Discard: string = 'discard';
+  public static readonly Board: string = 'board';
+  public static readonly LostZone: string = 'lostZone';
+  public static readonly Stadium: string = 'stadium';
 }
 
 class Card {

@@ -1,11 +1,11 @@
 import { describe, expect, test } from 'vitest';
 import actionReducer from '../../../src/react/reducer/actionReducer';
-import { Action, GameState } from '../../../src/models';
+import { Action, GameStateDTO } from '../../../src/models';
 
 describe('VSTARGXFunction', () => {
   test('self gxUsed and opp gxUsed independently', () => {
     let state = actionReducer(
-      new GameState(),
+      new GameStateDTO(),
       new Action('self', true, 'VSTARGXFunction', ['gx'])
     );
     expect(state.self.gxUsed).toBe(true);
@@ -28,7 +28,7 @@ describe('VSTARGXFunction', () => {
 
   test('self vstarUsed and opp vstarUsed independently', () => {
     let state = actionReducer(
-      new GameState(),
+      new GameStateDTO(),
       new Action('self', true, 'VSTARGXFunction', ['vstar'])
     );
     expect(state.self.vstarUsed).toBe(true);

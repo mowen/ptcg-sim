@@ -1,12 +1,40 @@
 import {
   Action,
-  BoardState,
+  BoardStateDTO,
   Card,
   CardLocation,
   GameState,
+  GameStateDTO,
+  UserType,
 } from '../../models';
 
-export default function reducer(state: GameState, action: Action): GameState {
+function debugDump(state: GameStateDTO, user: string) {
+  const gs = new GameState(state);
+
+  const cardsToString = (cards: Array<Card>): Array<string> =>
+    cards.map((c) => `${c.name} - ${c.type}`);
+
+  if (user === UserType.Self) {
+    return {
+      active: cardsToString(gs.selfActive),
+      hand: cardsToString(gs.selfHand),
+      bench: cardsToString(gs.selfBench),
+      deck: cardsToString(gs.selfDeck),
+    };
+  } else {
+    return {
+      active: cardsToString(gs.oppActive),
+      hand: cardsToString(gs.oppHand),
+      bench: cardsToString(gs.oppBench),
+      deck: cardsToString(gs.oppDeck),
+    };
+  }
+}
+
+export default function reducer(
+  state: GameStateDTO,
+  action: Action
+): GameStateDTO {
   const deckSize: number = 60;
   const handSize: number = 7;
   const prizeCount: number = 6;
@@ -69,7 +97,8 @@ export default function reducer(state: GameState, action: Action): GameState {
         console.warn(
           `souceCardIndex in moveCardBundle is undefined (${sourceIndex} out of ${source.length})`,
           user,
-          oZoneId
+          oZoneId,
+          debugDump(state, user)
         );
       }
 
@@ -144,7 +173,7 @@ export default function reducer(state: GameState, action: Action): GameState {
     }
     case 'reset': {
       const user = action.user;
-      const boardState = new BoardState();
+      const boardState = new BoardStateDTO();
       boardState.deck = [...Array(60).keys()];
       return {
         ...state,

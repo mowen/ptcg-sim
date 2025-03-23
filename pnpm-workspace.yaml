@@ -2,4 +2,5 @@ packages:
   - client
   - server
 onlyBuiltDependencies:
+  - esbuild
   - sqlite3
