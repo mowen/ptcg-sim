@@ -16,7 +16,7 @@ export function undoableReducer<T>(
   return function (state, action) {
     const { past, present, future } = state;
 
-    switch (action.action) {
+    switch (action.type) {
       case 'undo': {
         const previous = past[past.length - 1];
         const newPast = past.slice(0, past.length - 1);

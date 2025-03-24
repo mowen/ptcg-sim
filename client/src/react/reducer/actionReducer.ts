@@ -3,6 +3,7 @@ import {
   BoardStateDTO,
   Card,
   CardLocation,
+  CardType,
   GameState,
   GameStateDTO,
   UserType,
@@ -39,7 +40,7 @@ export default function reducer(
   const handSize: number = 7;
   const prizeCount: number = 6;
 
-  switch (action.action) {
+  switch (action.type) {
     case 'VSTARGXFunction': {
       const type: string = (action.parameters[0] as string).toLowerCase();
       const vstarGxUsed = state[action.user][`${type}Used`];
@@ -102,6 +103,8 @@ export default function reducer(
         );
       }
 
+      const sourceCard = state[`${user}DeckList`][sourceCardIndex];
+
       const oZone = state[user][oZoneId];
       const newOZone = [
         ...oZone.slice(0, sourceIndex),
@@ -110,8 +113,12 @@ export default function reducer(
 
       const dZone = state[user][dZoneId];
       const activeIndex = state[user].active[0];
-      if (dZoneId === CardLocation.Active && activeIndex !== undefined) {
-        // Only one card can be active, so bump the old active to the bench
+      if (
+        dZoneId === CardLocation.Active &&
+        activeIndex !== undefined &&
+        sourceCard.type === CardType.Pokemon
+      ) {
+        // Only one Pokemon can be active, so bump the old active to the bench
         return {
           ...state,
           [user]: {
@@ -126,7 +133,7 @@ export default function reducer(
         };
       } else if (dZoneId === CardLocation.Stadium) {
         // Only one stadium can be active
-        const otherUser = user === 'self' ? 'opp' : 'self';
+        const otherUser = user === UserType.Self ? UserType.Opp : UserType.Self;
         const existingStadiumIndex = state[otherUser].stadium[0];
         return {
           ...state,
@@ -207,7 +214,23 @@ export default function reducer(
         },
       };
     }
+    case 'pass':
+    case 'attack': {
+      // Same as discard board until I implement abilities
+      const user = action.user;
+      const board = state[user].board;
+      const discard = state[user].discard;
+      return {
+        ...state,
+        [user]: {
+          ...state[user],
+          board: [],
+          discard: [board, ...discard].flat(1),
+        },
+      };
+    }
     default:
+      console.warn(`Action type ${action.type} was not processed`);
       return state;
   }
 }

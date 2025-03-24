@@ -1,6 +1,6 @@
 class Action {
   user: string;
-  action: string;
+  type: string;
   emit: boolean;
   parameters: Array<unknown>;
 
@@ -12,7 +12,7 @@ class Action {
   ) {
     this.user = user;
     this.emit = emit;
-    this.action = action;
+    this.type = action;
     this.parameters = parameters;
   }
 }

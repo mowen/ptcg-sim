@@ -10,6 +10,12 @@ class CardLocation {
   public static readonly Stadium: string = 'stadium';
 }
 
+class CardType {
+  public static readonly Pokemon: string = 'Pokémon';
+  public static readonly Trainer: string = 'Trainer';
+  public static readonly Energy: string = 'Energy';
+}
+
 class Card {
   name: string;
   type: string;
@@ -22,4 +28,4 @@ class Card {
   }
 }
 
-export { Card, CardLocation };
+export { Card, CardLocation, CardType };

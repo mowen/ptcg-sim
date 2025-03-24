@@ -53,17 +53,17 @@ reducerTest('move from hand to active', ({ setupState }) => {
   ]);
   setupState = actionReducer(setupState, moveHandToActiveAction);
 
-  assert.sameOrderedMembers(setupState.self.active, [56]);
-  assert.sameOrderedMembers(setupState.self.bench, [0, 3]);
+  assert.sameOrderedMembers(setupState.self.active, [56, 0]);
+  assert.sameOrderedMembers(setupState.self.bench, [3]);
 
   const benchedCards = setupState.self.bench.map(
     (i) => setupState.selfDeckList[i]
   );
-  expect(setupState.self.bench.length).toBe(2); // Active moved to bench
+  expect(setupState.self.bench.length).toBe(1); // Active moved to bench
   expect(benchedCards[0].name).toBe('Dreepy'); // Active moved to bench
 
   activeCards = setupState.self.active.map((i) => setupState.selfDeckList[i]);
-  expect(activeCards.length).toBe(1);
+  expect(activeCards.length).toBe(2);
   expect(activeCards[0].name).toBe(firstCardInHand.name);
 });
 
