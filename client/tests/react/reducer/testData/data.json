@@ -421,67 +421,75 @@
     "emit": true,
     "action": "setup",
     "parameters": [
+      []
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "setup",
+    "parameters": [
       [
-        30,
-        15,
-        14,
-        53,
-        58,
-        10,
-        25,
-        31,
-        6,
-        29,
-        5,
+        2,
+        13,
+        45,
+        0,
+        32,
+        43,
+        17,
         54,
         33,
-        45,
-        1,
-        59,
-        34,
+        25,
+        3,
+        58,
+        36,
         51,
-        37,
-        9,
-        42,
-        41,
-        38,
-        47,
-        50,
-        43,
-        7,
-        11,
-        28,
+        18,
         4,
         12,
-        24,
-        3,
-        17,
-        52,
-        26,
-        44,
-        18,
-        20,
-        16,
-        22,
-        27,
-        21,
-        23,
-        35,
-        55,
-        40,
-        48,
         46,
-        32,
-        2,
         57,
-        36,
-        13,
-        39,
+        9,
+        48,
+        44,
+        26,
+        52,
+        50,
+        1,
         8,
-        0,
-        49,
+        19,
+        37,
+        6,
+        31,
+        16,
+        34,
+        53,
+        55,
+        29,
         56,
-        19
+        15,
+        27,
+        42,
+        23,
+        24,
+        49,
+        10,
+        47,
+        41,
+        7,
+        20,
+        38,
+        14,
+        22,
+        35,
+        30,
+        11,
+        5,
+        39,
+        59,
+        28,
+        40,
+        21
       ]
     ]
   },
@@ -491,66 +499,66 @@
     "action": "setup",
     "parameters": [
       [
-        27,
-        26,
-        49,
-        58,
-        59,
-        43,
-        46,
-        29,
-        55,
-        45,
-        56,
-        4,
-        36,
-        47,
-        44,
-        57,
-        5,
-        50,
-        12,
-        51,
-        38,
-        17,
         15,
-        10,
-        8,
-        2,
-        33,
-        40,
-        24,
-        14,
-        3,
-        16,
-        1,
-        37,
-        32,
-        20,
-        19,
-        53,
-        7,
-        13,
-        31,
-        52,
-        30,
-        48,
-        18,
-        23,
+        44,
         0,
-        41,
-        39,
-        25,
+        28,
         34,
         22,
+        2,
+        32,
         35,
         11,
-        28,
-        42,
-        54,
-        9,
+        25,
+        47,
+        49,
+        45,
         21,
-        6
+        24,
+        5,
+        26,
+        58,
+        12,
+        20,
+        37,
+        38,
+        27,
+        7,
+        16,
+        8,
+        57,
+        9,
+        17,
+        55,
+        3,
+        46,
+        1,
+        14,
+        43,
+        59,
+        30,
+        39,
+        6,
+        54,
+        50,
+        18,
+        31,
+        41,
+        52,
+        40,
+        23,
+        29,
+        33,
+        4,
+        13,
+        10,
+        36,
+        48,
+        19,
+        42,
+        56,
+        53,
+        51
       ]
     ]
   },
@@ -562,246 +570,9 @@
       "self",
       "hand",
       "active",
-      2,
+      1,
       false,
       "move"
-    ]
-  },
-  {
-    "user": "opp",
-    "emit": true,
-    "action": "reset",
-    "parameters": [
-      false,
-      true,
-      true
-    ]
-  },
-  {
-    "user": "opp",
-    "emit": true,
-    "action": "setup",
-    "parameters": [
-      [
-        4,
-        28,
-        57,
-        34,
-        15,
-        25,
-        38,
-        27,
-        56,
-        44,
-        30,
-        5,
-        58,
-        36,
-        16,
-        22,
-        19,
-        32,
-        37,
-        54,
-        13,
-        48,
-        45,
-        26,
-        49,
-        24,
-        43,
-        53,
-        52,
-        2,
-        1,
-        0,
-        3,
-        6,
-        11,
-        14,
-        50,
-        7,
-        33,
-        31,
-        8,
-        59,
-        35,
-        41,
-        21,
-        20,
-        23,
-        39,
-        51,
-        46,
-        42,
-        47,
-        10,
-        55,
-        17,
-        29,
-        9,
-        40,
-        18,
-        12
-      ]
-    ]
-  },
-  {
-    "user": "opp",
-    "emit": true,
-    "action": "reset",
-    "parameters": [
-      false,
-      true,
-      true
-    ]
-  },
-  {
-    "user": "opp",
-    "emit": true,
-    "action": "setup",
-    "parameters": [
-      [
-        48,
-        50,
-        38,
-        8,
-        58,
-        52,
-        34,
-        51,
-        55,
-        42,
-        4,
-        20,
-        21,
-        54,
-        43,
-        19,
-        46,
-        23,
-        26,
-        33,
-        39,
-        40,
-        2,
-        32,
-        53,
-        11,
-        44,
-        6,
-        57,
-        17,
-        10,
-        16,
-        30,
-        25,
-        24,
-        49,
-        5,
-        14,
-        9,
-        36,
-        22,
-        28,
-        56,
-        47,
-        27,
-        3,
-        29,
-        41,
-        7,
-        18,
-        15,
-        1,
-        37,
-        35,
-        31,
-        59,
-        45,
-        0,
-        13,
-        12
-      ]
-    ]
-  },
-  {
-    "user": "opp",
-    "emit": true,
-    "action": "reset",
-    "parameters": [
-      false,
-      true,
-      true
-    ]
-  },
-  {
-    "user": "opp",
-    "emit": true,
-    "action": "setup",
-    "parameters": [
-      [
-        27,
-        7,
-        45,
-        43,
-        11,
-        55,
-        48,
-        33,
-        31,
-        21,
-        38,
-        30,
-        50,
-        25,
-        15,
-        39,
-        14,
-        5,
-        56,
-        34,
-        36,
-        41,
-        47,
-        40,
-        8,
-        18,
-        17,
-        35,
-        54,
-        22,
-        16,
-        3,
-        10,
-        26,
-        20,
-        6,
-        32,
-        51,
-        28,
-        2,
-        19,
-        52,
-        1,
-        9,
-        37,
-        44,
-        46,
-        23,
-        29,
-        58,
-        13,
-        24,
-        59,
-        12,
-        57,
-        4,
-        49,
-        0,
-        42,
-        53
-      ]
     ]
   },
   {
@@ -812,7 +583,7 @@
       "opp",
       "hand",
       "active",
-      4,
+      2,
       false,
       "move"
     ]
@@ -820,15 +591,255 @@
   {
     "user": "self",
     "emit": true,
-    "action": "takeTurn",
+    "action": "moveCardBundle",
     "parameters": [
-      "self"
+      "self",
+      "hand",
+      "bench",
+      2,
+      false,
+      "move"
     ]
   },
   {
     "user": "self",
     "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "hand",
+      "bench",
+      0,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "hand",
+      "bench",
+      5,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "takeTurn",
+    "parameters": [
+      "opp"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "hand",
+      "board",
+      2,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "deck",
+      "bench",
+      17,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "deck",
+      "bench",
+      18,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "shuffleAll",
+    "parameters": [
+      "opp",
+      "deck",
+      [
+        12,
+        11,
+        31,
+        1,
+        39,
+        36,
+        37,
+        6,
+        30,
+        29,
+        40,
+        14,
+        42,
+        22,
+        4,
+        18,
+        32,
+        35,
+        20,
+        33,
+        7,
+        9,
+        41,
+        0,
+        28,
+        26,
+        15,
+        43,
+        38,
+        2,
+        3,
+        10,
+        16,
+        19,
+        13,
+        27,
+        25,
+        8,
+        24,
+        17,
+        5,
+        34,
+        21,
+        23
+      ]
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "discardBoard",
+    "parameters": [
+      "opp",
+      true
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
     "action": "pass",
+    "parameters": []
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "hand",
+      "board",
+      1,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "deck",
+      "bench",
+      12,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "shuffleAll",
+    "parameters": [
+      "self",
+      "deck",
+      [
+        35,
+        44,
+        37,
+        16,
+        23,
+        17,
+        32,
+        19,
+        45,
+        24,
+        8,
+        34,
+        41,
+        43,
+        20,
+        28,
+        26,
+        39,
+        15,
+        29,
+        27,
+        18,
+        10,
+        33,
+        31,
+        42,
+        7,
+        21,
+        25,
+        3,
+        5,
+        13,
+        4,
+        22,
+        2,
+        14,
+        1,
+        9,
+        0,
+        36,
+        11,
+        40,
+        12,
+        38,
+        30,
+        6
+      ]
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "discardBoard",
+    "parameters": [
+      "self",
+      true
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "attack",
     "parameters": []
   },
   {
@@ -859,21 +870,8 @@
     "parameters": [
       "opp",
       "deck",
-      "bench",
-      43,
-      false,
-      "move"
-    ]
-  },
-  {
-    "user": "opp",
-    "emit": true,
-    "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "deck",
-      "bench",
-      28,
+      "board",
+      12,
       false,
       "move"
     ]
@@ -886,51 +884,62 @@
       "opp",
       "deck",
       [
-        36,
-        4,
-        43,
-        6,
-        7,
-        35,
-        25,
-        31,
-        42,
         17,
-        1,
-        20,
-        38,
-        37,
-        18,
-        11,
-        27,
-        10,
+        36,
+        3,
+        25,
+        23,
         29,
-        15,
+        27,
+        14,
+        31,
+        21,
+        30,
+        22,
+        7,
+        4,
+        9,
         28,
         32,
-        12,
-        41,
         8,
-        16,
-        30,
-        26,
-        39,
-        9,
-        40,
-        5,
-        14,
-        3,
+        19,
+        10,
+        37,
+        12,
         13,
-        22,
+        38,
+        20,
+        5,
+        16,
+        39,
+        15,
+        24,
+        26,
+        35,
+        33,
+        6,
+        1,
+        41,
         0,
+        11,
+        40,
         34,
         2,
-        21,
-        24,
-        33,
-        23,
-        19
+        18
       ]
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "opp",
+      "board",
+      "hand",
+      1,
+      false,
+      "move"
     ]
   },
   {
@@ -945,14 +954,191 @@
   {
     "user": "opp",
     "emit": true,
+    "action": "pass",
+    "parameters": []
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "takeTurn",
+    "parameters": [
+      "self"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "attack",
+    "parameters": []
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "takeTurn",
+    "parameters": [
+      "opp"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
     "action": "moveCardBundle",
     "parameters": [
       "opp",
       "hand",
-      "bench",
+      "board",
+      5,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "undo",
+    "parameters": [
+      null
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "pass",
+    "parameters": []
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "takeTurn",
+    "parameters": [
+      "self"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "hand",
+      "board",
       4,
-      1,
+      false,
       "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "deck",
+      "bench",
+      34,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "shuffleAll",
+    "parameters": [
+      "self",
+      "deck",
+      [
+        29,
+        35,
+        32,
+        7,
+        11,
+        18,
+        17,
+        33,
+        41,
+        31,
+        39,
+        6,
+        27,
+        40,
+        25,
+        4,
+        3,
+        12,
+        15,
+        26,
+        2,
+        5,
+        21,
+        14,
+        19,
+        22,
+        34,
+        28,
+        37,
+        8,
+        10,
+        38,
+        13,
+        24,
+        20,
+        1,
+        36,
+        0,
+        30,
+        42,
+        9,
+        16,
+        23
+      ]
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "discardBoard",
+    "parameters": [
+      "self",
+      true
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "pass",
+    "parameters": []
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "undo",
+    "parameters": [
+      null
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "attack",
+    "parameters": []
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "addDamageCounter",
+    "parameters": [
+      "active",
+      0,
+      "30"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "takeTurn",
+    "parameters": [
+      "opp"
     ]
   },
   {
@@ -961,9 +1147,9 @@
     "action": "moveCardBundle",
     "parameters": [
       "opp",
-      "bench",
+      "hand",
       "active",
-      2,
+      7,
       0,
       "move"
     ]
@@ -976,10 +1162,16 @@
       "opp",
       "hand",
       "active",
-      1,
+      3,
       0,
       "move"
     ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "attack",
+    "parameters": []
   },
   {
     "user": "opp",
@@ -989,7 +1181,7 @@
       "opp",
       "deck",
       "board",
-      30,
+      33,
       false,
       "move"
     ]
@@ -1002,7 +1194,7 @@
       "opp",
       "deck",
       "board",
-      32,
+      25,
       false,
       "move"
     ]
@@ -1015,48 +1207,44 @@
       "opp",
       "deck",
       [
-        6,
-        27,
-        39,
-        7,
-        8,
-        15,
-        5,
-        28,
-        16,
-        41,
-        29,
-        10,
-        12,
-        4,
-        18,
-        19,
-        3,
-        31,
         21,
-        2,
-        24,
-        22,
-        37,
-        0,
-        13,
-        33,
-        23,
-        20,
-        26,
-        36,
+        29,
         9,
-        1,
-        38,
-        34,
-        25,
-        35,
-        30,
-        40,
-        32,
-        17,
         14,
-        11
+        35,
+        0,
+        12,
+        10,
+        13,
+        17,
+        5,
+        30,
+        28,
+        19,
+        32,
+        20,
+        6,
+        16,
+        23,
+        37,
+        25,
+        26,
+        33,
+        18,
+        24,
+        4,
+        2,
+        11,
+        31,
+        36,
+        1,
+        7,
+        3,
+        15,
+        34,
+        27,
+        22,
+        8
       ]
     ]
   },
@@ -1120,21 +1308,8 @@
     "parameters": [
       "self",
       "hand",
-      "bench",
-      7,
-      false,
-      "move"
-    ]
-  },
-  {
-    "user": "self",
-    "emit": true,
-    "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "hand",
       "board",
-      5,
+      4,
       false,
       "move"
     ]
@@ -1147,7 +1322,7 @@
       "self",
       "deck",
       "board",
-      17,
+      37,
       false,
       "move"
     ]
@@ -1160,20 +1335,7 @@
       "self",
       "deck",
       "board",
-      34,
-      false,
-      "move"
-    ]
-  },
-  {
-    "user": "self",
-    "emit": true,
-    "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "deck",
-      "board",
-      11,
+      31,
       false,
       "move"
     ]
@@ -1186,331 +1348,58 @@
       "self",
       "deck",
       [
-        38,
-        4,
-        6,
-        41,
-        2,
-        37,
-        3,
-        33,
-        16,
-        30,
-        19,
-        9,
-        5,
-        40,
-        26,
-        20,
         29,
-        12,
-        8,
-        24,
-        27,
-        32,
-        34,
-        15,
-        28,
-        36,
-        39,
-        31,
-        10,
+        5,
+        17,
         13,
+        20,
+        8,
+        31,
         23,
+        30,
+        22,
+        34,
+        11,
+        35,
+        15,
         0,
-        21,
-        11,
-        7,
-        1,
-        18,
-        17,
-        35,
-        22,
+        12,
+        37,
         14,
-        25
-      ]
-    ]
-  },
-  {
-    "user": "self",
-    "emit": true,
-    "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "board",
-      "bench",
-      1,
-      false,
-      "move"
-    ]
-  },
-  {
-    "user": "self",
-    "emit": true,
-    "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "board",
-      "bench",
-      1,
-      false,
-      "move"
-    ]
-  },
-  {
-    "user": "self",
-    "emit": true,
-    "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "board",
-      "hand",
-      1,
-      false,
-      "move"
-    ]
-  },
-  {
-    "user": "self",
-    "emit": true,
-    "action": "discardBoard",
-    "parameters": [
-      "self",
-      true
-    ]
-  },
-  {
-    "user": "self",
-    "emit": true,
-    "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "hand",
-      "board",
-      5,
-      false,
-      "move"
-    ]
-  },
-  {
-    "user": "self",
-    "emit": true,
-    "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "bench",
-      "active",
-      1,
-      false,
-      "move"
-    ]
-  },
-  {
-    "user": "self",
-    "emit": true,
-    "action": "discardBoard",
-    "parameters": [
-      "self",
-      true
-    ]
-  },
-  {
-    "user": "self",
-    "emit": true,
-    "action": "undo",
-    "parameters": [
-      null
-    ]
-  },
-  {
-    "user": "self",
-    "emit": true,
-    "action": "undo",
-    "parameters": [
-      null
-    ]
-  },
-  {
-    "user": "self",
-    "emit": true,
-    "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "board",
-      "hand",
-      0,
-      false,
-      "move"
-    ]
-  },
-  {
-    "user": "self",
-    "emit": true,
-    "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "hand",
-      "bench",
-      2,
-      0,
-      "move"
-    ]
-  },
-  {
-    "user": "self",
-    "emit": true,
-    "action": "pass",
-    "parameters": []
-  },
-  {
-    "user": "opp",
-    "emit": true,
-    "action": "takeTurn",
-    "parameters": [
-      "opp"
-    ]
-  },
-  {
-    "user": "opp",
-    "emit": true,
-    "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "hand",
-      "bench",
-      4,
-      false,
-      "move"
-    ]
-  },
-  {
-    "user": "opp",
-    "emit": true,
-    "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "hand",
-      "bench",
-      2,
-      false,
-      "move"
-    ]
-  },
-  {
-    "user": "opp",
-    "emit": true,
-    "action": "undo",
-    "parameters": [
-      null
-    ]
-  },
-  {
-    "user": "opp",
-    "emit": true,
-    "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "hand",
-      "active",
-      2,
-      0,
-      "move"
-    ]
-  },
-  {
-    "user": "opp",
-    "emit": true,
-    "action": "undo",
-    "parameters": [
-      null
-    ]
-  },
-  {
-    "user": "opp",
-    "emit": true,
-    "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "deck",
-      "hand",
-      19,
-      false,
-      "move"
-    ]
-  },
-  {
-    "user": "opp",
-    "emit": true,
-    "action": "shuffleAll",
-    "parameters": [
-      "opp",
-      "deck",
-      [
-        20,
-        15,
-        30,
-        16,
+        36,
+        33,
+        39,
+        25,
         1,
-        13,
-        14,
-        29,
+        2,
+        38,
+        27,
+        4,
+        3,
+        19,
         21,
         28,
-        5,
-        33,
-        22,
-        24,
-        8,
         26,
-        9,
+        16,
         7,
-        37,
-        19,
-        25,
-        38,
-        11,
-        31,
-        6,
-        12,
-        27,
-        36,
-        3,
-        32,
-        17,
-        34,
-        18,
-        4,
-        39,
         10,
-        23,
-        2,
-        35,
-        0
+        18,
+        9,
+        24,
+        32,
+        6
       ]
     ]
   },
   {
-    "user": "opp",
+    "user": "self",
     "emit": true,
     "action": "moveCardBundle",
     "parameters": [
-      "opp",
+      "self",
+      "board",
       "hand",
-      "stadium",
-      4,
-      false,
-      "move"
-    ]
-  },
-  {
-    "user": "opp",
-    "emit": true,
-    "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "hand",
-      "lostZone",
-      0,
+      1,
       false,
       "move"
     ]
@@ -1521,11 +1410,20 @@
     "action": "moveCardBundle",
     "parameters": [
       "self",
+      "board",
       "hand",
-      "lostZone",
-      4,
+      1,
       false,
       "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "discardBoard",
+    "parameters": [
+      "self",
+      true
     ]
   },
   {
@@ -1535,7 +1433,7 @@
     "parameters": [
       "self",
       "hand",
-      "lostZone",
+      "board",
       4,
       false,
       "move"
@@ -1560,35 +1458,9 @@
     "action": "moveCardBundle",
     "parameters": [
       "self",
-      "hand",
+      "deck",
       "board",
-      2,
-      false,
-      "move"
-    ]
-  },
-  {
-    "user": "opp",
-    "emit": true,
-    "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "hand",
-      "board",
-      2,
-      false,
-      "move"
-    ]
-  },
-  {
-    "user": "opp",
-    "emit": true,
-    "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "hand",
-      "board",
-      1,
+      31,
       false,
       "move"
     ]
@@ -1600,8 +1472,8 @@
     "parameters": [
       "self",
       "deck",
-      "hand",
-      18,
+      "board",
+      31,
       false,
       "move"
     ]
@@ -1614,47 +1486,44 @@
       "self",
       "deck",
       [
-        11,
-        32,
+        21,
+        25,
+        34,
         13,
-        36,
+        10,
+        22,
+        1,
+        18,
+        6,
+        32,
+        12,
+        2,
+        17,
+        3,
         9,
+        5,
+        36,
+        19,
+        23,
+        8,
+        33,
+        26,
+        15,
+        35,
+        27,
+        37,
+        30,
+        7,
+        31,
+        11,
         29,
-        20,
         28,
         14,
-        17,
-        15,
-        16,
-        38,
-        25,
-        40,
-        27,
-        24,
-        30,
-        3,
-        31,
-        26,
-        1,
-        22,
-        4,
-        21,
-        34,
-        10,
-        5,
         0,
-        12,
-        7,
-        33,
-        18,
-        19,
-        37,
-        2,
-        8,
-        39,
-        35,
-        23,
-        6
+        24,
+        4,
+        20,
+        16
       ]
     ]
   },
@@ -1664,11 +1533,116 @@
     "action": "moveCardBundle",
     "parameters": [
       "self",
+      "board",
       "hand",
-      "active",
       2,
-      0,
+      false,
       "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "board",
+      "hand",
+      2,
+      false,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "discardBoard",
+    "parameters": [
+      "self",
+      true
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "moveCardBundle",
+    "parameters": [
+      "self",
+      "hand",
+      "bench",
+      4,
+      2,
+      "move"
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "attack",
+    "parameters": []
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "updateDamageCounter",
+    "parameters": [
+      "active",
+      0,
+      "70"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "updateDamageCounter",
+    "parameters": [
+      "active",
+      0,
+      "80"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "removeDamageCounter",
+    "parameters": [
+      "active",
+      0
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "draw",
+    "parameters": [
+      "self",
+      4
+    ]
+  },
+  {
+    "user": "self",
+    "emit": true,
+    "action": "undo",
+    "parameters": [
+      null
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "addDamageCounter",
+    "parameters": [
+      "active",
+      0,
+      "40"
+    ]
+  },
+  {
+    "user": "opp",
+    "emit": true,
+    "action": "takeTurn",
+    "parameters": [
+      "opp"
     ]
   }
 ]

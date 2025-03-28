@@ -1,0 +1,7 @@
+version: "2"
+services:
+  ptcg-sim:
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+      target: base 

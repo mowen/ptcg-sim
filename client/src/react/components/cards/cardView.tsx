@@ -1,5 +1,5 @@
-import { Card } from '../../models';
-import cardBackImage from '../../assets/cardback.png';
+import { Card } from '../../../models';
+import cardBackImage from '../../../assets/cardback.png';
 
 function CardView({
   card,
@@ -19,7 +19,7 @@ function CardView({
   ) : (
     <img
       src={cardBackImage}
-      alt="Face down prize card"
+      alt="Face down card"
       className={`${className ?? ''} card`}
     />
   );

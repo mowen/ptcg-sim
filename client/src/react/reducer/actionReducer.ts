@@ -3,7 +3,6 @@ import {
   BoardStateDTO,
   Card,
   CardLocation,
-  CardType,
   GameState,
   GameStateDTO,
   UserType,
@@ -55,11 +54,18 @@ export default function reducer(
     case 'loadDeckData': {
       const user = action.user;
       const cardList = action.parameters[0] as Array<unknown>;
+      let deckListIndex = 0;
       const newCardList = cardList.map((card) => {
         const list = new Array<Card>();
-        const cardCount = card[0] as number;
+        const [cardCount, name, type, imageUrl] = card as [
+          number,
+          string,
+          string,
+          string
+        ];
         for (let i = 0; i < cardCount; i++) {
-          list.push(new Card(card[1], card[2], card[3]));
+          list.push(new Card(deckListIndex, name, type, imageUrl));
+          deckListIndex++;
         }
         return list;
       });
@@ -83,17 +89,18 @@ export default function reducer(
     }
     case 'moveCardBundle': {
       const user = action.user;
-      const [, oZoneId, dZoneId, sourceIndex] = action.parameters as [
-        unknown,
-        string,
-        string,
-        number
-      ];
-      const targetIndex = (action.parameters[4] as number) || 0;
+      const [, oZoneId, dZoneId, sourceIndex, targetIndex] =
+        action.parameters as [
+          unknown,
+          string,
+          string,
+          number,
+          number | undefined
+        ];
 
-      const sourceCardIndex = state[user][oZoneId][sourceIndex];
+      const sourceDeckListIndex = state[user][oZoneId][sourceIndex];
 
-      if (!sourceCardIndex) {
+      if (!sourceDeckListIndex) {
         const source = state[user][oZoneId];
         console.warn(
           `souceCardIndex in moveCardBundle is undefined (${sourceIndex} out of ${source.length})`,
@@ -103,7 +110,7 @@ export default function reducer(
         );
       }
 
-      const sourceCard = state[`${user}DeckList`][sourceCardIndex];
+      const sourceCard = state[`${user}DeckList`][sourceDeckListIndex];
 
       const oZone = state[user][oZoneId];
       const newOZone = [
@@ -115,18 +122,19 @@ export default function reducer(
       const activeIndex = state[user].active[0];
       if (
         dZoneId === CardLocation.Active &&
-        activeIndex !== undefined &&
-        sourceCard.type === CardType.Pokemon
+        sourceCard.isPokemon &&
+        activeIndex !== undefined && // Just checking (activeIndex) won't work as could be 0 which is falsey
+        !targetIndex // We aren't attaching a card
       ) {
         // Only one Pokemon can be active, so bump the old active to the bench
         return {
           ...state,
           [user]: {
             ...state[user],
-            active: [sourceCardIndex], // Move new active to active
+            active: [sourceDeckListIndex], // Move new active to active
             bench: [
-              activeIndex, // Move old active to bench
               ...state[user].bench,
+              activeIndex, // Move old active to bench
             ],
             [oZoneId]: newOZone, // Could be bench and overwrite bench above
           },
@@ -140,28 +148,41 @@ export default function reducer(
           [user]: {
             ...state[user],
             [oZoneId]: newOZone,
-            stadium: [sourceCardIndex],
+            stadium: [sourceDeckListIndex],
           },
           [otherUser]: {
             ...state[otherUser],
             stadium: [], // Discard the other user's stadium
-            discard: [existingStadiumIndex, ...state[otherUser].discard],
+            discard: [...state[otherUser].discard, existingStadiumIndex],
           },
         };
       } else {
-        const newDZone = [
-          ...dZone.slice(0, targetIndex),
-          sourceCardIndex,
-          ...dZone.slice(targetIndex),
-        ];
-        return {
+        const newState = {
           ...state,
           [user]: {
             ...state[user],
             [oZoneId]: newOZone,
-            [dZoneId]: newDZone,
+            [dZoneId]: [...dZone, sourceDeckListIndex],
           },
         };
+
+        // If targetIndex is set we are attaching to a target
+        if (targetIndex !== undefined) {
+          // A 0 index is falsey
+          const targetDeckListIndex = state[user][dZoneId][targetIndex];
+          const newAttached = state[user].attached[targetDeckListIndex]
+            ? [
+                sourceDeckListIndex,
+                ...state[user].attached[targetDeckListIndex],
+              ]
+            : [sourceDeckListIndex];
+
+          newState[user].attached = {
+            ...newState[user].attached,
+            [targetDeckListIndex]: newAttached,
+          };
+        }
+        return newState;
       }
     }
     case 'takeTurn': {
@@ -229,8 +250,21 @@ export default function reducer(
         },
       };
     }
+    case 'draw': {
+      const [user, count] = action.parameters as [string, number];
+      const deck = state[user].deck;
+      const hand = state[user].hand;
+      return {
+        ...state,
+        [user]: {
+          ...state[user],
+          hand: [...hand, deck.slice(0, count)].flat(1),
+          deck: [...deck.slice(count, deck.length)],
+        },
+      };
+    }
     default:
-      console.warn(`Action type ${action.type} was not processed`);
+      console.warn(`Action type ${action.type} was not processed`, action);
       return state;
   }
 }

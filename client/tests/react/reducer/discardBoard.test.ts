@@ -16,7 +16,7 @@ reducerTest('selfDeckList has 60 cards', ({ setupState }) => {
   setupState = actionReducer(setupState, moveFromHandToBoardAction);
   setupState = actionReducer(setupState, moveFromHandToBoardAction);
 
-  assert.sameOrderedMembers(setupState.opp.board, [49, 26, 27]);
+  assert.sameOrderedMembers(setupState.opp.board, [27, 26, 49]);
 
   const discardBoardAction = new Action('opp', true, 'discardBoard', [
     'opp',
@@ -26,5 +26,5 @@ reducerTest('selfDeckList has 60 cards', ({ setupState }) => {
 
   expect(setupState.opp.board.length).toBe(0);
   expect(setupState.opp.discard.length).toBe(3);
-  assert.sameOrderedMembers(setupState.opp.discard, [49, 26, 27]);
+  assert.sameOrderedMembers(setupState.opp.discard, [27, 26, 49]);
 });

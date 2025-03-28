@@ -57,16 +57,23 @@ button {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   background-color: rgba(255, 255, 255, 0.1);
 }
-.self-view {
-  transform: translate(-50%, -50%);
+#selfContainer {
+  position: fixed;
+  border: none;
   top: 50%;
   left: 50%;
 }
-.opp-view {
-  transform: translateX(-50%) scaleX(-1) scaleY(-1);
-  top: 0%;
-  left: 50%;
+
+#oppContainer {
+  position: fixed;
+  border: none;
+  rotate: 180deg;
+  bottom: 50%;
+  right: 24%;
+  width: 100%;
+  height: 50%;
 }
+
 .flip-image img {
   transform: scaleX(-1) scaleY(-1) !important;
 }
@@ -131,15 +138,27 @@ button {
 }
 #active {
   position: fixed;
-  bottom: 33%;
-  left: 27%;
-  width: 32%;
-  height: 15%;
   display: flex;
   justify-content: center;
   align-items: flex-end;
   z-index: 0;
 }
+.self-active {
+  bottom: 33%;
+  left: 27%;
+  width: 32%;
+  height: 15%;
+}
+.opp-active {
+  height: 30%;
+  left: 30%;
+}
+/* .opp-active {
+  bottom: 66%;
+  left: 27%;
+  width: 32%;
+  height: 30%;
+} */
 #active div {
   width: auto;
   height: 100%;
@@ -304,7 +323,7 @@ button {
   position: fixed;
   height: 6%;
   width: 10%;
-  left: 67%;
+  left: 51%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -447,9 +466,9 @@ button {
 .self-header {
   transform: translate(-50%, -50%);
 }
-.opp-header {
+/* .opp-header {
   transform: translateX(-50%) scaleX(-1) scaleY(-1);
-}
+} */
 #viewCards {
   display: none;
   position: fixed;

@@ -17,14 +17,23 @@ class CardType {
 }
 
 class Card {
-  name: string;
-  type: string;
-  imageUrl: string;
+  constructor(
+    public readonly deckListIndex: number,
+    public readonly name: string,
+    public readonly type: string,
+    public readonly imageUrl: string
+  ) {}
 
-  constructor(name: string, type: string, imageUrl: string) {
-    this.name = name;
-    this.type = type;
-    this.imageUrl = imageUrl;
+  public get isPokemon(): boolean {
+    return this.type === CardType.Pokemon;
+  }
+
+  public get isTrainer(): boolean {
+    return this.type === CardType.Trainer;
+  }
+
+  public get isEnergy(): boolean {
+    return this.type === CardType.Energy;
   }
 }
 

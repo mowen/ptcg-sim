@@ -1,8 +1,11 @@
 * {
   user-select: none;
 }
-body, input, textarea, button {
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+body,
+input,
+textarea,
+button {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 body {
   position: relative;
@@ -103,10 +106,11 @@ h1 {
   margin: 0;
   padding: 0;
 }
-ul, li {
+ul,
+li {
   margin: 0;
   padding: 0;
-  font-size: 1.60vh;
+  font-size: 1.6vh;
 }
 .keybind-column ul ul {
   margin-left: 10px;
@@ -121,7 +125,7 @@ ul, li {
   display: flex;
   justify-content: space-between;
 }
-.self {
+/* .self {
   position: fixed;
   border: none;
   bottom: 0;
@@ -135,7 +139,7 @@ ul, li {
   width: 75.5%;
   height: 50%;
   transform: scaleX(-1) scaleY(-1);
-}
+} */
 #stadium {
   position: fixed;
   bottom: 42%;
@@ -143,7 +147,7 @@ ul, li {
   width: 6%;
   height: 16%;
   display: flex;
-	justify-content: center;
+  justify-content: center;
   border-radius: 15px;
 }
 #stadium img {
@@ -151,7 +155,7 @@ ul, li {
   max-height: 100%;
   height: fit-content;
   left: 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .5);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   border-radius: 0.375rem;
   cursor: pointer;
 }
@@ -191,19 +195,35 @@ ul, li {
   transform: translateY(50%);
 }
 .self-color {
-  background: linear-gradient(to bottom, rgba(90, 110, 188, 0.864), rgba(60, 80, 158, 0.864));
+  background: linear-gradient(
+    to bottom,
+    rgba(90, 110, 188, 0.864),
+    rgba(60, 80, 158, 0.864)
+  );
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 .opp-color {
-  background: linear-gradient(to bottom, rgba(188, 90, 113, 0.864), rgba(158, 60, 83, 0.864));
+  background: linear-gradient(
+    to bottom,
+    rgba(188, 90, 113, 0.864),
+    rgba(158, 60, 83, 0.864)
+  );
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 .spectator-color {
-  background: linear-gradient(to bottom, rgba(205, 188, 103, 1), rgba(175, 158, 83, 1));
+  background: linear-gradient(
+    to bottom,
+    rgba(205, 188, 103, 1),
+    rgba(175, 158, 83, 1)
+  );
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 .neutral-color {
-  background: linear-gradient(to bottom, rgba(112, 112, 112, 0.864), rgba(82, 82, 82, 0.864));
+  background: linear-gradient(
+    to bottom,
+    rgba(112, 112, 112, 0.864),
+    rgba(82, 82, 82, 0.864)
+  );
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 #boardButtonContainer {
@@ -221,10 +241,14 @@ ul, li {
   border-radius: 10px;
   font-size: 2vh;
   cursor: pointer;
-  background: linear-gradient(to bottom, rgb(250, 250, 250), rgb(230, 230, 230));
+  background: linear-gradient(
+    to bottom,
+    rgb(250, 250, 250),
+    rgb(230, 230, 230)
+  );
   color: rgb(60, 60, 60);
   border: 1px solid rgb(200, 200, 200);
-  margin: .1vw;
+  margin: 0.1vw;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
@@ -235,7 +259,11 @@ ul, li {
   box-shadow: 0px 2px 4px rgba(255, 255, 255, 0.1);
 }
 #boardButtonContainer button:hover {
-  background: linear-gradient(to bottom, rgb(220, 220, 220), rgb(200, 200, 200));
+  background: linear-gradient(
+    to bottom,
+    rgb(220, 220, 220),
+    rgb(200, 200, 200)
+  );
   color: rgb(40, 40, 40);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -251,7 +279,7 @@ ul, li {
   height: 4.8vh;
   width: 24%;
   display: flex;
-  overflow: hidden; 
+  overflow: hidden;
   background: rgb(145, 145, 145);
   align-items: flex-end;
   border-top-left-radius: 5px;
@@ -270,14 +298,18 @@ ul, li {
 }
 #topButtonContainer button {
   padding: 1vh;
-  width: 30%; 
+  width: 30%;
   font-size: 1.75vh;
   cursor: pointer;
   border: none;
 }
 .selected-page {
   border-radius: 10px 10px 0 0;
-  background: linear-gradient(to bottom, rgb(250, 250, 250), rgb(230, 230, 230));
+  background: linear-gradient(
+    to bottom,
+    rgb(250, 250, 250),
+    rgb(230, 230, 230)
+  );
   border: 1px solid rgb(200, 200, 200);
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -313,7 +345,7 @@ ul, li {
   padding: 10px;
   box-sizing: border-box;
   display: block;
-  border-radius: 10px 10px 0 0; 
+  border-radius: 10px 10px 0 0;
 }
 #tutorialButton {
   margin-left: 50%;
@@ -335,7 +367,7 @@ ul, li {
   width: 100%;
   text-align: center;
 }
-#donationsLink  {
+#donationsLink {
   margin-top: 1vh;
   font-weight: bold;
 }
@@ -361,7 +393,8 @@ ul, li {
   bottom: 50%;
   transform: translateY(50%);
 }
-#changelog, #donationsPage {
+#changelog,
+#donationsPage {
   display: none;
   position: fixed;
   top: 0;
@@ -377,8 +410,8 @@ ul, li {
 #line {
   background: rgb(230, 230, 230);
   width: 100%;
-  height: .1vh;
-  margin-top: .5vh;
+  height: 0.1vh;
+  margin-top: 0.5vh;
 }
 .shift-font {
   font-family: monospace;
@@ -405,7 +438,7 @@ ul, li {
   background-color: rgba(116, 129, 183, 0.864);
 }
 .sidebox-button-container button.opp-color:hover {
-  background-color: rgba(189, 112, 130, 0.864);  
+  background-color: rgba(189, 112, 130, 0.864);
 }
 .sidebox-button-container button.neutral-color:hover {
   background-color: rgba(150, 144, 144, 0.864);
@@ -416,10 +449,10 @@ ul, li {
   justify-content: space-around;
   align-items: center;
   overflow: hidden;
-  gap: .5vw;
+  gap: 0.5vw;
   box-sizing: border-box;
-  margin-top: .5vh;
-  margin-bottom: .5vh;
+  margin-top: 0.5vh;
+  margin-bottom: 0.5vh;
 }
 .chat-button-container button {
   flex: 1;
@@ -428,19 +461,19 @@ ul, li {
   cursor: pointer;
   color: white;
   border: none;
-  border-radius: .5vw;
+  border-radius: 0.5vw;
 }
 .chat-button-container button.self-color:hover {
   background-color: rgba(116, 129, 183, 0.864);
 }
 .chat-button-container button.opp-color:hover {
-  background-color: rgba(189, 112, 130, 0.864);  
+  background-color: rgba(189, 112, 130, 0.864);
 }
 .chat-button-container button.neutral-color:hover {
-  background-color: rgba(150, 144, 144, 0.864);  
+  background-color: rgba(150, 144, 144, 0.864);
 }
 .chat-button-container button.spectator-color:hover {
-  background-color:rgb(217, 200, 117);
+  background-color: rgb(217, 200, 117);
 }
 #optionsContextMenu {
   position: absolute;
@@ -460,11 +493,13 @@ ul, li {
 #optionsContextMenu div:hover {
   background-color: #757575;
 }
-#attackButton, #p2AttackButton {
-  border-radius: 0 .5vw .5vw 0;
+#attackButton,
+#p2AttackButton {
+  border-radius: 0 0.5vw 0.5vw 0;
 }
-#FREEBUTTON, #p2FREEBUTTON {
-  border-radius: .5vw 0 0 .5vw;
+#FREEBUTTON,
+#p2FREEBUTTON {
+  border-radius: 0.5vw 0 0 0.5vw;
 }
 #messageInput {
   width: 100%;
@@ -523,7 +558,7 @@ ul, li {
 }
 #copyButton {
   margin: 10px;
-  padding: .5vh;
+  padding: 0.5vh;
   border-radius: 10px;
   cursor: pointer;
   background-color: transparent;
@@ -553,7 +588,8 @@ ul, li {
 #generateIdButton:hover {
   background: linear-gradient(to bottom, #bca668, #8c7e46);
 }
-#coachingModeLabel, #spectatorModeLabel {
+#coachingModeLabel,
+#spectatorModeLabel {
   font-size: small;
   margin-bottom: 1.5vh;
 }
@@ -568,8 +604,8 @@ ul, li {
   cursor: pointer;
   font-size: 2.5vh;
   background: linear-gradient(to bottom, #666, #4c4b46);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
-  transition: all 0.3s; 
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
 }
 #joinRoomButton:hover {
   background: linear-gradient(to bottom, #555, #333);
@@ -585,7 +621,7 @@ ul, li {
   width: 100%;
   height: 2.5vh;
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
   color: black;
@@ -598,8 +634,8 @@ ul, li {
   border-radius: 10px;
   width: 98%;
   font-size: 2vh;
-  padding-top: .1vh;
-  padding-bottom: .1vh;
+  padding-top: 0.1vh;
+  padding-bottom: 0.1vh;
   text-align: center;
 }
 #roomHeaderCopyButton {
@@ -611,7 +647,7 @@ ul, li {
   display: flex;
   filter: invert(50%);
 }
-#roomHeaderCopyButton img{
+#roomHeaderCopyButton img {
   height: 3vh;
 }
 #p2Chatbox {
@@ -641,7 +677,8 @@ ul, li {
   display: none;
   border-radius: 10px 10px 0 0;
 }
-#deckBuilderButton, #importExportGameStateButton {
+#deckBuilderButton,
+#importExportGameStateButton {
   color: white;
   border-radius: 5px;
   border: none;
@@ -675,8 +712,8 @@ ul, li {
 }
 #importButtonContainer button {
   width: 50%;
-  border-radius: .5rem .5rem 0 0;
-  padding: .5vh;
+  border-radius: 0.5rem 0.5rem 0 0;
+  padding: 0.5vh;
   border: none;
   font-size: 2vh;
   background-color: rgba(171, 171, 171, 0.864);
@@ -701,19 +738,28 @@ ul, li {
 }
 .main-select {
   font-weight: bold;
-  background: linear-gradient(to bottom, rgba(90, 110, 188, 0.864), rgba(60, 80, 158, 0.864))  !important;
+  background: linear-gradient(
+    to bottom,
+    rgba(90, 110, 188, 0.864),
+    rgba(60, 80, 158, 0.864)
+  ) !important;
   color: white;
-  border: .25vw solid rgba(40, 57, 124, 0.864) !important;
+  border: 0.25vw solid rgba(40, 57, 124, 0.864) !important;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 .alt-select {
   font-weight: bold;
-  background: linear-gradient(to bottom, rgba(188, 90, 113, 0.864), rgba(158, 60, 83, 0.864)) !important;
+  background: linear-gradient(
+    to bottom,
+    rgba(188, 90, 113, 0.864),
+    rgba(158, 60, 83, 0.864)
+  ) !important;
   color: white;
-  border: .25vw solid rgba(153, 58, 81, 0.864) !important;
+  border: 0.25vw solid rgba(153, 58, 81, 0.864) !important;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
-#mainDeckImportInput, #altDeckImportInput {
+#mainDeckImportInput,
+#altDeckImportInput {
   height: 100%;
   width: 100%;
   padding: 2vh;
@@ -724,12 +770,12 @@ ul, li {
   outline: none;
 }
 #mainDeckImportInput {
-  border: .2vw solid rgba(40, 57, 124, 0.864);
+  border: 0.2vw solid rgba(40, 57, 124, 0.864);
   display: inline-block;
 }
 #altDeckImportInput {
   display: none;
-  border: .2vw solid rgba(153, 58, 81, 0.864) !important;
+  border: 0.2vw solid rgba(153, 58, 81, 0.864) !important;
 }
 #importBottom {
   margin-top: 1vh;
@@ -738,7 +784,8 @@ ul, li {
   align-items: center;
   gap: 0.5vw;
 }
-#importButton, #confirmButton {
+#importButton,
+#confirmButton {
   background: linear-gradient(to bottom, #95c6b4, #72ab97);
   color: white;
 }
@@ -748,20 +795,23 @@ ul, li {
 #importButton {
   cursor: pointer;
   width: 25%;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   padding: 1vh;
   border: none;
   font-weight: bold;
 }
-#importButton:hover, #confirmButton:hover {
+#importButton:hover,
+#confirmButton:hover {
   background: linear-gradient(to bottom, #7bb9a2, #5faa96);
 }
-#cancelButton, #confirmButton, #saveButton {
+#cancelButton,
+#confirmButton,
+#saveButton {
   cursor: pointer;
   display: none;
   width: 20%;
-  border-radius: .5rem;
-  padding: .7vh;
+  border-radius: 0.5rem;
+  padding: 0.7vh;
   border: none;
   color: white;
   font-weight: bold;
@@ -775,12 +825,16 @@ ul, li {
 #uploadButtonsContainer {
   margin: 0.3vw;
 }
-#uploadFileButton, #changeCardBackButton, #changeLanguageButton, #saveCurrentButton, #changeBackgroundButton {
+#uploadFileButton,
+#changeCardBackButton,
+#changeLanguageButton,
+#saveCurrentButton,
+#changeBackgroundButton {
   padding: 3px 6px;
   cursor: pointer;
   color: white;
   border: none;
-  border-radius: .3rem;
+  border-radius: 0.3rem;
   font-size: 1.5vh;
 }
 #changeBackgroundButton {
@@ -795,10 +849,12 @@ ul, li {
 #uploadFileButton.opp-color:hover,
 #changeCardBackButton.opp-color:hover,
 #saveCurrentButton.opp-color:hover {
-  background-color: rgba(189, 112, 130, 0.864);  
+  background-color: rgba(189, 112, 130, 0.864);
 }
-#changeLanguageButton:hover, #saveButton:hover, #changeBackgroundButton:hover {
-  background-color: rgba(150, 144, 144, 0.864);  
+#changeLanguageButton:hover,
+#saveButton:hover,
+#changeBackgroundButton:hover {
+  background-color: rgba(150, 144, 144, 0.864);
 }
 .language-container {
   position: relative;
@@ -837,7 +893,7 @@ ul, li {
   border: none;
   font-size: x-large;
   cursor: pointer;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   background: linear-gradient(to bottom, #c2b07f, #ac9c52);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -845,20 +901,23 @@ ul, li {
   background: linear-gradient(to bottom, #bca668, #8c7e46);
 }
 #decklistsButton {
-  margin-left: .3vw;
+  margin-left: 0.3vw;
   border: none;
   font-size: x-large;
   cursor: pointer;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   box-sizing: border-box;
-  padding-bottom: .3vh;
-  padding-top: .5vh;
+  padding-bottom: 0.3vh;
+  padding-top: 0.5vh;
   background: linear-gradient(to bottom, #b0b0b0, #909090);
 }
 #decklistsButton:hover {
   background: linear-gradient(to bottom, #a4a4a4, #807f7f);
 }
-#successText, #failedText, #loadingText, #invalidText {
+#successText,
+#failedText,
+#loadingText,
+#invalidText {
   display: none;
 }
 #settings {
@@ -882,7 +941,10 @@ ul, li {
   position: relative;
   cursor: pointer;
 }
-#darkModeCheckbox, #showZonesCheckbox, #hideHandCheckbox, #keybindReminder {
+#darkModeCheckbox,
+#showZonesCheckbox,
+#hideHandCheckbox,
+#keybindReminder {
   margin-top: 1vh;
 }
 #keybindReminder {
@@ -905,7 +967,7 @@ ul, li {
   align-items: center;
 }
 #twitterHandle img {
-  margin-right: .5vw;
+  margin-right: 0.5vw;
   height: 2vh;
 }
 a {
@@ -932,7 +994,7 @@ a:hover {
   margin: 0;
   padding: 0;
 }
-.card-context-menu ul li[id$="Header"] {
+.card-context-menu ul li[id$='Header'] {
   padding: 4px;
   cursor: default;
   font-weight: bold;
@@ -943,7 +1005,7 @@ a:hover {
   cursor: pointer;
   position: relative;
 }
-.card-context-menu > ul > li > ul > li{
+.card-context-menu > ul > li > ul > li {
   padding: 0px 16px;
 }
 .card-context-menu:not(.dark-mode-2) > ul > li:hover,
@@ -970,7 +1032,7 @@ a:hover {
   display: block;
 }
 .card-context-menu ul li#moveButton:before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -978,7 +1040,13 @@ a:hover {
   height: 2px;
   background-color: #525252;
 }
-.self-text, .announcement, .opp-text, .self-message, .opp-message, .spectator-message, .loading-spectator {
+.self-text,
+.announcement,
+.opp-text,
+.self-message,
+.opp-message,
+.spectator-message,
+.loading-spectator {
   word-wrap: break-word;
   display: block;
   font-size: 1.75vh;
@@ -993,7 +1061,7 @@ a:hover {
   user-select: text;
 }
 .loading-spectator {
-  background-color:rgb(205 188 103);
+  background-color: rgb(205 188 103);
   text-align: center;
 }
 .self-message {
@@ -1003,13 +1071,13 @@ a:hover {
   user-select: text;
 }
 .opp-message {
-  background-color: rgba(187, 120, 136, 0.864);  
+  background-color: rgba(187, 120, 136, 0.864);
   text-align: left;
   width: fit-content;
   user-select: text;
 }
 .spectator-message {
-  background-color:rgb(228, 214, 145);
+  background-color: rgb(228, 214, 145);
   text-align: left;
   width: fit-content;
   user-select: text;
@@ -1020,7 +1088,7 @@ a:hover {
   width: fit-content;
 }
 .opp-text {
-  background-color: rgba(247, 217, 223, 0.864);  
+  background-color: rgba(247, 217, 223, 0.864);
   text-align: left;
   width: fit-content;
 }
@@ -1035,7 +1103,7 @@ a:hover {
   height: fit-content;
 }
 .decklists-context-menu-item {
-  padding: .3vh 1vw;
+  padding: 0.3vh 1vw;
   cursor: pointer;
   font-size: small;
 }
@@ -1044,7 +1112,7 @@ a:hover {
   display: none;
   position: absolute;
   background-color: #c1c1c1;
-  left: 99%; 
+  left: 99%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -1092,14 +1160,18 @@ a:hover {
 #loadingCircle {
   width: 1vh; /* Adjust size as needed */
   height: 1vh; /* Adjust size as needed */
-  border: .4vh solid #f3f3f3; /* Light gray border */
-  border-top: .4vh solid #3498db; /* Blue border for animation */
+  border: 0.4vh solid #f3f3f3; /* Light gray border */
+  border-top: 0.4vh solid #3498db; /* Blue border for animation */
   border-radius: 50%; /* Circle shape */
-  animation: spin .5s linear infinite; /* Spin animation */
+  animation: spin 0.5s linear infinite; /* Spin animation */
   display: none;
   margin: 0.5vh 0vh 0.5vh 0vh;
 }
 @keyframes spin {
-  0% { transform: rotate(0deg); } /* Start at 0 degrees */
-  100% { transform: rotate(360deg); } /* End at 360 degrees (full circle) */
+  0% {
+    transform: rotate(0deg);
+  } /* Start at 0 degrees */
+  100% {
+    transform: rotate(360deg);
+  } /* End at 360 degrees (full circle) */
 }

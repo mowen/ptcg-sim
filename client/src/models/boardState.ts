@@ -12,6 +12,7 @@ class BoardStateDTO {
   public board: Array<number> = new Array<number>();
   public lostZone: Array<number> = new Array<number>();
   public stadium: Array<number> = new Array<number>();
+  public attached: Record<number, Array<number>> = {};
 }
 
 class BoardState {
