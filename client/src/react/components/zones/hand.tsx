@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { Card } from '../../../models';
+import { CardDTO } from '../../../models';
 import CardView from '../cards/cardView';
 import useMutationObserver from '../../hooks/useMutationObserver';
 import { adjustAlignment } from '../../../setup/sizing/adjust-alignment';
@@ -12,7 +12,7 @@ const handleHandMutations = (element, mutations) => {
   });
 };
 
-export function Hand({ user, cards }: { user: string; cards: Array<Card> }) {
+export function Hand({ user, cards }: { user: string; cards: Array<CardDTO> }) {
   const handRef = useRef<HTMLDivElement>(null);
   useMutationObserver(handRef, handleHandMutations, {
     attributes: false,
@@ -43,7 +43,7 @@ export function Hand({ user, cards }: { user: string; cards: Array<Card> }) {
         (<span id="handCount">{cards.length}</span>)
       </div>
       <div id="hand" ref={handRef}>
-        {cards.map((c: Card, i: number) => (
+        {cards.map((c: CardDTO, i: number) => (
           <CardView key={i} card={c}></CardView>
         ))}
       </div>

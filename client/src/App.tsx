@@ -31,9 +31,15 @@ function App({ initialState }: { initialState: Undoable<GameStateDTO> }) {
   return (
     <AppContext.Provider value={state}>
       <AppDispatchContext.Provider value={processAction}>
-        <Board user={UserType.Opp} deckList={p2DeckList} boardState={p2State} />
         <Board
-          user={UserType.Self}
+          cssUser={UserType.Opp}
+          boardUser={p2User}
+          deckList={p2DeckList}
+          boardState={p2State}
+        />
+        <Board
+          cssUser={UserType.Self}
+          boardUser={p1User}
           deckList={p1DeckList}
           boardState={p1State}
         />
@@ -44,8 +50,8 @@ function App({ initialState }: { initialState: Undoable<GameStateDTO> }) {
         <div id="oppResizer" className="opp-color"></div>
 
         <BoardButtons
-          user={p1User}
-          toggleActive={() => setIsSelfActive(!isSelfActive)}
+          boardUser={p1User}
+          flipActive={() => setIsSelfActive(!isSelfActive)}
         ></BoardButtons>
 
         <CardContextMenu></CardContextMenu>

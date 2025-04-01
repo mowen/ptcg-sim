@@ -16,7 +16,7 @@ class CardType {
   public static readonly Energy: string = 'Energy';
 }
 
-class Card {
+class CardDTO {
   constructor(
     public readonly deckListIndex: number,
     public readonly name: string,
@@ -37,4 +37,4 @@ class Card {
   }
 }
 
-export { Card, CardLocation, CardType };
+export { CardDTO, CardLocation, CardType };

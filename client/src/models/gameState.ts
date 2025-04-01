@@ -1,5 +1,5 @@
 import { BoardState, BoardStateDTO } from './boardState';
-import { Card } from './card';
+import { CardDTO } from './card';
 
 class UserType {
   public static readonly Self: string = 'self';
@@ -9,9 +9,9 @@ class UserType {
 class GameStateDTO {
   public initiator: string = UserType.Self;
   public isTwoPlayer: boolean = false;
-  public selfDeckList: Array<Card> = new Array<Card>();
+  public selfDeckList: Array<CardDTO> = new Array<CardDTO>();
   public self: BoardStateDTO = new BoardStateDTO();
-  public oppDeckList: Array<Card> = new Array<Card>();
+  public oppDeckList: Array<CardDTO> = new Array<CardDTO>();
   public opp: BoardStateDTO = new BoardStateDTO();
   public oppIsActive: boolean = false;
   public turn: number = 0;
@@ -21,40 +21,40 @@ class GameState {
   private readonly _selfBoard: BoardState;
   private readonly _oppBoard: BoardState;
 
-  constructor(private readonly _gameState: GameStateDTO) {
-    this._selfBoard = new BoardState(_gameState.self, _gameState.selfDeckList);
-    this._oppBoard = new BoardState(_gameState.opp, _gameState.oppDeckList);
+  constructor(gameState: GameStateDTO) {
+    this._selfBoard = new BoardState(gameState.self, gameState.selfDeckList);
+    this._oppBoard = new BoardState(gameState.opp, gameState.oppDeckList);
   }
 
-  public get selfActive(): Array<Card> {
+  public get selfActive(): Array<CardDTO> {
     return this._selfBoard.active;
   }
 
-  public get selfHand(): Array<Card> {
+  public get selfHand(): Array<CardDTO> {
     return this._selfBoard.hand;
   }
 
-  public get selfBench(): Array<Card> {
+  public get selfBench(): Array<CardDTO> {
     return this._selfBoard.bench;
   }
 
-  public get selfDeck(): Array<Card> {
+  public get selfDeck(): Array<CardDTO> {
     return this._selfBoard.deck;
   }
 
-  public get oppActive(): Array<Card> {
+  public get oppActive(): Array<CardDTO> {
     return this._oppBoard.active;
   }
 
-  public get oppHand(): Array<Card> {
+  public get oppHand(): Array<CardDTO> {
     return this._oppBoard.hand;
   }
 
-  public get oppBench(): Array<Card> {
+  public get oppBench(): Array<CardDTO> {
     return this._oppBoard.bench;
   }
 
-  public get oppDeck(): Array<Card> {
+  public get oppDeck(): Array<CardDTO> {
     return this._oppBoard.deck;
   }
 }

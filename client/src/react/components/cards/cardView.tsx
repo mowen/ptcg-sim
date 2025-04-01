@@ -1,4 +1,4 @@
-import { Card } from '../../../models';
+import { CardDTO } from '../../../models';
 import cardBackImage from '../../../assets/cardback.png';
 
 function CardView({
@@ -6,7 +6,7 @@ function CardView({
   faceUp = true,
   className,
 }: {
-  card: Card;
+  card: CardDTO;
   faceUp?: boolean;
   className?: string;
 }) {

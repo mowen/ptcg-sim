@@ -1,11 +1,11 @@
 import { Action } from './action';
-import { Card, CardLocation, CardType } from './card';
+import { CardDTO, CardLocation, CardType } from './card';
 import { GameState, GameStateDTO, UserType } from './gameState';
 import { BoardState, BoardStateDTO } from './boardState';
 
 export {
   Action,
-  Card,
+  CardDTO,
   CardLocation,
   CardType,
   GameState,

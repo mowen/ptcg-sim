@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { CardView, useMutationObserver } from '../..';
-import { Card, GameStateDTO } from '../../../models';
+import { CardDTO, GameStateDTO } from '../../../models';
 
 // const zoneIds = ['lostZone', 'deck', 'discard', 'attachedCards', 'viewCards'];
 // const selfElements = zoneIds.map((zoneId) =>
@@ -28,7 +28,7 @@ const handleStadiumMutations = (element, mutations) => {
   //   boardButtonContainer.style.zIndex = '0';
 };
 
-const getCurrentStadiumCard = (state: GameStateDTO): Card => {
+const getCurrentStadiumCard = (state: GameStateDTO): CardDTO => {
   const selfStadium = state.self.stadium.length;
   if (selfStadium > 0) return state.selfDeckList[selfStadium[0]];
   else {
@@ -41,7 +41,7 @@ const getCurrentStadiumCard = (state: GameStateDTO): Card => {
 };
 
 export function Stadium({ state }: { state: GameStateDTO }) {
-  const stadium: Card = getCurrentStadiumCard(state);
+  const stadium: CardDTO = getCurrentStadiumCard(state);
   const stadiumRef = useRef<HTMLDivElement>(null);
   useMutationObserver(stadiumRef, handleStadiumMutations, {
     attributes: true,

@@ -1,4 +1,4 @@
-import { Card } from '../../../models';
+import { CardDTO } from '../../../models';
 import CardView from '../cards/cardView';
 
 export function LostZone({
@@ -6,12 +6,12 @@ export function LostZone({
   cards,
 }: {
   user: string;
-  cards: Array<Card>;
+  cards: Array<CardDTO>;
 }) {
   return (
     <>
       <div id="lostZoneCover" className="outline">
-        {cards.map((c: Card, i) => (
+        {cards.map((c: CardDTO, i) => (
           <CardView key={i} card={c}></CardView>
         ))}
       </div>

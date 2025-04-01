@@ -22,7 +22,7 @@ reducerTest('self board state is reset after reset', ({ setupState }) => {
     'hand',
     'active',
     0,
-    0,
+    false,
     'move',
   ]);
   setupState = actionReducer(setupState, moveHandToActiveAction);

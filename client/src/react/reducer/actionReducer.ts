@@ -1,7 +1,7 @@
 import {
   Action,
   BoardStateDTO,
-  Card,
+  CardDTO,
   CardLocation,
   GameState,
   GameStateDTO,
@@ -11,7 +11,7 @@ import {
 function debugDump(state: GameStateDTO, user: string) {
   const gs = new GameState(state);
 
-  const cardsToString = (cards: Array<Card>): Array<string> =>
+  const cardsToString = (cards: Array<CardDTO>): Array<string> =>
     cards.map((c) => `${c.name} - ${c.type}`);
 
   if (user === UserType.Self) {
@@ -56,7 +56,7 @@ export default function reducer(
       const cardList = action.parameters[0] as Array<unknown>;
       let deckListIndex = 0;
       const newCardList = cardList.map((card) => {
-        const list = new Array<Card>();
+        const list = new Array<CardDTO>();
         const [cardCount, name, type, imageUrl] = card as [
           number,
           string,
@@ -64,7 +64,7 @@ export default function reducer(
           string
         ];
         for (let i = 0; i < cardCount; i++) {
-          list.push(new Card(deckListIndex, name, type, imageUrl));
+          list.push(new CardDTO(deckListIndex, name, type, imageUrl));
           deckListIndex++;
         }
         return list;
@@ -159,15 +159,6 @@ export default function reducer(
           },
         };
       } else {
-        const newState = {
-          ...state,
-          [user]: {
-            ...state[user],
-            [oZoneId]: newOZone,
-            [dZoneId]: [...dZone, sourceDeckListIndex],
-          },
-        };
-
         // If targetIndex is set we are attaching to a target
         if (targetIndex === 0 || targetIndex != false) {
           // A 0 index is falsey
@@ -179,12 +170,28 @@ export default function reducer(
               ]
             : [sourceDeckListIndex];
 
-          newState[user].attached = {
-            ...newState[user].attached,
-            [targetDeckListIndex]: newAttached,
+          return {
+            ...state,
+            [user]: {
+              ...state[user],
+              [oZoneId]: newOZone,
+              // [dZoneId]: [...dZone, sourceDeckListIndex],
+              attached: {
+                ...state[user].attached,
+                [targetDeckListIndex]: newAttached,
+              },
+            },
+          };
+        } else {
+          return {
+            ...state,
+            [user]: {
+              ...state[user],
+              [oZoneId]: newOZone,
+              [dZoneId]: [...dZone, sourceDeckListIndex],
+            },
           };
         }
-        return newState;
       }
     }
     case 'takeTurn': {
@@ -240,7 +247,6 @@ export default function reducer(
     }
     case 'pass':
     case 'attack': {
-      // Same as discard board until I implement abilities
       const user = action.user;
       const board = state[user].board;
       const discard = state[user].discard;
@@ -250,6 +256,7 @@ export default function reducer(
           ...state[user],
           board: [],
           discard: [board, ...discard].flat(1),
+          abilityUsed: {},
         },
       };
     }

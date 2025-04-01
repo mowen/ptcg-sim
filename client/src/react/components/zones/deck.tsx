@@ -1,7 +1,7 @@
-import { Card } from '../../../models';
+import { CardDTO } from '../../../models';
 import CardView from '../cards/cardView';
 
-export function Deck({ user, cards }: { user: string; cards: Array<Card> }) {
+export function Deck({ user, cards }: { user: string; cards: Array<CardDTO> }) {
   return (
     <>
       <div id="deckCover" className="outline">
