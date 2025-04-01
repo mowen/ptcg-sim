@@ -95,17 +95,19 @@ export default function reducer(
           string,
           string,
           number,
-          number | undefined
+          number | boolean | undefined
         ];
 
       const sourceDeckListIndex = state[user][oZoneId][sourceIndex];
 
-      if (!sourceDeckListIndex) {
+      // If everything is working correctly this should never happen
+      if (sourceDeckListIndex === undefined) {
         const source = state[user][oZoneId];
         console.warn(
           `souceCardIndex in moveCardBundle is undefined (${sourceIndex} out of ${source.length})`,
           user,
           oZoneId,
+          action,
           debugDump(state, user)
         );
       }
@@ -124,7 +126,7 @@ export default function reducer(
         dZoneId === CardLocation.Active &&
         sourceCard.isPokemon &&
         activeIndex !== undefined && // Just checking (activeIndex) won't work as could be 0 which is falsey
-        !targetIndex // We aren't attaching a card
+        targetIndex == false // We aren't attaching a card
       ) {
         // Only one Pokemon can be active, so bump the old active to the bench
         return {
@@ -167,7 +169,7 @@ export default function reducer(
         };
 
         // If targetIndex is set we are attaching to a target
-        if (targetIndex !== undefined) {
+        if (targetIndex === 0 || targetIndex != false) {
           // A 0 index is falsey
           const targetDeckListIndex = state[user][dZoneId][targetIndex];
           const newAttached = state[user].attached[targetDeckListIndex]
@@ -192,6 +194,7 @@ export default function reducer(
       const topDeckId = deck[0];
       return {
         ...state,
+        turn: state.turn + 1,
         [user]: {
           ...state[user],
           hand: [...hand, topDeckId],
@@ -260,6 +263,58 @@ export default function reducer(
           ...state[user],
           hand: [...hand, deck.slice(0, count)].flat(1),
           deck: [...deck.slice(count, deck.length)],
+        },
+      };
+    }
+    case 'addDamageCounter': {
+      const user = action.user;
+      const [oZoneId, sourceIndex, amount] = action.parameters as [
+        string,
+        number,
+        string
+      ];
+      const sourceDeckListIndex = state[user][oZoneId][sourceIndex];
+      const currentDamage = state[user].damage[sourceDeckListIndex] ?? 0;
+      return {
+        ...state,
+        [user]: {
+          ...state[user],
+          damage: {
+            ...state[user].damage,
+            [sourceDeckListIndex]: currentDamage + parseInt(amount),
+          },
+        },
+      };
+    }
+    case 'updateDamageCounter': {
+      const user = action.user;
+      const [oZoneId, sourceIndex, amount] = action.parameters as [
+        string,
+        number,
+        string
+      ];
+      const sourceDeckListIndex = state[user][oZoneId][sourceIndex];
+      return {
+        ...state,
+        [user]: {
+          ...state[user],
+          damage: {
+            ...state[user].damage,
+            [sourceDeckListIndex]: parseInt(amount),
+          },
+        },
+      };
+    }
+    case 'removeDamageCounter': {
+      const user = action.user;
+      const [oZoneId, sourceIndex] = action.parameters as [string, number];
+      const sourceDeckListIndex = state[user][oZoneId][sourceIndex];
+      const { [sourceDeckListIndex]: _, ...newDamage } = state[user].damage;
+      return {
+        ...state,
+        [user]: {
+          ...state[user],
+          damage: newDamage,
         },
       };
     }

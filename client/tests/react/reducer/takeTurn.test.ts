@@ -55,3 +55,12 @@ reducerTest(
     expect(setupState.opp.deck.length).toBe(46);
   }
 );
+
+reducerTest('turn count is incremented', ({ setupState }) => {
+  expect(setupState.turn).toBe(0);
+
+  const takeTurnAction = new Action('self', true, 'takeTurn', ['self']);
+  setupState = actionReducer(setupState, takeTurnAction);
+
+  expect(setupState.turn).toBe(1);
+});

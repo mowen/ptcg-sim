@@ -1,5 +1,5 @@
 import { useReducer, useState } from 'react';
-import { GameStateDTO } from './models';
+import { GameStateDTO, UserType } from './models';
 import {
   actionReducer,
   AppContext,
@@ -21,20 +21,22 @@ function App({ initialState }: { initialState: Undoable<GameStateDTO> }) {
     initialState
   );
 
-  const p1DeckList = isSelfActive
-    ? state.present.selfDeckList
-    : state.present.oppDeckList;
-  const p2DeckList = isSelfActive
-    ? state.present.oppDeckList
-    : state.present.selfDeckList;
-  const p1State = isSelfActive ? state.present.self : state.present.opp;
-  const p2State = isSelfActive ? state.present.opp : state.present.self;
+  const p1User = isSelfActive ? UserType.Self : UserType.Opp;
+  const p2User = isSelfActive ? UserType.Opp : UserType.Self;
+  const p1DeckList = state.present[`${p1User}DeckList`];
+  const p2DeckList = state.present[`${p2User}DeckList`];
+  const p1State = state.present[p1User];
+  const p2State = state.present[p2User];
 
   return (
     <AppContext.Provider value={state}>
       <AppDispatchContext.Provider value={processAction}>
-        <Board user="opp" deckList={p2DeckList} boardState={p2State} />
-        <Board user="self" deckList={p1DeckList} boardState={p1State} />
+        <Board user={UserType.Opp} deckList={p2DeckList} boardState={p2State} />
+        <Board
+          user={UserType.Self}
+          deckList={p1DeckList}
+          boardState={p1State}
+        />
 
         <Stadium state={state.present}></Stadium>
 
@@ -42,8 +44,8 @@ function App({ initialState }: { initialState: Undoable<GameStateDTO> }) {
         <div id="oppResizer" className="opp-color"></div>
 
         <BoardButtons
-          isSelfActive={isSelfActive}
-          setIsSelfActive={setIsSelfActive}
+          user={p1User}
+          toggleActive={() => setIsSelfActive(!isSelfActive)}
         ></BoardButtons>
 
         <CardContextMenu></CardContextMenu>

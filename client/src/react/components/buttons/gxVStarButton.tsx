@@ -5,7 +5,15 @@ import { determineUsername } from '../../../setup/general/determine-username.js'
 import { AppDispatchContext } from '../../context/appContext.js';
 import { Action } from '../../../models/index.js';
 
-function GxVStarButton({ user, type, used }) {
+function GxVStarButton({
+  user,
+  type,
+  used,
+}: {
+  user: string;
+  type: string;
+  used: boolean;
+}) {
   const processAction = useContext(AppDispatchContext);
 
   const onClick = () => {
@@ -16,7 +24,7 @@ function GxVStarButton({ user, type, used }) {
     }
 
     const message = `${determineUsername(user)} ${
-      used ? 'used' : 'reset'
+      !used ? 'used' : 'reset'
     } their ${type}`;
     appendMessage(user, message, 'player', false);
     processAction(new Action(user, emit, 'VSTARGXFunction', [type]));
