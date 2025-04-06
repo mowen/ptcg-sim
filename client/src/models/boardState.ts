@@ -1,4 +1,4 @@
-import { CardDTO, CardLocation } from './card';
+import { CardDTO, CardLocation, Card } from './card';
 
 class BoardStateDTO {
   public gxUsed: boolean = false;
@@ -19,48 +19,50 @@ class BoardStateDTO {
 
 class BoardState {
   constructor(
-    private readonly _board: BoardStateDTO,
+    private readonly _boardState: BoardStateDTO,
     private readonly _deckList: Array<CardDTO>
   ) {}
 
-  public get active(): Array<CardDTO> {
+  public get active(): Array<Card> {
     return this.getCards(CardLocation.Active);
   }
 
-  public get hand(): Array<CardDTO> {
+  public get hand(): Array<Card> {
     return this.getCards(CardLocation.Hand);
   }
 
-  public get bench(): Array<CardDTO> {
+  public get bench(): Array<Card> {
     return this.getCards(CardLocation.Bench);
   }
 
-  public get deck(): Array<CardDTO> {
+  public get deck(): Array<Card> {
     return this.getCards(CardLocation.Deck);
   }
 
-  public get discard(): Array<CardDTO> {
+  public get discard(): Array<Card> {
     return this.getCards(CardLocation.Discard);
   }
 
-  public get board(): Array<CardDTO> {
+  public get board(): Array<Card> {
     return this.getCards(CardLocation.Board);
   }
 
-  public get prize(): Array<CardDTO> {
+  public get prize(): Array<Card> {
     return this.getCards(CardLocation.Prize);
   }
 
-  public get lostZone(): Array<CardDTO> {
+  public get lostZone(): Array<Card> {
     return this.getCards(CardLocation.LostZone);
   }
 
-  public get stadium(): Array<CardDTO> {
+  public get stadium(): Array<Card> {
     return this.getCards(CardLocation.Stadium);
   }
 
-  private getCards(zoneId: string): Array<CardDTO> {
-    return this._board[zoneId].map((i: number) => this._deckList[i]);
+  private getCards(zoneId: string): Array<Card> {
+    return this._boardState[zoneId].map(
+      (i: number) => new Card(this._deckList, this._boardState, i)
+    );
   }
 }
 

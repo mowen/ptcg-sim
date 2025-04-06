@@ -1,34 +1,23 @@
 import {
   Action,
+  BoardState,
   BoardStateDTO,
+  Card,
   CardDTO,
   CardLocation,
-  GameState,
   GameStateDTO,
   UserType,
 } from '../../models';
 
 function debugDump(state: GameStateDTO, user: string) {
-  const gs = new GameState(state);
+  const boardState = new BoardState(state[user], state[`${user}DeckList`]);
 
-  const cardsToString = (cards: Array<CardDTO>): Array<string> =>
-    cards.map((c) => `${c.name} - ${c.type}`);
-
-  if (user === UserType.Self) {
-    return {
-      active: cardsToString(gs.selfActive),
-      hand: cardsToString(gs.selfHand),
-      bench: cardsToString(gs.selfBench),
-      deck: cardsToString(gs.selfDeck),
-    };
-  } else {
-    return {
-      active: cardsToString(gs.oppActive),
-      hand: cardsToString(gs.oppHand),
-      bench: cardsToString(gs.oppBench),
-      deck: cardsToString(gs.oppDeck),
-    };
-  }
+  return {
+    active: boardState.active.map((c) => c.toString()),
+    hand: boardState.hand.map((c) => c.toString()),
+    bench: boardState.bench.map((c) => c.toString()),
+    deck: boardState.deck.map((c) => c.toString()),
+  };
 }
 
 export default function reducer(
@@ -112,7 +101,11 @@ export default function reducer(
         );
       }
 
-      const sourceCard = state[`${user}DeckList`][sourceDeckListIndex];
+      const sourceCard = new Card(
+        state[`${user}DeckList`],
+        state[user],
+        sourceDeckListIndex
+      );
 
       const oZone = state[user][oZoneId];
       const newOZone = [

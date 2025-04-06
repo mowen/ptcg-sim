@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { CardDTO } from '../../../models';
+import { Card } from '../../../models';
 import CardView from '../cards/cardView';
 import useMutationObserver from '../../hooks/useMutationObserver';
 
@@ -8,7 +8,7 @@ export function PlayBoard({
   cards,
 }: {
   user: string;
-  cards: Array<CardDTO>;
+  cards: Array<Card>;
 }) {
   const scrollToBottom = (element) => {
     element.scrollTop = element.scrollHeight;
@@ -32,7 +32,7 @@ export function PlayBoard({
 
   return (
     <div id="board" className={`${user}-board`} ref={boardRef}>
-      {cards.map((c: CardDTO, i) => (
+      {cards.map((c: Card, i) => (
         <CardView key={i} card={c}></CardView>
       ))}
     </div>

@@ -11,6 +11,7 @@ import {
   PlayBoard,
   PrizeCards,
   SpecialMoves,
+  Stadium,
   ViewCards,
 } from '../..';
 
@@ -48,6 +49,7 @@ export function Board({
         vstarUsed={boardState.vstarUsed}
         gxUsed={boardState.gxUsed}
       ></SpecialMoves>
+      <Stadium cards={board.stadium}></Stadium>
       <AttachedCards user={cssUser}></AttachedCards>
       <ViewCards user={cssUser}></ViewCards>
     </div>

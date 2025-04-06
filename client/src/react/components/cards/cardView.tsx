@@ -1,12 +1,12 @@
-import { CardDTO } from '../../../models';
 import cardBackImage from '../../../assets/cardback.png';
+import { Card } from '../../../models';
 
 function CardView({
   card,
   faceUp = true,
   className,
 }: {
-  card: CardDTO;
+  card: Card;
   faceUp?: boolean;
   className?: string;
 }) {

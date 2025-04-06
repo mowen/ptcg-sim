@@ -44,8 +44,6 @@ function App({ initialState }: { initialState: Undoable<GameStateDTO> }) {
           boardState={p1State}
         />
 
-        <Stadium state={state.present}></Stadium>
-
         <div id="selfResizer" className="self-color"></div>
         <div id="oppResizer" className="opp-color"></div>
 

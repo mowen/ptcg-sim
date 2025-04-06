@@ -1,16 +1,10 @@
-import { CardDTO } from '../../../models';
+import { Card } from '../../../models';
 import CardView from '../cards/cardView';
 
-export function Active({
-  user,
-  cards,
-}: {
-  user: string;
-  cards: Array<CardDTO>;
-}) {
+export function Active({ user, cards }: { user: string; cards: Array<Card> }) {
   return (
     <div id="active" className={`${user}-active outline`}>
-      {cards.map((c: CardDTO, i: number) => (
+      {cards.map((c: Card, i: number) => (
         <CardView key={i} card={c}></CardView>
       ))}
     </div>

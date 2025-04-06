@@ -1,13 +1,7 @@
-import { CardDTO } from '../../../models';
+import { Card } from '../../../models';
 import CardView from '../cards/cardView';
 
-export function Discard({
-  user,
-  cards,
-}: {
-  user: string;
-  cards: Array<CardDTO>;
-}) {
+export function Discard({ user, cards }: { user: string; cards: Array<Card> }) {
   return (
     <>
       <div id="discardCover" className="outline">
