@@ -77,6 +77,7 @@ export default function reducer(
         ];
 
       const sourceDeckListIndex = state[user][oZoneId][sourceIndex];
+      const targetDeckListIndex = state[user][dZoneId][targetIndex];
 
       // If everything is working correctly this should never happen
       if (sourceDeckListIndex === undefined) {
@@ -96,6 +97,11 @@ export default function reducer(
         sourceDeckListIndex
       );
 
+      const targetCard: Card =
+        targetDeckListIndex !== undefined
+          ? new Card(state[`${user}DeckList`], state[user], targetDeckListIndex)
+          : null;
+
       const oZone = state[user][oZoneId];
       const newOZone = [
         ...oZone.slice(0, sourceIndex),
@@ -108,7 +114,7 @@ export default function reducer(
         dZoneId === CardLocation.Active &&
         sourceCard.isPokemon &&
         activeIndex !== undefined && // Just checking (activeIndex) won't work as could be 0 which is falsey
-        targetIndex == false // We aren't attaching a card
+        !targetCard // We aren't attaching a card
       ) {
         // Only one Pokemon can be active, so bump the old active to the bench
         return {
@@ -127,24 +133,38 @@ export default function reducer(
         // Only one stadium can be active
         const otherUser = user === UserType.Self ? UserType.Opp : UserType.Self;
         const existingStadiumIndex = state[otherUser].stadium[0];
-        return {
-          ...state,
-          [user]: {
-            ...state[user],
-            [oZoneId]: newOZone,
-            stadium: [sourceDeckListIndex],
-          },
-          [otherUser]: {
-            ...state[otherUser],
-            stadium: [], // Discard the other user's stadium
-            discard: [...state[otherUser].discard, existingStadiumIndex],
-          },
-        };
+        if (existingStadiumIndex == undefined) {
+          return {
+            ...state,
+            [user]: {
+              ...state[user],
+              [oZoneId]: newOZone,
+              stadium: [sourceDeckListIndex],
+            },
+            [otherUser]: {
+              ...state[otherUser],
+              stadium: [], // Discard the other user's stadium
+            },
+          };
+        } else {
+          return {
+            ...state,
+            [user]: {
+              ...state[user],
+              [oZoneId]: newOZone,
+              stadium: [sourceDeckListIndex],
+            },
+            [otherUser]: {
+              ...state[otherUser],
+              stadium: [], // Discard the other user's stadium
+              discard: [...state[otherUser].discard, existingStadiumIndex],
+            },
+          };
+        }
       } else {
         // If targetIndex is set we are attaching to a target
-        if (targetIndex === 0 || targetIndex != false) {
+        if (targetCard) {
           // A 0 index is falsey
-          const targetDeckListIndex = state[user][dZoneId][targetIndex];
           const newAttached = state[user].attached[targetDeckListIndex]
             ? [
                 sourceDeckListIndex,
@@ -157,7 +177,6 @@ export default function reducer(
             [user]: {
               ...state[user],
               [oZoneId]: newOZone,
-              // [dZoneId]: [...dZone, sourceDeckListIndex],
               attached: {
                 ...state[user].attached,
                 [targetDeckListIndex]: newAttached,

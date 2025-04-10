@@ -1,12 +1,12 @@
-import { BoardStateDTO, CardDTO } from '../models';
+import { BoardStateDTO, CardDTO } from '..';
 
-class UserType {
-  public static readonly Self: string = 'self';
-  public static readonly Opp: string = 'opp';
+enum UserType {
+  Self = 'self',
+  Opp = 'opp',
 }
 
 class GameStateDTO {
-  public initiator: string = UserType.Self;
+  public initiator: UserType = UserType.Self;
   public isTwoPlayer: boolean = false;
   public selfDeckList: Array<CardDTO> = new Array<CardDTO>();
   public self: BoardStateDTO = new BoardStateDTO();
@@ -16,4 +16,4 @@ class GameStateDTO {
   public turn: number = 0;
 }
 
-export { BoardStateDTO, GameStateDTO, UserType };
+export { GameStateDTO, UserType };

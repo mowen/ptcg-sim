@@ -1,7 +1,39 @@
 import { assert, expect } from 'vitest';
 import { reducerTest } from './testData/testContext';
-import { Action, BoardState } from '../../../src/models';
+import { Action, BoardState, GameStateDTO } from '../../../src/models';
 import actionReducer from '../../../src/react/reducer/actionReducer';
+
+expect.extend({
+  toHaveValidBoardStates(received: GameStateDTO) {
+    const errorMessages: Array<string> = [];
+    const oppBoardState = new BoardState(received.opp, received.oppDeckList);
+    let oppBoardStateError: Error | null = null;
+    try {
+      oppBoardState.validate();
+    } catch (error) {
+      oppBoardStateError = error;
+      errorMessages.push(`Opp BoardState error: ${oppBoardStateError.message}`);
+    }
+    const selfBoardState = new BoardState(received.self, received.selfDeckList);
+    let selfBoardStateError: Error | null = null;
+    try {
+      selfBoardState.validate();
+    } catch (error) {
+      selfBoardStateError = error;
+      errorMessages.push(
+        `Self BoardState error: ${selfBoardStateError.message}`
+      );
+    }
+    const isValid = errorMessages.length == 0;
+    return {
+      pass: isValid,
+      message: () =>
+        `GameStateDTO is ${
+          !isValid ? 'not' : ''
+        } valid.\n\n${errorMessages.join('\n\n')}`,
+    };
+  },
+});
 
 reducerTest('move from hand to active', ({ setupState }) => {
   assert.sameOrderedMembers(setupState.self.hand, [3, 56, 31, 41, 32, 0, 47]);
@@ -68,6 +100,8 @@ reducerTest('move from hand to active', ({ setupState }) => {
   );
   expect(cardsAttachedToActive.length).toBe(1);
   expect(cardsAttachedToActive[0].name).toBe(firstCardInHand.name);
+
+  expect(setupState).toHaveValidBoardStates();
 });
 
 reducerTest(
@@ -123,6 +157,8 @@ reducerTest(
     expect(activeCards.length).toBe(1);
     expect(activeCards[0].name).toBe(firstCardInHand.name);
     expect(activeCards[0].deckListIndex).toBe(firstCardInHand.deckListIndex);
+
+    expect(setupState).toHaveValidBoardStates();
   }
 );
 
@@ -157,19 +193,21 @@ reducerTest(
 
     assert.sameOrderedMembers(setupState.self.active, [0]);
     assert.sameMembers(setupState.self.attached[0], [56]);
+
+    expect(setupState).toHaveValidBoardStates();
   }
 );
 
 reducerTest(
   'move last card in hand to active, card is active',
   ({ setupState }) => {
-    const takeTurnAction = new Action('opp', true, 'takeTurn', ['opp']);
+    const takeTurnAction = new Action('self', true, 'takeTurn', ['self']);
     setupState = actionReducer(setupState, takeTurnAction);
 
-    expect(setupState.opp.hand.length).toBe(8);
+    expect(setupState.self.hand.length).toBe(8);
 
-    const moveCardAction = new Action('opp', true, 'moveCardBundle', [
-      'opp',
+    const moveCardAction = new Action('self', true, 'moveCardBundle', [
+      'self',
       'hand',
       'active',
       7,
@@ -178,13 +216,13 @@ reducerTest(
     ]);
     setupState = actionReducer(setupState, moveCardAction);
 
-    const oppBoardState = new BoardState(
-      setupState.opp,
-      setupState.oppDeckList
-    );
-    expect(oppBoardState.validate()); // Assert no error thrown
-    expect(setupState.opp.hand.length).toBe(7);
-    assert.sameOrderedMembers(setupState.opp.active, [47]);
+    expect(setupState.self.hand.length).toBe(7);
+    expect(setupState.self.active.length).toBe(1);
+
+    expect(setupState).toHaveValidBoardStates();
+
+    expect(setupState.self.hand.length).toBe(7);
+    assert.sameOrderedMembers(setupState.self.active, [16]);
   }
 );
 
@@ -214,6 +252,8 @@ reducerTest(
     assert.sameOrderedMembers(setupState.opp.stadium, [59]);
     assert.sameOrderedMembers(setupState.self.stadium, []);
     expect(setupState.self.discard[0]).toBe(32);
+
+    expect(setupState).toHaveValidBoardStates();
   }
 );
 

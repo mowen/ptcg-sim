@@ -1,94 +1,16 @@
-import { InvalidBoardStateError } from '../errors/invalidBoardStateError';
-import { InvalidZoneError } from '../errors/invalidZoneError';
-import { CardDTO, CardLocation, Card } from './card';
-
-class Zone {
-  public readonly cards: Array<Card>;
-
-  constructor(
-    public readonly id: string,
-    private readonly _boardState: BoardStateDTO,
-    private readonly _deckList: Array<CardDTO>
-  ) {
-    this.cards = this.loadCards();
-
-    const duplicateCards = this.duplicateCards();
-    if (duplicateCards.length > 0) {
-      const errorMessage = `Duplicate cards detected: [${duplicateCards
-        .map((c) => c.toString())
-        .join(', ')}]`;
-      throw new InvalidZoneError(errorMessage);
-    }
-  }
-
-  public get size(): number {
-    return this.totalCards.length;
-  }
-
-  public get totalCards(): Array<Card> {
-    return this.cards.map((c) => [c, c.attached]).flat(2);
-  }
-
-  private duplicateCards(): Array<Card> {
-    const allCardIds = this.totalCards.map((c) => c.id);
-    const allCardIdsSet = new Set(allCardIds);
-    // TODO: Look into Set.difference() to potentially simplify this method
-    const duplicateIds = allCardIds.filter((id) => !allCardIdsSet.has(id));
-    return this.cards.filter((c) => duplicateIds.includes(c.id));
-  }
-
-  private loadCards(): Array<Card> {
-    return this._boardState[this.id].map(
-      (i: number) => new Card(this._deckList, this._boardState, i)
-    );
-  }
-}
-
-class BoardStateDTO {
-  public gxUsed: boolean = false;
-  public vstarUsed: boolean = false;
-  public hand: Array<number> = new Array<number>();
-  public prize: Array<number> = new Array<number>();
-  public deck: Array<number> = new Array<number>();
-  public bench: Array<number> = new Array<number>();
-  public active: Array<number> = new Array<number>();
-  public discard: Array<number> = new Array<number>();
-  public board: Array<number> = new Array<number>();
-  public lostZone: Array<number> = new Array<number>();
-  public stadium: Array<number> = new Array<number>();
-  public attached: Record<number, Array<number>> = {};
-  public damage: Record<number, number> = {};
-  public abilityUsed: Array<number> = new Array<number>();
-}
-
-class ZoneCard {
-  constructor(public readonly zoneId: string, private readonly _card: Card) {}
-
-  public get cardId(): number {
-    return this._card.id;
-  }
-
-  // public equals(zoneCard: ZoneCard): boolean {
-  //   return this.zoneId === zoneCard.zoneId && this._card.id == zoneCard.cardId;
-  // }
-
-  public toString(): string {
-    return `{ Zone: ${this.zoneId}, Card: ${this._card.toString()} }`;
-  }
-}
+import { BoardStateDTO, Card, CardDTO, CardLocation } from '.';
+import { InvalidBoardStateError, InvalidZoneError } from '../errors';
 
 class BoardState {
-  public readonly activeZone: Zone;
-  public readonly handZone: Zone;
-  public readonly benchZone: Zone;
-  public readonly deckZone: Zone;
-  public readonly discardZone: Zone;
-  public readonly boardZone: Zone;
-  public readonly prizeZone: Zone;
-  public readonly lostZoneZone: Zone;
-  public readonly stadiumZone: Zone;
-
-  private _deckSize: number = 60;
+  public readonly activeZone: CardZone;
+  public readonly handZone: CardZone;
+  public readonly benchZone: CardZone;
+  public readonly deckZone: CardZone;
+  public readonly discardZone: CardZone;
+  public readonly boardZone: CardZone;
+  public readonly prizeZone: CardZone;
+  public readonly lostZoneZone: CardZone;
+  public readonly stadiumZone: CardZone;
 
   constructor(
     private readonly _boardState: BoardStateDTO,
@@ -145,20 +67,20 @@ class BoardState {
   // it's used by the actionReducer so can be created in an invalid state.
   public validate(): void {
     const totalCardsOnBoard = this.totalCardsOnBoard();
-    if (totalCardsOnBoard > this._deckSize) {
+    if (totalCardsOnBoard > this._deckList.length) {
       const duplicateCards = this.duplicateCards();
       throw new InvalidBoardStateError(
         `Total number of cards on board is ${totalCardsOnBoard}, should only be ${
-          this._deckSize
+          this._deckList.length
         }. Duplicate cards: [${duplicateCards
           .map((zc: ZoneCard) => zc.toString())
           .join(',\n')}]`
       );
-    } else if (totalCardsOnBoard < this._deckSize) {
+    } else if (totalCardsOnBoard < this._deckList.length) {
       const missingCards = this.missingCards();
       throw new InvalidBoardStateError(
         `Total number of cards on board is only ${totalCardsOnBoard}, should be ${
-          this._deckSize
+          this._deckList.length
         }. Missing cards: [${missingCards
           .map((c: Card) => c.toString())
           .join(',\n')}]`
@@ -168,7 +90,7 @@ class BoardState {
 
   private totalCardsOnBoard(): number {
     return this.allZoneProps().reduce(
-      (acc, zone) => acc + (this[zone] as Zone).size,
+      (acc, zone) => acc + (this[zone] as CardZone).size,
       0
     );
   }
@@ -187,24 +109,11 @@ class BoardState {
       {}
     );
     const duplicateCardIds = Object.keys(allZoneCardCounts)
-      .map(parseInt)
+      .map((s) => parseInt(s))
       .filter((cardId) => allZoneCardCounts[cardId] > 1);
     return allZoneCards.filter((zc: ZoneCard) =>
       duplicateCardIds.includes(zc.cardId)
     );
-    // const allCardIdsSet = new Set<number>(
-    //   allZoneCards.map((zc: ZoneCard) => zc.cardId)
-    // );
-    // const duplicateCards = allZoneCards.filter(
-    //   (zc: ZoneCard) => !allCardIdsSet.has(zc.cardId)
-    // );
-    // console.debug(
-    //   `duplicateCards state`,
-    //   allZoneCards.map((zc) => zc.toString()),
-    //   allCardIdsSet,
-    //   duplicateCards
-    // );
-    // return duplicateCards;
   }
 
   private missingCards(): Array<Card> {
@@ -233,9 +142,81 @@ class BoardState {
     return Object.keys(this).filter((k) => k.endsWith(`Zone`));
   }
 
-  private zoneFactory(zoneId: string): Zone {
-    return new Zone(zoneId, this._boardState, this._deckList);
+  private zoneFactory(zoneId: CardLocation): CardZone {
+    return new CardZone(zoneId, this._boardState, this._deckList);
   }
 }
 
-export { BoardState, BoardStateDTO };
+class ZoneCard {
+  constructor(public readonly zoneId: string, private readonly _card: Card) {}
+
+  public get cardId(): number {
+    return this._card.id;
+  }
+
+  public equals(zoneCard: ZoneCard): boolean {
+    return this.cardId == zoneCard.cardId && this.zoneId === zoneCard.zoneId;
+  }
+
+  public toString(): string {
+    return `{ Zone: ${this.zoneId}, Card: ${this._card.toString()} }`;
+  }
+}
+
+class CardZone {
+  public readonly cards: Array<Card>;
+  public readonly id: string;
+
+  constructor(
+    public readonly zone: CardLocation,
+    private readonly _boardState: BoardStateDTO,
+    private readonly _deckList: Array<CardDTO>
+  ) {
+    this.id = zone;
+    this.cards = this.loadCards();
+
+    const duplicateCards = this.duplicateCards();
+    if (duplicateCards.length > 0) {
+      const errorMessage = `Duplicate cards detected in Zone '${zone}': [${duplicateCards
+        .map((c) => c.toString())
+        .join(', ')}]`;
+      throw new InvalidZoneError(errorMessage);
+    }
+  }
+
+  public get size(): number {
+    return this.totalCards.length;
+  }
+
+  public get totalCards(): Array<Card> {
+    return this.cards.map((c) => [c, c.attached]).flat(2);
+  }
+
+  private duplicateCards(): Array<Card> {
+    const allCardIds = this.totalCards.map((c) => c.id);
+    const allCardCounts = allCardIds.reduce<Record<number, number>>(
+      (obj: Record<number, number>, id: number) => {
+        if (id in obj) {
+          obj[id]++;
+        } else {
+          obj[id] = 1;
+        }
+        return obj;
+      },
+      {}
+    );
+    const duplicateCardIds = Object.keys(allCardCounts)
+      .map((s) => parseInt(s))
+      .filter((id: number) => allCardCounts[id] > 1);
+    return this.totalCards.filter((c: Card) => duplicateCardIds.includes(c.id));
+  }
+
+  private loadCards(): Array<Card> {
+    return this._boardState[this.id].map(
+      (i: number) => new Card(this._deckList, this._boardState, i)
+    );
+  }
+}
+
+// CardZone is only exported for the tests
+export { BoardState, CardZone };
