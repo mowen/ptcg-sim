@@ -1,5 +1,5 @@
 import { useReducer, useState } from 'react';
-import { GameStateDTO, UserType } from './models';
+import { Action, GameStateDTO, UserType } from './models';
 import {
   actionReducer,
   AppContext,
@@ -7,10 +7,11 @@ import {
   Board,
   BoardButtons,
   CardContextMenu,
-  Stadium,
   Undoable,
   undoableReducer,
 } from './react';
+import { useHotkeys } from 'react-hotkeys-hook';
+import { debugDump } from './util';
 
 function App({ initialState }: { initialState: Undoable<GameStateDTO> }) {
   const [isSelfActive, setIsSelfActive] = useState(true);
@@ -27,6 +28,15 @@ function App({ initialState }: { initialState: Undoable<GameStateDTO> }) {
   const p2DeckList = state.present[`${p2User}DeckList`];
   const p1State = state.present[p1User];
   const p2State = state.present[p2User];
+
+  useHotkeys('left', () => {
+    processAction(new Action(p1User, true, 'undo', []));
+    console.debug('Undo, new state:', debugDump(state.present, p1User));
+  });
+  useHotkeys('right', () => {
+    processAction(new Action(p1User, true, 'redo', []));
+    console.debug('Redo, new state:', debugDump(state.present, p1User));
+  });
 
   return (
     <AppContext.Provider value={state}>

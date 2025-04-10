@@ -28,6 +28,12 @@ export function Board({
 }) {
   const board = new BoardState(boardState, deckList);
 
+  try {
+    board.validate();
+  } catch (error) {
+    console.error(error, boardState);
+  }
+
   return (
     <div id={`${cssUser}Container`} className="self">
       <div id="boardCenterDesign">

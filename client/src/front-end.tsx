@@ -5,11 +5,16 @@ import { initializeSocketEventListeners } from './initialization/socket-event-li
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.js';
+import { GameStateDTO, Action, BoardState } from './models';
+import { Undoable, undoableReducer, actionReducer } from './react';
 import testState from '../tests/react/reducer/testData/data.json';
-import { GameStateDTO } from './models/gameState.js';
-import { Action } from './models/action.js';
-import actionReducer from './react/reducer/actionReducer.js';
-import { Undoable, undoableReducer } from './react/reducer/undoableReducer.js';
+
+// const validateGameState = (gameState: Undoable<GameStateDTO>): boolean => {
+//   const gs = gameState.present;
+//   const selfBoardState = new BoardState(gs.self, gs.selfDeckList);
+//   const oppBoardState = new BoardState(gs.opp, gs.oppDeckList);
+//   return selfBoardState.validate() && oppBoardState.validate();
+// };
 
 let initialState = new Undoable<GameStateDTO>(new GameStateDTO());
 const actions = testState.filter((obj) => !('version' in obj)); // Remove any objects containing version property
@@ -17,6 +22,13 @@ actions.forEach((a) => {
   const action = new Action(a.user, a.emit, a.action, a.parameters);
   const undoableActionReducer = undoableReducer(actionReducer);
   initialState = undoableActionReducer(initialState, action);
+  // if (
+  //   !validateGameState(initialState) &&
+  //   action.type !== 'loadDeckData' &&
+  //   action.type !== 'setup'
+  // ) {
+  //   console.error(`Game state invalid`, action, initialState);
+  // }
 });
 
 console.debug(`Initial state:`, initialState);
@@ -32,11 +44,13 @@ initializeDOMEventListeners(); // Initializes all event listeners for user's act
 loadImportData(); // get the importData (if there is any), and load the content.
 
 export const selfContainer = new HTMLIFrameElement();
-selfContainer.innerHTML = "<html><body><div id='selfContainer'></div></body></html>"
+selfContainer.innerHTML =
+  "<html><body><div id='selfContainer'></div></body></html>";
 export const selfContainerDocument =
   document.getElementById('selfContainer')!.ownerDocument;
 export const oppContainer = new HTMLIFrameElement();
-oppContainer.innerHTML = "<html><body><div id='oppContainer'></div></body></html>"
+oppContainer.innerHTML =
+  "<html><body><div id='oppContainer'></div></body></html>";
 export const oppContainerDocument =
   document.getElementById('oppContainer')!.ownerDocument;
 // eslint-disable-next-line react-refresh/only-export-components

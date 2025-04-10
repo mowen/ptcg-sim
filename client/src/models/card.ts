@@ -31,7 +31,7 @@ class Card {
   constructor(
     private readonly _deckList: Array<CardDTO>,
     private readonly _boardState: BoardStateDTO,
-    private readonly _deckListIndex: number
+    public readonly id: number
   ) {}
 
   public get name(): string {
@@ -47,19 +47,18 @@ class Card {
   }
 
   public get damage(): number {
-    return this._boardState.damage[this._deckListIndex] ?? 0;
+    return this._boardState.damage[this.id] ?? 0;
   }
 
   public get attached(): Array<Card> {
-    const attachedIndexes =
-      this._boardState.attached[this._deckListIndex] ?? [];
+    const attachedIndexes = this._boardState.attached[this.id] ?? [];
     return attachedIndexes.map(
       (i: number) => new Card(this._deckList, this._boardState, i)
     );
   }
 
   public get abilityUsed(): boolean {
-    return this._boardState.abilityUsed.includes(this._deckListIndex);
+    return this._boardState.abilityUsed.includes(this.id);
   }
 
   public get isPokemon(): boolean {
@@ -75,18 +74,18 @@ class Card {
   }
 
   public toString(): string {
-    let s = `${this._cardData.name} [${this._deckListIndex}] (${this.type})`;
+    let s = `${this._cardData.name} [${this.id}] (${this.type})`;
 
     if (this.attached.length > 0) {
-      const attachments = this.attached.map((c) => c.toString()).join(', ');
-      s += ` attached: [${attachments}]`;
+      const attachments = this.attached.map((c) => c.toString()).join('\n  ');
+      s += ` attached: [\n  ${attachments}\n]`;
     }
 
     return s;
   }
 
   private get _cardData(): CardDTO {
-    return this._deckList[this._deckListIndex];
+    return this._deckList[this.id];
   }
 }
 

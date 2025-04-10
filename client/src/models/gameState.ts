@@ -1,5 +1,4 @@
-import { BoardStateDTO } from './boardState';
-import { CardDTO } from './card';
+import { BoardStateDTO, CardDTO } from '../models';
 
 class UserType {
   public static readonly Self: string = 'self';

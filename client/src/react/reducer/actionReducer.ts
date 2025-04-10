@@ -1,6 +1,5 @@
 import {
   Action,
-  BoardState,
   BoardStateDTO,
   Card,
   CardDTO,
@@ -8,17 +7,7 @@ import {
   GameStateDTO,
   UserType,
 } from '../../models';
-
-function debugDump(state: GameStateDTO, user: string) {
-  const boardState = new BoardState(state[user], state[`${user}DeckList`]);
-
-  return {
-    active: boardState.active.map((c) => c.toString()),
-    hand: boardState.hand.map((c) => c.toString()),
-    bench: boardState.bench.map((c) => c.toString()),
-    deck: boardState.deck.map((c) => c.toString()),
-  };
-}
+import { debugDump } from '../../util';
 
 export default function reducer(
   state: GameStateDTO,

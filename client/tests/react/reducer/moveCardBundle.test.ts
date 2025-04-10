@@ -1,6 +1,6 @@
 import { assert, expect } from 'vitest';
 import { reducerTest } from './testData/testContext';
-import { Action } from '../../../src/models';
+import { Action, BoardState } from '../../../src/models';
 import actionReducer from '../../../src/react/reducer/actionReducer';
 
 reducerTest('move from hand to active', ({ setupState }) => {
@@ -157,6 +157,34 @@ reducerTest(
 
     assert.sameOrderedMembers(setupState.self.active, [0]);
     assert.sameMembers(setupState.self.attached[0], [56]);
+  }
+);
+
+reducerTest(
+  'move last card in hand to active, card is active',
+  ({ setupState }) => {
+    const takeTurnAction = new Action('opp', true, 'takeTurn', ['opp']);
+    setupState = actionReducer(setupState, takeTurnAction);
+
+    expect(setupState.opp.hand.length).toBe(8);
+
+    const moveCardAction = new Action('opp', true, 'moveCardBundle', [
+      'opp',
+      'hand',
+      'active',
+      7,
+      0,
+      'move',
+    ]);
+    setupState = actionReducer(setupState, moveCardAction);
+
+    const oppBoardState = new BoardState(
+      setupState.opp,
+      setupState.oppDeckList
+    );
+    expect(oppBoardState.validate()); // Assert no error thrown
+    expect(setupState.opp.hand.length).toBe(7);
+    assert.sameOrderedMembers(setupState.opp.active, [47]);
   }
 );
 
