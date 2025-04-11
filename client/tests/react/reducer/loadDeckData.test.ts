@@ -1,10 +1,15 @@
 import { expect } from 'vitest';
-import { Action, GameStateDTO } from '../../../src/models';
+import { GameStateDTO } from '../../../src/models';
 import actionReducer from '../../../src/react/reducer/actionReducer';
 import { reducerTest, selfLoadDeckDataAction } from './testData/testContext';
 
 reducerTest('selfDeckList has 60 cards', () => {
-  const oppLoadDeckDataAction = new Action('opp', true, 'loadDeckData', [[]]);
+  const oppLoadDeckDataAction = {
+    user: 'opp',
+    emit: true,
+    type: 'loadDeckData',
+    parameters: [[]],
+  };
 
   const initialState = new GameStateDTO();
   let state = actionReducer(initialState, selfLoadDeckDataAction);
@@ -13,7 +18,12 @@ reducerTest('selfDeckList has 60 cards', () => {
 });
 
 reducerTest('oppDeckList has 0 cards', () => {
-  const oppLoadDeckDataAction = new Action('opp', true, 'loadDeckData', [[]]);
+  const oppLoadDeckDataAction = {
+    user: 'opp',
+    emit: true,
+    type: 'loadDeckData',
+    parameters: [[]],
+  };
 
   const initialState = new GameStateDTO();
   let state = actionReducer(initialState, selfLoadDeckDataAction);

@@ -1,5 +1,5 @@
 import {
-  Action,
+  ActionDTO,
   BoardStateDTO,
   Card,
   CardDTO,
@@ -11,7 +11,7 @@ import { debugDump } from '../../util';
 
 export default function reducer(
   state: GameStateDTO,
-  action: Action
+  action: ActionDTO
 ): GameStateDTO {
   const deckSize: number = 60;
   const handSize: number = 7;

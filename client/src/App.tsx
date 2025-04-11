@@ -1,5 +1,5 @@
 import { useReducer, useState } from 'react';
-import { Action, GameStateDTO, UserType } from './models';
+import { GameStateDTO, UserType } from './models';
 import {
   actionReducer,
   AppContext,
@@ -30,11 +30,11 @@ function App({ initialState }: { initialState: Undoable<GameStateDTO> }) {
   const p2State = state.present[p2User];
 
   useHotkeys('left', () => {
-    processAction(new Action(p1User, true, 'undo', []));
+    processAction({ user: p1User, emit: true, type: 'undo', parameters: []});
     console.debug('Undo, new state:', debugDump(state.present, p1User));
   });
   useHotkeys('right', () => {
-    processAction(new Action(p1User, true, 'redo', []));
+    processAction({ user: p1User, emit: true, type: 'redo', parameters: []});
     console.debug('Redo, new state:', debugDump(state.present, p1User));
   });
 

@@ -10,10 +10,10 @@ enum CardLocation {
   Stadium = 'stadium',
 }
 
-class CardType {
-  public static readonly Pokemon: string = 'Pokémon';
-  public static readonly Trainer: string = 'Trainer';
-  public static readonly Energy: string = 'Energy';
+enum CardType {
+  Pokemon = 'Pokémon',
+  Trainer = 'Trainer',
+  Energy = 'Energy',
 }
 
 class CardDTO {

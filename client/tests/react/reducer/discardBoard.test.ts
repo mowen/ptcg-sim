@@ -1,27 +1,26 @@
 import { assert, expect } from 'vitest';
-import { Action } from '../../../src/models';
 import actionReducer from '../../../src/react/reducer/actionReducer';
 import { reducerTest } from './testData/testContext';
 
 reducerTest('selfDeckList has 60 cards', ({ setupState }) => {
-  const moveFromHandToBoardAction = new Action('opp', true, 'moveCardBundle', [
-    'opp',
-    'hand',
-    'board',
-    0,
-    false,
-    'move',
-  ]);
+  const moveFromHandToBoardAction = {
+    user: 'opp',
+    emit: true,
+    type: 'moveCardBundle',
+    parameters: ['opp', 'hand', 'board', 0, false, 'move'],
+  };
   setupState = actionReducer(setupState, moveFromHandToBoardAction);
   setupState = actionReducer(setupState, moveFromHandToBoardAction);
   setupState = actionReducer(setupState, moveFromHandToBoardAction);
 
   assert.sameOrderedMembers(setupState.opp.board, [27, 26, 49]);
 
-  const discardBoardAction = new Action('opp', true, 'discardBoard', [
-    'opp',
-    true,
-  ]);
+  const discardBoardAction = {
+    user: 'opp',
+    emit: true,
+    type: 'discardBoard',
+    parameters: ['opp', true],
+  };
   setupState = actionReducer(setupState, discardBoardAction);
 
   expect(setupState.opp.board.length).toBe(0);

@@ -1,4 +1,3 @@
-import { Action } from '../../../src/models';
 import { reducerTest } from './testData/testContext';
 import actionReducer from '../../../src/react/reducer/actionReducer';
 import { assert, expect } from 'vitest';
@@ -10,7 +9,12 @@ reducerTest(
 
     assert.sameOrderedMembers(setupState.self.hand, [3, 56, 31, 41, 32, 0, 47]);
 
-    const takeTurnAction = new Action('self', true, 'takeTurn', ['self']);
+    const takeTurnAction = {
+      user: 'self',
+      emit: true,
+      type: 'takeTurn',
+      parameters: ['self'],
+    };
 
     setupState = actionReducer(setupState, takeTurnAction);
 
@@ -38,7 +42,12 @@ reducerTest(
       [27, 26, 49, 58, 59, 43, 46]
     );
 
-    const takeTurnAction = new Action('opp', true, 'takeTurn', ['opp']);
+    const takeTurnAction = {
+      user: 'opp',
+      emit: true,
+      type: 'takeTurn',
+      parameters: ['opp'],
+    };
 
     setupState = actionReducer(setupState, takeTurnAction);
 
@@ -59,7 +68,12 @@ reducerTest(
 reducerTest('turn count is incremented', ({ setupState }) => {
   expect(setupState.turn).toBe(0);
 
-  const takeTurnAction = new Action('self', true, 'takeTurn', ['self']);
+  const takeTurnAction = {
+    user: 'self',
+    emit: true,
+    type: 'takeTurn',
+    parameters: ['self'],
+  };
   setupState = actionReducer(setupState, takeTurnAction);
 
   expect(setupState.turn).toBe(1);

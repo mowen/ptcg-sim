@@ -1,4 +1,4 @@
-import { Action } from '../../models';
+import { ActionDTO } from '../../models';
 
 export class Undoable<T> {
   public past: Array<T> = new Array<T>();
@@ -11,8 +11,8 @@ export class Undoable<T> {
 }
 
 export function undoableReducer<T>(
-  reducer: (state: T, action: Action) => T
-): (state: Undoable<T>, action: Action) => Undoable<T> {
+  reducer: (state: T, action: ActionDTO) => T
+): (state: Undoable<T>, action: ActionDTO) => Undoable<T> {
   return function (state, action) {
     const { past, present, future } = state;
 

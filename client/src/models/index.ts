@@ -1,5 +1,5 @@
-import { Action } from './data/action';
 import {
+  ActionDTO,
   BoardStateDTO,
   CardDTO,
   CardLocation,
@@ -11,7 +11,7 @@ import { Card } from './card';
 import { BoardState } from './boardState';
 
 export {
-  Action,
+  ActionDTO,
   Card,
   CardDTO,
   CardLocation,
