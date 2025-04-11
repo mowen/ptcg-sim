@@ -9,7 +9,7 @@ reducerTest('self board state is reset after reset', ({ setupState }) => {
     type: 'takeTurn',
     parameters: ['self'],
   };
-  setupState = actionReducer(setupState, takeTurnAction);
+  actionReducer(setupState, takeTurnAction);
 
   const moveToBenchAction = {
     user: 'self',
@@ -17,7 +17,7 @@ reducerTest('self board state is reset after reset', ({ setupState }) => {
     type: 'moveCardBundle',
     parameters: ['self', 'hand', 'bench', 0, false, 'move'],
   };
-  setupState = actionReducer(setupState, moveToBenchAction);
+  actionReducer(setupState, moveToBenchAction);
 
   const moveHandToActiveAction = {
     user: 'self',
@@ -25,20 +25,20 @@ reducerTest('self board state is reset after reset', ({ setupState }) => {
     type: 'moveCardBundle',
     parameters: ['self', 'hand', 'active', 0, false, 'move'],
   };
-  setupState = actionReducer(setupState, moveHandToActiveAction);
+  actionReducer(setupState, moveHandToActiveAction);
 
-  setupState = actionReducer(setupState, {
+  actionReducer(setupState, {
     user: 'self',
     emit: true,
     type: 'VSTARGXFunction',
     parameters: ['vstar'],
   });
-  expect(setupState.self.deck.length).toBe(46);
-  expect(setupState.self.bench.length).toBe(1);
-  expect(setupState.self.active.length).toBe(1);
-  expect(setupState.self.hand.length).toBe(6);
-  expect(setupState.self.prize.length).toBe(6);
-  expect(setupState.self.vstarUsed).toBeTruthy();
+  expect(setupState.p1.boardState.deck.length).toBe(46);
+  expect(setupState.p1.boardState.bench.length).toBe(1);
+  expect(setupState.p1.boardState.active.length).toBe(1);
+  expect(setupState.p1.boardState.hand.length).toBe(6);
+  expect(setupState.p1.boardState.prize.length).toBe(6);
+  expect(setupState.p1.boardState.vstarUsed).toBeTruthy();
 
   const resetAction = {
     user: 'self',
@@ -46,12 +46,12 @@ reducerTest('self board state is reset after reset', ({ setupState }) => {
     type: 'reset',
     parameters: [false, true, true],
   };
-  setupState = actionReducer(setupState, resetAction);
+  actionReducer(setupState, resetAction);
 
-  expect(setupState.self.deck.length).toBe(60);
-  expect(setupState.self.bench.length).toBe(0);
-  expect(setupState.self.active.length).toBe(0);
-  expect(setupState.self.hand.length).toBe(0);
-  expect(setupState.self.prize.length).toBe(0);
-  expect(setupState.self.vstarUsed).toBeFalsy();
+  expect(setupState.p1.boardState.deck.length).toBe(60);
+  expect(setupState.p1.boardState.bench.length).toBe(0);
+  expect(setupState.p1.boardState.active.length).toBe(0);
+  expect(setupState.p1.boardState.hand.length).toBe(0);
+  expect(setupState.p1.boardState.prize.length).toBe(0);
+  expect(setupState.p1.boardState.vstarUsed).toBeFalsy();
 });

@@ -11,7 +11,7 @@ reducerTest(
       type: 'addDamageCounter',
       parameters: ['hand', 0, '30'],
     };
-    setupState = actionReducer(setupState, addDamageCounterAction);
+    actionReducer(setupState, addDamageCounterAction);
 
     const removeDamageCounterAction = {
       user: 'opp',
@@ -19,9 +19,11 @@ reducerTest(
       type: 'removeDamageCounter',
       parameters: ['hand', 0],
     };
-    setupState = actionReducer(setupState, removeDamageCounterAction);
+    actionReducer(setupState, removeDamageCounterAction);
 
-    const firstCardInHandIndex = setupState.opp.hand[0];
-    expect(setupState.opp.damage[firstCardInHandIndex]).toBeUndefined();
+    const firstCardInHandIndex = setupState.p2.boardState.hand[0];
+    expect(
+      setupState.p2.boardState.damage[firstCardInHandIndex]
+    ).toBeUndefined();
   }
 );

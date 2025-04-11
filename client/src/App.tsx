@@ -1,4 +1,4 @@
-import { useReducer, useState } from 'react';
+import { useState } from 'react';
 import { GameStateDTO, UserType } from './models';
 import {
   actionReducer,
@@ -12,22 +12,22 @@ import {
 } from './react';
 import { useHotkeys } from 'react-hotkeys-hook';
 import { debugDump } from './util';
+import { useImmerReducer } from 'use-immer';
+import { userToPlayer } from './util/util';
 
 function App({ initialState }: { initialState: Undoable<GameStateDTO> }) {
   const [isSelfActive, setIsSelfActive] = useState(true);
 
   const undoableActionReducer = undoableReducer(actionReducer);
-  const [state, processAction] = useReducer(
+  const [state, processAction] = useImmerReducer(
     undoableActionReducer,
     initialState
   );
 
   const p1User = isSelfActive ? UserType.Self : UserType.Opp;
   const p2User = isSelfActive ? UserType.Opp : UserType.Self;
-  const p1DeckList = state.present[`${p1User}DeckList`];
-  const p2DeckList = state.present[`${p2User}DeckList`];
-  const p1State = state.present[p1User];
-  const p2State = state.present[p2User];
+  const p1 = state.present[userToPlayer(p1User)];
+  const p2 = state.present[userToPlayer(p2User)];
 
   useHotkeys('left', () => {
     processAction({ user: p1User, emit: true, type: 'undo', parameters: []});
@@ -44,14 +44,14 @@ function App({ initialState }: { initialState: Undoable<GameStateDTO> }) {
         <Board
           cssUser={UserType.Opp}
           boardUser={p2User}
-          deckList={p2DeckList}
-          boardState={p2State}
+          deckList={p2.deckList}
+          boardState={p2.boardState}
         />
         <Board
           cssUser={UserType.Self}
           boardUser={p1User}
-          deckList={p1DeckList}
-          boardState={p1State}
+          deckList={p1.deckList}
+          boardState={p1.boardState}
         />
 
         <div id="selfResizer" className="self-color"></div>

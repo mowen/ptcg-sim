@@ -11,7 +11,7 @@ export class Undoable<T> {
 }
 
 export function undoableReducer<T>(
-  reducer: (state: T, action: ActionDTO) => T
+  reducer: (state: T, action: ActionDTO) => void
 ): (state: Undoable<T>, action: ActionDTO) => Undoable<T> {
   return function (state, action) {
     const { past, present, future } = state;
@@ -37,13 +37,14 @@ export function undoableReducer<T>(
       }
       default: {
         // Delegate handling the action to the passed reducer
-        const newPresent = reducer(present, action);
-        if (present === newPresent) {
+        const oldPresent = present;
+        reducer(present, action);
+        if (present === oldPresent) {
           return state;
         }
         return {
-          past: [...past, present],
-          present: newPresent,
+          past: [...past, oldPresent],
+          present: present,
           future: [],
         };
       }

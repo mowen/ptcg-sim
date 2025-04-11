@@ -6,7 +6,10 @@ import actionReducer from '../../../src/react/reducer/actionReducer';
 expect.extend({
   toHaveValidBoardStates(received: GameStateDTO) {
     const errorMessages: Array<string> = [];
-    const oppBoardState = new BoardState(received.opp, received.oppDeckList);
+    const oppBoardState = new BoardState(
+      received.p2.boardState,
+      received.p2.deckList
+    );
     let oppBoardStateError: Error | null = null;
     try {
       oppBoardState.validate();
@@ -14,7 +17,10 @@ expect.extend({
       oppBoardStateError = error;
       errorMessages.push(`Opp BoardState error: ${oppBoardStateError.message}`);
     }
-    const selfBoardState = new BoardState(received.self, received.selfDeckList);
+    const selfBoardState = new BoardState(
+      received.p1.boardState,
+      received.p1.deckList
+    );
     let selfBoardStateError: Error | null = null;
     try {
       selfBoardState.validate();
@@ -36,7 +42,10 @@ expect.extend({
 });
 
 reducerTest('move from hand to active', ({ setupState }) => {
-  assert.sameOrderedMembers(setupState.self.hand, [3, 56, 31, 41, 32, 0, 47]);
+  assert.sameOrderedMembers(
+    setupState.p1.boardState.hand,
+    [3, 56, 31, 41, 32, 0, 47]
+  );
 
   const moveToActiveAction = {
     user: 'self',
@@ -45,13 +54,16 @@ reducerTest('move from hand to active', ({ setupState }) => {
     parameters: ['self', 'hand', 'active', 5, false, 'move'],
   };
 
-  setupState = actionReducer(setupState, moveToActiveAction);
+  actionReducer(setupState, moveToActiveAction);
 
-  expect(setupState.self.active[0]).toBe(0);
-  assert.sameOrderedMembers(setupState.self.hand, [3, 56, 31, 41, 32, 47]);
+  expect(setupState.p1.boardState.active[0]).toBe(0);
+  assert.sameOrderedMembers(
+    setupState.p1.boardState.hand,
+    [3, 56, 31, 41, 32, 47]
+  );
 
-  const activeCards = setupState.self.active.map(
-    (i) => setupState.selfDeckList[i]
+  const activeCards = setupState.p1.boardState.active.map(
+    (i) => setupState.p1.deckList[i]
   );
   expect(activeCards).toBeDefined();
   expect(activeCards.length).toBe(1);
@@ -64,34 +76,38 @@ reducerTest('move from hand to active', ({ setupState }) => {
     parameters: ['self', 'hand', 'bench', 0, false, 'move'],
   };
 
-  setupState = actionReducer(setupState, moveToBenchAction);
+  actionReducer(setupState, moveToBenchAction);
 
-  expect(setupState.self.active[0]).toBe(0);
-  assert.sameOrderedMembers(setupState.self.hand, [56, 31, 41, 32, 47]);
-  assert.sameOrderedMembers(setupState.self.bench, [3]);
+  expect(setupState.p1.boardState.active[0]).toBe(0);
+  assert.sameOrderedMembers(
+    setupState.p1.boardState.hand,
+    [56, 31, 41, 32, 47]
+  );
+  assert.sameOrderedMembers(setupState.p1.boardState.bench, [3]);
 
-  const firstCardInHand = setupState.selfDeckList[setupState.self.hand[0]];
+  const firstCardInHand =
+    setupState.p1.deckList[setupState.p1.boardState.hand[0]];
   const moveHandToActiveAction = {
     user: 'self',
     emit: true,
     type: 'moveCardBundle',
     parameters: ['self', 'hand', 'active', 0, 0, 'move'],
   };
-  setupState = actionReducer(setupState, moveHandToActiveAction);
+  actionReducer(setupState, moveHandToActiveAction);
 
-  assert.sameOrderedMembers(setupState.self.active, [0]);
-  assert.sameOrderedMembers(setupState.self.bench, [3]);
+  assert.sameOrderedMembers(setupState.p1.boardState.active, [0]);
+  assert.sameOrderedMembers(setupState.p1.boardState.bench, [3]);
 
-  const benchedCards = setupState.self.bench.map(
-    (i) => setupState.selfDeckList[i]
+  const benchedCards = setupState.p1.boardState.bench.map(
+    (i) => setupState.p1.deckList[i]
   );
-  expect(setupState.self.bench.length).toBe(1); // Active moved to bench
+  expect(setupState.p1.boardState.bench.length).toBe(1); // Active moved to bench
   expect(benchedCards[0].name).toBe('Dreepy'); // Active moved to bench
 
-  const activeCardIndex = setupState.self.active[0];
-  const cardsAttachedToActive = setupState.self.attached[activeCardIndex].map(
-    (i) => setupState.selfDeckList[i]
-  );
+  const activeCardIndex = setupState.p1.boardState.active[0];
+  const cardsAttachedToActive = setupState.p1.boardState.attached[
+    activeCardIndex
+  ].map((i) => setupState.p1.deckList[i]);
   expect(cardsAttachedToActive.length).toBe(1);
   expect(cardsAttachedToActive[0].name).toBe(firstCardInHand.name);
 
@@ -101,7 +117,10 @@ reducerTest('move from hand to active', ({ setupState }) => {
 reducerTest(
   'move pokemon from hand to active bumps active pokemon',
   ({ setupState }) => {
-    assert.sameOrderedMembers(setupState.self.hand, [3, 56, 31, 41, 32, 0, 47]);
+    assert.sameOrderedMembers(
+      setupState.p1.boardState.hand,
+      [3, 56, 31, 41, 32, 0, 47]
+    );
 
     const moveToActiveAction = {
       user: 'self',
@@ -110,40 +129,49 @@ reducerTest(
       parameters: ['self', 'hand', 'active', 5, false, 'move'],
     };
 
-    setupState = actionReducer(setupState, moveToActiveAction);
+    actionReducer(setupState, moveToActiveAction);
 
-    expect(setupState.self.active[0]).toBe(0);
-    assert.sameOrderedMembers(setupState.self.hand, [3, 56, 31, 41, 32, 47]);
+    expect(setupState.p1.boardState.active[0]).toBe(0);
+    assert.sameOrderedMembers(
+      setupState.p1.boardState.hand,
+      [3, 56, 31, 41, 32, 47]
+    );
 
-    let activeCards = setupState.self.active.map(
-      (i) => setupState.selfDeckList[i]
+    let activeCards = setupState.p1.boardState.active.map(
+      (i) => setupState.p1.deckList[i]
     );
     expect(activeCards).toBeDefined();
     expect(activeCards.length).toBe(1);
     expect(activeCards[0].name).toBe('Dreepy');
 
-    assert.sameOrderedMembers(setupState.self.hand, [3, 56, 31, 41, 32, 47]);
-    assert.sameOrderedMembers(setupState.self.bench, []);
+    assert.sameOrderedMembers(
+      setupState.p1.boardState.hand,
+      [3, 56, 31, 41, 32, 47]
+    );
+    assert.sameOrderedMembers(setupState.p1.boardState.bench, []);
 
-    const firstCardInHand = setupState.selfDeckList[setupState.self.hand[0]];
+    const firstCardInHand =
+      setupState.p1.deckList[setupState.p1.boardState.hand[0]];
     const moveHandToActiveAction = {
       user: 'self',
       emit: true,
       type: 'moveCardBundle',
       parameters: ['self', 'hand', 'active', 0, false, 'move'],
     };
-    setupState = actionReducer(setupState, moveHandToActiveAction);
+    actionReducer(setupState, moveHandToActiveAction);
 
-    assert.sameOrderedMembers(setupState.self.active, [3]);
-    assert.sameOrderedMembers(setupState.self.bench, [0]);
+    assert.sameOrderedMembers(setupState.p1.boardState.active, [3]);
+    assert.sameOrderedMembers(setupState.p1.boardState.bench, [0]);
 
-    const benchedCards = setupState.self.bench.map(
-      (i) => setupState.selfDeckList[i]
+    const benchedCards = setupState.p1.boardState.bench.map(
+      (i) => setupState.p1.deckList[i]
     );
-    expect(setupState.self.bench.length).toBe(1); // Active moved to bench
+    expect(setupState.p1.boardState.bench.length).toBe(1); // Active moved to bench
     expect(benchedCards[0].deckListIndex).toBe(0); // Active moved to bench
 
-    activeCards = setupState.self.active.map((i) => setupState.selfDeckList[i]);
+    activeCards = setupState.p1.boardState.active.map(
+      (i) => setupState.p1.deckList[i]
+    );
     expect(activeCards.length).toBe(1);
     expect(activeCards[0].name).toBe(firstCardInHand.name);
     expect(activeCards[0].deckListIndex).toBe(firstCardInHand.deckListIndex);
@@ -155,7 +183,10 @@ reducerTest(
 reducerTest(
   'move energy from hand to active does not bump active pokemon',
   ({ setupState }) => {
-    assert.sameOrderedMembers(setupState.self.hand, [3, 56, 31, 41, 32, 0, 47]);
+    assert.sameOrderedMembers(
+      setupState.p1.boardState.hand,
+      [3, 56, 31, 41, 32, 0, 47]
+    );
 
     const moveToActiveAction = {
       user: 'self',
@@ -164,10 +195,13 @@ reducerTest(
       parameters: ['self', 'hand', 'active', 5, false, 'move'],
     };
 
-    setupState = actionReducer(setupState, moveToActiveAction);
+    actionReducer(setupState, moveToActiveAction);
 
-    expect(setupState.self.active[0]).toBe(0);
-    assert.sameOrderedMembers(setupState.self.hand, [3, 56, 31, 41, 32, 47]);
+    expect(setupState.p1.boardState.active[0]).toBe(0);
+    assert.sameOrderedMembers(
+      setupState.p1.boardState.hand,
+      [3, 56, 31, 41, 32, 47]
+    );
 
     const moveHandToActiveAction = {
       user: 'self',
@@ -175,10 +209,10 @@ reducerTest(
       type: 'moveCardBundle',
       parameters: ['self', 'hand', 'active', 1, 0, 'move'],
     };
-    setupState = actionReducer(setupState, moveHandToActiveAction);
+    actionReducer(setupState, moveHandToActiveAction);
 
-    assert.sameOrderedMembers(setupState.self.active, [0]);
-    assert.sameMembers(setupState.self.attached[0], [56]);
+    assert.sameOrderedMembers(setupState.p1.boardState.active, [0]);
+    assert.sameMembers(setupState.p1.boardState.attached[0], [56]);
 
     expect(setupState).toHaveValidBoardStates();
   }
@@ -193,9 +227,9 @@ reducerTest(
       type: 'takeTurn',
       parameters: ['self'],
     };
-    setupState = actionReducer(setupState, takeTurnAction);
+    actionReducer(setupState, takeTurnAction);
 
-    expect(setupState.self.hand.length).toBe(8);
+    expect(setupState.p1.boardState.hand.length).toBe(8);
 
     const moveCardAction = {
       user: 'self',
@@ -203,15 +237,15 @@ reducerTest(
       type: 'moveCardBundle',
       parameters: ['self', 'hand', 'active', 7, 0, 'move'],
     };
-    setupState = actionReducer(setupState, moveCardAction);
+    actionReducer(setupState, moveCardAction);
 
-    expect(setupState.self.hand.length).toBe(7);
-    expect(setupState.self.active.length).toBe(1);
+    expect(setupState.p1.boardState.hand.length).toBe(7);
+    expect(setupState.p1.boardState.active.length).toBe(1);
 
     expect(setupState).toHaveValidBoardStates();
 
-    expect(setupState.self.hand.length).toBe(7);
-    assert.sameOrderedMembers(setupState.self.active, [16]);
+    expect(setupState.p1.boardState.hand.length).toBe(7);
+    assert.sameOrderedMembers(setupState.p1.boardState.active, [16]);
   }
 );
 
@@ -224,10 +258,13 @@ reducerTest(
       type: 'moveCardBundle',
       parameters: ['self', 'hand', 'stadium', 4, false, 'move'],
     };
-    setupState = actionReducer(setupState, selfMoveCardFromHandToStadiumAction);
+    actionReducer(setupState, selfMoveCardFromHandToStadiumAction);
 
-    assert.sameOrderedMembers(setupState.self.hand, [3, 56, 31, 41, 0, 47]);
-    assert.sameOrderedMembers(setupState.self.stadium, [32]);
+    assert.sameOrderedMembers(
+      setupState.p1.boardState.hand,
+      [3, 56, 31, 41, 0, 47]
+    );
+    assert.sameOrderedMembers(setupState.p1.boardState.stadium, [32]);
 
     const oppMoveCardFromHandToStadiumAction = {
       user: 'opp',
@@ -235,12 +272,15 @@ reducerTest(
       type: 'moveCardBundle',
       parameters: ['opp', 'hand', 'stadium', 4, false, 'move'],
     };
-    setupState = actionReducer(setupState, oppMoveCardFromHandToStadiumAction);
+    actionReducer(setupState, oppMoveCardFromHandToStadiumAction);
 
-    assert.sameOrderedMembers(setupState.opp.hand, [27, 26, 49, 58, 43, 46]);
-    assert.sameOrderedMembers(setupState.opp.stadium, [59]);
-    assert.sameOrderedMembers(setupState.self.stadium, []);
-    expect(setupState.self.discard[0]).toBe(32);
+    assert.sameOrderedMembers(
+      setupState.p2.boardState.hand,
+      [27, 26, 49, 58, 43, 46]
+    );
+    assert.sameOrderedMembers(setupState.p2.boardState.stadium, [59]);
+    assert.sameOrderedMembers(setupState.p1.boardState.stadium, []);
+    expect(setupState.p1.boardState.discard[0]).toBe(32);
 
     expect(setupState).toHaveValidBoardStates();
   }

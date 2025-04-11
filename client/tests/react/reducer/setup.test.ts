@@ -4,8 +4,8 @@ import { reducerTest } from './testData/testContext';
 
 describe('setup', () => {
   reducerTest('first card in hand is Dreepy', ({ setupState }) => {
-    const firstCardId = setupState.self.hand[0];
-    const firstCard = setupState.selfDeckList[firstCardId] as CardDTO;
+    const firstCardId = setupState.p1.boardState.hand[0];
+    const firstCard = setupState.p1.deckList[firstCardId] as CardDTO;
 
     expect(firstCard.name).toBe('Dreepy');
     expect(firstCardId).toBe(3);
@@ -13,8 +13,9 @@ describe('setup', () => {
   });
 
   reducerTest('last card in deck is Drakloak', ({ setupState }) => {
-    const lastCardId = setupState.self.deck[setupState.self.deck.length - 1];
-    const lastCard = setupState.selfDeckList[lastCardId] as CardDTO;
+    const lastCardId =
+      setupState.p1.boardState.deck[setupState.p1.boardState.deck.length - 1];
+    const lastCard = setupState.p1.deckList[lastCardId] as CardDTO;
     expect(lastCard.name).toBe('Drakloak');
     expect(lastCardId).toBe(4);
     expect(lastCard.type).toBe('Pokémon');

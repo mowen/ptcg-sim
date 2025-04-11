@@ -20,10 +20,10 @@ reducerTest(
       ],
     };
 
-    setupState = actionReducer(setupState, shuffleAllAction);
+    actionReducer(setupState, shuffleAllAction);
 
     assert.sameOrderedMembers(
-      setupState.opp.deck,
+      setupState.p2.boardState.deck,
       shuffleAllAction.parameters[2] as Array<number>
     );
   }

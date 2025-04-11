@@ -5,7 +5,7 @@ import { initializeSocketEventListeners } from './initialization/socket-event-li
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.js';
-import { ActionDTO, GameStateDTO } from './models';
+import { GameStateDTO } from './models';
 import { Undoable, undoableReducer, actionReducer } from './react';
 import testState from '../tests/react/reducer/testData/data.json';
 
@@ -17,10 +17,12 @@ import testState from '../tests/react/reducer/testData/data.json';
 // };
 
 let initialState = new Undoable<GameStateDTO>(new GameStateDTO());
+// const initialState = new GameStateDTO();
 const actions = testState.filter((obj) => !('version' in obj)); // Remove any objects containing version property
-actions.forEach((a: unknown) => {
+actions.forEach((a) => {
   const undoableActionReducer = undoableReducer(actionReducer);
-  initialState = undoableActionReducer(initialState, a as ActionDTO);
+  initialState = undoableActionReducer(initialState, {user: a.user, emit: a.emit, type: a.action, parameters: a.parameters });
+  // actionReducer(initialState, a as ActionDTO);
   // if (
   //   !validateGameState(initialState) &&
   //   action.type !== 'loadDeckData' &&

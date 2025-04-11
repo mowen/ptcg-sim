@@ -457,11 +457,11 @@ export const reducerTest = test.extend({
       ],
     };
 
-    const initialState = new GameStateDTO();
-    setupState = actionReducer(initialState, selfLoadDeckDataAction);
-    setupState = actionReducer(setupState, oppLoadDeckDataAction);
-    setupState = actionReducer(setupState, selfSetupAction);
-    setupState = actionReducer(setupState, oppSetupAction);
+    setupState = new GameStateDTO();
+    actionReducer(setupState, selfLoadDeckDataAction);
+    actionReducer(setupState, oppLoadDeckDataAction);
+    actionReducer(setupState, selfSetupAction);
+    actionReducer(setupState, oppSetupAction);
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     await use(setupState);

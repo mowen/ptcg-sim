@@ -5,9 +5,12 @@ import { assert, expect } from 'vitest';
 reducerTest(
   'top card in self deck is added to the end of the hand',
   ({ setupState }) => {
-    const topDeckId = setupState.self.deck[0];
+    const topDeckId = setupState.p1.boardState.deck[0];
 
-    assert.sameOrderedMembers(setupState.self.hand, [3, 56, 31, 41, 32, 0, 47]);
+    assert.sameOrderedMembers(
+      setupState.p1.boardState.hand,
+      [3, 56, 31, 41, 32, 0, 47]
+    );
 
     const takeTurnAction = {
       user: 'self',
@@ -16,9 +19,9 @@ reducerTest(
       parameters: ['self'],
     };
 
-    setupState = actionReducer(setupState, takeTurnAction);
+    actionReducer(setupState, takeTurnAction);
 
-    assert.sameOrderedMembers(setupState.self.hand, [
+    assert.sameOrderedMembers(setupState.p1.boardState.hand, [
       3,
       56,
       31,
@@ -28,17 +31,17 @@ reducerTest(
       47,
       topDeckId,
     ]);
-    expect(setupState.self.deck.length).toBe(46);
+    expect(setupState.p1.boardState.deck.length).toBe(46);
   }
 );
 
 reducerTest(
   'top card in opp deck is added to the end of the hand',
   ({ setupState }) => {
-    const topDeckId = setupState.opp.deck[0];
+    const topDeckId = setupState.p2.boardState.deck[0];
 
     assert.sameOrderedMembers(
-      setupState.opp.hand,
+      setupState.p2.boardState.hand,
       [27, 26, 49, 58, 59, 43, 46]
     );
 
@@ -49,9 +52,9 @@ reducerTest(
       parameters: ['opp'],
     };
 
-    setupState = actionReducer(setupState, takeTurnAction);
+    actionReducer(setupState, takeTurnAction);
 
-    assert.sameOrderedMembers(setupState.opp.hand, [
+    assert.sameOrderedMembers(setupState.p2.boardState.hand, [
       27,
       26,
       49,
@@ -61,7 +64,7 @@ reducerTest(
       46,
       topDeckId,
     ]);
-    expect(setupState.opp.deck.length).toBe(46);
+    expect(setupState.p2.boardState.deck.length).toBe(46);
   }
 );
 
@@ -74,7 +77,7 @@ reducerTest('turn count is incremented', ({ setupState }) => {
     type: 'takeTurn',
     parameters: ['self'],
   };
-  setupState = actionReducer(setupState, takeTurnAction);
+  actionReducer(setupState, takeTurnAction);
 
   expect(setupState.turn).toBe(1);
 });

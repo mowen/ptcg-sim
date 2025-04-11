@@ -5,6 +5,7 @@ import {
   CardLocation,
   CardType,
   GameStateDTO,
+  Player,
   UserType,
 } from './data';
 import { Card } from './card';
@@ -17,6 +18,7 @@ export {
   CardLocation,
   CardType,
   BoardState,
+  Player,
   GameStateDTO,
   BoardStateDTO,
   UserType,
