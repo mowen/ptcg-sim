@@ -1,7 +1,7 @@
 import { BoardState, GameStateDTO, Player, UserType } from '../models';
 
 export function debugDump(state: GameStateDTO, user: string) {
-  const boardState = new BoardState(state[user], state[`${user}DeckList`]);
+  const boardState = new BoardState(state[user]);
 
   return {
     active: boardState.active.map((c) => c.toString()),
@@ -18,4 +18,8 @@ export function userToPlayer(user: string): Player {
 
 export function getOtherPlayer(player: Player): Player {
   return player == Player.One ? Player.Two : Player.One;
+}
+
+export function getOtherUser(user: UserType): UserType {
+  return user == UserType.Self ? UserType.Opp : UserType.Self;
 }

@@ -6,10 +6,10 @@ import actionReducer from '../../../src/react/reducer/actionReducer';
 expect.extend({
   toHaveValidBoardStates(received: GameStateDTO) {
     const errorMessages: Array<string> = [];
-    const oppBoardState = new BoardState(
-      received.p2.boardState,
-      received.p2.deckList
-    );
+    const oppBoardState = new BoardState({
+      boardState: received.p2.boardState,
+      deckList: received.p2.deckList,
+    });
     let oppBoardStateError: Error | null = null;
     try {
       oppBoardState.validate();
@@ -17,10 +17,10 @@ expect.extend({
       oppBoardStateError = error;
       errorMessages.push(`Opp BoardState error: ${oppBoardStateError.message}`);
     }
-    const selfBoardState = new BoardState(
-      received.p1.boardState,
-      received.p1.deckList
-    );
+    const selfBoardState = new BoardState({
+      boardState: received.p1.boardState,
+      deckList: received.p1.deckList,
+    });
     let selfBoardStateError: Error | null = null;
     try {
       selfBoardState.validate();

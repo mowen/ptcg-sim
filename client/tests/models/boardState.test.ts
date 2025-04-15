@@ -19,7 +19,7 @@ test('a board state with only 5 cards and a decklist of 6 cards throws an Invali
   boardStateData.hand = [1, 2, 0];
   boardStateData.deck = [5];
 
-  const boardState = new BoardState(boardStateData, deckList);
+  const boardState = new BoardState({ boardState: boardStateData, deckList });
   expect(() => boardState.validate()).toThrow(InvalidBoardStateError);
 });
 
@@ -28,7 +28,7 @@ test('a board state with 6 cards and a decklist of 6 cards does not throw an Inv
   boardStateData.hand = [2, 3, 0];
   boardStateData.deck = [5, 1];
 
-  const boardState = new BoardState(boardStateData, deckList);
+  const boardState = new BoardState({ boardState: boardStateData, deckList });
   boardState.validate();
 
   expect(boardState.active.length).toBe(1);

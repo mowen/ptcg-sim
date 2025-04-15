@@ -1,4 +1,4 @@
-import { BoardStateDTO, Card, CardDTO, CardLocation } from '.';
+import { BoardStateDTO, Card, CardDTO, CardLocation, PlayerStateDTO } from '.';
 import { InvalidBoardStateError, InvalidZoneError } from '../errors';
 
 class BoardState {
@@ -12,10 +12,7 @@ class BoardState {
   public readonly lostZoneZone: CardZone;
   public readonly stadiumZone: CardZone;
 
-  constructor(
-    private readonly _boardState: BoardStateDTO,
-    private readonly _deckList: Array<CardDTO>
-  ) {
+  constructor(private readonly _playerState: PlayerStateDTO) {
     this.activeZone = this.zoneFactory(CardLocation.Active);
     this.handZone = this.zoneFactory(CardLocation.Hand);
     this.benchZone = this.zoneFactory(CardLocation.Bench);
@@ -67,20 +64,20 @@ class BoardState {
   // it's used by the actionReducer so can be created in an invalid state.
   public validate(): void {
     const totalCardsOnBoard = this.totalCardsOnBoard();
-    if (totalCardsOnBoard > this._deckList.length) {
+    if (totalCardsOnBoard > this._playerState.deckList.length) {
       const duplicateCards = this.duplicateCards();
       throw new InvalidBoardStateError(
         `Total number of cards on board is ${totalCardsOnBoard}, should only be ${
-          this._deckList.length
+          this._playerState.deckList.length
         }. Duplicate cards: [${duplicateCards
           .map((zc: ZoneCard) => zc.toString())
           .join(',\n')}]`
       );
-    } else if (totalCardsOnBoard < this._deckList.length) {
+    } else if (totalCardsOnBoard < this._playerState.deckList.length) {
       const missingCards = this.missingCards();
       throw new InvalidBoardStateError(
         `Total number of cards on board is only ${totalCardsOnBoard}, should be ${
-          this._deckList.length
+          this._playerState.deckList.length
         }. Missing cards: [${missingCards
           .map((c: Card) => c.toString())
           .join(',\n')}]`
@@ -118,9 +115,16 @@ class BoardState {
 
   private missingCards(): Array<Card> {
     const allZoneCardIds = this.allZoneCards().map((zc: ZoneCard) => zc.cardId);
-    return this._deckList
+    return this._playerState.deckList
       .filter((c: CardDTO) => !allZoneCardIds.includes(c.deckListIndex))
-      .map((c) => new Card(this._deckList, this._boardState, c.deckListIndex));
+      .map(
+        (c) =>
+          new Card(
+            this._playerState.deckList,
+            this._playerState.boardState,
+            c.deckListIndex
+          )
+      );
   }
 
   private allZoneCards(): Array<ZoneCard> {
@@ -143,7 +147,11 @@ class BoardState {
   }
 
   private zoneFactory(zoneId: CardLocation): CardZone {
-    return new CardZone(zoneId, this._boardState, this._deckList);
+    return new CardZone(
+      zoneId,
+      this._playerState.boardState,
+      this._playerState.deckList
+    );
   }
 }
 

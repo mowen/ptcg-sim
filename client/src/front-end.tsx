@@ -5,38 +5,15 @@ import { initializeSocketEventListeners } from './initialization/socket-event-li
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.js';
-import { GameStateDTO } from './models';
-import { Undoable, undoableReducer, actionReducer } from './react';
+import { ActionDTO } from './models';
 import testState from '../tests/react/reducer/testData/data.json';
 
-// const validateGameState = (gameState: Undoable<GameStateDTO>): boolean => {
-//   const gs = gameState.present;
-//   const selfBoardState = new BoardState(gs.self, gs.selfDeckList);
-//   const oppBoardState = new BoardState(gs.opp, gs.oppDeckList);
-//   return selfBoardState.validate() && oppBoardState.validate();
-// };
-
-let initialState = new Undoable<GameStateDTO>(new GameStateDTO());
-// const initialState = new GameStateDTO();
-const actions = testState.filter((obj) => !('version' in obj)); // Remove any objects containing version property
-actions.forEach((a) => {
-  const undoableActionReducer = undoableReducer(actionReducer);
-  initialState = undoableActionReducer(initialState, {user: a.user, emit: a.emit, type: a.action, parameters: a.parameters });
-  // actionReducer(initialState, a as ActionDTO);
-  // if (
-  //   !validateGameState(initialState) &&
-  //   action.type !== 'loadDeckData' &&
-  //   action.type !== 'setup'
-  // ) {
-  //   console.error(`Game state invalid`, action, initialState);
-  // }
-});
-
-console.debug(`Initial state:`, initialState);
+const actions = testState.filter((obj) => !('version' in obj))
+                         .map(a => ({user: a.user, emit: a.emit, type: a.action, parameters: a.parameters }) as ActionDTO); // Remove any objects containing version property
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App initialState={initialState} />
+    <App initialActions={actions} />
   </StrictMode>
 );
 

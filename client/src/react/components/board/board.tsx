@@ -1,5 +1,5 @@
 import './board.css';
-import { CardDTO, BoardStateDTO, BoardState } from '../../../models';
+import { BoardState, PlayerStateDTO } from '../../../models';
 import {
   Active,
   AttachedCards,
@@ -18,20 +18,18 @@ import {
 export function Board({
   cssUser,
   boardUser,
-  deckList,
-  boardState,
+  playerState
 }: {
   cssUser: string;
   boardUser: string;
-  deckList: Array<CardDTO>;
-  boardState: BoardStateDTO;
+  playerState: PlayerStateDTO;
 }) {
-  const board = new BoardState(boardState, deckList);
+  const board = new BoardState(playerState);
 
   try {
     board.validate();
   } catch (error) {
-    console.error(error, boardState);
+    console.error(error, playerState.boardState);
   }
 
   return (
@@ -52,8 +50,8 @@ export function Board({
       <SpecialMoves
         cssUser={cssUser}
         boardUser={boardUser}
-        vstarUsed={boardState.vstarUsed}
-        gxUsed={boardState.gxUsed}
+        vstarUsed={playerState.boardState.vstarUsed}
+        gxUsed={playerState.boardState.gxUsed}
       ></SpecialMoves>
       <Stadium cards={board.stadium}></Stadium>
       <AttachedCards user={cssUser}></AttachedCards>
