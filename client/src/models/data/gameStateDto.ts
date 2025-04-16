@@ -1,4 +1,4 @@
-import { Patch } from 'immer';
+import { immerable } from 'immer';
 import { BoardStateDTO, CardDTO } from '..';
 
 enum UserType {
@@ -12,25 +12,21 @@ enum Player {
 }
 
 class PlayerStateDTO {
+  [immerable] = true;
+
   public deckList: Array<CardDTO> = new Array<CardDTO>();
   public boardState: BoardStateDTO = new BoardStateDTO();
 }
 
-class UndoPatches {
-  public patches: Array<Patch>;
-  public inversePatches: Array<Patch>;
-}
-
 class GameStateDTO {
+  [immerable] = true;
+
   public initiator: UserType = UserType.Self;
   public isTwoPlayer: boolean = false;
   public p1: PlayerStateDTO = new PlayerStateDTO();
   public p2: PlayerStateDTO = new PlayerStateDTO();
   public oppIsActive: boolean = false;
   public turn: number = 0;
-  public undoStack: Array<UndoPatches> = new Array<UndoPatches>();
-  public undoStackPointer = -1;
-  public undoable: boolean = true;
 }
 
 export { GameStateDTO, UserType, Player, PlayerStateDTO };

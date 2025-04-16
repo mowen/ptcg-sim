@@ -14,15 +14,14 @@ import { ViewCards } from './components/zones/viewCards';
 import { AppContext, AppDispatchContext } from './context/appContext';
 import useMutationObserver from './hooks/useMutationObserver';
 import actionReducer from './reducer/actionReducer';
-import { Undoable, undoableReducer } from './reducer/undoableReducer';
+import { undoableActionReducer } from './reducer/undoableActionReducer';
 import { Stadium } from './components/zones/stadium';
 import { CardContextMenu } from './components/menus/cardContextMenu';
 import { BoardButtons } from './components/buttons/boardButtons';
 
 export {
   actionReducer,
-  undoableReducer,
-  Undoable,
+  undoableActionReducer,
   CardView,
   Active,
   Board,

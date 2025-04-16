@@ -1,3 +1,5 @@
+import { immerable } from 'immer';
+
 enum CardLocation {
   Deck = 'deck',
   Hand = 'hand',
@@ -17,6 +19,8 @@ enum CardType {
 }
 
 class CardDTO {
+  [immerable] = true;
+
   constructor(
     public readonly deckListIndex: number,
     public readonly name: string,

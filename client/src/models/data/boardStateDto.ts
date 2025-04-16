@@ -1,4 +1,8 @@
+import { immerable } from 'immer';
+
 class BoardStateDTO {
+  [immerable] = true;
+
   public gxUsed: boolean = false;
   public vstarUsed: boolean = false;
   public hand: Array<number> = new Array<number>();

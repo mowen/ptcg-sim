@@ -1,55 +1,55 @@
 import { useCallback, useState } from 'react';
 import { ActionDTO, GameStateDTO, UserType } from './models';
 import {
-  actionReducer,
   AppContext,
   AppDispatchContext,
   Board,
   BoardButtons,
   CardContextMenu,
+  undoableActionReducer,
 } from './react';
 import { useHotkeys } from 'react-hotkeys-hook';
 import { debugDump, userToPlayer } from './util';
-import { enablePatches, produceWithPatches } from 'immer';
 
-// function App({ initialState }: { initialState: GameStateDTO }) {
 function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
   const [isSelfActive, setIsSelfActive] = useState(true);
-  const [state, setState] = useState(new GameStateDTO());
-
-  enablePatches()
-
-  const actionReducerWithPatches = produceWithPatches(actionReducer);
-  const processAction = useCallback((action: ActionDTO) => {
-    setState((currentState) => {
-      const [nextState, patches, inversePatches] = actionReducerWithPatches(
-        currentState,
-        action
-      );
-      if (nextState.undoable) {
-        const pointer = ++nextState.undoStackPointer;
-        nextState.undoStack.length = pointer;
-        nextState.undoStack[pointer] = { patches, inversePatches };  
-      }
-      return nextState;
+  const [state, setState] = useState(() => {
+    let initialState = new GameStateDTO();
+    initialActions.slice(0, 25).forEach((a) => {
+      initialState = undoableActionReducer(initialState, a);
     });
-  }, [actionReducerWithPatches]);
-
-  initialActions.forEach((a) => {
-    console.debug(a, state);
-    processAction(a);
+    return initialState;
   });
-  
-  const [p1User, p2User] = isSelfActive ? [UserType.Self, UserType.Opp] : [UserType.Opp, UserType.Self];
-  const [p1, p2] = [state[userToPlayer(p1User)], state[userToPlayer(p2User)]];
+
+  const processAction = useCallback(
+    (action: ActionDTO) =>
+      setState((currentState) => undoableActionReducer(currentState, action)),
+    []
+  );
+
+  const [p1User, p2User] = isSelfActive
+    ? [UserType.Self, UserType.Opp]
+    : [UserType.Opp, UserType.Self];
+  const p1Player = userToPlayer(p1User);
+  const p2Player = userToPlayer(p2User);
 
   useHotkeys('left', () => {
-    processAction({user: state.initiator, emit: true, type: 'undo', parameters: []});
-    console.debug('Undo, new state:', debugDump(state, p1User));
+    processAction({
+      user: p1User,
+      emit: true,
+      type: 'undo',
+      parameters: [],
+    });
+    console.debug('Undo, new state:', debugDump(state, p1Player));
   });
   useHotkeys('right', () => {
-    processAction({user: state.initiator, emit: true, type: 'redo', parameters: []});
-    console.debug('Redo, new state:', debugDump(state, p1User));
+    processAction({
+      user: p1User,
+      emit: true,
+      type: 'redo',
+      parameters: [],
+    });
+    console.debug('Redo, new state:', debugDump(state, p1Player));
   });
 
   return (
@@ -58,12 +58,12 @@ function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
         <Board
           cssUser={UserType.Opp}
           boardUser={p2User}
-          playerState={p2}
+          playerState={state[p2Player]}
         />
         <Board
           cssUser={UserType.Self}
           boardUser={p1User}
-          playerState={p1}
+          playerState={state[p1Player]}
         />
 
         <div id="selfResizer" className="self-color"></div>

@@ -8,7 +8,6 @@ import {
 } from '../../models';
 import { debugDump } from '../../util';
 import { getOtherPlayer, userToPlayer } from '../../util/util';
-import { applyPatches } from 'immer';
 
 export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
   const deckSize: number = 60;
@@ -17,27 +16,7 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
 
   const player = userToPlayer(action.user);
 
-  // console.debug(action, draft);
-
-  draft.undoable = true;
-
   switch (action.type) {
-    case 'undo': {
-      if (draft.undoStackPointer < 0) return;
-      const patches = draft.undoStack[draft.undoStackPointer].inversePatches;
-      draft.undoStackPointer--;
-      draft.undoable = false;
-      applyPatches(draft, patches);
-      break;
-    }
-    case 'redo': {
-      if (draft.undoStackPointer === draft.undoStack.length - 1) return;
-      draft.undoStackPointer++;
-      const patches = draft.undoStack[draft.undoStackPointer].patches;
-      draft.undoable = false;
-      applyPatches(draft, patches);
-      break;
-    }
     case 'VSTARGXFunction': {
       const type: string = (action.parameters[0] as string).toLowerCase();
       const vstarGxUsed = draft[player].boardState[`${type}Used`];
