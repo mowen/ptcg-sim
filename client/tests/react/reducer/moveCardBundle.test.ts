@@ -219,7 +219,7 @@ reducerTest(
 );
 
 reducerTest(
-  'move last card in hand to active, card is active',
+  'move last card in hand to active, card is attached to active',
   ({ setupState }) => {
     const takeTurnAction = {
       user: 'self',
@@ -231,21 +231,29 @@ reducerTest(
 
     expect(setupState.p1.boardState.hand.length).toBe(8);
 
+    const moveCardToActiveAction = {
+      user: 'self',
+      emit: true,
+      type: 'moveCardBundle',
+      parameters: ['self', 'hand', 'active', 2, false, 'move'],
+    };
+    actionReducer(setupState, moveCardToActiveAction);
+
     const moveCardAction = {
       user: 'self',
       emit: true,
       type: 'moveCardBundle',
-      parameters: ['self', 'hand', 'active', 7, 0, 'move'],
+      parameters: ['self', 'hand', 'active', 6, 0, 'move'],
     };
     actionReducer(setupState, moveCardAction);
 
-    expect(setupState.p1.boardState.hand.length).toBe(7);
+    expect(setupState.p1.boardState.hand.length).toBe(6);
     expect(setupState.p1.boardState.active.length).toBe(1);
 
     expect(setupState).toHaveValidBoardStates();
 
-    expect(setupState.p1.boardState.hand.length).toBe(7);
-    assert.sameOrderedMembers(setupState.p1.boardState.active, [16]);
+    assert.sameOrderedMembers(setupState.p1.boardState.active, [31]);
+    assert.sameOrderedMembers(setupState.p1.boardState.attached[31], [16]);
   }
 );
 

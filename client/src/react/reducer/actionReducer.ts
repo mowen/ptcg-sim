@@ -68,8 +68,6 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
 
       const sourceDeckListIndex =
         draft[player].boardState[oZoneId][sourceIndex];
-      const targetDeckListIndex =
-        draft[player].boardState[dZoneId][targetIndex];
 
       // If everything is working correctly this should never happen
       if (sourceDeckListIndex === undefined) {
@@ -83,65 +81,53 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
         );
       }
 
-      const sourceCard = new Card(
-        draft[player].deckList,
-        draft[player].boardState,
-        sourceDeckListIndex
-      );
+      const sourceCard = new Card(draft[player], sourceDeckListIndex);
 
-      const targetCard: Card =
-        targetDeckListIndex !== undefined
-          ? new Card(
-              draft[player].deckList,
-              draft[player].boardState,
-              targetDeckListIndex
-            )
-          : null;
+      if (typeof targetIndex === 'number') {
+        // We are attaching a card
+        const targetDeckListIndex =
+          draft[player].boardState[dZoneId][targetIndex];
 
-      const activeIndex = draft[player].boardState.active[0];
-      if (
-        dZoneId === CardLocation.Active &&
-        sourceCard.isPokemon &&
-        activeIndex !== undefined && // Just checking (activeIndex) won't work as could be 0 which is falsey
-        !targetCard // We aren't attaching a card
-      ) {
-        // Only one Pokemon can be active, so bump the old active to the bench
-        draft[player].boardState.active = [sourceDeckListIndex]; // Move new active to active
-        draft[player].boardState.bench.push(
-          activeIndex // Move old active to bench
-        );
-        draft[player].boardState[oZoneId].splice(sourceIndex, 1); // Could be bench and overwrite bench above
-        break;
-      } else if (dZoneId === CardLocation.Stadium) {
-        // Only one stadium can be active
-        const otherPlayer = getOtherPlayer(player);
-        const existingStadiumIndex = draft[otherPlayer].boardState.stadium[0];
-        draft[player].boardState[oZoneId].splice(sourceIndex, 1);
-        draft[player].boardState.stadium = [sourceDeckListIndex];
-        if (existingStadiumIndex == undefined) {
-          draft[otherPlayer].boardState.stadium = [];
-          break;
+        if (draft[player].boardState.attached[targetDeckListIndex]) {
+          draft[player].boardState.attached[targetDeckListIndex].push(
+            sourceDeckListIndex
+          );
         } else {
-          draft[otherPlayer].boardState.stadium = []; // Discard the other user's stadium
-          draft[otherPlayer].boardState.discard.push(existingStadiumIndex);
-          break;
+          draft[player].boardState.attached[targetDeckListIndex] = [
+            sourceDeckListIndex,
+          ];
         }
-      } else {
-        // If targetIndex is set we are attaching to a target
-        if (targetCard) {
-          // A 0 index is falsey
-          const newAttached = draft[player].boardState.attached[
-            targetDeckListIndex
-          ]
-            ? [
-                sourceDeckListIndex,
-                ...draft[player].boardState.attached[targetDeckListIndex],
-              ]
-            : [sourceDeckListIndex];
 
-          draft[player].boardState[oZoneId].splice(sourceIndex, 1);
-          draft[player].boardState.attached[targetDeckListIndex] = newAttached;
+        draft[player].boardState[oZoneId].splice(sourceIndex, 1);
+        break;
+      } else {
+        const activeIndex = draft[player].boardState.active[0];
+        if (
+          dZoneId === CardLocation.Active &&
+          sourceCard.isPokemon &&
+          activeIndex !== undefined // Just checking (activeIndex) won't work as could be 0 which is falsey
+        ) {
+          // Only one Pokemon can be active, so bump the old active to the bench
+          draft[player].boardState.active = [sourceDeckListIndex]; // Move new active to active
+          draft[player].boardState.bench.push(
+            activeIndex // Move old active to bench
+          );
+          draft[player].boardState[oZoneId].splice(sourceIndex, 1); // Could be bench and overwrite bench above
           break;
+        } else if (dZoneId === CardLocation.Stadium) {
+          // Only one stadium can be active
+          const otherPlayer = getOtherPlayer(player);
+          const existingStadiumIndex = draft[otherPlayer].boardState.stadium[0];
+          draft[player].boardState[oZoneId].splice(sourceIndex, 1);
+          draft[player].boardState.stadium = [sourceDeckListIndex];
+          if (existingStadiumIndex == undefined) {
+            draft[otherPlayer].boardState.stadium = [];
+            break;
+          } else {
+            draft[otherPlayer].boardState.stadium = []; // Discard the other user's stadium
+            draft[otherPlayer].boardState.discard.push(existingStadiumIndex);
+            break;
+          }
         } else {
           draft[player].boardState[oZoneId].splice(sourceIndex, 1);
           draft[player].boardState[dZoneId].push(sourceDeckListIndex);
@@ -150,10 +136,9 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
       }
     }
     case 'takeTurn': {
-      const topDeckId = draft[player].boardState.deck[0];
-      draft[player].boardState.deck.shift();
+      const topDeckId = draft[player].boardState.deck.shift();
       draft[player].boardState.hand.push(topDeckId);
-      draft.turn++;
+      draft[player].boardState.turn++;
       break;
     }
     case 'reset': {
@@ -163,12 +148,16 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
       break;
     }
     case 'shuffleAll': {
-      const [user, zoneId, newIndices] = action.parameters as [
-        string,
+      const [, zoneId, newIndices] = action.parameters as [
+        unknown,
         string,
         Array<number>
       ];
       draft[player].boardState[zoneId] = newIndices;
+      // Remove any cards in hand that have been shuffled
+      draft[player].boardState.hand = draft[player].boardState.hand.filter(
+        (cid) => !newIndices.includes(cid)
+      );
       break;
     }
     case 'discardBoard': {
@@ -186,7 +175,7 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
       break;
     }
     case 'draw': {
-      const [user, count] = action.parameters as [string, number];
+      const [, count] = action.parameters as [unknown, number];
       draft[player].boardState.deck.slice(0, count).map((c) => {
         draft[player].boardState.hand.push(c);
         draft[player].boardState.deck.shift();

@@ -2,7 +2,6 @@ import './board.css';
 import { BoardState, PlayerStateDTO } from '../../../models';
 import {
   Active,
-  AttachedCards,
   Bench,
   Deck,
   Discard,
@@ -14,23 +13,24 @@ import {
   Stadium,
   ViewCards,
 } from '../..';
+import { useMemo } from 'react';
 
 export function Board({
   cssUser,
   boardUser,
-  playerState
+  playerState,
 }: {
   cssUser: string;
   boardUser: string;
   playerState: PlayerStateDTO;
 }) {
-  const board = new BoardState(playerState);
-
-  try {
-    board.validate();
-  } catch (error) {
-    console.error(error, playerState.boardState);
-  }
+  const board = useMemo(() => {
+    try {
+      return new BoardState(playerState);
+    } catch (error) {
+      console.error(error, playerState.boardState);
+    }
+  }, [playerState]);
 
   return (
     <div id={`${cssUser}Container`} className="self">
@@ -54,7 +54,6 @@ export function Board({
         gxUsed={playerState.boardState.gxUsed}
       ></SpecialMoves>
       <Stadium cards={board.stadium}></Stadium>
-      <AttachedCards user={cssUser}></AttachedCards>
       <ViewCards user={cssUser}></ViewCards>
     </div>
   );

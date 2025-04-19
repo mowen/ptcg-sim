@@ -25,8 +25,6 @@ class GameStateDTO {
   public isTwoPlayer: boolean = false;
   public p1: PlayerStateDTO = new PlayerStateDTO();
   public p2: PlayerStateDTO = new PlayerStateDTO();
-  public oppIsActive: boolean = false;
-  public turn: number = 0;
 }
 
 export { GameStateDTO, UserType, Player, PlayerStateDTO };

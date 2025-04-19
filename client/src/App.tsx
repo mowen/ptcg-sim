@@ -15,7 +15,7 @@ function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
   const [isSelfActive, setIsSelfActive] = useState(true);
   const [state, setState] = useState(() => {
     let initialState = new GameStateDTO();
-    initialActions.slice(0, 25).forEach((a) => {
+    initialActions.slice(0, 30).forEach((a) => {
       initialState = undoableActionReducer(initialState, a);
     });
     return initialState;

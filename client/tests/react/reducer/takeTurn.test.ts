@@ -69,7 +69,7 @@ reducerTest(
 );
 
 reducerTest('turn count is incremented', ({ setupState }) => {
-  expect(setupState.turn).toBe(0);
+  expect(setupState.p1.boardState.turn).toBe(0);
 
   const takeTurnAction = {
     user: 'self',
@@ -79,5 +79,5 @@ reducerTest('turn count is incremented', ({ setupState }) => {
   };
   actionReducer(setupState, takeTurnAction);
 
-  expect(setupState.turn).toBe(1);
+  expect(setupState.p1.boardState.turn).toBe(1);
 });

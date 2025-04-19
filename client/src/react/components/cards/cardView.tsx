@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import cardBackImage from '../../../assets/cardback.png';
-import { Card } from '../../../models';
+import { Card, UserType } from '../../../models';
+import { AttachedCards } from '../zones/attachedCards';
 
 function CardView({
   card,
@@ -10,18 +12,33 @@ function CardView({
   faceUp?: boolean;
   className?: string;
 }) {
-  return faceUp ? (
-    <img
-      src={card.imageUrl}
-      alt={card.name}
-      className={`${className ?? ''} card`}
-    />
-  ) : (
-    <img
-      src={cardBackImage}
-      alt="Face down card"
-      className={`${className ?? ''} card`}
-    />
+  const cssUser = UserType.Self;
+  const [showAttached, setShowAttached] = useState(false);
+
+  return (
+    <>
+      {faceUp ? (
+        <img
+          src={card.imageUrl}
+          alt={card.name}
+          className={`${className ?? ''} card`}
+          onClick={() => setShowAttached(true)}
+        />
+      ) : (
+        <img
+          src={cardBackImage}
+          alt="Face down card"
+          className={`${className ?? ''} card`}
+        />
+      )}
+      {showAttached ? (
+        <AttachedCards
+          cssUser={cssUser}
+          cards={card.attached}
+          onClose={() => setShowAttached(false)}
+        />
+      ) : null}
+    </>
   );
 }
 

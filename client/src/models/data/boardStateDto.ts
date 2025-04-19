@@ -17,6 +17,7 @@ class BoardStateDTO {
   public attached: Record<number, Array<number>> = {};
   public damage: Record<number, number> = {};
   public abilityUsed: Array<number> = new Array<number>();
+  public turn: number = 0;
 }
 
 export { BoardStateDTO };

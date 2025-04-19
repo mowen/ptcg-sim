@@ -1,9 +1,8 @@
-import { BoardStateDTO, CardDTO, CardType } from './data';
+import { CardDTO, CardType, PlayerStateDTO } from './data';
 
 class Card {
   constructor(
-    private readonly _deckList: Array<CardDTO>,
-    private readonly _boardState: BoardStateDTO,
+    private _playerState: PlayerStateDTO,
     public readonly id: number
   ) {}
 
@@ -20,18 +19,42 @@ class Card {
   }
 
   public get damage(): number {
-    return this._boardState.damage[this.id] ?? 0;
+    return this._playerState.boardState.damage[this.id] ?? 0;
+  }
+
+  public get tool(): Card | null {
+    if (this.attached.length == 0) {
+      return null;
+    } else {
+      const attachedTrainers = this.attached.filter((c) => c.isTrainer);
+      return attachedTrainers ? attachedTrainers[0] : null;
+    }
+  }
+
+  public get energy(): Array<Card> {
+    if (this.attached.length == 0) {
+      return new Array<Card>();
+    } else {
+      this.attached.filter((c) => c.isEnergy);
+    }
+  }
+
+  public get evolutions(): Array<Card> {
+    if (this.attached.length == 0) {
+      return new Array<Card>();
+    } else {
+      this.attached.filter((c) => c.isPokemon);
+    }
   }
 
   public get attached(): Array<Card> {
-    const attachedIndexes = this._boardState.attached[this.id] ?? [];
-    return attachedIndexes.map(
-      (i: number) => new Card(this._deckList, this._boardState, i)
-    );
+    const attachedIndexes =
+      this._playerState.boardState.attached[this.id] ?? [];
+    return attachedIndexes.map((i: number) => new Card(this._playerState, i));
   }
 
   public get abilityUsed(): boolean {
-    return this._boardState.abilityUsed.includes(this.id);
+    return this._playerState.boardState.abilityUsed.includes(this.id);
   }
 
   public get isPokemon(): boolean {
@@ -58,7 +81,7 @@ class Card {
   }
 
   private get _cardData(): CardDTO {
-    return this._deckList[this.id];
+    return this._playerState.deckList[this.id];
   }
 }
 
