@@ -5,10 +5,10 @@ import { assert, expect } from 'vitest';
 reducerTest(
   'top card in self deck is added to the end of the hand',
   ({ setupState }) => {
-    const topDeckId = setupState.p1.boardState.deck[0];
+    const topDeckId = setupState.self.boardState.deck[0];
 
     assert.sameOrderedMembers(
-      setupState.p1.boardState.hand,
+      setupState.self.boardState.hand,
       [3, 56, 31, 41, 32, 0, 47]
     );
 
@@ -21,7 +21,7 @@ reducerTest(
 
     actionReducer(setupState, takeTurnAction);
 
-    assert.sameOrderedMembers(setupState.p1.boardState.hand, [
+    assert.sameOrderedMembers(setupState.self.boardState.hand, [
       3,
       56,
       31,
@@ -31,17 +31,17 @@ reducerTest(
       47,
       topDeckId,
     ]);
-    expect(setupState.p1.boardState.deck.length).toBe(46);
+    expect(setupState.self.boardState.deck.length).toBe(46);
   }
 );
 
 reducerTest(
   'top card in opp deck is added to the end of the hand',
   ({ setupState }) => {
-    const topDeckId = setupState.p2.boardState.deck[0];
+    const topDeckId = setupState.opp.boardState.deck[0];
 
     assert.sameOrderedMembers(
-      setupState.p2.boardState.hand,
+      setupState.opp.boardState.hand,
       [27, 26, 49, 58, 59, 43, 46]
     );
 
@@ -54,7 +54,7 @@ reducerTest(
 
     actionReducer(setupState, takeTurnAction);
 
-    assert.sameOrderedMembers(setupState.p2.boardState.hand, [
+    assert.sameOrderedMembers(setupState.opp.boardState.hand, [
       27,
       26,
       49,
@@ -64,12 +64,12 @@ reducerTest(
       46,
       topDeckId,
     ]);
-    expect(setupState.p2.boardState.deck.length).toBe(46);
+    expect(setupState.opp.boardState.deck.length).toBe(46);
   }
 );
 
 reducerTest('turn count is incremented', ({ setupState }) => {
-  expect(setupState.p1.boardState.turn).toBe(0);
+  expect(setupState.self.boardState.turn).toBe(0);
 
   const takeTurnAction = {
     user: 'self',
@@ -79,5 +79,5 @@ reducerTest('turn count is incremented', ({ setupState }) => {
   };
   actionReducer(setupState, takeTurnAction);
 
-  expect(setupState.p1.boardState.turn).toBe(1);
+  expect(setupState.self.boardState.turn).toBe(1);
 });

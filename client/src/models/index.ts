@@ -5,7 +5,6 @@ import {
   CardLocation,
   CardType,
   GameStateDTO,
-  Player,
   PlayerStateDTO,
   UserType,
 } from './data';
@@ -19,7 +18,6 @@ export {
   CardLocation,
   CardType,
   BoardState,
-  Player,
   PlayerStateDTO,
   GameStateDTO,
   BoardStateDTO,

@@ -1,1 +1,1 @@
-export { debugDump, userToPlayer, getOtherPlayer, getOtherUser } from './util';
+export { debugDump, getOtherUser } from './util';

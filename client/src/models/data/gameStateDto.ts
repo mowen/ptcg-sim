@@ -6,11 +6,6 @@ enum UserType {
   Opp = 'opp',
 }
 
-enum Player {
-  One = 'p1',
-  Two = 'p2',
-}
-
 class PlayerStateDTO {
   [immerable] = true;
 
@@ -23,8 +18,8 @@ class GameStateDTO {
 
   public initiator: UserType = UserType.Self;
   public isTwoPlayer: boolean = false;
-  public p1: PlayerStateDTO = new PlayerStateDTO();
-  public p2: PlayerStateDTO = new PlayerStateDTO();
+  public self: PlayerStateDTO = new PlayerStateDTO();
+  public opp: PlayerStateDTO = new PlayerStateDTO();
 }
 
-export { GameStateDTO, UserType, Player, PlayerStateDTO };
+export { GameStateDTO, UserType, PlayerStateDTO };

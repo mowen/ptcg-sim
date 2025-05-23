@@ -1,7 +1,7 @@
 import { ActionDTO } from './actionDto';
 import { BoardStateDTO } from './boardStateDto';
 import { CardDTO, CardLocation, CardType } from './cardDto';
-import { GameStateDTO, Player, PlayerStateDTO, UserType } from './gameStateDto';
+import { GameStateDTO, PlayerStateDTO, UserType } from './gameStateDto';
 
 export {
   ActionDTO,
@@ -9,7 +9,6 @@ export {
   CardLocation,
   CardType,
   BoardStateDTO,
-  Player,
   PlayerStateDTO,
   GameStateDTO,
   UserType,

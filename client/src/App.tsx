@@ -9,7 +9,7 @@ import {
   undoableActionReducer,
 } from './react';
 import { useHotkeys } from 'react-hotkeys-hook';
-import { debugDump, userToPlayer } from './util';
+import { debugDump } from './util';
 
 function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
   const [isSelfActive, setIsSelfActive] = useState(true);
@@ -30,8 +30,6 @@ function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
   const [p1User, p2User] = isSelfActive
     ? [UserType.Self, UserType.Opp]
     : [UserType.Opp, UserType.Self];
-  const p1Player = userToPlayer(p1User);
-  const p2Player = userToPlayer(p2User);
 
   useHotkeys('left', () => {
     processAction({
@@ -40,7 +38,7 @@ function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
       type: 'undo',
       parameters: [],
     });
-    console.debug('Undo, new state:', debugDump(state, p1Player));
+    console.debug('Undo, new state:', debugDump(state, p1User));
   });
   useHotkeys('right', () => {
     processAction({
@@ -49,7 +47,7 @@ function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
       type: 'redo',
       parameters: [],
     });
-    console.debug('Redo, new state:', debugDump(state, p1Player));
+    console.debug('Redo, new state:', debugDump(state, p1User));
   });
 
   return (
@@ -58,12 +56,12 @@ function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
         <Board
           cssUser={UserType.Opp}
           boardUser={p2User}
-          playerState={state[p2Player]}
+          playerState={state[p2User]}
         />
         <Board
           cssUser={UserType.Self}
           boardUser={p1User}
-          playerState={state[p1Player]}
+          playerState={state[p1User]}
         />
 
         <div id="selfResizer" className="self-color"></div>

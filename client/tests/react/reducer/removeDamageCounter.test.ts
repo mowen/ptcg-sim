@@ -21,9 +21,9 @@ reducerTest(
     };
     actionReducer(setupState, removeDamageCounterAction);
 
-    const firstCardInHandIndex = setupState.p2.boardState.hand[0];
+    const firstCardInHandIndex = setupState.opp.boardState.hand[0];
     expect(
-      setupState.p2.boardState.damage[firstCardInHandIndex]
+      setupState.opp.boardState.damage[firstCardInHandIndex]
     ).toBeUndefined();
   }
 );

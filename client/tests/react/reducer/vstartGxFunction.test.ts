@@ -11,8 +11,8 @@ describe('VSTARGXFunction', () => {
       type: 'VSTARGXFunction',
       parameters: ['gx'],
     });
-    expect(state.p1.boardState.gxUsed).toBe(true);
-    expect(state.p2.boardState.gxUsed).toBe(false);
+    expect(state.self.boardState.gxUsed).toBe(true);
+    expect(state.opp.boardState.gxUsed).toBe(false);
 
     actionReducer(state, {
       user: 'self',
@@ -20,8 +20,8 @@ describe('VSTARGXFunction', () => {
       type: 'VSTARGXFunction',
       parameters: ['gx'],
     });
-    expect(state.p1.boardState.gxUsed).toBe(false);
-    expect(state.p2.boardState.gxUsed).toBe(false);
+    expect(state.self.boardState.gxUsed).toBe(false);
+    expect(state.opp.boardState.gxUsed).toBe(false);
 
     actionReducer(state, {
       user: 'opp',
@@ -29,8 +29,8 @@ describe('VSTARGXFunction', () => {
       type: 'VSTARGXFunction',
       parameters: ['gx'],
     });
-    expect(state.p1.boardState.gxUsed).toBe(false);
-    expect(state.p2.boardState.gxUsed).toBe(true);
+    expect(state.self.boardState.gxUsed).toBe(false);
+    expect(state.opp.boardState.gxUsed).toBe(true);
   });
 
   test('self vstarUsed and opp vstarUsed independently', () => {
@@ -41,8 +41,8 @@ describe('VSTARGXFunction', () => {
       type: 'VSTARGXFunction',
       parameters: ['vstar'],
     });
-    expect(state.p1.boardState.vstarUsed).toBe(true);
-    expect(state.p2.boardState.vstarUsed).toBe(false);
+    expect(state.self.boardState.vstarUsed).toBe(true);
+    expect(state.opp.boardState.vstarUsed).toBe(false);
 
     actionReducer(state, {
       user: 'self',
@@ -50,8 +50,8 @@ describe('VSTARGXFunction', () => {
       type: 'VSTARGXFunction',
       parameters: ['vstar'],
     });
-    expect(state.p1.boardState.vstarUsed).toBe(false);
-    expect(state.p2.boardState.vstarUsed).toBe(false);
+    expect(state.self.boardState.vstarUsed).toBe(false);
+    expect(state.opp.boardState.vstarUsed).toBe(false);
 
     actionReducer(state, {
       user: 'opp',
@@ -59,7 +59,7 @@ describe('VSTARGXFunction', () => {
       type: 'VSTARGXFunction',
       parameters: ['vstar'],
     });
-    expect(state.p1.boardState.vstarUsed).toBe(false);
-    expect(state.p2.boardState.vstarUsed).toBe(true);
+    expect(state.self.boardState.vstarUsed).toBe(false);
+    expect(state.opp.boardState.vstarUsed).toBe(true);
   });
 });

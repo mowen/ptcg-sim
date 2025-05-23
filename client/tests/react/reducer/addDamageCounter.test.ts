@@ -14,7 +14,7 @@ reducerTest(
 
     actionReducer(setupState, addDamageCounterAction);
 
-    const firstCardInHandIndex = setupState.p2.boardState.hand[0];
-    expect(setupState.p2.boardState.damage[firstCardInHandIndex]).toBe(30);
+    const firstCardInHandIndex = setupState.opp.boardState.hand[0];
+    expect(setupState.opp.boardState.damage[firstCardInHandIndex]).toBe(30);
   }
 );

@@ -13,7 +13,7 @@ reducerTest('selfDeckList has 60 cards', ({ setupState }) => {
   actionReducer(setupState, moveFromHandToBoardAction);
   actionReducer(setupState, moveFromHandToBoardAction);
 
-  assert.sameOrderedMembers(setupState.p2.boardState.board, [27, 26, 49]);
+  assert.sameOrderedMembers(setupState.opp.boardState.board, [27, 26, 49]);
 
   const discardBoardAction = {
     user: 'opp',
@@ -23,7 +23,7 @@ reducerTest('selfDeckList has 60 cards', ({ setupState }) => {
   };
   actionReducer(setupState, discardBoardAction);
 
-  expect(setupState.p2.boardState.board.length).toBe(0);
-  expect(setupState.p2.boardState.discard.length).toBe(3);
-  assert.sameOrderedMembers(setupState.p2.boardState.discard, [27, 26, 49]);
+  expect(setupState.opp.boardState.board.length).toBe(0);
+  expect(setupState.opp.boardState.discard.length).toBe(3);
+  assert.sameOrderedMembers(setupState.opp.boardState.discard, [27, 26, 49]);
 });

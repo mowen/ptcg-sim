@@ -14,7 +14,7 @@ reducerTest('selfDeckList has 60 cards', () => {
   const state = new GameStateDTO();
   actionReducer(state, selfLoadDeckDataAction);
   actionReducer(state, oppLoadDeckDataAction);
-  expect(state.p1.deckList.length).toBe(60);
+  expect(state.self.deckList.length).toBe(60);
 });
 
 reducerTest('oppDeckList has 0 cards', () => {
@@ -28,5 +28,5 @@ reducerTest('oppDeckList has 0 cards', () => {
   const state = new GameStateDTO();
   actionReducer(state, selfLoadDeckDataAction);
   actionReducer(state, oppLoadDeckDataAction);
-  expect(state.p2.deckList.length).toBe(0);
+  expect(state.opp.deckList.length).toBe(0);
 });
