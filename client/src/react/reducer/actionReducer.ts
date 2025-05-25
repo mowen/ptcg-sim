@@ -153,7 +153,9 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
         string,
         Array<number>
       ];
-      draft[user].boardState[zoneId] = newIndices;
+      draft[user].boardState[zoneId] = newIndices.map(
+        (newIndex) => draft[user].boardState[zoneId][newIndex]
+      );
       break;
     }
     case 'discardBoard': {
