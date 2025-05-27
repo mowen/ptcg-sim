@@ -64,7 +64,10 @@ class BoardState {
 
   private validate(): void {
     const totalCardsOnBoard = this.totalCardsOnBoard();
-    if (totalCardsOnBoard < this._playerState.deckList.length) {
+    if (
+      totalCardsOnBoard > 0 &&
+      totalCardsOnBoard < this._playerState.deckList.length
+    ) {
       const missingCards = this.missingCards();
       throw new InvalidBoardStateError(
         `Total number of cards on board is only ${totalCardsOnBoard}, should be ${

@@ -67,3 +67,12 @@ test('a board state with 7 cards and a decklist of 7 cards does not throw an Inv
   expect(boardState.bench.length).toBe(1);
   expect(boardState.discard.length).toBe(0);
 });
+
+test('a board state with 0 cards and a decklist of 7 cards does not throw an InvalidBoardStateError as setup has not been called', () => {
+  expect(
+    new BoardState({
+      boardState: new BoardStateDTO(),
+      deckList,
+    } as PlayerStateDTO)
+  );
+});
