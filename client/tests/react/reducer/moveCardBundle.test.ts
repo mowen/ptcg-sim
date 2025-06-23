@@ -292,6 +292,31 @@ reducerTest(
   }
 );
 
+reducerTest('move attached card to discard moves card', ({ setupState }) => {
+  actionReducer(setupState, {
+    user: 'self',
+    emit: true,
+    type: 'moveCardBundle',
+    parameters: ['self', 'hand', 'active', 4, false, 'move'],
+  });
+
+  actionReducer(setupState, {
+    user: 'self',
+    emit: true,
+    type: 'moveCardBundle',
+    parameters: ['self', 'hand', 'active', 4, 0, 'move'],
+  });
+
+  actionReducer(setupState, {
+    user: 'self',
+    emit: true,
+    type: 'moveCardBundle',
+    parameters: ['self', 'active', 'discard', 1, false, 'move'],
+  });
+
+  expect(setupState.self.boardState.discard.length).toBe(1);
+});
+
 reducerTest(
   'move card from hand to stadium bumps own current stadium',
   ({ setupState }) => {

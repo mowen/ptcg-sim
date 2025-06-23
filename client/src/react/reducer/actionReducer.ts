@@ -1,3 +1,4 @@
+import { InvalidSourceCardError } from '../../errors';
 import {
   ActionDTO,
   BoardStateDTO,
@@ -7,8 +8,24 @@ import {
   GameStateDTO,
   UserType,
 } from '../../models';
-import { debugDump } from '../../util';
 import { getOtherUser } from '../../util/util';
+
+function mapAttached(boardState: BoardStateDTO, zoneId: string): Array<number> {
+  return boardState[zoneId]
+    .map((c: number) =>
+      boardState.attached[c] != undefined
+        ? [c, boardState.attached[c].map((at) => at)]
+        : c
+    )
+    .flat(Infinity);
+}
+
+function findAttachedParent(boardState: BoardStateDTO, cardId: number): number {
+  return Object.keys(boardState.attached).map((pId: string) => {
+    const parentId = parseInt(pId);
+    if (boardState.attached[pId].includes(cardId)) return parentId;
+  })[0];
+}
 
 export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
   const deckSize: number = 60;
@@ -67,18 +84,28 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
           number | boolean | undefined
         ];
 
-      const sourceDeckListIndex = draft[user].boardState[oZoneId][sourceIndex];
-
-      // If everything is working correctly this should never happen
-      if (sourceDeckListIndex === undefined) {
-        const source = draft[user].boardState[oZoneId];
-        console.warn(
-          `souceCardIndex in moveCardBundle is undefined (${sourceIndex} out of ${source.length})`,
-          action.user,
-          oZoneId,
-          action,
-          debugDump(draft, action.user)
-        );
+      let sourceDeckListIndex = draft[user].boardState[oZoneId][sourceIndex];
+      if (sourceDeckListIndex == undefined) {
+        // source is attached
+        const zoneWithAttached = mapAttached(draft[user].boardState, oZoneId);
+        const source = zoneWithAttached;
+        sourceDeckListIndex = source[sourceIndex];
+        if (sourceDeckListIndex == undefined) {
+          throw new InvalidSourceCardError(
+            `souceCardIndex ${sourceIndex} in moveCardBundle is undefined. source length: ${source.length}.`
+          );
+        } else {
+          // Find the parent and remove the source card from its list of attached cards
+          const parentId = findAttachedParent(
+            draft[user].boardState,
+            sourceDeckListIndex
+          );
+          draft[user].boardState.attached[parentId] = draft[
+            user
+          ].boardState.attached[parentId].filter(
+            (c) => c !== sourceDeckListIndex
+          );
+        }
       }
 
       const sourceCard = new Card(draft[user], sourceDeckListIndex);

@@ -36,13 +36,15 @@ function debugDump(
   error: Error = null
 ): Dump {
   const currentPlayerState = currentState[action.user] as PlayerStateDTO;
-  const nextPlayerState = nextState[action.user] as PlayerStateDTO;
+  const nextPlayerState = nextState
+    ? (nextState[action.user] as PlayerStateDTO)
+    : null;
 
   const dump: Dump = {
     action,
     deckList: currentPlayerState.deckList,
     currentBoard: currentPlayerState.boardState,
-    nextBoard: nextPlayerState.boardState,
+    nextBoard: nextPlayerState?.boardState,
     patches,
     error,
   };
@@ -104,17 +106,26 @@ export const undoableActionReducer = (
       logAction(action, currentState, nextState, patches);
       return nextState;
     }
+    // I'm making the assumption that undo/redo will never throw exceptions,
+    // as their patches have already been applied successfully.
     default: {
-      const actionReducerWithPatches = produceWithPatches(actionReducer);
-      const [nextState, patches, inversePatches] = actionReducerWithPatches(
-        currentState,
-        action
-      );
-      const pointer = ++undoStackPointer;
-      undoStack.length = pointer;
-      undoStack[pointer] = { patches, inversePatches };
-      logAction(action, currentState, nextState, patches);
-      return nextState;
+      try {
+        const actionReducerWithPatches = produceWithPatches(actionReducer);
+        const [nextState, patches, inversePatches] = actionReducerWithPatches(
+          currentState,
+          action
+        );
+        const pointer = ++undoStackPointer;
+        undoStack.length = pointer;
+        undoStack[pointer] = { patches, inversePatches };
+        logAction(action, currentState, nextState, patches);
+        return nextState;
+      } catch (err: unknown) {
+        console.error(
+          `${action.user} ${action.type}`,
+          debugDump(action, currentState, null, null, err as Error)
+        );
+      }
     }
   }
 };

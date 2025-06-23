@@ -9,7 +9,6 @@ import {
   undoableActionReducer,
 } from './react';
 import { useHotkeys } from 'react-hotkeys-hook';
-import { debugDump } from './util';
 
 function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
   const [isSelfActive, setIsSelfActive] = useState(true);
@@ -38,7 +37,6 @@ function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
       type: 'undo',
       parameters: [],
     });
-    console.debug('Undo, new state:', debugDump(state, p1User));
   });
   useHotkeys('right', () => {
     processAction({
@@ -47,7 +45,6 @@ function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
       type: 'redo',
       parameters: [],
     });
-    console.debug('Redo, new state:', debugDump(state, p1User));
   });
 
   return (
