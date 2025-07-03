@@ -6,18 +6,12 @@ import {
   GameStateDTO,
   PlayerStateDTO,
   BoardState,
+  UndoableGameStateDTO,
+  UndoPatches,
 } from '../../models';
 import actionReducer from './actionReducer';
 
 enablePatches(); // enable immer patches feature for undo/redo
-
-class UndoPatches {
-  public patches: Array<Patch>;
-  public inversePatches: Array<Patch>;
-}
-
-const undoStack: Array<UndoPatches> = new Array<UndoPatches>();
-let undoStackPointer: number = -1;
 
 type Dump = {
   action: ActionDTO;
@@ -30,14 +24,16 @@ type Dump = {
 
 function debugDump(
   action: ActionDTO,
-  currentState: GameStateDTO,
-  nextState: GameStateDTO,
+  currentState: UndoableGameStateDTO,
+  nextState: UndoableGameStateDTO,
   patches: Array<Patch>,
   error: Error = null
 ): Dump {
-  const currentPlayerState = currentState[action.user] as PlayerStateDTO;
+  const currentPlayerState = currentState.gameState[
+    action.user
+  ] as PlayerStateDTO;
   const nextPlayerState = nextState
-    ? (nextState[action.user] as PlayerStateDTO)
+    ? (nextState.gameState[action.user] as PlayerStateDTO)
     : null;
 
   const dump: Dump = {
@@ -67,11 +63,11 @@ function hasBoardStateError(
 
 function logAction(
   action: ActionDTO,
-  currentState: GameStateDTO,
-  nextState: GameStateDTO,
+  currentState: UndoableGameStateDTO,
+  nextState: UndoableGameStateDTO,
   patches: Array<Patch>
 ): void {
-  const boardStateError = hasBoardStateError(action, nextState);
+  const boardStateError = hasBoardStateError(action, nextState.gameState);
   if (boardStateError) {
     console.error(
       `${action.user} ${action.type}`,
@@ -85,45 +81,100 @@ function logAction(
   }
 }
 
+class UndoableGameState {
+  constructor(public undoableState: UndoableGameStateDTO) {}
+
+  get gameState(): GameStateDTO {
+    return this.undoableState.gameState;
+  }
+
+  get newState(): UndoableGameStateDTO {
+    return {
+      gameState: this.undoableState.gameState,
+      undoStack: this.undoableState.undoStack,
+      undoStackPointer: this.undoableState.undoStackPointer,
+    };
+  }
+
+  public undo(): Array<Patch> {
+    if (this.undoableState.undoStackPointer < 0) return;
+    const inversePatches =
+      this.undoableState.undoStack[this.undoableState.undoStackPointer]
+        .inversePatches;
+    this.undoableState.undoStackPointer--;
+    this.undoableState.gameState = applyPatches(
+      this.undoableState.gameState,
+      inversePatches
+    );
+    return inversePatches;
+  }
+
+  public redo(): Array<Patch> {
+    if (
+      this.undoableState.undoStackPointer ===
+      this.undoableState.undoStack.length - 1
+    )
+      return;
+    this.undoableState.undoStackPointer++;
+    const patches =
+      this.undoableState.undoStack[this.undoableState.undoStackPointer].patches;
+    this.undoableState.gameState = applyPatches(
+      this.undoableState.gameState,
+      patches
+    );
+    return patches;
+  }
+
+  public apply(gameState: GameStateDTO, undoPatches: UndoPatches) {
+    this.undoableState.undoStackPointer++;
+    this.undoableState.undoStack.length = this.undoableState.undoStackPointer;
+    this.undoableState.undoStack[this.undoableState.undoStackPointer] =
+      undoPatches;
+    this.undoableState.gameState = gameState;
+  }
+}
+
 export const undoableActionReducer = (
-  currentState: GameStateDTO,
+  undoableState: UndoableGameStateDTO,
   action: ActionDTO
-): GameStateDTO => {
+): UndoableGameStateDTO => {
+  const undoableGameState = new UndoableGameState(undoableState);
+
   switch (action.type) {
     case 'undo': {
-      if (undoStackPointer < 0) return currentState;
-      const patches = undoStack[undoStackPointer].inversePatches;
-      undoStackPointer--;
-      const nextState = applyPatches(currentState, patches);
-      logAction(action, currentState, nextState, patches);
-      return nextState;
+      const currentState = undoableState;
+      const patches = undoableGameState.undo();
+      logAction(action, currentState, undoableState, patches);
+      return undoableGameState.newState;
     }
     case 'redo': {
-      if (undoStackPointer === undoStack.length - 1) return currentState;
-      undoStackPointer++;
-      const patches = undoStack[undoStackPointer].patches;
-      const nextState = applyPatches(currentState, patches);
-      logAction(action, currentState, nextState, patches);
-      return nextState;
+      const currentState = undoableState;
+      const patches = undoableGameState.redo();
+      logAction(action, currentState, undoableState, patches);
+      return undoableGameState.newState;
     }
     // I'm making the assumption that undo/redo will never throw exceptions,
     // as their patches have already been applied successfully.
     default: {
       try {
+        const currentState = undoableState;
         const actionReducerWithPatches = produceWithPatches(actionReducer);
         const [nextState, patches, inversePatches] = actionReducerWithPatches(
-          currentState,
+          undoableState.gameState,
           action
         );
-        const pointer = ++undoStackPointer;
-        undoStack.length = pointer;
-        undoStack[pointer] = { patches, inversePatches };
-        logAction(action, currentState, nextState, patches);
-        return nextState;
+        undoableGameState.apply(nextState, { patches, inversePatches });
+        logAction(
+          action,
+          currentState,
+          undoableGameState.undoableState,
+          patches
+        );
+        return undoableGameState.newState;
       } catch (err: unknown) {
         console.error(
           `${action.user} ${action.type}`,
-          debugDump(action, currentState, null, null, err as Error)
+          debugDump(action, undoableState, null, null, err as Error)
         );
       }
     }

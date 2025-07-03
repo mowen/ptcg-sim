@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { ActionDTO, GameStateDTO, UserType } from './models';
+import { ActionDTO, UndoableGameStateDTO, UserType } from './models';
 import {
   AppContext,
   AppDispatchContext,
@@ -13,7 +13,7 @@ import { useHotkeys } from 'react-hotkeys-hook';
 function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
   const [isSelfActive, setIsSelfActive] = useState(true);
   const [state, setState] = useState(() => {
-    let initialState = new GameStateDTO();
+    let initialState = new UndoableGameStateDTO();
     initialActions.forEach((a) => {
       initialState = undoableActionReducer(initialState, a);
     });
@@ -53,12 +53,12 @@ function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
         <Board
           cssUser={UserType.Opp}
           boardUser={p2User}
-          playerState={state[p2User]}
+          playerState={state.gameState[p2User]}
         />
         <Board
           cssUser={UserType.Self}
           boardUser={p1User}
-          playerState={state[p1User]}
+          playerState={state.gameState[p1User]}
         />
 
         <div id="selfResizer" className="self-color"></div>
