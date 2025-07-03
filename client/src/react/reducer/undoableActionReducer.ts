@@ -1,4 +1,4 @@
-import { applyPatches, enablePatches, Patch, produceWithPatches } from 'immer';
+import { enablePatches, Patch, produceWithPatches } from 'immer';
 import {
   ActionDTO,
   CardDTO,
@@ -7,7 +7,7 @@ import {
   PlayerStateDTO,
   BoardState,
   UndoableGameStateDTO,
-  UndoPatches,
+  UndoableGameState,
 } from '../../models';
 import actionReducer from './actionReducer';
 
@@ -81,59 +81,6 @@ function logAction(
   }
 }
 
-class UndoableGameState {
-  constructor(public undoableState: UndoableGameStateDTO) {}
-
-  get gameState(): GameStateDTO {
-    return this.undoableState.gameState;
-  }
-
-  get newState(): UndoableGameStateDTO {
-    return {
-      gameState: this.undoableState.gameState,
-      undoStack: this.undoableState.undoStack,
-      undoStackPointer: this.undoableState.undoStackPointer,
-    };
-  }
-
-  public undo(): Array<Patch> {
-    if (this.undoableState.undoStackPointer < 0) return;
-    const inversePatches =
-      this.undoableState.undoStack[this.undoableState.undoStackPointer]
-        .inversePatches;
-    this.undoableState.undoStackPointer--;
-    this.undoableState.gameState = applyPatches(
-      this.undoableState.gameState,
-      inversePatches
-    );
-    return inversePatches;
-  }
-
-  public redo(): Array<Patch> {
-    if (
-      this.undoableState.undoStackPointer ===
-      this.undoableState.undoStack.length - 1
-    )
-      return;
-    this.undoableState.undoStackPointer++;
-    const patches =
-      this.undoableState.undoStack[this.undoableState.undoStackPointer].patches;
-    this.undoableState.gameState = applyPatches(
-      this.undoableState.gameState,
-      patches
-    );
-    return patches;
-  }
-
-  public apply(gameState: GameStateDTO, undoPatches: UndoPatches) {
-    this.undoableState.undoStackPointer++;
-    this.undoableState.undoStack.length = this.undoableState.undoStackPointer;
-    this.undoableState.undoStack[this.undoableState.undoStackPointer] =
-      undoPatches;
-    this.undoableState.gameState = gameState;
-  }
-}
-
 export const undoableActionReducer = (
   undoableState: UndoableGameStateDTO,
   action: ActionDTO
@@ -176,6 +123,7 @@ export const undoableActionReducer = (
           `${action.user} ${action.type}`,
           debugDump(action, undoableState, null, null, err as Error)
         );
+        return undoableState;
       }
     }
   }

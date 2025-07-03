@@ -6,11 +6,13 @@ import {
   CardType,
   GameStateDTO,
   PlayerStateDTO,
+  UndoableGameStateDTO,
+  UndoPatches,
   UserType,
 } from './data';
 import { Card } from './card';
 import { BoardState } from './boardState';
-import { UndoableGameStateDTO, UndoPatches } from './data/undoableGameStateDto';
+import { UndoableGameState } from './undoableGameState';
 
 export {
   ActionDTO,
@@ -25,4 +27,5 @@ export {
   UserType,
   UndoPatches,
   UndoableGameStateDTO,
+  UndoableGameState,
 };
