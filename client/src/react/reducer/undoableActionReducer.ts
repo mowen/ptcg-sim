@@ -87,44 +87,35 @@ export const undoableActionReducer = (
 ): UndoableGameStateDTO => {
   const undoableGameState = new UndoableGameState(undoableState);
 
+  let patches: Array<Patch> = new Array<Patch>();
   switch (action.type) {
     case 'undo': {
-      const currentState = undoableState;
-      const patches = undoableGameState.undo();
-      logAction(action, currentState, undoableState, patches);
-      return undoableGameState.newState;
+      patches = undoableGameState.undo();
+      break;
     }
     case 'redo': {
-      const currentState = undoableState;
-      const patches = undoableGameState.redo();
-      logAction(action, currentState, undoableState, patches);
-      return undoableGameState.newState;
+      patches = undoableGameState.redo();
+      break;
     }
     // I'm making the assumption that undo/redo will never throw exceptions,
     // as their patches have already been applied successfully.
     default: {
       try {
-        const currentState = undoableState;
         const actionReducerWithPatches = produceWithPatches(actionReducer);
         const [nextState, patches, inversePatches] = actionReducerWithPatches(
           undoableState.gameState,
           action
         );
         undoableGameState.apply(nextState, { patches, inversePatches });
-        logAction(
-          action,
-          currentState,
-          undoableGameState.undoableState,
-          patches
-        );
-        return undoableGameState.newState;
       } catch (err: unknown) {
         console.error(
           `${action.user} ${action.type}`,
-          debugDump(action, undoableState, null, null, err as Error)
+          debugDump(action, undoableState, null, patches, err as Error)
         );
         return undoableState;
       }
     }
   }
+  logAction(action, undoableState, undoableGameState.newState, patches);
+  return undoableGameState.newState;
 };
