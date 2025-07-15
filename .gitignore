@@ -4,3 +4,6 @@ server/dist
 client/dist
 client/coverage
 tsconfig.tsbuildinfo
+
+*storybook.log
+storybook-static

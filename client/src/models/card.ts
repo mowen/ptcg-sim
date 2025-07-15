@@ -35,7 +35,7 @@ class Card {
     if (this.attached.length == 0) {
       return new Array<Card>();
     } else {
-      this.attached.filter((c) => c.isEnergy);
+      return this.attached.filter((c) => c.isEnergy);
     }
   }
 
@@ -43,7 +43,7 @@ class Card {
     if (this.attached.length == 0) {
       return new Array<Card>();
     } else {
-      this.attached.filter((c) => c.isPokemon);
+      return this.attached.filter((c) => c.isPokemon);
     }
   }
 

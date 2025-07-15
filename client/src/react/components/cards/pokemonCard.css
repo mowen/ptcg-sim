@@ -1,0 +1,51 @@
+img {
+  position: absolute;
+  left: 0;
+  height: 300px;
+}
+
+.evo-level-0 {
+  top: 0px;
+  z-index: 0;
+}
+
+.evo-level-1 {
+  z-index: 1;
+  top: 15px;
+}
+
+.evo-level-2 {
+  z-index: 2;
+  top: 30px;
+}
+
+.energy-level-0 {
+  z-index: 0;
+  left: 30px;
+}
+
+.energy-level-1 {
+  z-index: -1;
+  left: 60px;
+}
+
+.energy-level-2 {
+  z-index: -2;
+}
+
+.damage-counter {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 3;
+  display: inline-block;
+  left: 140px;
+  top: 80px;
+  width: 42px;
+  height: 42px;
+  line-height: 42px;
+  font-size: 21px;
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgb(255, 98, 0);
+  color: white;
+  text-align: center;
+}
