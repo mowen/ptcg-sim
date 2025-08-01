@@ -11,13 +11,12 @@ export function LostZone({
   return (
     <>
       <div id="lostZoneCover" className="outline">
+        <div id="lostZoneText" className={`${user}-text`}>
+          (<span id="lostZoneCount">{cards.length}</span>)
+        </div>
         {cards.map((c: Card, i) => (
           <CardView key={i} card={c}></CardView>
         ))}
-      </div>
-
-      <div id="lostZoneText" className={`${user}-text`}>
-        (<span id="lostZoneCount">{cards.length}</span>)
       </div>
     </>
   );
