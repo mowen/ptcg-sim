@@ -6,7 +6,7 @@ export function PrizeCards({ cards }: { cards: Array<Card> }) {
     cards.length <= 6 ? 'prizes-normal-size' : 'prizes-small-size';
 
   return (
-    <div id="prizes" className="outline">
+    <div id="prizes" className="outline zone">
       {cards.map((c: Card, i) => (
         <CardView
           key={i}

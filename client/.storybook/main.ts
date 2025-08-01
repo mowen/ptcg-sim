@@ -3,10 +3,6 @@ import type { StorybookConfig } from '@storybook/react-vite';
 import { join, dirname } from 'path';
 
 import { createRequire } from 'module';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 const require = createRequire(import.meta.url);
 
@@ -17,6 +13,7 @@ const require = createRequire(import.meta.url);
 function getAbsolutePath(value: string): any {
   return dirname(require.resolve(join(value, 'package.json')));
 }
+
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [getAbsolutePath('@storybook/addon-docs')],

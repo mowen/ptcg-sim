@@ -33,7 +33,7 @@ export function Board({
   }, [playerState]);
 
   return (
-    <div id={`${cssUser}Container`} className={cssUser}>
+    <div id={`${cssUser}Container`} className={`${cssUser} board`}>
       <div id="boardCenterDesign">
         <div id="boardCircle"></div>
         <div id="innerCircle"></div>

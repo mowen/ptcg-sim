@@ -5,7 +5,6 @@ import {
   AppDispatchContext,
   Board,
   BoardButtons,
-  CardContextMenu,
   undoableActionReducer,
 } from './react';
 import { useHotkeys } from 'react-hotkeys-hook';
@@ -25,6 +24,19 @@ function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
       setState((currentState) => undoableActionReducer(currentState, action)),
     []
   );
+
+  const flipCoin = (boardUser: string) => {
+    console.log(`${boardUser} flipped a coin`);
+  };
+
+  const takeTurn = (boardUser: string) => {
+    processAction({
+      user: boardUser,
+      emit: true,
+      type: 'takeTurn',
+      parameters: [boardUser],
+    });
+  };
 
   const [p1User, p2User] = isSelfActive
     ? [UserType.Self, UserType.Opp]
@@ -66,10 +78,10 @@ function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
 
         <BoardButtons
           boardUser={p1User}
+          flipCoin={() => flipCoin(p1User)}
+          takeTurn={() => takeTurn(p1User)}
           flipActive={() => setIsSelfActive(!isSelfActive)}
         ></BoardButtons>
-
-        <CardContextMenu></CardContextMenu>
       </AppDispatchContext.Provider>
     </AppContext.Provider>
   );

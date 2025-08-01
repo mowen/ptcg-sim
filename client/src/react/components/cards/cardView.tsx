@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import cardBackImage from '../../../assets/cardback.png';
 import { Card, UserType } from '../../../models';
-import { AttachedCards } from '../zones/attachedCards';
+import { AttachedCards } from '../popups/attachedCards';
 
 function CardView({
   card,
@@ -31,13 +31,13 @@ function CardView({
           className={`${className ?? ''} card`}
         />
       )}
-      {showAttached ? (
+      {/* {showAttached ? (
         <AttachedCards
           cssUser={cssUser}
           cards={card.attached}
           onClose={() => setShowAttached(false)}
         />
-      ) : null}
+      ) : null} */}
     </>
   );
 }

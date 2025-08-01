@@ -19,16 +19,6 @@ export function LostZone({
       <div id="lostZoneText" className={`${user}-text`}>
         (<span id="lostZoneCount">{cards.length}</span>)
       </div>
-
-      <div id="lostZone" className={`zone ${user}-view`}>
-        <div className="zone-button-container">
-          <button id="closeLostZoneButton" className="zone-button">
-            Close
-          </button>
-          <input type="checkbox" id="sortLostZoneCheckbox" />
-          <label htmlFor="sortLostZoneCheckbox">Sort</label>
-        </div>
-      </div>
     </>
   );
 }
