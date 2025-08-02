@@ -14,7 +14,7 @@ export function SpecialMoves({
   return (
     <div
       id="specialMoveButtonContainer"
-      className={`${cssUser}-special-move-button-container`}
+      className={`${cssUser}-special-move-button-container zone`}
     >
       <GxVStarButton user={boardUser} type="VSTAR" used={vstarUsed} />
       <GxVStarButton user={boardUser} type="GX" used={gxUsed} />

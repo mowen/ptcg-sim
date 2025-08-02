@@ -5,11 +5,15 @@ button {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.card {
-  max-height: 14vh;
+.card { 
+  /* max-height: 14vh; */
+  max-height: 100%;
+  object-fit: contain;
+  display: block; 
 }
 
 .zone {
+  height: 170px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -17,12 +21,12 @@ button {
 
 .board {
   display: grid;
-  grid-template-columns: repeat(11, 1fr);
+  grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  grid-template-areas: "lz lz st ac ac ac ac ac bu bo bo de"
-                       "pr pr be be be be be be be bo bo di"
+  grid-template-areas: "lz lz lz st ac ac ac ac bu bo bo de"
+                       "pr pr pr be be be be be be bo bo di"
                        "ha ha ha ha ha ha ha ha ha ha ha ha";
-  gap: 0.5em;
+  /* gap: 0.5em; */
 }
 
 #prizes {
@@ -150,10 +154,12 @@ button {
 
 .self-text {
   font-size: clamp(10px, 4vh, 20px);
+  position: fixed;
 }
 .opp-text {
   font-size: clamp(10px, 4vh, 20px);
   transform: scaleX(-1) scaleY(-1);
+  position: fixed;
 }
 #shuffleDiscardButton {
   background: linear-gradient(
@@ -333,7 +339,7 @@ button {
   margin: 1px;
 }
 
-#hand img,
+/* #hand img,
 #bench div img,
 #lostZoneCover img,
 #deckCover img,
@@ -358,7 +364,7 @@ button {
 #active,
 #prizes {
   border-radius: 0.5rem;
-}
+} */
 .default-rotation {
   transform: rotate(0deg) !important;
 }

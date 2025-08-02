@@ -34,11 +34,6 @@ export function Board({
 
   return (
     <div id={`${cssUser}Container`} className={`${cssUser} board`}>
-      <div id="boardCenterDesign">
-        <div id="boardCircle"></div>
-        <div id="innerCircle"></div>
-      </div>
-
       <Deck user={cssUser} cards={board.deck}></Deck>
       <Discard user={cssUser} cards={board.discard}></Discard>
       <LostZone user={cssUser} cards={board.lostZone}></LostZone>

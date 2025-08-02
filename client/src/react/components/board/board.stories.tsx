@@ -3,23 +3,9 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Board } from './board';
 import { immerable } from 'immer';
 import { CardDTO } from '../../../models';
-// import { AppContext } from '../../context/appContext';
-
-// function processAction(action: ActionDTO) {
-//   console.log(`Got Action:`, action);
-// }
 
 const meta = {
   component: Board,
-  // decorators: [
-  //   (Story) => (
-  //     <AppContext.Provider value={state}>
-  //       <AppDispatchContext.Provider value={processAction}>
-  //         <Story />
-  //       </AppDispatchContext.Provider>
-  //     </AppContext.Provider>;
-  //   ),
-  // ],
 } satisfies Meta<typeof Board>;
 
 export default meta;

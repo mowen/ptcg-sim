@@ -4,7 +4,7 @@ import CardView from '../cards/cardView';
 export function Discard({ user, cards }: { user: string; cards: Array<Card> }) {
   return (
     <>
-      <div id="discardCover" className="outline">
+      <div id="discardCover" className="outline zone">
         <div id="discardText" className={`${user}-text`}>
           (<span id="discardCount">{cards.length}</span>)
         </div>
