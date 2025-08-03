@@ -5,18 +5,26 @@ button {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.card { 
-  /* max-height: 14vh; */
-  max-height: 100%;
-  object-fit: contain;
-  display: block; 
-}
-
 .zone {
-  height: 170px;
+  height: 10.8em;
   display: inline-flex;
   justify-content: center;
   align-items: center;
+
+  .pokemon {
+    top: -4.3em;
+  }
+
+  .plain, .pokemon {
+    width: 7em;
+
+    img { 
+      top: 0px;
+      max-height: 9em;
+      object-fit: contain;
+      display: block; 
+    }
+  }
 }
 
 .board {
@@ -31,42 +39,6 @@ button {
 
 #prizes {
   grid-area: pr;
-  position: relative;
-  overflow: hidden;
-}
-
-#prizes img {
-  position: absolute; 
-}
-
-.prize-0 {
-  z-index: 0;
-  left: 0px;
-}
-
-.prize-1 {
-  z-index: 1;
-  left: 15px;
-}
-
-.prize-2 {
-  z-index: 2;
-  left: 30px;
-}
-
-.prize-3 {
-  z-index: 3;
-  left: 45px;
-}
-
-.prize-4 {
-  z-index: 4;
-  left: 60px;
-}
-
-.prize-5 {
-  z-index: 5;
-  left: 75px;
 }
 
 #active {
@@ -115,34 +87,6 @@ button {
   grid-area: bu;
 }
 
-#boardCenterDesign {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-}
-#boardCircle {
-  position: absolute;
-  width: 16vw;
-  height: 16vw;
-  bottom: calc(100% - 8vw);
-  left: calc(50% - 8vw);
-  border-radius: 50%;
-  background: rgba(164, 164, 216, 0.112);
-  z-index: -2;
-}
-#innerCircle {
-  position: absolute;
-  width: 4vw;
-  height: 4vw;
-  bottom: calc(100% - 2vw);
-  left: calc(50% - 2vw);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.6);
-  z-index: -2;
-}
 .outline {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   background-color: rgba(255, 255, 255, 0.1);

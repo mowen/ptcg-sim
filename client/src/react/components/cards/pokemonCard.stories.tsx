@@ -39,7 +39,6 @@ export const Default: Story = {
       ],
     } as Card,
     faceUp: true,
-    className: '',
   },
 };
 
@@ -71,7 +70,6 @@ export const DamageCounters: Story = {
       ],
     } as Card,
     faceUp: true,
-    className: '',
   },
 };
 
@@ -99,6 +97,34 @@ export const Energy: Story = {
           imageUrl:
             'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN.png',
         },
+        {
+          id: 57,
+          name: 'Fire Energy',
+          type: 'Energy',
+          imageUrl:
+            'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN.png',
+        },
+        {
+          id: 53,
+          name: 'Psychic Energy',
+          type: 'Energy',
+          imageUrl:
+            'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png',
+        },
+        {
+          id: 54,
+          name: 'Psychic Energy',
+          type: 'Energy',
+          imageUrl:
+            'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png',
+        },
+        {
+          id: 55,
+          name: 'Psychic Energy',
+          type: 'Energy',
+          imageUrl:
+            'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png',
+        },
       ],
       evolutions: [
         {
@@ -118,6 +144,5 @@ export const Energy: Story = {
       ],
     } as Card,
     faceUp: true,
-    className: '',
   },
 };

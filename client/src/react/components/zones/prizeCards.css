@@ -1,0 +1,14 @@
+#prizes {
+  position: relative;
+  overflow: hidden;
+  img {
+    position: absolute;
+  }
+}
+
+@for $i from 0 to 5 {
+  .prize-$i {
+    z-index: $i;
+    left: calc($i * 15px);
+  }
+}

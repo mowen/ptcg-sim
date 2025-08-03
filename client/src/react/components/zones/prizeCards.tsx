@@ -1,6 +1,8 @@
 import { Card } from '../../../models';
 import CardView from '../cards/cardView';
 
+import './prizeCards.css';
+
 export function PrizeCards({ cards }: { cards: Array<Card> }) {
   return (
     <div id="prizes" className="outline zone">
