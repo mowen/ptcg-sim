@@ -9,6 +9,8 @@ import {
 } from './react';
 import { useHotkeys } from 'react-hotkeys-hook';
 
+import './App.css';
+
 function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
   const [isSelfActive, setIsSelfActive] = useState(true);
   const [state, setState] = useState(() => {
@@ -67,11 +69,6 @@ function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
           boardUser={p2User}
           playerState={state.gameState[p2User]}
         />
-        <Board
-          cssUser={UserType.Self}
-          boardUser={p1User}
-          playerState={state.gameState[p1User]}
-        />
 
         <div id="selfResizer" className="self-color"></div>
         <div id="oppResizer" className="opp-color"></div>
@@ -82,6 +79,12 @@ function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
           takeTurn={() => takeTurn(p1User)}
           flipActive={() => setIsSelfActive(!isSelfActive)}
         ></BoardButtons>
+
+        <Board
+          cssUser={UserType.Self}
+          boardUser={p1User}
+          playerState={state.gameState[p1User]}
+        />
       </AppDispatchContext.Provider>
     </AppContext.Provider>
   );

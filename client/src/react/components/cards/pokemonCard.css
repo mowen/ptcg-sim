@@ -1,6 +1,6 @@
 .pokemon {
   position: relative;
-  overflow: visible;
+  top: -4.3em;
 
   img {
     top: 0px;

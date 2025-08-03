@@ -11,16 +11,16 @@ function PokemonCard({
   card: Card;
   faceUp?: boolean;
 }) {
+  const evoVertOffset: number = 0.8;
   const baseStyle = (evoCount: number): CSSProperties => ({
     zIndex: 0,
-    top: `${evoCount * -1 * evoVertOffset}px`,
-    left: '0px',
+    top: `${evoCount * -1 * evoVertOffset}em`,
+    left: '0em',
   });
 
-  const evoVertOffset: number = 10;
   const evoStyle = (level: number): CSSProperties => ({
     zIndex: level,
-    top: `${level * evoVertOffset - evoVertOffset}px`,
+    top: `${level * evoVertOffset - evoVertOffset}em`,
     position: 'absolute',
   });
 
@@ -36,11 +36,11 @@ function PokemonCard({
     );
   });
 
-  const energyHorizOffset: number = 10;
+  const energyHorizOffset: number = 0.8;
   const energyStyle = (level: number): CSSProperties => ({
     zIndex: (level + 1) * -1,
     top: '0px',
-    left: `${energyHorizOffset + level * energyHorizOffset}px`,
+    left: `${energyHorizOffset + level * energyHorizOffset}em`,
     position: 'absolute',
   });
 
@@ -62,9 +62,9 @@ function PokemonCard({
       </div>
     ) : null;
 
-  const cardWidth = 7; // em
+  const cardWidth = 7.3; // em
   const pokemonStyle = (energyCount: number): CSSProperties => ({
-    width: `${cardWidth + energyCount * 0.4}em`,
+    width: `${cardWidth + energyCount * 0.8}em`,
   });
 
   return (

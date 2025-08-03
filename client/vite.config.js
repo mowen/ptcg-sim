@@ -2,7 +2,6 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react'
-import postcssFor from 'postcss-for' 
 import postcssNesting from 'postcss-nested'
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -36,7 +35,6 @@ export default defineConfig({
     postcss: {
       map: true,
       plugins: [
-        postcssFor,
         postcssNesting
       ]
     }

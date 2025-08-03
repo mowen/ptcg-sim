@@ -5,24 +5,29 @@ button {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+#active,
+#bench {
+  /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); */
+  /* background-color: rgba(255, 255, 255, 0.1); */
+  border: rgb(214 211 211) 2px dotted;
+  margin-bottom: 5px;
+}
+
 .zone {
-  height: 10.8em;
+  min-height: 9.8em;
   display: inline-flex;
   justify-content: center;
   align-items: center;
 
+  .plain,
   .pokemon {
-    top: -4.3em;
-  }
+    width: 7.3em;
 
-  .plain, .pokemon {
-    width: 7em;
-
-    img { 
+    img {
       top: 0px;
-      max-height: 9em;
+      max-height: 9.5em;
       object-fit: contain;
-      display: block; 
+      display: block;
     }
   }
 }
@@ -31,9 +36,10 @@ button {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  grid-template-areas: "lz lz lz st ac ac ac ac bu bo bo de"
-                       "pr pr pr be be be be be be bo bo di"
-                       "ha ha ha ha ha ha ha ha ha ha ha ha";
+  grid-template-areas:
+    'lz lz lz st ac ac ac ac bu bo bo de'
+    'pr pr pr be be be be be be bo bo di'
+    'ha ha ha ha ha ha ha ha ha ha ha ha';
   /* gap: 0.5em; */
 }
 
@@ -85,11 +91,11 @@ button {
 
 #specialMoveButtonContainer {
   grid-area: bu;
-}
-
-.outline {
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-  background-color: rgba(255, 255, 255, 0.1);
+  display: inline-flex;
+  align-items: normal;
+  margin-top: 1em;
+  margin-left: 1em;
+  gap: 5px;
 }
 
 .flip-image img {
@@ -116,28 +122,6 @@ button {
 #shuffleDiscardButton:hover {
   background-color: rgba(116, 129, 183, 0.864);
 }
-
-/* .self-special-move-button-container {
-  position: fixed;
-  height: 6%;
-  width: 10%;
-  right: 75%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 5px;
-}
-
-.opp-special-move-button-container {
-  position: fixed;
-  height: 6%;
-  width: 10%;
-  left: 51%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 5px;
-} */
 
 #specialMoveButtonContainer button {
   min-height: 10px;
@@ -283,35 +267,10 @@ button {
   margin: 1px;
 }
 
-/* #hand img,
-#bench div img,
-#lostZoneCover img,
-#deckCover img,
-#discardCover img,
-#board img,
-.play-container img,
-.full-view img,
-#attachedCards img,
-#viewCards img,
-#deck img,
-#lostZone img,
-#discard img,
-#prizes img {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  border-radius: 0.275rem;
-  cursor: pointer;
-}
-#hand,
-#bench,
-#deckCover,
-#discardCover,
-#active,
-#prizes {
-  border-radius: 0.5rem;
-} */
 .default-rotation {
   transform: rotate(0deg) !important;
 }
+
 .high-zIndex {
   z-index: 1 !important;
 }
