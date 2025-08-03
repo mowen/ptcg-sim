@@ -30,6 +30,5 @@ export const Default: Story = {
       ],
     } as Card,
     faceUp: true,
-    className: '',
   },
 };

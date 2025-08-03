@@ -38,7 +38,6 @@ export const Default: Story = {
         } as Card,
       ],
     } as Card,
-    faceUp: true,
   },
 };
 
@@ -69,7 +68,6 @@ export const DamageCounters: Story = {
         } as Card,
       ],
     } as Card,
-    faceUp: true,
   },
 };
 
@@ -143,6 +141,5 @@ export const Energy: Story = {
         } as Card,
       ],
     } as Card,
-    faceUp: true,
   },
 };

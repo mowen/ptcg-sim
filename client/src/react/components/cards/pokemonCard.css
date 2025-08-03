@@ -1,13 +1,3 @@
-.pokemon {
-  position: relative;
-  top: -4.3em;
-
-  img {
-    top: 0px;
-    position: absolute;
-  }
-}
-
 .damage-counter {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   z-index: 3;

@@ -10,7 +10,7 @@ button {
   /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); */
   /* background-color: rgba(255, 255, 255, 0.1); */
   border: rgb(214 211 211) 2px dotted;
-  margin-bottom: 5px;
+  margin-bottom: 0.5em;
 }
 
 .zone {
@@ -21,11 +21,12 @@ button {
 
   .plain,
   .pokemon {
-    width: 7.3em;
+    width: 6.3em;
+    max-height: 9.5em;
 
     img {
       top: 0px;
-      max-height: 9.5em;
+      max-height: 8.4em;
       object-fit: contain;
       display: block;
     }
@@ -40,7 +41,6 @@ button {
     'lz lz lz st ac ac ac ac bu bo bo de'
     'pr pr pr be be be be be be bo bo di'
     'ha ha ha ha ha ha ha ha ha ha ha ha';
-  /* gap: 0.5em; */
 }
 
 #prizes {

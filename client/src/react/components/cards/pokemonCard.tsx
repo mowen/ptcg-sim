@@ -4,24 +4,19 @@ import CardView from './cardView';
 
 import './pokemonCard.css';
 
-function PokemonCard({
-  card,
-  faceUp = true,
-}: {
-  card: Card;
-  faceUp?: boolean;
-}) {
+function PokemonCard({ card }: { card: Card }) {
   const evoVertOffset: number = 0.8;
   const baseStyle = (evoCount: number): CSSProperties => ({
     zIndex: 0,
     top: `${evoCount * -1 * evoVertOffset}em`,
     left: '0em',
+    position: evoCount == 0 ? 'relative' : 'absolute',
   });
 
-  const evoStyle = (level: number): CSSProperties => ({
+  const evoStyle = (evoCount: number, level: number): CSSProperties => ({
     zIndex: level,
     top: `${level * evoVertOffset - evoVertOffset}em`,
-    position: 'absolute',
+    position: evoCount != level + 1 ? 'relative' : 'absolute',
   });
 
   const evolutions = card.evolutions.map((pokemon, i) => {
@@ -29,9 +24,8 @@ function PokemonCard({
     return (
       <CardView
         card={pokemon}
-        faceUp={faceUp}
         wrapWithDiv={false}
-        style={evoStyle(i)}
+        style={evoStyle(card.evolutions.length, i)}
       />
     );
   });
@@ -46,14 +40,19 @@ function PokemonCard({
 
   const energies = card.energy.map((energy, i) => {
     return (
-      <CardView
-        card={energy}
-        faceUp={faceUp}
-        wrapWithDiv={false}
-        style={energyStyle(i)}
-      />
+      <CardView card={energy} wrapWithDiv={false} style={energyStyle(i)} />
     );
   });
+
+  const toolStyle: CSSProperties = {
+    transform: 'rotate(-90deg)',
+    zIndex: -1 * (card.energy.length + 1),
+    position: 'absolute',
+    left: '-0.5em',
+  };
+  const tool = card.tool ? (
+    <CardView card={card.tool} wrapWithDiv={false} style={toolStyle} />
+  ) : null;
 
   const damage =
     card.damage > 0 ? (
@@ -62,21 +61,23 @@ function PokemonCard({
       </div>
     ) : null;
 
-  const cardWidth = 7.3; // em
+  const cardWidth = 6.3; // em
   const pokemonStyle = (energyCount: number): CSSProperties => ({
-    width: `${cardWidth + energyCount * 0.8}em`,
+    width: `${cardWidth + energyCount * energyHorizOffset}em`,
+    top: `${evoVertOffset}em`,
+    position: 'relative',
   });
 
   return (
     <div className="pokemon" style={pokemonStyle(card.energy.length)}>
       <CardView
         card={card}
-        faceUp={faceUp}
         wrapWithDiv={false}
         style={baseStyle(card.evolutions.length)}
       />
       {evolutions}
       {energies}
+      {tool}
       {damage}
     </div>
   );

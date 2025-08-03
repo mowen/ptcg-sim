@@ -39,7 +39,7 @@ export function Board({
       <LostZone user={cssUser} cards={board.lostZone}></LostZone>
       <Hand user={cssUser} cards={board.hand}></Hand>
       <Bench cards={board.bench}></Bench>
-      <Active user={cssUser} cards={board.active}></Active>
+      <Active cards={board.active}></Active>
       <PrizeCards cards={board.prize} />
       <PlayBoard user={cssUser} cards={board.board} />
       <SpecialMoves

@@ -7,13 +7,11 @@ function CardView({
   card,
   faceUp = true,
   wrapWithDiv = true,
-  className = '',
   style = {},
 }: {
   card: Card;
   faceUp?: boolean;
   wrapWithDiv?: boolean;
-  className?: string;
   style?: CSSProperties;
 }) {
   // const cssUser = UserType.Self;
@@ -23,7 +21,7 @@ function CardView({
     <img
       src={card.imageUrl}
       alt={card.name}
-      className={`${className ?? ''} card`}
+      className={'card'}
       style={style}
       // onClick={() => setShowAttached(true)}
     />
@@ -31,7 +29,7 @@ function CardView({
     <img
       src={cardBackImage}
       alt="Face down card"
-      className={`${className ?? ''} card`}
+      className={'card'}
       style={style}
     />
   );
