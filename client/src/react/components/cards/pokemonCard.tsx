@@ -54,26 +54,22 @@ function Damage({ parent }: { parent: Card }) {
 }
 
 function PokemonCard({ card }: { card: Card }) {
-  const baseStyle = (evoCount: number): CSSProperties => ({
+  const cardStyle: CSSProperties = {
     zIndex: 0,
-    top: `${evoCount * -1 * evoVertOffset}em`,
+    top: `${card.evolutions.length * -1 * evoVertOffset}em`,
     left: '0em',
-    position: evoCount == 0 ? 'relative' : 'absolute',
-  });
+    position: card.evolutions.length == 0 ? 'relative' : 'absolute',
+  };
 
-  const pokemonStyle = (energyCount: number): CSSProperties => ({
-    width: `${cardWidth + energyCount * energyHorizOffset}em`,
+  const pokemonStyle: CSSProperties = {
+    width: `${cardWidth + card.energy.length * energyHorizOffset}em`,
     top: `${evoVertOffset}em`,
     position: 'relative',
-  });
+  };
 
   return (
-    <div className="pokemon" style={pokemonStyle(card.energy.length)}>
-      <CardView
-        card={card}
-        wrapWithDiv={false}
-        style={baseStyle(card.evolutions.length)}
-      />
+    <div className="pokemon" style={pokemonStyle}>
+      <CardView card={card} wrapWithDiv={false} style={cardStyle} />
       <Evolutions parent={card} />
       <Energies parent={card} />
       <Tool parent={card} />
