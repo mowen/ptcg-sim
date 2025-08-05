@@ -4,33 +4,23 @@ import CardView from './cardView';
 
 import './pokemonCard.css';
 
-function PokemonCard({ card }: { card: Card }) {
-  const evoVertOffset: number = 0.8;
-  const baseStyle = (evoCount: number): CSSProperties => ({
-    zIndex: 0,
-    top: `${evoCount * -1 * evoVertOffset}em`,
-    left: '0em',
-    position: evoCount == 0 ? 'relative' : 'absolute',
+const evoVertOffset: number = 0.8;
+const energyHorizOffset: number = 0.8;
+const cardWidth = 6.3;
+
+function Evolutions({ parent }: { parent: Card }) {
+  const evoStyle = (level: number): CSSProperties => ({
+    zIndex: level + 1,
+    top: `${(level + 1) * evoVertOffset - evoVertOffset}em`,
+    position: parent.evolutions.length != level + 2 ? 'relative' : 'absolute',
   });
 
-  const evoStyle = (evoCount: number, level: number): CSSProperties => ({
-    zIndex: level,
-    top: `${level * evoVertOffset - evoVertOffset}em`,
-    position: evoCount != level + 1 ? 'relative' : 'absolute',
-  });
+  return parent.evolutions.map((pokemon, i) => (
+    <CardView card={pokemon} wrapWithDiv={false} style={evoStyle(i)} />
+  ));
+}
 
-  const evolutions = card.evolutions.map((pokemon, i) => {
-    i++; // 1 based index
-    return (
-      <CardView
-        card={pokemon}
-        wrapWithDiv={false}
-        style={evoStyle(card.evolutions.length, i)}
-      />
-    );
-  });
-
-  const energyHorizOffset: number = 0.8;
+function Energies({ parent }: { parent: Card }) {
   const energyStyle = (level: number): CSSProperties => ({
     zIndex: (level + 1) * -1,
     top: '0px',
@@ -38,30 +28,39 @@ function PokemonCard({ card }: { card: Card }) {
     position: 'absolute',
   });
 
-  const energies = card.energy.map((energy, i) => {
-    return (
-      <CardView card={energy} wrapWithDiv={false} style={energyStyle(i)} />
-    );
-  });
+  return parent.energy.map((energy, i) => (
+    <CardView card={energy} wrapWithDiv={false} style={energyStyle(i)} />
+  ));
+}
 
+function Tool({ parent }: { parent: Card }) {
   const toolStyle: CSSProperties = {
     transform: 'rotate(-90deg)',
-    zIndex: -1 * (card.energy.length + 1),
+    zIndex: -1 * (parent.energy.length + 1),
     position: 'absolute',
     left: '-0.5em',
   };
-  const tool = card.tool ? (
-    <CardView card={card.tool} wrapWithDiv={false} style={toolStyle} />
+  return parent.tool ? (
+    <CardView card={parent.tool} wrapWithDiv={false} style={toolStyle} />
   ) : null;
+}
 
-  const damage =
-    card.damage > 0 ? (
-      <div className="damage-counter" contentEditable="true">
-        {card.damage}
-      </div>
-    ) : null;
+function Damage({ parent }: { parent: Card }) {
+  return parent.damage > 0 ? (
+    <div className="damage-counter" contentEditable="true">
+      {parent.damage}
+    </div>
+  ) : null;
+}
 
-  const cardWidth = 6.3; // em
+function PokemonCard({ card }: { card: Card }) {
+  const baseStyle = (evoCount: number): CSSProperties => ({
+    zIndex: 0,
+    top: `${evoCount * -1 * evoVertOffset}em`,
+    left: '0em',
+    position: evoCount == 0 ? 'relative' : 'absolute',
+  });
+
   const pokemonStyle = (energyCount: number): CSSProperties => ({
     width: `${cardWidth + energyCount * energyHorizOffset}em`,
     top: `${evoVertOffset}em`,
@@ -75,10 +74,10 @@ function PokemonCard({ card }: { card: Card }) {
         wrapWithDiv={false}
         style={baseStyle(card.evolutions.length)}
       />
-      {evolutions}
-      {energies}
-      {tool}
-      {damage}
+      <Evolutions parent={card} />
+      <Energies parent={card} />
+      <Tool parent={card} />
+      <Damage parent={card} />
     </div>
   );
 }
