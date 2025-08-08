@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App.js';
 import { ActionDTO } from './models';
 import testState from '../tests/react/reducer/testData/data.json';
+import Sidebar from './Sidebar.js';
 
 const actions = testState
   .filter((obj) => !('version' in obj))
@@ -19,5 +20,6 @@ const actions = testState
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App initialActions={actions} />
+    <Sidebar />
   </StrictMode>
 );

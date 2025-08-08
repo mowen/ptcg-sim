@@ -1,13 +1,14 @@
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react'
-import postcssNesting from 'postcss-nested'
+import react from '@vitejs/plugin-react';
+import postcssNesting from 'postcss-nested';
+import {plugin as mdPlugin} from 'vite-plugin-markdown';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), mdPlugin({mode: 'react'})],
   build: {
     sourcemap: true,
     rollupOptions: {
