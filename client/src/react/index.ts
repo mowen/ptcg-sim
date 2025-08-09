@@ -17,23 +17,39 @@ import actionReducer from './reducer/actionReducer';
 import { undoableActionReducer } from './reducer/undoableActionReducer';
 import { Stadium } from './components/zones/stadium';
 import { BoardButtons } from './components/buttons/boardButtons';
+import DeckImport from './components/sidebar/deckImport';
+import Settings from './components/sidebar/settings';
+import KeybindModal from './components/popups/keybinds';
+import Donations from './components/sidebar/donations';
+import P1Box from './components/sidebar/p1Box';
+import P2Box from './components/sidebar/p2Box';
+import Options from './components/sidebar/options';
+import Changelog from './components/sidebar/changelog';
 
 export {
   actionReducer,
   undoableActionReducer,
   CardView,
+  Changelog,
   Active,
   Board,
   BoardButtons,
+  Donations,
   Hand,
   Bench,
   PrizeCards,
+  P1Box,
+  P2Box,
   Discard,
   Deck,
+  DeckImport,
   LostZone,
+  Options,
   PlayBoard,
   AttachedCards,
+  KeybindModal,
   ViewCards,
+  Settings,
   SpecialMoves,
   Stadium,
   useMutationObserver,

@@ -74,7 +74,6 @@ body {
   background-color: rgba(0, 0, 0, 0.9) !important;
 }
 #keybindModal {
-  display: none;
   position: fixed;
   width: 70%;
   height: 95%;
@@ -289,7 +288,6 @@ li {
 }
 #changelog,
 #donationsPage {
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -413,7 +411,6 @@ li {
   width: 100%;
 }
 #p2Box {
-  display: none;
   border-radius: 10px 10px 0 0;
 }
 #p2ExplanationBox {
@@ -568,7 +565,6 @@ li {
   width: 100%;
 }
 #deckImport {
-  display: none;
   border-radius: 10px 10px 0 0;
 }
 #deckBuilderButton,
@@ -815,7 +811,6 @@ li {
   display: none;
 }
 #settings {
-  display: none;
   border-radius: 10px 0 0 0;
 }
 #changeBackgroundButton {

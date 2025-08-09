@@ -49,7 +49,6 @@ export function Board({
         gxUsed={playerState.boardState.gxUsed}
       ></SpecialMoves>
       <Stadium cards={board.stadium}></Stadium>
-      <ViewCards user={cssUser}></ViewCards>
     </div>
   );
 }

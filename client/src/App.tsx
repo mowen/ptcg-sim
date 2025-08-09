@@ -5,6 +5,7 @@ import {
   AppDispatchContext,
   Board,
   BoardButtons,
+  KeybindModal,
   undoableActionReducer,
 } from './react';
 import { useHotkeys } from 'react-hotkeys-hook';
@@ -20,6 +21,7 @@ function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
     });
     return initialState;
   });
+  const [showKeybinds, setShowKeybinds] = useState(false);
 
   const processAction = useCallback(
     (action: ActionDTO) =>
@@ -60,6 +62,7 @@ function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
       parameters: [],
     });
   });
+  useHotkeys('?', () => setShowKeybinds(true), { useKey: true });
 
   return (
     <AppContext.Provider value={state}>
@@ -85,6 +88,8 @@ function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
           boardUser={p1User}
           playerState={state.gameState[p1User]}
         />
+
+        <KeybindModal show={showKeybinds} />
       </AppDispatchContext.Provider>
     </AppContext.Provider>
   );
