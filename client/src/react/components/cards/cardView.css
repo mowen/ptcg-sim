@@ -1,0 +1,6 @@
+.card {
+  top: 0px;
+  object-fit: contain;
+  display: block;
+  max-height: 8.4em;
+}

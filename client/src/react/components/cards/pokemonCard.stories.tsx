@@ -11,7 +11,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const TwoEvolutions: Story = {
   args: {
     card: {
       id: 1,
@@ -35,6 +35,29 @@ export const Default: Story = {
           type: 'Pokémon',
           imageUrl:
             'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_130_R_EN.png',
+        } as Card,
+      ],
+    } as Card,
+  },
+};
+
+export const OneEvolution: Story = {
+  args: {
+    card: {
+      id: 1,
+      name: 'Dreepy',
+      type: 'Pokémon',
+      imageUrl:
+        'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN.png',
+      damage: 0,
+      energy: [],
+      evolutions: [
+        {
+          id: 5,
+          name: 'Drakloak',
+          type: 'Pokémon',
+          imageUrl:
+            'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN.png',
         } as Card,
       ],
     } as Card,

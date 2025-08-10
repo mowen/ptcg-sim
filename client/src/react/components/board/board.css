@@ -23,13 +23,6 @@ button {
   .pokemon {
     width: 6.3em;
     max-height: 9.5em;
-
-    img {
-      top: 0px;
-      max-height: 8.4em;
-      object-fit: contain;
-      display: block;
-    }
   }
 }
 

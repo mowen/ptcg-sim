@@ -1,9 +1,9 @@
-# name: ptcg-sim
+name: ptcgsim
 
 services:
 
-  ptcgweb:
-    image: web
+  app:
+    image: ptcgsim-app
     build:
       context: ..
       dockerfile: ./docker/web/Dockerfile
@@ -19,7 +19,7 @@ services:
       - ../server/database/:/app/server/database
 
   storybook:
-    image: storybook
+    image: ptcgsim-storybook
     build:
       context: ..
       dockerfile: ./docker/storybook/Dockerfile
