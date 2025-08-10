@@ -1,6 +1,7 @@
 # name: ptcg-sim
 
 services:
+
   ptcgweb:
     image: web
     build:
@@ -16,3 +17,13 @@ services:
       - 4000:4000 
     volumes:
       - ../server/database/:/app/server/database
+
+  storybook:
+    image: storybook
+    build:
+      context: ..
+      dockerfile: ./docker/storybook/Dockerfile
+    expose:
+      - 80
+    ports:
+      - 8080:80 

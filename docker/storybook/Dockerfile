@@ -18,14 +18,7 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-l
 
 FROM base AS build
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
-RUN pnpm run build
+RUN pnpm -C client run build-storybook
 
-FROM base
-COPY --from=prod-deps /app/node_modules /app/node_modules
-COPY --from=prod-deps /app/client/node_modules /app/client/node_modules
-COPY --from=prod-deps /app/server/node_modules /app/server/node_modules
-COPY --from=build /app/client/dist /app/client/dist
-COPY --from=build /app/server/dist /app/server/dist
-RUN pnpm install -g nodemon 
-
-CMD [ "pnpm", "start" ]
+FROM nginx as deploy
+COPY --from=build /app/client/storybook-static /usr/share/nginx/html
