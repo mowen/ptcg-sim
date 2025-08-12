@@ -1,27 +1,22 @@
-import { useCallback, useState } from 'react';
-import { ActionDTO, UndoableGameStateDTO, UserType } from './models';
-import {
-  AppContext,
-  AppDispatchContext,
-  Board,
-  BoardButtons,
-  KeybindModal,
-  undoableActionReducer,
-} from './react';
-import { useHotkeys } from 'react-hotkeys-hook';
+import { useCallback, useEffect, useState } from 'react';
+import Sidebar from './Sidebar';
+import TableTop from './TableTop';
+import { AppContext, AppDispatchContext, undoableActionReducer } from './react';
+import { ActionDTO, UndoableGameStateDTO } from './models';
 
-import './App.css';
+type ImportAction = {
+  user: string;
+  action: string;
+  parameters: Array<unknown>;
+  emit: boolean;
+};
 
-function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
-  const [isSelfActive, setIsSelfActive] = useState(true);
-  const [state, setState] = useState(() => {
-    let initialState = new UndoableGameStateDTO();
-    initialActions.forEach((a) => {
-      initialState = undoableActionReducer(initialState, a);
-    });
-    return initialState;
-  });
-  const [showKeybinds, setShowKeybinds] = useState(false);
+type ImportData = {
+  actions: Array<{ version: string } | ImportAction>;
+};
+
+export function App() {
+  const [state, setState] = useState(new UndoableGameStateDTO());
 
   const processAction = useCallback(
     (action: ActionDTO) =>
@@ -29,70 +24,42 @@ function App({ initialActions }: { initialActions: Array<ActionDTO> }) {
     []
   );
 
-  const flipCoin = (boardUser: string) => {
-    console.log(`${boardUser} flipped a coin`);
-  };
+  useEffect(() => {
+    const loadImportData = async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const importKey = urlParams.get('importKey');
 
-  const takeTurn = (boardUser: string) => {
-    processAction({
-      user: boardUser,
-      emit: true,
-      type: 'takeTurn',
-      parameters: [boardUser],
-    });
-  };
-
-  const [p1User, p2User] = isSelfActive
-    ? [UserType.Self, UserType.Opp]
-    : [UserType.Opp, UserType.Self];
-
-  useHotkeys('left', () => {
-    processAction({
-      user: p1User,
-      emit: true,
-      type: 'undo',
-      parameters: [],
-    });
-  });
-  useHotkeys('right', () => {
-    processAction({
-      user: p1User,
-      emit: true,
-      type: 'redo',
-      parameters: [],
-    });
-  });
-  useHotkeys('?', () => setShowKeybinds(true), { useKey: true });
+      if (importKey) {
+        let importDataResponse: Response;
+        try {
+          importDataResponse = await fetch(`/import/${importKey}`);
+          const importDataJson =
+            (await importDataResponse.json()) as ImportData;
+          const actions = importDataJson.actions.filter(
+            (obj) => !('version' in obj)
+          ) as Array<ImportAction>; // Remove any objects containing version property
+          actions.forEach((action: ImportAction) => {
+            processAction({
+              user: action.user,
+              type: action.action,
+              parameters: action.parameters,
+              emit: action.emit,
+            });
+          });
+        } catch (error) {
+          console.error('Error fetching import data:', error);
+        }
+      }
+    };
+    loadImportData();
+  }, [processAction]);
 
   return (
     <AppContext.Provider value={state}>
       <AppDispatchContext.Provider value={processAction}>
-        <Board
-          cssUser={UserType.Opp}
-          boardUser={p2User}
-          playerState={state.gameState[p2User]}
-        />
-
-        <div id="selfResizer" className="self-color"></div>
-        <div id="oppResizer" className="opp-color"></div>
-
-        <BoardButtons
-          boardUser={p1User}
-          flipCoin={() => flipCoin(p1User)}
-          takeTurn={() => takeTurn(p1User)}
-          flipActive={() => setIsSelfActive(!isSelfActive)}
-        ></BoardButtons>
-
-        <Board
-          cssUser={UserType.Self}
-          boardUser={p1User}
-          playerState={state.gameState[p1User]}
-        />
-
-        <KeybindModal show={showKeybinds} />
+        <TableTop state={state} />
+        <Sidebar />
       </AppDispatchContext.Provider>
     </AppContext.Provider>
   );
 }
-
-export default App;
