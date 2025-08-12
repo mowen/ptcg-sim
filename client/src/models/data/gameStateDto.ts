@@ -16,6 +16,8 @@ class PlayerStateDTO {
 class GameStateDTO {
   [immerable] = true;
 
+  [key: string]: any;
+
   public initiator: UserType = UserType.Self;
   public isTwoPlayer: boolean = false;
   public self: PlayerStateDTO = new PlayerStateDTO();

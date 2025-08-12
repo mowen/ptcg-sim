@@ -2,8 +2,8 @@ import { Patch } from 'immer';
 import { GameStateDTO } from './gameStateDto';
 
 class UndoPatches {
-  public patches: Array<Patch>;
-  public inversePatches: Array<Patch>;
+  public patches: Array<Patch> = new Array<Patch>();
+  public inversePatches: Array<Patch> = new Array<Patch>();
 }
 
 class UndoableGameStateDTO {

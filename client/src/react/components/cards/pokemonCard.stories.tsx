@@ -20,7 +20,7 @@ export const TwoEvolutions: Story = {
       imageUrl:
         'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN.png',
       damage: 0,
-      energy: [],
+      energy: [] as Array<Card>,
       evolutions: [
         {
           id: 5,
@@ -50,7 +50,7 @@ export const OneEvolution: Story = {
       imageUrl:
         'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN.png',
       damage: 0,
-      energy: [],
+      energy: [] as Array<Card>,
       evolutions: [
         {
           id: 5,
@@ -73,7 +73,7 @@ export const DamageCounters: Story = {
       imageUrl:
         'https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN.png',
       damage: 180,
-      energy: [],
+      energy: [] as Array<Card>,
       evolutions: [
         {
           id: 5,

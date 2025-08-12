@@ -3,8 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import CardView from './cardView';
 import { Card } from '../../../models';
 
-import './cardView.css';
-
 const meta = {
   component: CardView,
 } satisfies Meta<typeof CardView>;

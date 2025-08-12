@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { Card } from '../../../models';
 import CardView from '../cards/cardView';
-import useMutationObserver from '../../hooks/useMutationObserver';
+// import useMutationObserver from '../../hooks/useMutationObserver';
 
 export function PlayBoard({
   user,
@@ -10,25 +10,25 @@ export function PlayBoard({
   user: string;
   cards: Array<Card>;
 }) {
-  const scrollToBottom = (element) => {
-    element.scrollTop = element.scrollHeight;
-  };
+  // const scrollToBottom = (element) => {
+  //   element.scrollTop = element.scrollHeight;
+  // };
 
-  const handleBoardMutations = (element, mutations) => {
-    mutations.forEach((mutation) => {
-      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-        scrollToBottom(element);
-      }
-    });
-  };
+  // const handleBoardMutations = (element, mutations) => {
+  //   mutations.forEach((mutation) => {
+  //     if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+  //       scrollToBottom(element);
+  //     }
+  //   });
+  // };
 
   const boardRef = useRef<HTMLDivElement>(null);
-  useMutationObserver(boardRef, handleBoardMutations, {
-    attributes: false,
-    characterData: false,
-    childList: true,
-    subtree: false,
-  });
+  // useMutationObserver(boardRef, handleBoardMutations, {
+  //   attributes: false,
+  //   characterData: false,
+  //   childList: true,
+  //   subtree: false,
+  // });
 
   return (
     <div id="board" className={`${user}-board zone`} ref={boardRef}>

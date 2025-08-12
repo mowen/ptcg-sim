@@ -32,7 +32,7 @@ export function Board({
     }
   }, [playerState]);
 
-  return (
+  return board ? (
     <div id={`${cssUser}Container`} className={`${cssUser} board`}>
       <Deck user={cssUser} cards={board.deck}></Deck>
       <Discard user={cssUser} cards={board.discard}></Discard>
@@ -50,5 +50,7 @@ export function Board({
       ></SpecialMoves>
       <Stadium cards={board.stadium}></Stadium>
     </div>
+  ) : (
+    <div id={`${cssUser}Container`} className={`${cssUser} board`}></div>
   );
 }

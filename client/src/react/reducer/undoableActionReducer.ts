@@ -17,18 +17,22 @@ type Dump = {
   action: ActionDTO;
   deckList: Array<CardDTO>;
   currentBoard: BoardStateDTO;
-  nextBoard: BoardStateDTO;
+  nextBoard: BoardStateDTO | undefined;
   patches?: Array<Patch>;
-  error: Error;
+  error: Error | null;
 };
 
 function debugDump(
   action: ActionDTO,
   currentState: UndoableGameStateDTO,
-  nextState: UndoableGameStateDTO,
+  nextState: UndoableGameStateDTO | null,
   patches: Array<Patch>,
-  error: Error = null
+  error: Error | null = null
 ): Dump {
+  if (action.user === undefined) {
+    throw Error(`Could not create debugDump as action.user is undefined`);
+  }
+
   const currentPlayerState = currentState.gameState[
     action.user
   ] as PlayerStateDTO;
@@ -52,6 +56,12 @@ function hasBoardStateError(
   action: ActionDTO,
   gameState: GameStateDTO
 ): Error | null {
+  if (action.user === undefined) {
+    throw Error(
+      `Could not check for boardState error as action.user is undefined`
+    );
+  }
+
   const playerState = gameState[action.user];
   try {
     new BoardState(playerState);

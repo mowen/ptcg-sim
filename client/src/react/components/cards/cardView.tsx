@@ -3,6 +3,8 @@ import cardBackImage from '../../../assets/cardback.png';
 import { Card, UserType } from '../../../models';
 // import { AttachedCards } from '../popups/attachedCards';
 
+import './cardView.css';
+
 function CardView({
   card,
   faceUp = true,

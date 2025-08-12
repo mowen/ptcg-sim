@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, RefObject } from 'react';
 
 const useMutationObserver = (
-  ref,
+  ref: RefObject<any>,
   callback: MutationCallback,
   options = {
     attributes: true,
@@ -19,4 +19,4 @@ const useMutationObserver = (
   }, [callback, options, ref]);
 };
 
-export default useMutationObserver
+export default useMutationObserver;

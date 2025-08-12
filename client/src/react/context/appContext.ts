@@ -1,4 +1,5 @@
-import { createContext } from "react";
+import { createContext } from 'react';
+import { ActionDTO, UndoableGameStateDTO } from '../../models';
 
-export const AppContext = createContext(null);
-export const AppDispatchContext = createContext(null);
+export const AppContext = createContext(new UndoableGameStateDTO());
+export const AppDispatchContext = createContext((action: ActionDTO) => {});

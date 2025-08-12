@@ -20,11 +20,18 @@ function mapAttached(boardState: BoardStateDTO, zoneId: string): Array<number> {
     .flat(Infinity);
 }
 
-function findAttachedParent(boardState: BoardStateDTO, cardId: number): number {
-  return Object.keys(boardState.attached).map((pId: string) => {
+function findAttachedParent(
+  boardState: BoardStateDTO,
+  cardId: number
+): number | undefined {
+  const parentId = Object.keys(boardState.attached).map((pId: string) => {
     const parentId = parseInt(pId);
-    if (boardState.attached[pId].includes(cardId)) return parentId;
+    if (boardState.attached[parentId].includes(cardId)) return parentId;
   })[0];
+  if (parentId === undefined) {
+    console.warn(`parent cardId of cardId: ${cardId} was undefined`);
+  }
+  return parentId;
 }
 
 export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
@@ -100,11 +107,13 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
             draft[user].boardState,
             sourceDeckListIndex
           );
-          draft[user].boardState.attached[parentId] = draft[
-            user
-          ].boardState.attached[parentId].filter(
-            (c) => c !== sourceDeckListIndex
-          );
+          if (parentId !== undefined) {
+            draft[user].boardState.attached[parentId] = draft[
+              user
+            ].boardState.attached[parentId].filter(
+              (c) => c !== sourceDeckListIndex
+            );
+          }
         }
       }
 
@@ -164,7 +173,9 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
     }
     case 'takeTurn': {
       const topDeckId = draft[user].boardState.deck.shift();
-      draft[user].boardState.hand.push(topDeckId);
+      if (topDeckId !== undefined) {
+        draft[user].boardState.hand.push(topDeckId);
+      }
       draft[user].boardState.turn++;
       break;
     }

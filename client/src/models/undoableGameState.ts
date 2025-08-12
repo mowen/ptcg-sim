@@ -13,7 +13,7 @@ class UndoableGameState {
   }
 
   public undo(): Array<Patch> {
-    if (this.undoableState.undoStackPointer < 0) return;
+    if (this.undoableState.undoStackPointer < 0) return [];
     const inversePatches =
       this.undoableState.undoStack[this.undoableState.undoStackPointer]
         .inversePatches;
@@ -30,7 +30,7 @@ class UndoableGameState {
       this.undoableState.undoStackPointer ===
       this.undoableState.undoStack.length - 1
     )
-      return;
+      return [];
     this.undoableState.undoStackPointer++;
     const patches =
       this.undoableState.undoStack[this.undoableState.undoStackPointer].patches;

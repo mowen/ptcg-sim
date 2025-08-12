@@ -12,6 +12,8 @@ class BoardState {
   public readonly lostZoneZone: CardZone;
   public readonly stadiumZone: CardZone;
 
+  [key: string]: any;
+
   constructor(private readonly _playerState: PlayerStateDTO) {
     this.activeZone = this.zoneFactory(CardLocation.Active);
     this.handZone = this.zoneFactory(CardLocation.Hand);
