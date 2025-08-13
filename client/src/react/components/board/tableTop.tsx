@@ -1,10 +1,5 @@
 import { useContext, useState } from "react";
-import {
-  UiActionDTO,
-  UiStateDTO,
-  UndoableGameStateDTO,
-  UserType,
-} from "../../../models";
+import { UiStateDTO, UndoableGameStateDTO, UserType } from "../../../models";
 import {
   AppDispatchContext,
   Board,
@@ -13,7 +8,7 @@ import {
 } from "../../../react";
 import { useHotkeys } from "react-hotkeys-hook";
 
-import "./TableTop.css";
+import "./tableTop.css";
 import { UiDispatchContext } from "../../context/uiContext";
 
 function TableTop({
