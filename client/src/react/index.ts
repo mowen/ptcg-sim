@@ -26,7 +26,7 @@ import P2Box from "./components/sidebar/p2Box";
 import Options from "./components/sidebar/options";
 import Changelog from "./components/sidebar/changelog";
 import TableTop from "./components/board/tableTop";
-import Sidebar from "./components/sidebar/sidebar";
+import { Sidebar, SelectedPage } from "./components/sidebar/sidebar";
 
 export {
   actionReducer,
@@ -39,6 +39,7 @@ export {
   Donations,
   Hand,
   Bench,
+  SelectedPage,
   PrizeCards,
   P1Box,
   P2Box,

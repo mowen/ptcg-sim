@@ -1,7 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { Sidebar, TableTop } from "./react";
 import { AppContext, AppDispatchContext, undoableActionReducer } from "./react";
-import { ActionDTO, UndoableGameStateDTO } from "./models";
+import {
+  ActionDTO,
+  UiActionDTO,
+  UiStateDTO,
+  UndoableGameStateDTO,
+} from "./models";
+import { UiContext, UiDispatchContext } from "./react/context/uiContext";
+import { uiActionReducer } from "./react/reducer/uiReducer";
 
 type ImportAction = {
   user: string;
@@ -16,10 +23,17 @@ type ImportData = {
 
 export function App() {
   const [state, setState] = useState(new UndoableGameStateDTO());
+  const [uiState, setUiState] = useState(new UiStateDTO());
 
   const processAction = useCallback(
     (action: ActionDTO) =>
       setState((currentState) => undoableActionReducer(currentState, action)),
+    [],
+  );
+
+  const processUiAction = useCallback(
+    (action: UiActionDTO) =>
+      setUiState((currentState) => uiActionReducer(currentState, action)),
     [],
   );
 
@@ -54,11 +68,15 @@ export function App() {
   }, [processAction]);
 
   return (
-    <AppContext.Provider value={state}>
-      <AppDispatchContext.Provider value={processAction}>
-        <TableTop state={state} />
-        <Sidebar />
-      </AppDispatchContext.Provider>
-    </AppContext.Provider>
+    <UiContext.Provider value={uiState}>
+      <UiDispatchContext.Provider value={processUiAction}>
+        <AppContext.Provider value={state}>
+          <AppDispatchContext.Provider value={processAction}>
+            <TableTop state={state} uiState={uiState} />
+            <Sidebar uiState={uiState} />
+          </AppDispatchContext.Provider>
+        </AppContext.Provider>
+      </UiDispatchContext.Provider>
+    </UiContext.Provider>
   );
 }

@@ -3,6 +3,8 @@ import { BoardStateDTO } from "./boardStateDto";
 import { CardDTO, CardLocation, CardType } from "./cardDto";
 import { GameStateDTO, PlayerStateDTO, UserType } from "./gameStateDto";
 import { UndoableGameStateDTO, UndoPatches } from "./undoableGameStateDto";
+import { UiActionDTO } from "./uiActionDto";
+import { UiStateDTO } from "./uiStateDto";
 
 export {
   ActionDTO,
@@ -15,4 +17,6 @@ export {
   UserType,
   UndoPatches,
   UndoableGameStateDTO,
+  UiActionDTO,
+  UiStateDTO,
 };

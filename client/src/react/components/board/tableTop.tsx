@@ -1,5 +1,10 @@
 import { useContext, useState } from "react";
-import { UndoableGameStateDTO, UserType } from "../../../models";
+import {
+  UiActionDTO,
+  UiStateDTO,
+  UndoableGameStateDTO,
+  UserType,
+} from "../../../models";
 import {
   AppDispatchContext,
   Board,
@@ -9,16 +14,23 @@ import {
 import { useHotkeys } from "react-hotkeys-hook";
 
 import "./TableTop.css";
+import { UiDispatchContext } from "../../context/uiContext";
 
-function TableTop({ state }: { state: UndoableGameStateDTO }) {
+function TableTop({
+  state,
+  uiState,
+}: {
+  state: UndoableGameStateDTO;
+  uiState: UiStateDTO;
+}) {
   const [isSelfActive, setIsSelfActive] = useState(true);
-  const [showKeybinds, setShowKeybinds] = useState(false);
 
   const flipCoin = (boardUser: string) => {
     console.log(`${boardUser} flipped a coin`);
   };
 
   const processAction = useContext(AppDispatchContext);
+  const processUiAction = useContext(UiDispatchContext);
 
   const takeTurn = (boardUser: string) => {
     processAction({
@@ -49,7 +61,10 @@ function TableTop({ state }: { state: UndoableGameStateDTO }) {
       parameters: [],
     });
   });
-  useHotkeys("?", () => setShowKeybinds(true), { useKey: true });
+  useHotkeys("?", () => processUiAction({ type: "showKeybinds" }), {
+    useKey: true,
+  });
+  useHotkeys("ESC", () => processUiAction({ type: "clearModal" }));
 
   return (
     <>
@@ -75,7 +90,7 @@ function TableTop({ state }: { state: UndoableGameStateDTO }) {
         playerState={state.gameState[p1User]}
       />
 
-      <KeybindModal show={showKeybinds} />
+      <KeybindModal show={uiState.showKeybinds} />
     </>
   );
 }

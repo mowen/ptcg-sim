@@ -9,6 +9,8 @@ import {
   UndoableGameStateDTO,
   UndoPatches,
   UserType,
+  UiActionDTO,
+  UiStateDTO,
 } from "./data";
 import { Card } from "./card";
 import { BoardState } from "./boardState";
@@ -28,4 +30,6 @@ export {
   UndoPatches,
   UndoableGameStateDTO,
   UndoableGameState,
+  UiActionDTO,
+  UiStateDTO,
 };
