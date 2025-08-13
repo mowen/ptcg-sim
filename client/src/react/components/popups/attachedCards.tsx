@@ -1,5 +1,5 @@
-import { Card } from '../../../models';
-import CardView from '../cards/cardView';
+import { Card } from "../../../models";
+import CardView from "../cards/cardView";
 
 export function AttachedCards({
   cssUser,

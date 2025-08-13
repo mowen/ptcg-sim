@@ -1,5 +1,5 @@
-import { Card } from '../../../models';
-import PokemonCard from '../cards/pokemonCard';
+import { Card } from "../../../models";
+import PokemonCard from "../cards/pokemonCard";
 
 export function Active({ cards }: { cards: Array<Card> }) {
   return (

@@ -2,7 +2,7 @@ body,
 input,
 textarea,
 button {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #active,
@@ -31,9 +31,9 @@ button {
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-template-areas:
-    'lz lz lz st ac ac ac ac bu bo bo de'
-    'pr pr pr be be be be be be bo bo di'
-    'ha ha ha ha ha ha ha ha ha ha ha ha';
+    "lz lz lz st ac ac ac ac bu bo bo de"
+    "pr pr pr be be be be be be bo bo di"
+    "ha ha ha ha ha ha ha ha ha ha ha ha";
 }
 
 #prizes {

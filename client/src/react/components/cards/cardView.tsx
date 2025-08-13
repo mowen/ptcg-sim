@@ -1,9 +1,9 @@
-import { CSSProperties, useState } from 'react';
-import cardBackImage from '../../../assets/cardback.png';
-import { Card, UserType } from '../../../models';
+import { CSSProperties, useState } from "react";
+import cardBackImage from "../../../assets/cardback.png";
+import { Card, UserType } from "../../../models";
 // import { AttachedCards } from '../popups/attachedCards';
 
-import './cardView.css';
+import "./cardView.css";
 
 function CardView({
   card,
@@ -23,7 +23,7 @@ function CardView({
     <img
       src={card.imageUrl}
       alt={card.name}
-      className={'card'}
+      className={"card"}
       style={style}
       // onClick={() => setShowAttached(true)}
     />
@@ -31,7 +31,7 @@ function CardView({
     <img
       src={cardBackImage}
       alt="Face down card"
-      className={'card'}
+      className={"card"}
       style={style}
     />
   );
@@ -39,7 +39,7 @@ function CardView({
   return !wrapWithDiv ? (
     cardImage
   ) : (
-    <div className={'plain'}>
+    <div className={"plain"}>
       {cardImage}
       {/* {showAttached ? (
         <AttachedCards

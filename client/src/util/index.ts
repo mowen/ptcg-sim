@@ -1,1 +1,1 @@
-export { getOtherUser } from './util';
+export { getOtherUser } from "./util";

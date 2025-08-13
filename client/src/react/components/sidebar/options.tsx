@@ -1,14 +1,14 @@
 function Options() {
   return (
     <div id="optionsContextMenu">
-      <div id="exitReplay" style={{ display: 'none' }}>
+      <div id="exitReplay" style={{ display: "none" }}>
         Exit replay mode
       </div>
       <div id="jsonReplayDiv">
         <label
           htmlFor="jsonReplay"
           id="importReplay"
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: "pointer" }}
         >
           Enter replay mode
         </label>
@@ -16,14 +16,14 @@ function Options() {
           type="file"
           id="jsonReplay"
           accept=".json"
-          style={{ display: 'none' }}
+          style={{ display: "none" }}
         />
       </div>
       <div id="jsonDiv">
         <label
           htmlFor="jsonFile"
           id="importState"
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: "pointer" }}
         >
           Import game state
         </label>
@@ -31,7 +31,7 @@ function Options() {
           type="file"
           id="jsonFile"
           accept=".json"
-          style={{ display: 'none' }}
+          style={{ display: "none" }}
         />
       </div>
       <div id="exportState">Export game state</div>

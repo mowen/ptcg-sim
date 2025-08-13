@@ -1,6 +1,6 @@
-import { useRef } from 'react';
-import { CardView, useMutationObserver } from '../..';
-import { Card } from '../../../models';
+import { useRef } from "react";
+import { CardView, useMutationObserver } from "../..";
+import { Card } from "../../../models";
 
 // const zoneIds = ['lostZone', 'deck', 'discard', 'attachedCards', 'viewCards'];
 // const selfElements = zoneIds.map((zoneId) =>

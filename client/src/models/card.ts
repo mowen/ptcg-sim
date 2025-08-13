@@ -1,9 +1,9 @@
-import { CardDTO, CardType, PlayerStateDTO } from './data';
+import { CardDTO, CardType, PlayerStateDTO } from "./data";
 
 class Card {
   constructor(
     private _playerState: PlayerStateDTO,
-    public readonly id: number
+    public readonly id: number,
   ) {}
 
   public get name(): string {
@@ -73,7 +73,7 @@ class Card {
     let s = `${this._cardData.name} [${this.id}] (${this.type})`;
 
     if (this.attached.length > 0) {
-      const attachments = this.attached.map((c) => c.toString()).join('\n  ');
+      const attachments = this.attached.map((c) => c.toString()).join("\n  ");
       s += ` attached: [\n  ${attachments}\n]`;
     }
 

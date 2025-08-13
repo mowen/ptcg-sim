@@ -1,6 +1,6 @@
-import { useRef } from 'react';
-import { Card } from '../../../models';
-import CardView from '../cards/cardView';
+import { useRef } from "react";
+import { Card } from "../../../models";
+import CardView from "../cards/cardView";
 // import useMutationObserver from '../../hooks/useMutationObserver';
 
 export function PlayBoard({

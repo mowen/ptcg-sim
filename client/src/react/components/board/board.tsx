@@ -1,5 +1,5 @@
-import './board.css';
-import { BoardState, PlayerStateDTO } from '../../../models';
+import "./board.css";
+import { BoardState, PlayerStateDTO } from "../../../models";
 import {
   Active,
   Bench,
@@ -12,8 +12,8 @@ import {
   SpecialMoves,
   Stadium,
   ViewCards,
-} from '../..';
-import { useMemo } from 'react';
+} from "../..";
+import { useMemo } from "react";
 
 export function Board({
   cssUser,

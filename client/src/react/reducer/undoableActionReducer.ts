@@ -1,4 +1,4 @@
-import { enablePatches, Patch, produceWithPatches } from 'immer';
+import { enablePatches, Patch, produceWithPatches } from "immer";
 import {
   ActionDTO,
   CardDTO,
@@ -8,8 +8,8 @@ import {
   BoardState,
   UndoableGameStateDTO,
   UndoableGameState,
-} from '../../models';
-import actionReducer from './actionReducer';
+} from "../../models";
+import actionReducer from "./actionReducer";
 
 enablePatches(); // enable immer patches feature for undo/redo
 
@@ -27,7 +27,7 @@ function debugDump(
   currentState: UndoableGameStateDTO,
   nextState: UndoableGameStateDTO | null,
   patches: Array<Patch>,
-  error: Error | null = null
+  error: Error | null = null,
 ): Dump {
   if (action.user === undefined) {
     throw Error(`Could not create debugDump as action.user is undefined`);
@@ -54,11 +54,11 @@ function debugDump(
 
 function hasBoardStateError(
   action: ActionDTO,
-  gameState: GameStateDTO
+  gameState: GameStateDTO,
 ): Error | null {
   if (action.user === undefined) {
     throw Error(
-      `Could not check for boardState error as action.user is undefined`
+      `Could not check for boardState error as action.user is undefined`,
     );
   }
 
@@ -75,35 +75,35 @@ function logAction(
   action: ActionDTO,
   currentState: UndoableGameStateDTO,
   nextState: UndoableGameStateDTO,
-  patches: Array<Patch>
+  patches: Array<Patch>,
 ): void {
   const boardStateError = hasBoardStateError(action, nextState.gameState);
   if (boardStateError) {
     console.error(
       `${action.user} ${action.type}`,
-      debugDump(action, currentState, nextState, patches, boardStateError)
+      debugDump(action, currentState, nextState, patches, boardStateError),
     );
   } else {
     console.debug(
       `${action.user} ${action.type}`,
-      debugDump(action, currentState, nextState, patches, boardStateError)
+      debugDump(action, currentState, nextState, patches, boardStateError),
     );
   }
 }
 
 export const undoableActionReducer = (
   undoableState: UndoableGameStateDTO,
-  action: ActionDTO
+  action: ActionDTO,
 ): UndoableGameStateDTO => {
   const undoableGameState = new UndoableGameState(undoableState);
 
   let patches: Array<Patch> = new Array<Patch>();
   switch (action.type) {
-    case 'undo': {
+    case "undo": {
       patches = undoableGameState.undo();
       break;
     }
-    case 'redo': {
+    case "redo": {
       patches = undoableGameState.redo();
       break;
     }
@@ -114,13 +114,13 @@ export const undoableActionReducer = (
         const actionReducerWithPatches = produceWithPatches(actionReducer);
         const [nextState, patches, inversePatches] = actionReducerWithPatches(
           undoableState.gameState,
-          action
+          action,
         );
         undoableGameState.apply(nextState, { patches, inversePatches });
       } catch (err: unknown) {
         console.error(
           `${action.user} ${action.type}`,
-          debugDump(action, undoableState, null, patches, err as Error)
+          debugDump(action, undoableState, null, patches, err as Error),
         );
         return undoableState;
       }

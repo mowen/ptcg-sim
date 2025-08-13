@@ -1,37 +1,37 @@
-import { reducerTest } from './testData/testContext';
-import actionReducer from '../../../src/react/reducer/actionReducer';
-import { expect } from 'vitest';
+import { reducerTest } from "./testData/testContext";
+import actionReducer from "../../../src/react/reducer/actionReducer";
+import { expect } from "vitest";
 
-reducerTest('self board state is reset after reset', ({ setupState }) => {
+reducerTest("self board state is reset after reset", ({ setupState }) => {
   const takeTurnAction = {
-    user: 'self',
+    user: "self",
     emit: true,
-    type: 'takeTurn',
-    parameters: ['self'],
+    type: "takeTurn",
+    parameters: ["self"],
   };
   actionReducer(setupState, takeTurnAction);
 
   const moveToBenchAction = {
-    user: 'self',
+    user: "self",
     emit: true,
-    type: 'moveCardBundle',
-    parameters: ['self', 'hand', 'bench', 0, false, 'move'],
+    type: "moveCardBundle",
+    parameters: ["self", "hand", "bench", 0, false, "move"],
   };
   actionReducer(setupState, moveToBenchAction);
 
   const moveHandToActiveAction = {
-    user: 'self',
+    user: "self",
     emit: true,
-    type: 'moveCardBundle',
-    parameters: ['self', 'hand', 'active', 0, false, 'move'],
+    type: "moveCardBundle",
+    parameters: ["self", "hand", "active", 0, false, "move"],
   };
   actionReducer(setupState, moveHandToActiveAction);
 
   actionReducer(setupState, {
-    user: 'self',
+    user: "self",
     emit: true,
-    type: 'VSTARGXFunction',
-    parameters: ['vstar'],
+    type: "VSTARGXFunction",
+    parameters: ["vstar"],
   });
   expect(setupState.self.boardState.deck.length).toBe(46);
   expect(setupState.self.boardState.bench.length).toBe(1);
@@ -41,9 +41,9 @@ reducerTest('self board state is reset after reset', ({ setupState }) => {
   expect(setupState.self.boardState.vstarUsed).toBeTruthy();
 
   const resetAction = {
-    user: 'self',
+    user: "self",
     emit: true,
-    type: 'reset',
+    type: "reset",
     parameters: [false, true, true],
   };
   actionReducer(setupState, resetAction);

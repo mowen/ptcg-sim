@@ -1,8 +1,8 @@
-import { CSSProperties } from 'react';
-import { Card } from '../../../models';
-import CardView from '../cards/cardView';
+import { CSSProperties } from "react";
+import { Card } from "../../../models";
+import CardView from "../cards/cardView";
 
-import './prizeCards.css';
+import "./prizeCards.css";
 
 export function PrizeCards({ cards }: { cards: Array<Card> }) {
   const prizeStyle = (i: number): CSSProperties => ({

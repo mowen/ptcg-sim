@@ -1,6 +1,6 @@
-import { Card } from '../../../models';
-import CardView from '../cards/cardView';
-import PokemonCard from '../cards/pokemonCard';
+import { Card } from "../../../models";
+import CardView from "../cards/cardView";
+import PokemonCard from "../cards/pokemonCard";
 
 export function Bench({ cards }: { cards: Array<Card> }) {
   return (
@@ -11,7 +11,7 @@ export function Bench({ cards }: { cards: Array<Card> }) {
             <PokemonCard key={i} card={c}></PokemonCard>
           ) : (
             <CardView key={i} card={c}></CardView>
-          )
+          ),
         )}
       </div>
     </>

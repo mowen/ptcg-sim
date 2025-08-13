@@ -1,6 +1,6 @@
-import { useRef } from 'react';
-import { Card } from '../../../models';
-import CardView from '../cards/cardView';
+import { useRef } from "react";
+import { Card } from "../../../models";
+import CardView from "../cards/cardView";
 // import useMutationObserver from '../../hooks/useMutationObserver';
 
 // const handleHandMutations = (element, mutations) => {
@@ -32,11 +32,11 @@ export function Hand({ user, cards }: { user: string; cards: Array<Card> }) {
           <div id="handText" className={`${user}-text`}>
             (<span id="handCount">{cards.length}</span>)
           </div>
-          <label style={{ cursor: 'pointer' }} htmlFor="sortHandCheckbox">
+          <label style={{ cursor: "pointer" }} htmlFor="sortHandCheckbox">
             <div
               id="sortHandText"
               className={`${user}-text`}
-              style={{ display: 'inline-block' }}
+              style={{ display: "inline-block" }}
             >
               Sort
             </div>

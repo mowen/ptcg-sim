@@ -1,5 +1,5 @@
-import { Patch } from 'immer';
-import { GameStateDTO } from './gameStateDto';
+import { Patch } from "immer";
+import { GameStateDTO } from "./gameStateDto";
 
 class UndoPatches {
   public patches: Array<Patch> = new Array<Patch>();

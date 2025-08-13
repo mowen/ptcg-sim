@@ -53,7 +53,7 @@ function DeckImport({ selected }: { selected: boolean }) {
           type="file"
           id="csvFile"
           accept=".csv"
-          style={{ display: 'none' }}
+          style={{ display: "none" }}
         />
         <button id="changeCardBackButton" className="self-color">
           Change Card Back

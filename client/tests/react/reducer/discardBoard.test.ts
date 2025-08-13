@@ -1,13 +1,13 @@
-import { assert, expect } from 'vitest';
-import actionReducer from '../../../src/react/reducer/actionReducer';
-import { reducerTest } from './testData/testContext';
+import { assert, expect } from "vitest";
+import actionReducer from "../../../src/react/reducer/actionReducer";
+import { reducerTest } from "./testData/testContext";
 
-reducerTest('selfDeckList has 60 cards', ({ setupState }) => {
+reducerTest("selfDeckList has 60 cards", ({ setupState }) => {
   const moveFromHandToBoardAction = {
-    user: 'opp',
+    user: "opp",
     emit: true,
-    type: 'moveCardBundle',
-    parameters: ['opp', 'hand', 'board', 0, false, 'move'],
+    type: "moveCardBundle",
+    parameters: ["opp", "hand", "board", 0, false, "move"],
   };
   actionReducer(setupState, moveFromHandToBoardAction);
   actionReducer(setupState, moveFromHandToBoardAction);
@@ -16,10 +16,10 @@ reducerTest('selfDeckList has 60 cards', ({ setupState }) => {
   assert.sameOrderedMembers(setupState.opp.boardState.board, [27, 26, 49]);
 
   const discardBoardAction = {
-    user: 'opp',
+    user: "opp",
     emit: true,
-    type: 'discardBoard',
-    parameters: ['opp', true],
+    type: "discardBoard",
+    parameters: ["opp", true],
   };
   actionReducer(setupState, discardBoardAction);
 

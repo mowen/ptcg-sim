@@ -1,4 +1,4 @@
-import GxVStarButton from '../buttons/gxVStarButton';
+import GxVStarButton from "../buttons/gxVStarButton";
 
 export function SpecialMoves({
   cssUser,

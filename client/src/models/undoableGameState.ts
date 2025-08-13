@@ -1,5 +1,5 @@
-import { applyPatches, Patch } from 'immer';
-import { GameStateDTO, UndoableGameStateDTO, UndoPatches } from './data';
+import { applyPatches, Patch } from "immer";
+import { GameStateDTO, UndoableGameStateDTO, UndoPatches } from "./data";
 
 class UndoableGameState {
   constructor(public undoableState: UndoableGameStateDTO) {}
@@ -20,7 +20,7 @@ class UndoableGameState {
     this.undoableState.undoStackPointer--;
     this.undoableState.gameState = applyPatches(
       this.undoableState.gameState,
-      inversePatches
+      inversePatches,
     );
     return inversePatches;
   }
@@ -36,7 +36,7 @@ class UndoableGameState {
       this.undoableState.undoStack[this.undoableState.undoStackPointer].patches;
     this.undoableState.gameState = applyPatches(
       this.undoableState.gameState,
-      patches
+      patches,
     );
     return patches;
   }

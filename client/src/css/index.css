@@ -5,7 +5,7 @@ body,
 input,
 textarea,
 button {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 body {
   position: relative;
@@ -883,7 +883,7 @@ a:hover {
   margin: 0;
   padding: 0;
 }
-.card-context-menu ul li[id$='Header'] {
+.card-context-menu ul li[id$="Header"] {
   padding: 4px;
   cursor: default;
   font-weight: bold;
@@ -921,7 +921,7 @@ a:hover {
   display: block;
 }
 .card-context-menu ul li#moveButton:before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;

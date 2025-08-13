@@ -1,4 +1,4 @@
-import { ReactComponent } from '../../../../../CHANGELOG.md';
+import { ReactComponent } from "../../../../../CHANGELOG.md";
 
 function Changelog({ show }: { show: boolean }) {
   return show ? (

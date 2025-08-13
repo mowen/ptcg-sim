@@ -1,9 +1,14 @@
-import { useContext, useState } from 'react';
-import { UndoableGameStateDTO, UserType } from './models';
-import { AppDispatchContext, Board, BoardButtons, KeybindModal } from './react';
-import { useHotkeys } from 'react-hotkeys-hook';
+import { useContext, useState } from "react";
+import { UndoableGameStateDTO, UserType } from "../../../models";
+import {
+  AppDispatchContext,
+  Board,
+  BoardButtons,
+  KeybindModal,
+} from "../../../react";
+import { useHotkeys } from "react-hotkeys-hook";
 
-import './TableTop.css';
+import "./TableTop.css";
 
 function TableTop({ state }: { state: UndoableGameStateDTO }) {
   const [isSelfActive, setIsSelfActive] = useState(true);
@@ -19,7 +24,7 @@ function TableTop({ state }: { state: UndoableGameStateDTO }) {
     processAction({
       user: boardUser,
       emit: true,
-      type: 'takeTurn',
+      type: "takeTurn",
       parameters: [boardUser],
     });
   };
@@ -28,23 +33,23 @@ function TableTop({ state }: { state: UndoableGameStateDTO }) {
     ? [UserType.Self, UserType.Opp]
     : [UserType.Opp, UserType.Self];
 
-  useHotkeys('left', () => {
+  useHotkeys("left", () => {
     processAction({
       user: p1User,
       emit: true,
-      type: 'undo',
+      type: "undo",
       parameters: [],
     });
   });
-  useHotkeys('right', () => {
+  useHotkeys("right", () => {
     processAction({
       user: p1User,
       emit: true,
-      type: 'redo',
+      type: "redo",
       parameters: [],
     });
   });
-  useHotkeys('?', () => setShowKeybinds(true), { useKey: true });
+  useHotkeys("?", () => setShowKeybinds(true), { useKey: true });
 
   return (
     <>

@@ -15,36 +15,36 @@ function P1Box({
           <strong
             id="changelogLink"
             style={{
-              cursor: 'pointer',
-              textDecoration: 'none',
-              color: '#ffcc00',
-              borderBottom: '1px solid #ffcc00',
+              cursor: "pointer",
+              textDecoration: "none",
+              color: "#ffcc00",
+              borderBottom: "1px solid #ffcc00",
             }}
           >
             v1.5.1 Ϟ(๑⚈ ․̫ ⚈๑)⋆
           </strong>
         </p>
-        <p style={{ fontSize: '90%' }}>
-          PTCG-sim is an{' '}
+        <p style={{ fontSize: "90%" }}>
+          PTCG-sim is an{" "}
           <a href="https://github.com/xxmichaellong/ptcg-sim" target="_blank">
             open-source
-          </a>{' '}
+          </a>{" "}
           Pokémon Trading Card Game (Pokémon TCG) tabletop simulator. It
           supports single player and online multiplayer.
         </p>
-        <p style={{ fontSize: '90%' }}>
+        <p style={{ fontSize: "90%" }}>
           Use the <strong>Import</strong> tab above to import your deck, then
           press <strong>Set Up</strong> to start a game.
         </p>
-        <p style={{ fontSize: '90%' }}>
+        <p style={{ fontSize: "90%" }}>
           Drag or use keybinds (hold <span className="shift-font">shift</span>)
           to move cards.
         </p>
-        <p style={{ fontSize: '90%' }}>
+        <p style={{ fontSize: "90%" }}>
           See the <strong>Options</strong> button below to import, export, and
           replay games.
         </p>
-        <p style={{ fontSize: '90%' }}> Happy testing!</p>
+        <p style={{ fontSize: "90%" }}> Happy testing!</p>
         <button id="tutorialButton">Watch Tutorial</button>
         <br />
         <br />

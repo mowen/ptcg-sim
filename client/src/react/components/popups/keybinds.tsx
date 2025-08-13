@@ -196,9 +196,9 @@ function KeybindModal({ show }: { show: boolean }) {
           </div>
         </div>
       </div>
-      <div style={{ position: 'absolute', bottom: 0, left: '20px' }}>
-        <p style={{ fontSize: '1.5vh' }}>
-          <strong>For macOS:</strong> Use <code>option</code> instead of{' '}
+      <div style={{ position: "absolute", bottom: 0, left: "20px" }}>
+        <p style={{ fontSize: "1.5vh" }}>
+          <strong>For macOS:</strong> Use <code>option</code> instead of{" "}
           <code>alt</code>
         </p>
       </div>

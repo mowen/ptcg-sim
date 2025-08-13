@@ -22,16 +22,16 @@ function P2Box({ selected }: { selected: boolean }) {
         </div>
         <div id="coachingModeLabel">
           <input type="checkbox" id="coachingModeCheckbox" />
-          <label style={{ cursor: 'pointer' }} htmlFor="coachingModeCheckbox">
+          <label style={{ cursor: "pointer" }} htmlFor="coachingModeCheckbox">
             Enable board flip
-            <span style={{ fontStyle: 'italic', fontSize: 'smaller' }}>
+            <span style={{ fontStyle: "italic", fontSize: "smaller" }}>
               (both players must enable)
             </span>
           </label>
         </div>
         <div id="spectatorModeLabel">
           <input type="checkbox" id="spectatorModeCheckbox" />
-          <label style={{ cursor: 'pointer' }} htmlFor="spectatorModeCheckbox">
+          <label style={{ cursor: "pointer" }} htmlFor="spectatorModeCheckbox">
             Join as spectator
           </label>
         </div>

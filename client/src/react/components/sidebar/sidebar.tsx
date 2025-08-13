@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   Changelog,
   DeckImport,
@@ -7,7 +7,7 @@ import {
   P1Box,
   P2Box,
   Settings,
-} from './react';
+} from "../..";
 
 enum Page {
   P1,
@@ -22,7 +22,7 @@ function Sidebar() {
   const [showDonations, setDonations] = useState(false);
 
   const selectedPageClass = (selected: boolean) =>
-    selected ? 'selected-page' : 'not-selected-page';
+    selected ? "selected-page" : "not-selected-page";
 
   const buttonClasses = {
     p1: selectedPageClass(selectedPage == Page.P1),
@@ -88,8 +88,8 @@ function Sidebar() {
         <tbody></tbody>
       </table>
 
-      <table id="selfCurrentDecklistTable" style={{ display: 'none' }}></table>
-      <table id="oppCurrentDecklistTable" style={{ display: 'none' }}></table>
+      <table id="selfCurrentDecklistTable" style={{ display: "none" }}></table>
+      <table id="oppCurrentDecklistTable" style={{ display: "none" }}></table>
 
       <div id="videoContainer"></div>
 

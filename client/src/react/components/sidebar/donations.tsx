@@ -31,7 +31,7 @@ function Donations({ show }: { show: boolean }) {
         <a
           href="https://github.com/sponsors/xxmichaellong?o=esc"
           target="_blank"
-          style={{ color: 'rgb(91, 91, 173)', textDecoration: 'underline' }}
+          style={{ color: "rgb(91, 91, 173)", textDecoration: "underline" }}
         >
           Github Sponsors Link
         </a>
@@ -40,7 +40,7 @@ function Donations({ show }: { show: boolean }) {
         <a
           href="https://www.paypal.com/donate/?hosted_button_id=VWFSCL73GDHF4"
           target="_blank"
-          style={{ color: 'rgb(91, 91, 173)', textDecoration: 'underline' }}
+          style={{ color: "rgb(91, 91, 173)", textDecoration: "underline" }}
         >
           Paypal Donation Link
         </a>
@@ -52,27 +52,27 @@ function Donations({ show }: { show: boolean }) {
       <strong>$5/mo - SoulSilver Tier</strong>
       <ul
         style={{
-          listStyleType: 'disc',
-          paddingLeft: '20px',
-          marginTop: '10px',
-          marginBottom: '20px',
+          listStyleType: "disc",
+          paddingLeft: "20px",
+          marginTop: "10px",
+          marginBottom: "20px",
         }}
       >
-        <li style={{ fontSize: '16px', marginBottom: '10px' }}>
+        <li style={{ fontSize: "16px", marginBottom: "10px" }}>
           Custom flair on Discord & open reign on self-nicknames.
         </li>
-        <li style={{ fontSize: '16px', marginBottom: '10px' }}>
+        <li style={{ fontSize: "16px", marginBottom: "10px" }}>
           Access to early beta testing.
         </li>
-        <li style={{ fontSize: '16px', marginBottom: '10px' }}>
+        <li style={{ fontSize: "16px", marginBottom: "10px" }}>
           Shoutout in every changelog during the time you are subscribed for.
         </li>
-        <li style={{ fontSize: '16px', marginBottom: '10px' }}>
+        <li style={{ fontSize: "16px", marginBottom: "10px" }}>
           Get a sponsor tag on your GitHub profile (if sponsoring via GitHub,
           not applicable for sponsors through PayPal. Currently in the process
           of getting my GH sponsor page approved 😛).
         </li>
-        <li style={{ fontSize: '16px', marginBottom: '10px' }}>
+        <li style={{ fontSize: "16px", marginBottom: "10px" }}>
           My eternal thanks!!!!!
         </li>
       </ul>
@@ -80,16 +80,16 @@ function Donations({ show }: { show: boolean }) {
       <strong>$25/mo - HeartGold Tier</strong>
       <ul
         style={{
-          listStyleType: 'disc',
-          paddingLeft: '20px',
-          marginTop: '10px',
-          marginBottom: '20px',
+          listStyleType: "disc",
+          paddingLeft: "20px",
+          marginTop: "10px",
+          marginBottom: "20px",
         }}
       >
-        <li style={{ fontSize: '16px', marginBottom: '10px' }}>
+        <li style={{ fontSize: "16px", marginBottom: "10px" }}>
           Receive all of the benefits of the previous tiers.
         </li>
-        <li style={{ fontSize: '16px', marginBottom: '10px' }}>
+        <li style={{ fontSize: "16px", marginBottom: "10px" }}>
           Access to an exclusive Discord channel for priority
           suggestions/feature proposals/troubleshooting support.
         </li>
@@ -98,23 +98,23 @@ function Donations({ show }: { show: boolean }) {
       <strong>$100/mo - Platinum Tier</strong>
       <ul
         style={{
-          listStyleType: 'disc',
-          paddingLeft: '20px',
-          marginTop: '10px',
-          marginBottom: '20px',
+          listStyleType: "disc",
+          paddingLeft: "20px",
+          marginTop: "10px",
+          marginBottom: "20px",
         }}
       >
-        <li style={{ fontSize: '16px', marginBottom: '10px' }}>
+        <li style={{ fontSize: "16px", marginBottom: "10px" }}>
           Receive all of the benefits of the previous tiers.
         </li>
-        <li style={{ fontSize: '16px', marginBottom: '10px' }}>
+        <li style={{ fontSize: "16px", marginBottom: "10px" }}>
           Seriously do not think anyone will subscribe to this, but I would be
           immensely grateful.
         </li>
-        <li style={{ fontSize: '16px', marginBottom: '10px' }}>
+        <li style={{ fontSize: "16px", marginBottom: "10px" }}>
           Direct access to me (I will give you my phone number).
         </li>
-        <li style={{ fontSize: '16px', marginBottom: '10px' }}>
+        <li style={{ fontSize: "16px", marginBottom: "10px" }}>
           I'll sign, kiss, and mail you a signed bulk card of your choice (if I
           have it lol).
         </li>
@@ -123,16 +123,16 @@ function Donations({ show }: { show: boolean }) {
       <strong>$15 - One-time Donation</strong>
       <ul
         style={{
-          listStyleType: 'disc',
-          paddingLeft: '20px',
-          marginTop: '10px',
-          marginBottom: '20px',
+          listStyleType: "disc",
+          paddingLeft: "20px",
+          marginTop: "10px",
+          marginBottom: "20px",
         }}
       >
-        <li style={{ fontSize: '16px', marginBottom: '10px' }}>
+        <li style={{ fontSize: "16px", marginBottom: "10px" }}>
           Shoutout in the next changelog.
         </li>
-        <li style={{ fontSize: '16px', marginBottom: '10px' }}>
+        <li style={{ fontSize: "16px", marginBottom: "10px" }}>
           My eternal thanks!!!!!
         </li>
       </ul>

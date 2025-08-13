@@ -1,27 +1,27 @@
-import express from 'express';
-import cors from 'cors';
-import * as http from 'http';
-import { Server } from 'socket.io';
-import { instrument } from '@socket.io/admin-ui';
-import bcrypt from 'bcryptjs';
-import * as path from 'path';
-import * as dotenv from 'dotenv';
-import sqlite3 from 'sqlite3';
-import * as fs from 'fs';
-import { fileURLToPath } from 'url';
+import express from "express";
+import cors from "cors";
+import * as http from "http";
+import { Server } from "socket.io";
+import { instrument } from "@socket.io/admin-ui";
+import bcrypt from "bcryptjs";
+import * as path from "path";
+import * as dotenv from "dotenv";
+import sqlite3 from "sqlite3";
+import * as fs from "fs";
+import { fileURLToPath } from "url";
 
 // Handle __dirname in ES modules and adjust for client folder
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const clientDir = path.join(__dirname, '../../client/dist');
+const clientDir = path.join(__dirname, "../../client/dist");
 
-const envFilePath = path.join(__dirname, 'socket-admin-password.env');
+const envFilePath = path.join(__dirname, "socket-admin-password.env");
 dotenv.config({ path: envFilePath });
 
 function generateRandomKey(length: number) {
   const characters =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let key = '';
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let key = "";
   for (let i = 0; i < length; i++) {
     const randomIndex = Math.floor(Math.random() * characters.length);
     key += characters.charAt(randomIndex);
@@ -39,15 +39,15 @@ async function main() {
     connectionStateRecovery: {},
     cors: {
       origin: [
-        'https://admin.socket.io',
-        'https://ptcgsim.online/',
-        'http://localhost:4000',
+        "https://admin.socket.io",
+        "https://ptcgsim.online/",
+        "http://localhost:4000",
       ],
       credentials: true,
     },
   });
   // Create a new SQLite database
-  const dbFilePath = 'database/db.sqlite';
+  const dbFilePath = "database/db.sqlite";
   const maxSizeGB = 15;
   const db = new sqlite3.Database(dbFilePath);
   let isDatabaseCapacityReached = false;
@@ -68,54 +68,57 @@ async function main() {
         isDatabaseCapacityReached = true;
       }
     },
-    1000 * 60 * 60
+    1000 * 60 * 60,
   );
 
   // Create a table to store key-value pairs
   db.serialize(() => {
     db.run(
-      'CREATE TABLE IF NOT EXISTS KeyValuePairs (key TEXT PRIMARY KEY, value TEXT)'
+      "CREATE TABLE IF NOT EXISTS KeyValuePairs (key TEXT PRIMARY KEY, value TEXT)",
     );
   });
 
   // Bcrypt Configuration
   const saltRounds = 10;
-  const plainPassword = process.env.ADMIN_PASSWORD || 'defaultPassword';
+  const plainPassword = process.env.ADMIN_PASSWORD || "defaultPassword";
   const hashedPassword = bcrypt.hashSync(plainPassword, saltRounds);
 
   // Socket.IO Admin Instrumentation
   instrument(io, {
     auth: {
-      type: 'basic',
-      username: 'admin',
+      type: "basic",
+      username: "admin",
       password: hashedPassword,
     },
-    mode: 'development',
+    mode: "development",
   });
 
   app.use(cors());
   app.use(express.static(clientDir));
-  app.get('/import/:key', (req: express.Request, res: express.Response): any => {
-    const key = req.params.key;
-    if (!key) {
-      return res.status(400).json({ error: 'Key parameter is missing' });
-    }
-
-    db.get<{ value: string }>(
-      'SELECT value FROM KeyValuePairs WHERE key = ?',
-      [key],
-      (err, row) => {
-        if (err) {
-          return res.status(500).json({ error: 'Internal server error' });
-        }
-        if (row) {
-          return res.json({ actions: JSON.parse(row.value) });
-        } else {
-          res.status(404).json({ error: 'Key not found' });
-        }
+  app.get(
+    "/import/:key",
+    (req: express.Request, res: express.Response): any => {
+      const key = req.params.key;
+      if (!key) {
+        return res.status(400).json({ error: "Key parameter is missing" });
       }
-    );
-  });
+
+      db.get<{ value: string }>(
+        "SELECT value FROM KeyValuePairs WHERE key = ?",
+        [key],
+        (err, row) => {
+          if (err) {
+            return res.status(500).json({ error: "Internal server error" });
+          }
+          if (row) {
+            return res.json({ actions: JSON.parse(row.value) });
+          } else {
+            res.status(404).json({ error: "Key not found" });
+          }
+        },
+      );
+    },
+  );
 
   const roomInfo = new Map();
   // Function to periodically clean up empty rooms
@@ -129,11 +132,11 @@ async function main() {
   // Set up a timer to clean up empty rooms every 5 minutes (adjust as needed)
   setInterval(cleanUpEmptyRooms, 5 * 60 * 1000);
   //Socket.IO Connection Handling
-  io.on('connection', async (socket) => {
+  io.on("connection", async (socket) => {
     // Function to handle disconnections (unintended)
     const disconnectHandler = (roomId: string, username: string) => {
       if (!socket.data.leaveRoom) {
-        socket.to(roomId).emit('userDisconnected', username);
+        socket.to(roomId).emit("userDisconnected", username);
       }
       // Remove the disconnected user from the roomInfo map
       if (roomInfo.has(roomId)) {
@@ -154,41 +157,41 @@ async function main() {
     // Function to handle event emission
     const emitToRoom = (eventName: string, data: any) => {
       socket.broadcast.to(data.roomId).emit(eventName, data);
-      if (eventName === 'leaveRoom') {
+      if (eventName === "leaveRoom") {
         socket.leave(data.roomId);
         if (socket.data.disconnectListener) {
           socket.data.leaveRoom = true;
           socket.data.disconnectListener();
-          socket.removeListener('disconnect', socket.data.disconnectListener);
+          socket.removeListener("disconnect", socket.data.disconnectListener);
           socket.data.leaveRoom = false;
         }
       }
     };
-    socket.on('storeGameState', (exportData: string) => {
+    socket.on("storeGameState", (exportData: string) => {
       if (isDatabaseCapacityReached) {
         socket.emit(
-          'exportGameStateFailed',
-          'No more storage for game states! You should probably tell Michael/Xiao Xiao.'
+          "exportGameStateFailed",
+          "No more storage for game states! You should probably tell Michael/Xiao Xiao.",
         );
       } else {
         const key = generateRandomKey(4);
         db.run(
-          'INSERT OR REPLACE INTO KeyValuePairs (key, value) VALUES (?, ?)',
+          "INSERT OR REPLACE INTO KeyValuePairs (key, value) VALUES (?, ?)",
           [key, exportData],
           (err) => {
             if (err) {
               socket.emit(
-                'exportGameStateFailed',
-                'Error exporting game! Please try again or save as a file.'
+                "exportGameStateFailed",
+                "Error exporting game! Please try again or save as a file.",
               );
             } else {
-              socket.emit('exportGameStateSuccessful', key);
+              socket.emit("exportGameStateSuccessful", key);
             }
-          }
+          },
         );
       }
     });
-    socket.on('joinGame', (roomId, username, isSpectator) => {
+    socket.on("joinGame", (roomId, username, isSpectator) => {
       if (!roomInfo.has(roomId)) {
         roomInfo.set(roomId, { players: new Set(), spectators: new Set() });
       }
@@ -199,20 +202,20 @@ async function main() {
         // Check if the user is a spectator or there are fewer than 2 players
         if (isSpectator) {
           room.spectators.add(username);
-          socket.emit('spectatorJoin');
+          socket.emit("spectatorJoin");
         } else {
           room.players.add(username);
-          socket.emit('joinGame');
+          socket.emit("joinGame");
           socket.data.disconnectListener = () =>
             disconnectHandler(roomId, username);
-          socket.on('disconnect', socket.data.disconnectListener);
+          socket.on("disconnect", socket.data.disconnectListener);
         }
       } else {
-        socket.emit('roomReject');
+        socket.emit("roomReject");
       }
     });
 
-    socket.on('userReconnected', (data) => {
+    socket.on("userReconnected", (data) => {
       if (!roomInfo.has(data.roomId)) {
         roomInfo.set(data.roomId, {
           players: new Set(),
@@ -227,31 +230,31 @@ async function main() {
         room.players.add(data.username);
         socket.data.disconnectListener = () =>
           disconnectHandler(data.roomId, data.username);
-        socket.on('disconnect', socket.data.disconnectListener);
-        io.to(data.roomId).emit('userReconnected', data);
+        socket.on("disconnect", socket.data.disconnectListener);
+        io.to(data.roomId).emit("userReconnected", data);
       }
     });
 
     // List of socket events
     const events = [
-      'leaveRoom',
-      'requestAction',
-      'pushAction',
-      'resyncActions',
-      'catchUpActions',
-      'syncCheck',
-      'appendMessage',
-      'spectatorActionData',
-      'initiateImport',
-      'endImport',
-      'lookAtCards',
-      'stopLookingAtCards',
-      'revealCards',
-      'hideCards',
-      'revealShortcut',
-      'hideShortcut',
-      'lookShortcut',
-      'stopLookingShortcut',
+      "leaveRoom",
+      "requestAction",
+      "pushAction",
+      "resyncActions",
+      "catchUpActions",
+      "syncCheck",
+      "appendMessage",
+      "spectatorActionData",
+      "initiateImport",
+      "endImport",
+      "lookAtCards",
+      "stopLookingAtCards",
+      "revealCards",
+      "hideCards",
+      "revealShortcut",
+      "hideShortcut",
+      "lookShortcut",
+      "stopLookingShortcut",
     ];
 
     // Register event listeners using the common function

@@ -1,5 +1,5 @@
-import { Card, CardDTO, CardLocation, PlayerStateDTO } from '.';
-import { InvalidBoardStateError, InvalidZoneError } from '../errors';
+import { Card, CardDTO, CardLocation, PlayerStateDTO } from ".";
+import { InvalidBoardStateError, InvalidZoneError } from "../errors";
 
 class BoardState {
   public readonly activeZone: CardZone;
@@ -76,7 +76,7 @@ class BoardState {
           this._playerState.deckList.length
         }. Missing cards: [${missingCards
           .map((c: Card) => c.toString())
-          .join(',\n')}]`
+          .join(",\n")}]`,
       );
     } else {
       const duplicateCards = this.duplicateCards();
@@ -86,7 +86,7 @@ class BoardState {
             this._playerState.deckList.length
           }. Duplicate cards: [${duplicateCards
             .map((zc: ZoneCard) => zc.toString())
-            .join(',\n')}]`
+            .join(",\n")}]`,
         );
       }
     }
@@ -95,7 +95,7 @@ class BoardState {
   private totalCardsOnBoard(): number {
     return this.allZoneProps().reduce(
       (acc, zone) => acc + (this[zone] as CardZone).size,
-      0
+      0,
     );
   }
 
@@ -110,13 +110,13 @@ class BoardState {
         }
         return obj;
       },
-      {}
+      {},
     );
     const duplicateCardIds = Object.keys(allZoneCardCounts)
       .map((s) => parseInt(s))
       .filter((cardId) => allZoneCardCounts[cardId] > 1);
     return allZoneCards.filter((zc: ZoneCard) =>
-      duplicateCardIds.includes(zc.cardId)
+      duplicateCardIds.includes(zc.cardId),
     );
   }
 
@@ -132,8 +132,8 @@ class BoardState {
       .map(
         (zone: string): ZoneCard =>
           this[zone].totalCards.map(
-            (c: Card) => new ZoneCard(this.zonePropToId(zone), c)
-          )
+            (c: Card) => new ZoneCard(this.zonePropToId(zone), c),
+          ),
       )
       .flat(1);
   }
@@ -152,7 +152,10 @@ class BoardState {
 }
 
 class ZoneCard {
-  constructor(public readonly zoneId: string, private readonly _card: Card) {}
+  constructor(
+    public readonly zoneId: string,
+    private readonly _card: Card,
+  ) {}
 
   public get cardId(): number {
     return this._card.id;
@@ -173,7 +176,7 @@ class CardZone {
 
   constructor(
     private readonly _playerState: PlayerStateDTO,
-    public readonly zone: CardLocation
+    public readonly zone: CardLocation,
   ) {
     this.id = zone;
     this.cards = this.loadCards();
@@ -182,7 +185,7 @@ class CardZone {
     if (duplicateCards.length > 0) {
       const errorMessage = `Duplicate cards detected in Zone '${zone}': [${duplicateCards
         .map((c) => c.toString())
-        .join(', ')}]`;
+        .join(", ")}]`;
       throw new InvalidZoneError(errorMessage);
     }
   }
@@ -206,7 +209,7 @@ class CardZone {
         }
         return obj;
       },
-      {}
+      {},
     );
     const duplicateCardIds = Object.keys(allCardCounts)
       .map((s) => parseInt(s))
@@ -216,7 +219,7 @@ class CardZone {
 
   private loadCards(): Array<Card> {
     return this._playerState.boardState[this.id].map(
-      (i: number) => new Card(this._playerState, i)
+      (i: number) => new Card(this._playerState, i),
     );
   }
 }

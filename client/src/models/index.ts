@@ -9,10 +9,10 @@ import {
   UndoableGameStateDTO,
   UndoPatches,
   UserType,
-} from './data';
-import { Card } from './card';
-import { BoardState } from './boardState';
-import { UndoableGameState } from './undoableGameState';
+} from "./data";
+import { Card } from "./card";
+import { BoardState } from "./boardState";
+import { UndoableGameState } from "./undoableGameState";
 
 export {
   ActionDTO,

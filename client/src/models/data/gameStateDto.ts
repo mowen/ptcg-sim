@@ -1,9 +1,9 @@
-import { immerable } from 'immer';
-import { BoardStateDTO, CardDTO } from '..';
+import { immerable } from "immer";
+import { BoardStateDTO, CardDTO } from "..";
 
 enum UserType {
-  Self = 'self',
-  Opp = 'opp',
+  Self = "self",
+  Opp = "opp",
 }
 
 class PlayerStateDTO {

@@ -1,8 +1,8 @@
-import { useContext } from 'react';
+import { useContext } from "react";
 // import { systemState } from '../../../front-end.js';
 // import { appendMessage } from '../../../setup/chatbox/append-message.js';
 // import { determineUsername } from '../../../setup/general/determine-username.js';
-import { AppDispatchContext } from '../../context/appContext.js';
+import { AppDispatchContext } from "../../context/appContext.js";
 
 function GxVStarButton({
   user,
@@ -17,12 +17,12 @@ function GxVStarButton({
 
   const onClick = () => {
     const emit = true;
-    if (user === 'opp' && emit) {
+    if (user === "opp" && emit) {
       // && systemState.isTwoPlayer) {
       processAction({
         user,
         emit,
-        type: 'VSTARGXFunction',
+        type: "VSTARGXFunction",
         parameters: [type],
       });
       return;
@@ -32,11 +32,11 @@ function GxVStarButton({
     //   !used ? 'used' : 'reset'
     // } their ${type}`;
     // appendMessage(user, message, 'player', false);
-    processAction({ user, emit, type: 'VSTARGXFunction', parameters: [type] });
+    processAction({ user, emit, type: "VSTARGXFunction", parameters: [type] });
   };
 
   return (
-    <button className={used ? 'used-special-move' : ''} onClick={onClick}>
+    <button className={used ? "used-special-move" : ""} onClick={onClick}>
       {type}
     </button>
   );

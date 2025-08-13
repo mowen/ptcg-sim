@@ -1,4 +1,4 @@
-import { InvalidSourceCardError } from '../../errors';
+import { InvalidSourceCardError } from "../../errors";
 import {
   ActionDTO,
   BoardStateDTO,
@@ -7,22 +7,22 @@ import {
   CardLocation,
   GameStateDTO,
   UserType,
-} from '../../models';
-import { getOtherUser } from '../../util/util';
+} from "../../models";
+import { getOtherUser } from "../../util/util";
 
 function mapAttached(boardState: BoardStateDTO, zoneId: string): Array<number> {
   return boardState[zoneId]
     .map((c: number) =>
       boardState.attached[c] != undefined
         ? [c, boardState.attached[c].map((at) => at)]
-        : c
+        : c,
     )
     .flat(Infinity);
 }
 
 function findAttachedParent(
   boardState: BoardStateDTO,
-  cardId: number
+  cardId: number,
 ): number | undefined {
   const parentId = Object.keys(boardState.attached).map((pId: string) => {
     const parentId = parseInt(pId);
@@ -42,13 +42,13 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
   const user = action.user as UserType;
 
   switch (action.type) {
-    case 'VSTARGXFunction': {
+    case "VSTARGXFunction": {
       const type: string = (action.parameters[0] as string).toLowerCase();
       const vstarGxUsed = draft[user].boardState[`${type}Used`];
       draft[user].boardState[`${type}Used`] = !vstarGxUsed;
       break;
     }
-    case 'loadDeckData': {
+    case "loadDeckData": {
       const cardList = action.parameters[0] as Array<unknown>;
       let deckListIndex = 0;
       const newCardList = cardList.map((card) => {
@@ -57,7 +57,7 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
           number,
           string,
           string,
-          string
+          string,
         ];
         for (let i = 0; i < cardCount; i++) {
           list.push(new CardDTO(deckListIndex, name, type, imageUrl));
@@ -68,27 +68,27 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
       draft[user].deckList = newCardList.flat(1);
       break;
     }
-    case 'setup': {
+    case "setup": {
       const indices = action.parameters[0] as Array<number>;
       draft[user].boardState.hand = indices.slice(0, handSize);
       draft[user].boardState.prize = indices.slice(
         handSize,
-        handSize + prizeCount
+        handSize + prizeCount,
       );
       draft[user].boardState.deck = indices.slice(
         handSize + prizeCount,
-        deckSize
+        deckSize,
       );
       break;
     }
-    case 'moveCardBundle': {
+    case "moveCardBundle": {
       const [, oZoneId, dZoneId, sourceIndex, targetIndex] =
         action.parameters as [
           unknown,
           string,
           string,
           number,
-          number | boolean | undefined
+          number | boolean | undefined,
         ];
 
       let sourceDeckListIndex = draft[user].boardState[oZoneId][sourceIndex];
@@ -99,19 +99,19 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
         sourceDeckListIndex = source[sourceIndex];
         if (sourceDeckListIndex == undefined) {
           throw new InvalidSourceCardError(
-            `souceCardIndex ${sourceIndex} in moveCardBundle is undefined. source length: ${source.length}.`
+            `souceCardIndex ${sourceIndex} in moveCardBundle is undefined. source length: ${source.length}.`,
           );
         } else {
           // Find the parent and remove the source card from its list of attached cards
           const parentId = findAttachedParent(
             draft[user].boardState,
-            sourceDeckListIndex
+            sourceDeckListIndex,
           );
           if (parentId !== undefined) {
             draft[user].boardState.attached[parentId] = draft[
               user
             ].boardState.attached[parentId].filter(
-              (c) => c !== sourceDeckListIndex
+              (c) => c !== sourceDeckListIndex,
             );
           }
         }
@@ -119,14 +119,14 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
 
       const sourceCard = new Card(draft[user], sourceDeckListIndex);
 
-      if (typeof targetIndex === 'number') {
+      if (typeof targetIndex === "number") {
         // We are attaching a card
         const targetDeckListIndex =
           draft[user].boardState[dZoneId][targetIndex];
 
         if (draft[user].boardState.attached[targetDeckListIndex]) {
           draft[user].boardState.attached[targetDeckListIndex].push(
-            sourceDeckListIndex
+            sourceDeckListIndex,
           );
         } else {
           draft[user].boardState.attached[targetDeckListIndex] = [
@@ -146,7 +146,7 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
           // Only one Pokemon can be active, so bump the old active to the bench
           draft[user].boardState.active = [sourceDeckListIndex]; // Move new active to active
           draft[user].boardState.bench.push(
-            activeIndex // Move old active to bench
+            activeIndex, // Move old active to bench
           );
           draft[user].boardState[oZoneId].splice(sourceIndex, 1); // Could be bench and overwrite bench above
           break;
@@ -171,7 +171,7 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
         }
       }
     }
-    case 'takeTurn': {
+    case "takeTurn": {
       const topDeckId = draft[user].boardState.deck.shift();
       if (topDeckId !== undefined) {
         draft[user].boardState.hand.push(topDeckId);
@@ -179,38 +179,38 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
       draft[user].boardState.turn++;
       break;
     }
-    case 'reset': {
+    case "reset": {
       const boardState = new BoardStateDTO();
       boardState.deck = [...Array(60).keys()];
       draft[user].boardState = boardState;
       break;
     }
-    case 'shuffleAll': {
+    case "shuffleAll": {
       const [, zoneId, newIndices] = action.parameters as [
         unknown,
         string,
-        Array<number>
+        Array<number>,
       ];
       draft[user].boardState[zoneId] = newIndices.map(
-        (newIndex) => draft[user].boardState[zoneId][newIndex]
+        (newIndex) => draft[user].boardState[zoneId][newIndex],
       );
       break;
     }
-    case 'discardBoard': {
+    case "discardBoard": {
       const board = draft[user].boardState.board;
       board.forEach((c) => draft[user].boardState.discard.push(c));
       draft[user].boardState.board = [];
       break;
     }
-    case 'pass':
-    case 'attack': {
+    case "pass":
+    case "attack": {
       const board = draft[user].boardState.board;
       board.forEach((c) => draft[user].boardState.discard.push(c));
       draft[user].boardState.board = [];
       draft[user].boardState.abilityUsed = [];
       break;
     }
-    case 'draw': {
+    case "draw": {
       const [, count] = action.parameters as [unknown, number];
       draft[user].boardState.deck.slice(0, count).map((c) => {
         draft[user].boardState.hand.push(c);
@@ -218,11 +218,11 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
       });
       break;
     }
-    case 'addDamageCounter': {
+    case "addDamageCounter": {
       const [oZoneId, sourceIndex, amount] = action.parameters as [
         string,
         number,
-        string
+        string,
       ];
       const sourceDeckListIndex = draft[user].boardState[oZoneId][sourceIndex];
       const currentDamage =
@@ -231,17 +231,17 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
         currentDamage + parseInt(amount);
       break;
     }
-    case 'updateDamageCounter': {
+    case "updateDamageCounter": {
       const [oZoneId, sourceIndex, amount] = action.parameters as [
         string,
         number,
-        string
+        string,
       ];
       const sourceDeckListIndex = draft[user].boardState[oZoneId][sourceIndex];
       draft[user].boardState.damage[sourceDeckListIndex] = parseInt(amount);
       break;
     }
-    case 'removeDamageCounter': {
+    case "removeDamageCounter": {
       const [oZoneId, sourceIndex] = action.parameters as [string, number];
       const sourceDeckListIndex = draft[user].boardState[oZoneId][sourceIndex];
       delete draft[user].boardState.damage[sourceDeckListIndex];

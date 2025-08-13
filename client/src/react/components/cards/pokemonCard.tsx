@@ -1,8 +1,8 @@
-import { CSSProperties } from 'react';
-import { Card } from '../../../models';
-import CardView from './cardView';
+import { CSSProperties } from "react";
+import { Card } from "../../../models";
+import CardView from "./cardView";
 
-import './pokemonCard.css';
+import "./pokemonCard.css";
 
 const evoVertOffset: number = 0.8;
 const energyHorizOffset: number = 0.8;
@@ -12,7 +12,7 @@ function Evolutions({ parent }: { parent: Card }) {
   const evoStyle = (level: number): CSSProperties => ({
     zIndex: level + 1,
     top: `${(level + 1) * evoVertOffset - evoVertOffset}em`,
-    position: parent.evolutions.length != level + 2 ? 'relative' : 'absolute',
+    position: parent.evolutions.length != level + 2 ? "relative" : "absolute",
   });
 
   return parent.evolutions.map((pokemon, i) => (
@@ -23,9 +23,9 @@ function Evolutions({ parent }: { parent: Card }) {
 function Energies({ parent }: { parent: Card }) {
   const energyStyle = (level: number): CSSProperties => ({
     zIndex: (level + 1) * -1,
-    top: '0px',
+    top: "0px",
     left: `${energyHorizOffset + level * energyHorizOffset}em`,
-    position: 'absolute',
+    position: "absolute",
   });
 
   return parent.energy.map((energy, i) => (
@@ -35,10 +35,10 @@ function Energies({ parent }: { parent: Card }) {
 
 function Tool({ parent }: { parent: Card }) {
   const toolStyle: CSSProperties = {
-    transform: 'rotate(-90deg)',
+    transform: "rotate(-90deg)",
     zIndex: -1 * (parent.energy.length + 1),
-    position: 'absolute',
-    left: '-0.5em',
+    position: "absolute",
+    left: "-0.5em",
   };
   return parent.tool ? (
     <CardView card={parent.tool} wrapWithDiv={false} style={toolStyle} />
@@ -57,14 +57,14 @@ function PokemonCard({ card }: { card: Card }) {
   const cardStyle: CSSProperties = {
     zIndex: 0,
     top: `${card.evolutions.length * -1 * evoVertOffset}em`,
-    left: '0em',
-    position: card.evolutions.length == 0 ? 'relative' : 'absolute',
+    left: "0em",
+    position: card.evolutions.length == 0 ? "relative" : "absolute",
   };
 
   const pokemonStyle: CSSProperties = {
     width: `${cardWidth + card.energy.length * energyHorizOffset}em`,
     top: `${evoVertOffset}em`,
-    position: 'relative',
+    position: "relative",
   };
 
   return (

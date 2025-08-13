@@ -10,14 +10,10 @@
     "start": "pnpm -C server start",
     "build": "tsc -b server && pnpm -C client build",
     "clean": "rm -rf server/dist client/dist client/storybook-static",
-    "lint": "eslint .",
-    "format": "prettier --write \"**/*.{js,json,md}\""
+    "lint": "pnpm -C server lint && pnpm -C client lint",
+    "format": "pnpm -C server format && pnpm -C client format"
   },
   "devDependencies": {
-    "@eslint/js": "^9.20.0",
-    "eslint": "^9.20.0",
-    "eslint-config-prettier": "^10.0.1",
-    "eslint-plugin-prettier": "^5.2.3",
     "globals": "^15.14.0",
     "nodemon": "^3.1.9"
   },

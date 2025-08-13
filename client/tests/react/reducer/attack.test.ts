@@ -1,16 +1,16 @@
-import { reducerTest } from './testData/testContext';
-import actionReducer from '../../../src/react/reducer/actionReducer';
-import { assert, expect } from 'vitest';
-import { BoardState } from '../../../src/models';
+import { reducerTest } from "./testData/testContext";
+import actionReducer from "../../../src/react/reducer/actionReducer";
+import { assert, expect } from "vitest";
+import { BoardState } from "../../../src/models";
 
 reducerTest(
-  'two cards are moved to board and then we pass, cards on board are discarded',
+  "two cards are moved to board and then we pass, cards on board are discarded",
   ({ setupState }) => {
     const moveToBoardAction = {
-      user: 'opp',
+      user: "opp",
       emit: true,
-      type: 'moveCardBundle',
-      parameters: ['opp', 'hand', 'board', 0, false, 'move'],
+      type: "moveCardBundle",
+      parameters: ["opp", "hand", "board", 0, false, "move"],
     };
 
     actionReducer(setupState, moveToBoardAction);
@@ -19,10 +19,10 @@ reducerTest(
     expect(setupState.opp.boardState.board.length).toBe(2);
 
     const attackAction = {
-      user: 'opp',
+      user: "opp",
       emit: true,
-      type: 'attack',
-      parameters: ['opp'],
+      type: "attack",
+      parameters: ["opp"],
     };
 
     actionReducer(setupState, attackAction);
@@ -31,5 +31,5 @@ reducerTest(
     expect(setupState.opp.boardState.discard.length).toBe(2);
 
     expect(new BoardState(setupState.opp)); // Expect no invalid data error
-  }
+  },
 );

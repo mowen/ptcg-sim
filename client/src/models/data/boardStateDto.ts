@@ -1,4 +1,4 @@
-import { immerable } from 'immer';
+import { immerable } from "immer";
 
 class BoardStateDTO {
   [immerable] = true;

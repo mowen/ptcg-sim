@@ -420,9 +420,7 @@
     "user": "self",
     "emit": true,
     "action": "setup",
-    "parameters": [
-      []
-    ]
+    "parameters": [[]]
   },
   {
     "user": "self",
@@ -430,66 +428,10 @@
     "action": "setup",
     "parameters": [
       [
-        2,
-        13,
-        45,
-        0,
-        32,
-        43,
-        17,
-        54,
-        33,
-        25,
-        3,
-        58,
-        36,
-        51,
-        18,
-        4,
-        12,
-        46,
-        57,
-        9,
-        48,
-        44,
-        26,
-        52,
-        50,
-        1,
-        8,
-        19,
-        37,
-        6,
-        31,
-        16,
-        34,
-        53,
-        55,
-        29,
-        56,
-        15,
-        27,
-        42,
-        23,
-        24,
-        49,
-        10,
-        47,
-        41,
-        7,
-        20,
-        38,
-        14,
-        22,
-        35,
-        30,
-        11,
-        5,
-        39,
-        59,
-        28,
-        40,
-        21
+        2, 13, 45, 0, 32, 43, 17, 54, 33, 25, 3, 58, 36, 51, 18, 4, 12, 46, 57,
+        9, 48, 44, 26, 52, 50, 1, 8, 19, 37, 6, 31, 16, 34, 53, 55, 29, 56, 15,
+        27, 42, 23, 24, 49, 10, 47, 41, 7, 20, 38, 14, 22, 35, 30, 11, 5, 39,
+        59, 28, 40, 21
       ]
     ]
   },
@@ -499,66 +441,10 @@
     "action": "setup",
     "parameters": [
       [
-        15,
-        44,
-        0,
-        28,
-        34,
-        22,
-        2,
-        32,
-        35,
-        11,
-        25,
-        47,
-        49,
-        45,
-        21,
-        24,
-        5,
-        26,
-        58,
-        12,
-        20,
-        37,
-        38,
-        27,
-        7,
-        16,
-        8,
-        57,
-        9,
-        17,
-        55,
-        3,
-        46,
-        1,
-        14,
-        43,
-        59,
-        30,
-        39,
-        6,
-        54,
-        50,
-        18,
-        31,
-        41,
-        52,
-        40,
-        23,
-        29,
-        33,
-        4,
-        13,
-        10,
-        36,
-        48,
-        19,
-        42,
-        56,
-        53,
-        51
+        15, 44, 0, 28, 34, 22, 2, 32, 35, 11, 25, 47, 49, 45, 21, 24, 5, 26, 58,
+        12, 20, 37, 38, 27, 7, 16, 8, 57, 9, 17, 55, 3, 46, 1, 14, 43, 59, 30,
+        39, 6, 54, 50, 18, 31, 41, 52, 40, 23, 29, 33, 4, 13, 10, 36, 48, 19,
+        42, 56, 53, 51
       ]
     ]
   },
@@ -566,113 +452,55 @@
     "user": "self",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "hand",
-      "active",
-      1,
-      false,
-      "move"
-    ]
+    "parameters": ["self", "hand", "active", 1, false, "move"]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "hand",
-      "active",
-      2,
-      false,
-      "move"
-    ]
+    "parameters": ["opp", "hand", "active", 2, false, "move"]
   },
   {
     "user": "self",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "hand",
-      "bench",
-      2,
-      false,
-      "move"
-    ]
+    "parameters": ["self", "hand", "bench", 2, false, "move"]
   },
   {
     "user": "self",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "hand",
-      "bench",
-      0,
-      false,
-      "move"
-    ]
+    "parameters": ["self", "hand", "bench", 0, false, "move"]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "hand",
-      "bench",
-      5,
-      false,
-      "move"
-    ]
+    "parameters": ["opp", "hand", "bench", 5, false, "move"]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "takeTurn",
-    "parameters": [
-      "opp"
-    ]
+    "parameters": ["opp"]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "hand",
-      "board",
-      2,
-      false,
-      "move"
-    ]
+    "parameters": ["opp", "hand", "board", 2, false, "move"]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "deck",
-      "bench",
-      17,
-      false,
-      "move"
-    ]
+    "parameters": ["opp", "deck", "bench", 17, false, "move"]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "deck",
-      "bench",
-      18,
-      false,
-      "move"
-    ]
+    "parameters": ["opp", "deck", "bench", 18, false, "move"]
   },
   {
     "user": "opp",
@@ -682,50 +510,9 @@
       "opp",
       "deck",
       [
-        12,
-        11,
-        31,
-        1,
-        39,
-        36,
-        37,
-        6,
-        30,
-        29,
-        40,
-        14,
-        42,
-        22,
-        4,
-        18,
-        32,
-        35,
-        20,
-        33,
-        7,
-        9,
-        41,
-        0,
-        28,
-        26,
-        15,
-        43,
-        38,
-        2,
-        3,
-        10,
-        16,
-        19,
-        13,
-        27,
-        25,
-        8,
-        24,
-        17,
-        5,
-        34,
-        21,
-        23
+        12, 11, 31, 1, 39, 36, 37, 6, 30, 29, 40, 14, 42, 22, 4, 18, 32, 35, 20,
+        33, 7, 9, 41, 0, 28, 26, 15, 43, 38, 2, 3, 10, 16, 19, 13, 27, 25, 8,
+        24, 17, 5, 34, 21, 23
       ]
     ]
   },
@@ -733,10 +520,7 @@
     "user": "opp",
     "emit": true,
     "action": "discardBoard",
-    "parameters": [
-      "opp",
-      true
-    ]
+    "parameters": ["opp", true]
   },
   {
     "user": "opp",
@@ -748,27 +532,13 @@
     "user": "self",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "hand",
-      "board",
-      1,
-      false,
-      "move"
-    ]
+    "parameters": ["self", "hand", "board", 1, false, "move"]
   },
   {
     "user": "self",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "deck",
-      "bench",
-      12,
-      false,
-      "move"
-    ]
+    "parameters": ["self", "deck", "bench", 12, false, "move"]
   },
   {
     "user": "self",
@@ -778,52 +548,9 @@
       "self",
       "deck",
       [
-        35,
-        44,
-        37,
-        16,
-        23,
-        17,
-        32,
-        19,
-        45,
-        24,
-        8,
-        34,
-        41,
-        43,
-        20,
-        28,
-        26,
-        39,
-        15,
-        29,
-        27,
-        18,
-        10,
-        33,
-        31,
-        42,
-        7,
-        21,
-        25,
-        3,
-        5,
-        13,
-        4,
-        22,
-        2,
-        14,
-        1,
-        9,
-        0,
-        36,
-        11,
-        40,
-        12,
-        38,
-        30,
-        6
+        35, 44, 37, 16, 23, 17, 32, 19, 45, 24, 8, 34, 41, 43, 20, 28, 26, 39,
+        15, 29, 27, 18, 10, 33, 31, 42, 7, 21, 25, 3, 5, 13, 4, 22, 2, 14, 1, 9,
+        0, 36, 11, 40, 12, 38, 30, 6
       ]
     ]
   },
@@ -831,10 +558,7 @@
     "user": "self",
     "emit": true,
     "action": "discardBoard",
-    "parameters": [
-      "self",
-      true
-    ]
+    "parameters": ["self", true]
   },
   {
     "user": "self",
@@ -846,35 +570,19 @@
     "user": "opp",
     "emit": true,
     "action": "takeTurn",
-    "parameters": [
-      "opp"
-    ]
+    "parameters": ["opp"]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "hand",
-      "board",
-      0,
-      false,
-      "move"
-    ]
+    "parameters": ["opp", "hand", "board", 0, false, "move"]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "deck",
-      "board",
-      12,
-      false,
-      "move"
-    ]
+    "parameters": ["opp", "deck", "board", 12, false, "move"]
   },
   {
     "user": "opp",
@@ -884,48 +592,9 @@
       "opp",
       "deck",
       [
-        17,
-        36,
-        3,
-        25,
-        23,
-        29,
-        27,
-        14,
-        31,
-        21,
-        30,
-        22,
-        7,
-        4,
-        9,
-        28,
-        32,
-        8,
-        19,
-        10,
-        37,
-        12,
-        13,
-        38,
-        20,
-        5,
-        16,
-        39,
-        15,
-        24,
-        26,
-        35,
-        33,
-        6,
-        1,
-        41,
-        0,
-        11,
-        40,
-        34,
-        2,
-        18
+        17, 36, 3, 25, 23, 29, 27, 14, 31, 21, 30, 22, 7, 4, 9, 28, 32, 8, 19,
+        10, 37, 12, 13, 38, 20, 5, 16, 39, 15, 24, 26, 35, 33, 6, 1, 41, 0, 11,
+        40, 34, 2, 18
       ]
     ]
   },
@@ -933,23 +602,13 @@
     "user": "opp",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "board",
-      "hand",
-      1,
-      false,
-      "move"
-    ]
+    "parameters": ["opp", "board", "hand", 1, false, "move"]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "discardBoard",
-    "parameters": [
-      "opp",
-      true
-    ]
+    "parameters": ["opp", true]
   },
   {
     "user": "opp",
@@ -961,9 +620,7 @@
     "user": "self",
     "emit": true,
     "action": "takeTurn",
-    "parameters": [
-      "self"
-    ]
+    "parameters": ["self"]
   },
   {
     "user": "self",
@@ -975,30 +632,19 @@
     "user": "opp",
     "emit": true,
     "action": "takeTurn",
-    "parameters": [
-      "opp"
-    ]
+    "parameters": ["opp"]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "hand",
-      "board",
-      5,
-      false,
-      "move"
-    ]
+    "parameters": ["opp", "hand", "board", 5, false, "move"]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "undo",
-    "parameters": [
-      null
-    ]
+    "parameters": [null]
   },
   {
     "user": "opp",
@@ -1010,35 +656,19 @@
     "user": "self",
     "emit": true,
     "action": "takeTurn",
-    "parameters": [
-      "self"
-    ]
+    "parameters": ["self"]
   },
   {
     "user": "self",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "hand",
-      "board",
-      4,
-      false,
-      "move"
-    ]
+    "parameters": ["self", "hand", "board", 4, false, "move"]
   },
   {
     "user": "self",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "deck",
-      "bench",
-      34,
-      false,
-      "move"
-    ]
+    "parameters": ["self", "deck", "bench", 34, false, "move"]
   },
   {
     "user": "self",
@@ -1048,49 +678,9 @@
       "self",
       "deck",
       [
-        29,
-        35,
-        32,
-        7,
-        11,
-        18,
-        17,
-        33,
-        41,
-        31,
-        39,
-        6,
-        27,
-        40,
-        25,
-        4,
-        3,
-        12,
-        15,
-        26,
-        2,
-        5,
-        21,
-        14,
-        19,
-        22,
-        34,
-        28,
-        37,
-        8,
-        10,
-        38,
-        13,
-        24,
-        20,
-        1,
-        36,
-        0,
-        30,
-        42,
-        9,
-        16,
-        23
+        29, 35, 32, 7, 11, 18, 17, 33, 41, 31, 39, 6, 27, 40, 25, 4, 3, 12, 15,
+        26, 2, 5, 21, 14, 19, 22, 34, 28, 37, 8, 10, 38, 13, 24, 20, 1, 36, 0,
+        30, 42, 9, 16, 23
       ]
     ]
   },
@@ -1098,10 +688,7 @@
     "user": "self",
     "emit": true,
     "action": "discardBoard",
-    "parameters": [
-      "self",
-      true
-    ]
+    "parameters": ["self", true]
   },
   {
     "user": "self",
@@ -1113,9 +700,7 @@
     "user": "self",
     "emit": true,
     "action": "undo",
-    "parameters": [
-      null
-    ]
+    "parameters": [null]
   },
   {
     "user": "self",
@@ -1127,45 +712,25 @@
     "user": "opp",
     "emit": true,
     "action": "addDamageCounter",
-    "parameters": [
-      "active",
-      0,
-      "30"
-    ]
+    "parameters": ["active", 0, "30"]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "takeTurn",
-    "parameters": [
-      "opp"
-    ]
+    "parameters": ["opp"]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "hand",
-      "active",
-      7,
-      0,
-      "move"
-    ]
+    "parameters": ["opp", "hand", "active", 7, 0, "move"]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "hand",
-      "active",
-      3,
-      0,
-      "move"
-    ]
+    "parameters": ["opp", "hand", "active", 3, 0, "move"]
   },
   {
     "user": "opp",
@@ -1177,27 +742,13 @@
     "user": "opp",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "deck",
-      "board",
-      33,
-      false,
-      "move"
-    ]
+    "parameters": ["opp", "deck", "board", 33, false, "move"]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "deck",
-      "board",
-      25,
-      false,
-      "move"
-    ]
+    "parameters": ["opp", "deck", "board", 25, false, "move"]
   },
   {
     "user": "opp",
@@ -1207,44 +758,8 @@
       "opp",
       "deck",
       [
-        21,
-        29,
-        9,
-        14,
-        35,
-        0,
-        12,
-        10,
-        13,
-        17,
-        5,
-        30,
-        28,
-        19,
-        32,
-        20,
-        6,
-        16,
-        23,
-        37,
-        25,
-        26,
-        33,
-        18,
-        24,
-        4,
-        2,
-        11,
-        31,
-        36,
-        1,
-        7,
-        3,
-        15,
-        34,
-        27,
-        22,
-        8
+        21, 29, 9, 14, 35, 0, 12, 10, 13, 17, 5, 30, 28, 19, 32, 20, 6, 16, 23,
+        37, 25, 26, 33, 18, 24, 4, 2, 11, 31, 36, 1, 7, 3, 15, 34, 27, 22, 8
       ]
     ]
   },
@@ -1252,40 +767,19 @@
     "user": "opp",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "board",
-      "bench",
-      0,
-      0,
-      "move"
-    ]
+    "parameters": ["opp", "board", "bench", 0, 0, "move"]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "board",
-      "bench",
-      0,
-      2,
-      "move"
-    ]
+    "parameters": ["opp", "board", "bench", 0, 2, "move"]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "opp",
-      "active",
-      "discard",
-      2,
-      false,
-      "move"
-    ]
+    "parameters": ["opp", "active", "discard", 2, false, "move"]
   },
   {
     "user": "opp",
@@ -1297,48 +791,25 @@
     "user": "self",
     "emit": true,
     "action": "takeTurn",
-    "parameters": [
-      "self"
-    ]
+    "parameters": ["self"]
   },
   {
     "user": "self",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "hand",
-      "board",
-      4,
-      false,
-      "move"
-    ]
+    "parameters": ["self", "hand", "board", 4, false, "move"]
   },
   {
     "user": "self",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "deck",
-      "board",
-      37,
-      false,
-      "move"
-    ]
+    "parameters": ["self", "deck", "board", 37, false, "move"]
   },
   {
     "user": "self",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "deck",
-      "board",
-      31,
-      false,
-      "move"
-    ]
+    "parameters": ["self", "deck", "board", 31, false, "move"]
   },
   {
     "user": "self",
@@ -1348,46 +819,9 @@
       "self",
       "deck",
       [
-        29,
-        5,
-        17,
-        13,
-        20,
-        8,
-        31,
-        23,
-        30,
-        22,
-        34,
-        11,
-        35,
-        15,
-        0,
-        12,
-        37,
-        14,
-        36,
-        33,
-        39,
-        25,
-        1,
-        2,
-        38,
-        27,
-        4,
-        3,
-        19,
-        21,
-        28,
-        26,
-        16,
-        7,
-        10,
-        18,
-        9,
-        24,
-        32,
-        6
+        29, 5, 17, 13, 20, 8, 31, 23, 30, 22, 34, 11, 35, 15, 0, 12, 37, 14, 36,
+        33, 39, 25, 1, 2, 38, 27, 4, 3, 19, 21, 28, 26, 16, 7, 10, 18, 9, 24,
+        32, 6
       ]
     ]
   },
@@ -1395,88 +829,43 @@
     "user": "self",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "board",
-      "hand",
-      1,
-      false,
-      "move"
-    ]
+    "parameters": ["self", "board", "hand", 1, false, "move"]
   },
   {
     "user": "self",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "board",
-      "hand",
-      1,
-      false,
-      "move"
-    ]
+    "parameters": ["self", "board", "hand", 1, false, "move"]
   },
   {
     "user": "self",
     "emit": true,
     "action": "discardBoard",
-    "parameters": [
-      "self",
-      true
-    ]
+    "parameters": ["self", true]
   },
   {
     "user": "self",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "hand",
-      "board",
-      4,
-      false,
-      "move"
-    ]
+    "parameters": ["self", "hand", "board", 4, false, "move"]
   },
   {
     "user": "self",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "hand",
-      "board",
-      3,
-      false,
-      "move"
-    ]
+    "parameters": ["self", "hand", "board", 3, false, "move"]
   },
   {
     "user": "self",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "deck",
-      "board",
-      31,
-      false,
-      "move"
-    ]
+    "parameters": ["self", "deck", "board", 31, false, "move"]
   },
   {
     "user": "self",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "deck",
-      "board",
-      31,
-      false,
-      "move"
-    ]
+    "parameters": ["self", "deck", "board", 31, false, "move"]
   },
   {
     "user": "self",
@@ -1486,44 +875,8 @@
       "self",
       "deck",
       [
-        21,
-        25,
-        34,
-        13,
-        10,
-        22,
-        1,
-        18,
-        6,
-        32,
-        12,
-        2,
-        17,
-        3,
-        9,
-        5,
-        36,
-        19,
-        23,
-        8,
-        33,
-        26,
-        15,
-        35,
-        27,
-        37,
-        30,
-        7,
-        31,
-        11,
-        29,
-        28,
-        14,
-        0,
-        24,
-        4,
-        20,
-        16
+        21, 25, 34, 13, 10, 22, 1, 18, 6, 32, 12, 2, 17, 3, 9, 5, 36, 19, 23, 8,
+        33, 26, 15, 35, 27, 37, 30, 7, 31, 11, 29, 28, 14, 0, 24, 4, 20, 16
       ]
     ]
   },
@@ -1531,49 +884,25 @@
     "user": "self",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "board",
-      "hand",
-      2,
-      false,
-      "move"
-    ]
+    "parameters": ["self", "board", "hand", 2, false, "move"]
   },
   {
     "user": "self",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "board",
-      "hand",
-      2,
-      false,
-      "move"
-    ]
+    "parameters": ["self", "board", "hand", 2, false, "move"]
   },
   {
     "user": "self",
     "emit": true,
     "action": "discardBoard",
-    "parameters": [
-      "self",
-      true
-    ]
+    "parameters": ["self", true]
   },
   {
     "user": "self",
     "emit": true,
     "action": "moveCardBundle",
-    "parameters": [
-      "self",
-      "hand",
-      "bench",
-      4,
-      2,
-      "move"
-    ]
+    "parameters": ["self", "hand", "bench", 4, 2, "move"]
   },
   {
     "user": "self",
@@ -1585,64 +914,42 @@
     "user": "opp",
     "emit": true,
     "action": "updateDamageCounter",
-    "parameters": [
-      "active",
-      0,
-      "70"
-    ]
+    "parameters": ["active", 0, "70"]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "updateDamageCounter",
-    "parameters": [
-      "active",
-      0,
-      "80"
-    ]
+    "parameters": ["active", 0, "80"]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "removeDamageCounter",
-    "parameters": [
-      "active",
-      0
-    ]
+    "parameters": ["active", 0]
   },
   {
     "user": "self",
     "emit": true,
     "action": "draw",
-    "parameters": [
-      "self",
-      4
-    ]
+    "parameters": ["self", 4]
   },
   {
     "user": "self",
     "emit": true,
     "action": "undo",
-    "parameters": [
-      null
-    ]
+    "parameters": [null]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "addDamageCounter",
-    "parameters": [
-      "active",
-      0,
-      "40"
-    ]
+    "parameters": ["active", 0, "40"]
   },
   {
     "user": "opp",
     "emit": true,
     "action": "takeTurn",
-    "parameters": [
-      "opp"
-    ]
+    "parameters": ["opp"]
   }
 ]
