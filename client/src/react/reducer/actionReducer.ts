@@ -8,7 +8,6 @@ import {
   GameStateDTO,
   UserType,
 } from "../../models";
-import { getOtherUser } from "../../util/util";
 
 function mapAttached(boardState: BoardStateDTO, zoneId: string): Array<number> {
   return boardState[zoneId]
@@ -32,6 +31,10 @@ function findAttachedParent(
     console.warn(`parent cardId of cardId: ${cardId} was undefined`);
   }
   return parentId;
+}
+
+export function getOtherUser(user: UserType): UserType {
+  return user == UserType.Self ? UserType.Opp : UserType.Self;
 }
 
 export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
@@ -208,6 +211,7 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
       board.forEach((c) => draft[user].boardState.discard.push(c));
       draft[user].boardState.board = [];
       draft[user].boardState.abilityUsed = [];
+      draft.activeUser = getOtherUser(draft.activeUser);
       break;
     }
     case "draw": {

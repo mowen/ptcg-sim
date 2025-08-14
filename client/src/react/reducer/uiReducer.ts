@@ -6,6 +6,7 @@ function clearModal(uiState: UiStateDTO): void {
   uiState.showChangelog = false;
   uiState.showDonations = false;
   uiState.showKeybinds = false;
+  uiState.showAttached = {};
 }
 
 export const uiActionReducer = (
@@ -25,6 +26,17 @@ export const uiActionReducer = (
       case "showChangelog":
         clearModal(draft);
         draft.showChangelog = true;
+        break;
+      case "showAttached":
+        if (
+          action.user === undefined ||
+          action.parameters === undefined ||
+          draft.showAttached === undefined
+        )
+          return;
+        clearModal(draft);
+        const cardId = action.parameters[0] as number;
+        draft.showAttached[action.user] = cardId;
         break;
       case "selectPage":
         if (action.parameters === undefined) return;

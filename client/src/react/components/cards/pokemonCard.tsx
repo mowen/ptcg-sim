@@ -1,8 +1,12 @@
-import { CSSProperties } from "react";
+import { CSSProperties, useContext } from "react";
 import { Card } from "../../../models";
 import CardView from "./cardView";
 
 import "./pokemonCard.css";
+import { UiContext, UiDispatchContext } from "../../context/uiContext";
+import { AttachedCards } from "../popups/attachedCards";
+import { AppContext } from "../../context/appContext";
+import { UiController } from "../../../controllers";
 
 const evoVertOffset: number = 0.8;
 const energyHorizOffset: number = 0.8;
@@ -53,7 +57,20 @@ function Damage({ parent }: { parent: Card }) {
   ) : null;
 }
 
-function PokemonCard({ card }: { card: Card }) {
+function PokemonCard({
+  card,
+  boardUser,
+  cssUser,
+}: {
+  card: Card;
+  boardUser: string;
+  cssUser: string;
+}) {
+  const uiState = useContext(UiContext);
+  const state = useContext(AppContext);
+  const processUiAction = useContext(UiDispatchContext);
+  const uiController = new UiController(boardUser, processUiAction);
+
   const cardStyle: CSSProperties = {
     zIndex: 0,
     top: `${card.evolutions.length * -1 * evoVertOffset}em`,
@@ -67,13 +84,30 @@ function PokemonCard({ card }: { card: Card }) {
     position: "relative",
   };
 
+  const showAttached =
+    uiState?.showAttached &&
+    boardUser === state?.gameState.activeUser &&
+    uiState.showAttached[boardUser] &&
+    uiState.showAttached[boardUser] == card.id;
+
   return (
-    <div className="pokemon" style={pokemonStyle}>
+    <div
+      className="pokemon"
+      style={pokemonStyle}
+      onClick={() => uiController.showAttached(boardUser, card)}
+    >
       <CardView card={card} wrapWithDiv={false} style={cardStyle} />
       <Evolutions parent={card} />
       <Energies parent={card} />
       <Tool parent={card} />
       <Damage parent={card} />
+      {showAttached ? (
+        <AttachedCards
+          cssUser={cssUser}
+          cards={card.attached}
+          onClose={() => uiController.clearModal()}
+        />
+      ) : null}
     </div>
   );
 }

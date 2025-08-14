@@ -8,6 +8,7 @@ class UiStateDTO {
   public showChangelog: boolean = false;
   public showDonations: boolean = false;
   public showKeybinds: boolean = false;
+  public showAttached?: Record<string, number> = {};
 }
 
 export { UiStateDTO };

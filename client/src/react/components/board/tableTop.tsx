@@ -5,11 +5,12 @@ import {
   Board,
   BoardButtons,
   KeybindModal,
+  UiDispatchContext,
 } from "../../../react";
+import { ActionController, UiController } from "../../../controllers";
 import { useHotkeys } from "react-hotkeys-hook";
 
 import "./tableTop.css";
-import { UiDispatchContext } from "../../context/uiContext";
 
 function TableTop({
   state,
@@ -20,46 +21,24 @@ function TableTop({
 }) {
   const [isSelfActive, setIsSelfActive] = useState(true);
 
-  const flipCoin = (boardUser: string) => {
-    console.log(`${boardUser} flipped a coin`);
-  };
-
   const processAction = useContext(AppDispatchContext);
   const processUiAction = useContext(UiDispatchContext);
-
-  const takeTurn = (boardUser: string) => {
-    processAction({
-      user: boardUser,
-      emit: true,
-      type: "takeTurn",
-      parameters: [boardUser],
-    });
-  };
 
   const [p1User, p2User] = isSelfActive
     ? [UserType.Self, UserType.Opp]
     : [UserType.Opp, UserType.Self];
 
-  useHotkeys("left", () => {
-    processAction({
-      user: p1User,
-      emit: true,
-      type: "undo",
-      parameters: [],
-    });
-  });
-  useHotkeys("right", () => {
-    processAction({
-      user: p1User,
-      emit: true,
-      type: "redo",
-      parameters: [],
-    });
-  });
-  useHotkeys("?", () => processUiAction({ type: "showKeybinds" }), {
-    useKey: true,
-  });
-  useHotkeys("ESC", () => processUiAction({ type: "clearModal" }));
+  const actionController = new ActionController(p1User, processAction);
+  const uiController = new UiController(p1User, processUiAction);
+
+  useHotkeys("left", () => actionController.undo());
+  useHotkeys("right", () => actionController.redo());
+  useHotkeys("?", () => uiController.showKeybinds(), { useKey: true });
+  useHotkeys("ESC", () => uiController.clearModal());
+
+  const flipCoin = (boardUser: string) => {
+    console.log(`${boardUser} flipped a coin`);
+  };
 
   return (
     <>
@@ -75,7 +54,7 @@ function TableTop({
       <BoardButtons
         boardUser={p1User}
         flipCoin={() => flipCoin(p1User)}
-        takeTurn={() => takeTurn(p1User)}
+        takeTurn={() => actionController.takeTurn()}
         flipActive={() => setIsSelfActive(!isSelfActive)}
       ></BoardButtons>
 

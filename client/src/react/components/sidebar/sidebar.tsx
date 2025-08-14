@@ -8,8 +8,9 @@ import {
   P2Box,
   Settings,
 } from "../..";
-import { UiStateDTO } from "../../../models";
+import { UiStateDTO, UndoableGameStateDTO } from "../../../models";
 import { UiDispatchContext } from "../../context/uiContext";
+import { UiController } from "../../../controllers";
 
 enum SelectedPage {
   P1,
@@ -18,8 +19,18 @@ enum SelectedPage {
   Settings,
 }
 
-function Sidebar({ uiState }: { uiState: UiStateDTO }) {
+function Sidebar({
+  state,
+  uiState,
+}: {
+  state: UndoableGameStateDTO;
+  uiState: UiStateDTO;
+}) {
   const processUiAction = useContext(UiDispatchContext);
+  const uiController = new UiController(
+    state.gameState.activeUser,
+    processUiAction,
+  );
 
   const selectedPageClass = (selected: boolean) =>
     selected ? "selected-page" : "not-selected-page";
@@ -38,48 +49,28 @@ function Sidebar({ uiState }: { uiState: UiStateDTO }) {
         <button
           id="p1Button"
           className={buttonClasses.p1}
-          onClick={() =>
-            processUiAction({
-              type: "selectPage",
-              parameters: [SelectedPage.P1],
-            })
-          }
+          onClick={() => uiController.selectPage(SelectedPage.P1)}
         >
           1P
         </button>
         <button
           id="p2Button"
           className={buttonClasses.p2}
-          onClick={() =>
-            processUiAction({
-              type: "selectPage",
-              parameters: [SelectedPage.P2],
-            })
-          }
+          onClick={() => uiController.selectPage(SelectedPage.P2)}
         >
           2P
         </button>
         <button
           id="deckImportButton"
           className={buttonClasses.deckImport}
-          onClick={() =>
-            processUiAction({
-              type: "selectPage",
-              parameters: [SelectedPage.DeckImport],
-            })
-          }
+          onClick={() => uiController.selectPage(SelectedPage.DeckImport)}
         >
           Import
         </button>
         <button
           id="settingsButton"
           className={buttonClasses.settings}
-          onClick={() =>
-            processUiAction({
-              type: "selectPage",
-              parameters: [SelectedPage.Settings],
-            })
-          }
+          onClick={() => uiController.selectPage(SelectedPage.Settings)}
         >
           Settings
         </button>
@@ -88,8 +79,8 @@ function Sidebar({ uiState }: { uiState: UiStateDTO }) {
 
       <P1Box
         selected={selectedPage == SelectedPage.P1}
-        showChangelog={() => processUiAction({ type: "showChangelog" })}
-        showDonations={() => processUiAction({ type: "showDonations" })}
+        showChangelog={() => uiController.showChangelog()}
+        showDonations={() => uiController.showDonations()}
       />
       <P2Box selected={selectedPage == SelectedPage.P2} />
       <DeckImport selected={selectedPage == SelectedPage.DeckImport} />

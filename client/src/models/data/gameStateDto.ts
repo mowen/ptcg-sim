@@ -18,7 +18,7 @@ class GameStateDTO {
 
   [key: string]: any;
 
-  public initiator: UserType = UserType.Self;
+  public activeUser: UserType = UserType.Self;
   public isTwoPlayer: boolean = false;
   public self: PlayerStateDTO = new PlayerStateDTO();
   public opp: PlayerStateDTO = new PlayerStateDTO();

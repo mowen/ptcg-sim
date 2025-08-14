@@ -73,7 +73,7 @@ export function App() {
         <AppContext.Provider value={state}>
           <AppDispatchContext.Provider value={processAction}>
             <TableTop state={state} uiState={uiState} />
-            <Sidebar uiState={uiState} />
+            <Sidebar state={state} uiState={uiState} />
           </AppDispatchContext.Provider>
         </AppContext.Provider>
       </UiDispatchContext.Provider>

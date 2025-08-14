@@ -38,6 +38,8 @@ export const TwoEvolutions: Story = {
         } as Card,
       ],
     } as Card,
+    boardUser: "self",
+    cssUser: "self",
   },
 };
 
@@ -61,6 +63,8 @@ export const OneEvolution: Story = {
         } as Card,
       ],
     } as Card,
+    boardUser: "self",
+    cssUser: "self",
   },
 };
 
@@ -91,6 +95,8 @@ export const DamageCounters: Story = {
         } as Card,
       ],
     } as Card,
+    boardUser: "self",
+    cssUser: "self",
   },
 };
 
@@ -164,5 +170,7 @@ export const Energy: Story = {
         } as Card,
       ],
     } as Card,
+    boardUser: "self",
+    cssUser: "self",
   },
 };

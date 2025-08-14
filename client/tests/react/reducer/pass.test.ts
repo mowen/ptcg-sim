@@ -1,7 +1,7 @@
 import { reducerTest } from "./testData/testContext";
 import actionReducer from "../../../src/react/reducer/actionReducer";
 import { assert, expect } from "vitest";
-import { BoardState } from "../../../src/models";
+import { BoardState, UserType } from "../../../src/models";
 
 reducerTest(
   "two cards are moved to board and then we pass, cards on board are discarded",
@@ -33,3 +33,18 @@ reducerTest(
     expect(new BoardState(setupState.self)); // Expect no invalid data error
   },
 );
+
+reducerTest("self user passes, opp user is now active", ({ setupState }) => {
+  expect(setupState.activeUser).toBe(UserType.Self);
+
+  const passAction = {
+    user: "self",
+    emit: true,
+    type: "pass",
+    parameters: ["self"],
+  };
+
+  actionReducer(setupState, passAction);
+
+  expect(setupState.activeUser).toBe(UserType.Opp);
+});

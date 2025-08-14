@@ -27,6 +27,7 @@ import Options from "./components/sidebar/options";
 import Changelog from "./components/sidebar/changelog";
 import TableTop from "./components/board/tableTop";
 import { Sidebar, SelectedPage } from "./components/sidebar/sidebar";
+import { UiContext, UiDispatchContext } from "./context/uiContext";
 
 export {
   actionReducer,
@@ -60,4 +61,6 @@ export {
   useMutationObserver,
   AppContext,
   AppDispatchContext,
+  UiContext,
+  UiDispatchContext,
 };
