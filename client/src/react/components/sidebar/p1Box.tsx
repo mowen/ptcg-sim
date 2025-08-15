@@ -1,12 +1,31 @@
+import { useContext } from "react";
+import { UiStateDTO, UndoableGameStateDTO } from "../../../models";
+import { ActionController, UiController } from "../../../controllers";
+import { AppDispatchContext } from "../../context/appContext";
+import { UiDispatchContext } from "../../context/uiContext";
+
 function P1Box({
+  state,
   selected,
   showChangelog,
   showDonations,
 }: {
+  state: UndoableGameStateDTO;
   selected: boolean;
   showChangelog: () => void;
   showDonations: () => void;
 }) {
+  const processAction = useContext(AppDispatchContext);
+  const actionController = new ActionController(
+    state.gameState.activeUser,
+    processAction,
+  );
+  const processUiAction = useContext(UiDispatchContext);
+  const uiController = new UiController(
+    state.gameState.activeUser,
+    processUiAction,
+  );
+
   return selected ? (
     <div id="p1Box" className="sidebox">
       <div id="chatbox">
@@ -45,7 +64,9 @@ function P1Box({
           replay games.
         </p>
         <p style={{ fontSize: "90%" }}> Happy testing!</p>
-        <button id="tutorialButton">Watch Tutorial</button>
+        <button id="tutorialButton" onClick={() => uiController.showTutorial()}>
+          Watch Tutorial
+        </button>
         <br />
         <br />
         <div id="links">
@@ -63,17 +84,33 @@ function P1Box({
         <div id="line"></div>
       </div>
       <div id="chatboxButtonContainer" className="chat-button-container">
-        <button id="attackButton" className="self-color">
+        <button
+          id="attackButton"
+          className="self-color"
+          onClick={() => actionController.attack()}
+        >
           Attack
         </button>
-        <button id="passButton" className="self-color">
+        <button
+          id="passButton"
+          className="self-color"
+          onClick={() => actionController.pass()}
+        >
           Pass
         </button>
-        <button id="undoButton" className="self-color">
+        <button
+          id="undoButton"
+          className="self-color"
+          onClick={() => actionController.undo()}
+        >
           Undo
         </button>
-        <button id="FREEBUTTON" className="self-color">
-          ⚡
+        <button
+          id="redoButton"
+          className="self-color"
+          onClick={() => actionController.redo()}
+        >
+          Redo
         </button>
       </div>
       <input
@@ -94,7 +131,11 @@ function P1Box({
         <button id="resetBothButton" className="neutral-color">
           Reset Both
         </button>
-        <button id="optionsButton" className="neutral-color">
+        <button
+          id="optionsButton"
+          className="neutral-color"
+          onClick={() => uiController.showOptions()}
+        >
           Options
         </button>
       </div>

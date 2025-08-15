@@ -1,5 +1,5 @@
-function Options() {
-  return (
+function Options({ show }: { show: boolean }) {
+  return show ? (
     <div id="optionsContextMenu">
       <div id="exitReplay" style={{ display: "none" }}>
         Exit replay mode
@@ -39,7 +39,7 @@ function Options() {
       <div id="clearLog">Clear battle log</div>
       <div id="fullscreenButton">Full screen</div>
     </div>
-  );
+  ) : null;
 }
 
 export default Options;

@@ -269,7 +269,6 @@ li {
   cursor: pointer;
 }
 #videoContainer {
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -369,7 +368,6 @@ li {
 }
 #optionsContextMenu {
   position: absolute;
-  display: none;
   border: 1px solid #676767;
   padding: 2px;
   border-radius: 5px;
@@ -377,6 +375,7 @@ li {
   color: white;
   background-color: #595959;
   font-size: 1.75vh;
+  bottom: 0.2em;
 }
 #optionsContextMenu div {
   cursor: pointer;

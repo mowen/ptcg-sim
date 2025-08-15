@@ -19,6 +19,14 @@ export default class UiController {
     this._processUiAction({ type: "showDonations" });
   }
 
+  public showOptions() {
+    this._processUiAction({ type: "showOptions" });
+  }
+
+  public showTutorial() {
+    this._processUiAction({ type: "showTutorial" });
+  }
+
   public clearModal() {
     this._processUiAction({ type: "clearModal" });
   }

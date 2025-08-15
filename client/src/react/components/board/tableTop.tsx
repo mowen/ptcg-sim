@@ -31,7 +31,7 @@ function TableTop({
   const actionController = new ActionController(p1User, processAction);
   const uiController = new UiController(p1User, processUiAction);
 
-  useHotkeys("left", () => actionController.undo());
+  useHotkeys(["left", "u"], () => actionController.undo());
   useHotkeys("right", () => actionController.redo());
   useHotkeys("?", () => uiController.showKeybinds(), { useKey: true });
   useHotkeys("ESC", () => uiController.clearModal());
@@ -48,7 +48,6 @@ function TableTop({
         playerState={state.gameState[p2User]}
       />
 
-      <div id="selfResizer" className="self-color"></div>
       <div id="oppResizer" className="opp-color"></div>
 
       <BoardButtons
@@ -57,6 +56,8 @@ function TableTop({
         takeTurn={() => actionController.takeTurn()}
         flipActive={() => setIsSelfActive(!isSelfActive)}
       ></BoardButtons>
+
+      <div id="selfResizer" className="self-color"></div>
 
       <Board
         cssUser={UserType.Self}

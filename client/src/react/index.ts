@@ -28,6 +28,7 @@ import Changelog from "./components/sidebar/changelog";
 import TableTop from "./components/board/tableTop";
 import { Sidebar, SelectedPage } from "./components/sidebar/sidebar";
 import { UiContext, UiDispatchContext } from "./context/uiContext";
+import TutorialVideo from "./components/sidebar/tutorialVideo";
 
 export {
   actionReducer,
@@ -58,6 +59,7 @@ export {
   SpecialMoves,
   Stadium,
   TableTop,
+  TutorialVideo,
   useMutationObserver,
   AppContext,
   AppDispatchContext,

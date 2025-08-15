@@ -7,6 +7,7 @@ import {
   P1Box,
   P2Box,
   Settings,
+  TutorialVideo,
 } from "../..";
 import { UiStateDTO, UndoableGameStateDTO } from "../../../models";
 import { UiDispatchContext } from "../../context/uiContext";
@@ -78,6 +79,7 @@ function Sidebar({
       <div id="greyFiller"></div>
 
       <P1Box
+        state={state}
         selected={selectedPage == SelectedPage.P1}
         showChangelog={() => uiController.showChangelog()}
         showDonations={() => uiController.showDonations()}
@@ -86,7 +88,7 @@ function Sidebar({
       <DeckImport selected={selectedPage == SelectedPage.DeckImport} />
       <Settings selected={selectedPage == SelectedPage.Settings} />
 
-      <Options />
+      <Options show={uiState.showOptions} />
 
       <table id="decklistTable">
         <thead>
@@ -103,8 +105,7 @@ function Sidebar({
       <table id="selfCurrentDecklistTable" style={{ display: "none" }}></table>
       <table id="oppCurrentDecklistTable" style={{ display: "none" }}></table>
 
-      <div id="videoContainer"></div>
-
+      <TutorialVideo show={uiState.showTutorial} />
       <Changelog show={uiState.showChangelog} />
       <Donations show={uiState.showDonations} />
     </>

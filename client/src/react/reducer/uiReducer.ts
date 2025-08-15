@@ -6,6 +6,8 @@ function clearModal(uiState: UiStateDTO): void {
   uiState.showChangelog = false;
   uiState.showDonations = false;
   uiState.showKeybinds = false;
+  uiState.showOptions = false;
+  uiState.showTutorial = false;
   uiState.showAttached = {};
 }
 
@@ -26,6 +28,14 @@ export const uiActionReducer = (
       case "showChangelog":
         clearModal(draft);
         draft.showChangelog = true;
+        break;
+      case "showOptions":
+        clearModal(draft);
+        draft.showOptions = true;
+        break;
+      case "showTutorial":
+        clearModal(draft);
+        draft.showTutorial = true;
         break;
       case "showAttached":
         if (

@@ -8,6 +8,8 @@ class UiStateDTO {
   public showChangelog: boolean = false;
   public showDonations: boolean = false;
   public showKeybinds: boolean = false;
+  public showOptions: boolean = false;
+  public showTutorial: boolean = false;
   public showAttached?: Record<string, number> = {};
 }
 

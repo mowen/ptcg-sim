@@ -6,6 +6,24 @@ export default class ActionController {
     private readonly _processAction: (action: ActionDTO) => void,
   ) {}
 
+  public attack() {
+    this._processAction({
+      user: this._activeUser,
+      emit: true,
+      type: "attack",
+      parameters: [this._activeUser],
+    });
+  }
+
+  public pass() {
+    this._processAction({
+      user: this._activeUser,
+      emit: true,
+      type: "pass",
+      parameters: [this._activeUser],
+    });
+  }
+
   public takeTurn() {
     this._processAction({
       user: this._activeUser,
