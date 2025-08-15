@@ -64,6 +64,11 @@ class BoardState {
     return this.stadiumZone.cards;
   }
 
+  public zoneIdForCardId(cardId: number): string | undefined {
+    const zoneCard = this.allZoneCards().find((zc) => zc.cardId == cardId);
+    if (zoneCard !== undefined) return zoneCard.zoneId;
+  }
+
   private validate(): void {
     const totalCardsOnBoard = this.totalCardsOnBoard();
     if (

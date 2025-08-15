@@ -1,28 +1,15 @@
-import { useRef } from "react";
 import { Card } from "../../../models";
 import CardView from "../cards/cardView";
-// import useMutationObserver from '../../hooks/useMutationObserver';
-
-// const handleHandMutations = (element, mutations) => {
-//   mutations.forEach((mutation) => {
-//     if (mutation.type === 'childList') {
-//       adjustAlignment(element);
-//     }
-//   });
-// };
+import { useDroppable } from "@dnd-kit/core";
 
 export function Hand({ user, cards }: { user: string; cards: Array<Card> }) {
-  const handRef = useRef<HTMLDivElement>(null);
-  // useMutationObserver(handRef, handleHandMutations, {
-  //   attributes: false,
-  //   characterData: false,
-  //   childList: true,
-  //   subtree: false,
-  // });
+  const { setNodeRef } = useDroppable({
+    id: "hand",
+  });
 
   return (
     <>
-      <div id="hand" ref={handRef} className="zone">
+      <div id="hand" ref={setNodeRef} className="zone">
         <div id="handLabel">
           <input
             type="checkbox"

@@ -17,5 +17,5 @@
     "globals": "^15.14.0",
     "nodemon": "^3.1.9"
   },
-  "packageManager": "pnpm@10.13.1"
+  "packageManager": "pnpm@10.14.0"
 }

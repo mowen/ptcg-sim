@@ -45,7 +45,7 @@ export const uiActionReducer = (
         )
           return;
         clearModal(draft);
-        const cardId = action.parameters[0] as number;
+        let cardId = action.parameters[0] as number;
         draft.showAttached[action.user] = cardId;
         break;
       case "selectPage":

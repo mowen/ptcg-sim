@@ -19,6 +19,7 @@ function P1Box({
   const actionController = new ActionController(
     state.gameState.activeUser,
     processAction,
+    state,
   );
   const processUiAction = useContext(UiDispatchContext);
   const uiController = new UiController(

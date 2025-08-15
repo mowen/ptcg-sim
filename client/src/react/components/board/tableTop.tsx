@@ -11,6 +11,7 @@ import { ActionController, UiController } from "../../../controllers";
 import { useHotkeys } from "react-hotkeys-hook";
 
 import "./tableTop.css";
+import { DndContext, DragEndEvent } from "@dnd-kit/core";
 
 function TableTop({
   state,
@@ -20,6 +21,10 @@ function TableTop({
   uiState: UiStateDTO;
 }) {
   const [isSelfActive, setIsSelfActive] = useState(true);
+  const [dragStart, setDragStart] = useState<{
+    cardId: number;
+    zoneId: string;
+  }>();
 
   const processAction = useContext(AppDispatchContext);
   const processUiAction = useContext(UiDispatchContext);
@@ -28,7 +33,7 @@ function TableTop({
     ? [UserType.Self, UserType.Opp]
     : [UserType.Opp, UserType.Self];
 
-  const actionController = new ActionController(p1User, processAction);
+  const actionController = new ActionController(p1User, processAction, state);
   const uiController = new UiController(p1User, processUiAction);
 
   useHotkeys(["left", "u"], () => actionController.undo());
@@ -59,11 +64,20 @@ function TableTop({
 
       <div id="selfResizer" className="self-color"></div>
 
-      <Board
-        cssUser={UserType.Self}
-        boardUser={p1User}
-        playerState={state.gameState[p1User]}
-      />
+      <DndContext
+        onDragEnd={(event: DragEndEvent) =>
+          actionController.moveCardTo(
+            event.active.id.toString(),
+            event.over?.id.toString(),
+          )
+        }
+      >
+        <Board
+          cssUser={UserType.Self}
+          boardUser={p1User}
+          playerState={state.gameState[p1User]}
+        />
+      </DndContext>
 
       <KeybindModal show={uiState.showKeybinds} />
     </>
