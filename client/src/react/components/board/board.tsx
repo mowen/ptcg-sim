@@ -11,7 +11,6 @@ import {
   PrizeCards,
   SpecialMoves,
   Stadium,
-  ViewCards,
 } from "../..";
 import { useMemo } from "react";
 

@@ -26,9 +26,11 @@ export function Bench({
               card={c}
               boardUser={boardUser}
               cssUser={cssUser}
+              zoneId="bench"
+              zoneIndex={i}
             ></PokemonCard>
           ) : (
-            <CardView key={i} card={c}></CardView>
+            <CardView key={i} card={c} zoneId="bench" zoneIndex={i}></CardView>
           ),
         )}
       </div>

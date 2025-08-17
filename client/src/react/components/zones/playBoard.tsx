@@ -1,7 +1,6 @@
-import { useRef } from "react";
+import { useDroppable } from "@dnd-kit/core";
 import { Card } from "../../../models";
 import CardView from "../cards/cardView";
-// import useMutationObserver from '../../hooks/useMutationObserver';
 
 export function PlayBoard({
   user,
@@ -10,30 +9,14 @@ export function PlayBoard({
   user: string;
   cards: Array<Card>;
 }) {
-  // const scrollToBottom = (element) => {
-  //   element.scrollTop = element.scrollHeight;
-  // };
-
-  // const handleBoardMutations = (element, mutations) => {
-  //   mutations.forEach((mutation) => {
-  //     if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-  //       scrollToBottom(element);
-  //     }
-  //   });
-  // };
-
-  const boardRef = useRef<HTMLDivElement>(null);
-  // useMutationObserver(boardRef, handleBoardMutations, {
-  //   attributes: false,
-  //   characterData: false,
-  //   childList: true,
-  //   subtree: false,
-  // });
+  const { setNodeRef } = useDroppable({
+    id: "board",
+  });
 
   return (
-    <div id="board" className={`${user}-board zone`} ref={boardRef}>
+    <div id="board" className={`${user}-board zone`} ref={setNodeRef}>
       {cards.map((c: Card, i) => (
-        <CardView key={i} card={c}></CardView>
+        <CardView key={i} card={c} zoneId="board" zoneIndex={i}></CardView>
       ))}
     </div>
   );

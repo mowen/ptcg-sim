@@ -39,7 +39,9 @@ export function Stadium({ cards }: { cards: Array<Card> }) {
   return (
     <>
       <div id="stadium" className="zone" ref={stadiumRef}>
-        {cards.length > 0 ? <CardView card={cards[0]}></CardView> : null}
+        {cards.length > 0 ? (
+          <CardView card={cards[0]} zoneId="stadium" zoneIndex={0}></CardView>
+        ) : null}
       </div>
     </>
   );

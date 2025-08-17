@@ -7,11 +7,17 @@ import {
 } from "../models";
 
 export default class ActionController {
+  private readonly _playerState: PlayerStateDTO;
+  private readonly _boardState: BoardState;
+
   constructor(
     private readonly _activeUser: string,
     private readonly _processAction: (action: ActionDTO) => void,
     private readonly _state: UndoableGameStateDTO,
-  ) {}
+  ) {
+    this._playerState = this._state.gameState[this._activeUser];
+    this._boardState = new BoardState(this._playerState);
+  }
 
   public attack() {
     this._processAction({
@@ -58,35 +64,62 @@ export default class ActionController {
     });
   }
 
-  public moveCardTo(cardIdString: string, zoneId?: string) {
-    if (zoneId === undefined) return;
-
-    const playerState = this._state.gameState[this._activeUser];
-    const boardState = new BoardState(playerState);
-
-    const cardId = parseInt(cardIdString);
-    const currentZoneId = boardState.zoneIdForCardId(cardId);
-    if (currentZoneId === undefined)
-      throw new MissingCardError(
-        `${cardId} was not found in any of ${this._activeUser}'s zones`,
-      );
-
-    const zoneArray = playerState.boardState[currentZoneId] as Array<number>;
-    console.log(zoneArray, cardId);
-    const sourceZoneIndex = zoneArray.indexOf(cardId);
-
+  public discardBoard() {
     this._processAction({
+      user: this._activeUser,
+      emit: true,
+      type: "discardBoard",
+      parameters: [this._activeUser, true],
+    });
+  }
+
+  public moveCard(
+    sourceCardIdString: string,
+    sourceZoneId: string,
+    sourceZoneIndex: string,
+    targetCardIdOrZoneId: string | undefined,
+    targetZoneId: string | undefined,
+    targetZoneIndex: string | undefined,
+  ) {
+    if (targetCardIdOrZoneId === undefined) return;
+
+    const sourceCardId = parseInt(sourceCardIdString);
+
+    let target: number | boolean;
+    if (targetZoneId !== undefined && targetZoneIndex !== undefined) {
+      // We dropped on a Pokemon
+      const targetCardId = parseInt(targetCardIdOrZoneId.substring(7));
+      if (targetZoneId === sourceZoneId && targetCardId == sourceCardId) {
+        // We moved the same card back to where it came form
+        return;
+      }
+      target = parseInt(targetZoneIndex);
+    } else {
+      // We dropped on a Zone
+      targetZoneId = targetCardIdOrZoneId;
+      target = false;
+    }
+
+    const action = {
       user: this._activeUser,
       emit: true,
       type: "moveCardBundle",
       parameters: [
         this._activeUser,
-        currentZoneId,
-        zoneId,
+        sourceZoneId,
+        targetZoneId,
         sourceZoneIndex,
-        false,
+        target,
         "move",
       ],
-    });
+    };
+    console.log(action);
+    this._processAction(action);
+  }
+
+  private indexInZone(cardId: number, zoneId: string): number | undefined {
+    const zoneArray = this._playerState.boardState[zoneId] as Array<number>;
+    const sourceZoneIndex = zoneArray.indexOf(cardId);
+    return sourceZoneIndex < 0 ? undefined : sourceZoneIndex;
   }
 }

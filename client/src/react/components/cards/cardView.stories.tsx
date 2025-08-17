@@ -30,6 +30,8 @@ export const Default: Story = {
       ],
     } as Card,
     faceUp: true,
+    zoneId: "bench",
+    zoneIndex: 0,
   },
 };
 
@@ -52,5 +54,7 @@ export const FaceDown: Story = {
       ],
     } as Card,
     faceUp: false,
+    zoneId: "bench",
+    zoneIndex: 0,
   },
 };

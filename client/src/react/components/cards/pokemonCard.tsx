@@ -1,30 +1,52 @@
 import { CSSProperties, useContext } from "react";
 import { Card } from "../../../models";
 import CardView from "./cardView";
-
-import "./pokemonCard.css";
 import { UiContext, UiDispatchContext } from "../../context/uiContext";
 import { AttachedCards } from "../popups/attachedCards";
 import { AppContext } from "../../context/appContext";
 import { UiController } from "../../../controllers";
+import { useDraggable, useDroppable } from "@dnd-kit/core";
+import { CSS } from "@dnd-kit/utilities";
+
+import "./pokemonCard.css";
+import { MissingCardError } from "../../../errors";
 
 const evoVertOffset: number = 0.8;
 const energyHorizOffset: number = 0.8;
 const cardWidth = 6.3;
 
-function Evolutions({ parent }: { parent: Card }) {
+function getAttachedIndex(attachedCard: Card, parent: Card): number {
+  const attachedIndex = parent.attachedIndexOf(attachedCard);
+  if (attachedIndex == null) {
+    throw new MissingCardError(
+      `Card with ID '${attachedCard.id}' was not found attached to Card ID '${parent.id}'. Parent: ${parent.toString()}`,
+    );
+  }
+  return attachedIndex;
+}
+
+function Evolutions({ parent, zoneId }: { parent: Card; zoneId: string }) {
   const evoStyle = (level: number): CSSProperties => ({
     zIndex: level + 1,
     top: `${(level + 1) * evoVertOffset - evoVertOffset}em`,
     position: parent.evolutions.length != level + 2 ? "relative" : "absolute",
   });
 
-  return parent.evolutions.map((pokemon, i) => (
-    <CardView card={pokemon} wrapWithDiv={false} style={evoStyle(i)} />
-  ));
+  return parent.evolutions.map((pokemon, i) => {
+    const attachedIndex = getAttachedIndex(pokemon, parent);
+    return (
+      <CardView
+        card={pokemon}
+        zoneId={zoneId}
+        zoneIndex={attachedIndex}
+        wrapWithDiv={false}
+        style={evoStyle(i)}
+      />
+    );
+  });
 }
 
-function Energies({ parent }: { parent: Card }) {
+function Energies({ parent, zoneId }: { parent: Card; zoneId: string }) {
   const energyStyle = (level: number): CSSProperties => ({
     zIndex: (level + 1) * -1,
     top: "0px",
@@ -32,21 +54,45 @@ function Energies({ parent }: { parent: Card }) {
     position: "absolute",
   });
 
-  return parent.energy.map((energy, i) => (
-    <CardView card={energy} wrapWithDiv={false} style={energyStyle(i)} />
-  ));
+  return parent.energy.map((energy, i) => {
+    const attachedIndex = getAttachedIndex(energy, parent);
+    return (
+      <CardView
+        card={energy}
+        zoneId={zoneId}
+        zoneIndex={attachedIndex}
+        wrapWithDiv={false}
+        style={energyStyle(i)}
+      />
+    );
+  });
 }
 
-function Tool({ parent }: { parent: Card }) {
+function Tool({
+  parent,
+  tool,
+  zoneId,
+}: {
+  parent: Card;
+  tool: Card;
+  zoneId: string;
+}) {
   const toolStyle: CSSProperties = {
     transform: "rotate(-90deg)",
     zIndex: -1 * (parent.energy.length + 1),
     position: "absolute",
     left: "-0.5em",
   };
-  return parent.tool ? (
-    <CardView card={parent.tool} wrapWithDiv={false} style={toolStyle} />
-  ) : null;
+  const attachedIndex = getAttachedIndex(tool, parent);
+  return (
+    <CardView
+      card={tool}
+      zoneId={zoneId}
+      zoneIndex={attachedIndex}
+      wrapWithDiv={false}
+      style={toolStyle}
+    />
+  );
 }
 
 function Damage({ parent }: { parent: Card }) {
@@ -61,10 +107,14 @@ function PokemonCard({
   card,
   boardUser,
   cssUser,
+  zoneId,
+  zoneIndex,
 }: {
   card: Card;
   boardUser: string;
   cssUser: string;
+  zoneId: string;
+  zoneIndex: number;
 }) {
   const uiState = useContext(UiContext);
   const state = useContext(AppContext);
@@ -90,24 +140,60 @@ function PokemonCard({
     uiState.showAttached[boardUser] &&
     uiState.showAttached[boardUser] == card.id;
 
+  const droppable = useDroppable({
+    id: `pokemon${card.id}`,
+    data: {
+      zoneId,
+      zoneIndex,
+    },
+  });
+
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id: card.id,
+    data: {
+      zoneId,
+      zoneIndex,
+    },
+  });
+  const dragStyle = {
+    transform: CSS.Translate.toString(transform),
+    touchAction: "none",
+  };
+
   return (
     <div
       className="pokemon"
       style={pokemonStyle}
       onClick={() => uiController.showAttached(boardUser, card)}
+      ref={droppable.setNodeRef}
     >
-      <CardView card={card} wrapWithDiv={false} style={cardStyle} />
-      <Evolutions parent={card} />
-      <Energies parent={card} />
-      <Tool parent={card} />
-      <Damage parent={card} />
-      {showAttached ? (
-        <AttachedCards
-          cssUser={cssUser}
-          cards={card.attached}
-          onClose={() => uiController.clearModal()}
+      <div
+        className="cardBundle"
+        ref={setNodeRef}
+        style={dragStyle}
+        {...listeners}
+        {...attributes}
+      >
+        <CardView
+          card={card}
+          zoneId={zoneId}
+          zoneIndex={zoneIndex}
+          wrapWithDiv={false}
+          style={cardStyle}
         />
-      ) : null}
+        <Evolutions parent={card} zoneId={zoneId} />
+        <Energies parent={card} zoneId={zoneId} />
+        {card.tool && <Tool parent={card} tool={card.tool} zoneId={zoneId} />}
+        <Damage parent={card} />
+        {showAttached && (
+          <AttachedCards
+            cssUser={cssUser}
+            cards={card.attached}
+            zoneId={zoneId}
+            onClose={() => uiController.clearModal()}
+          />
+        )}
+      </div>
     </div>
   );
 }

@@ -30,7 +30,7 @@ export function Hand({ user, cards }: { user: string; cards: Array<Card> }) {
           </label>
         </div>
         {cards.map((c: Card, i: number) => (
-          <CardView key={i} card={c}></CardView>
+          <CardView key={i} card={c} zoneId="hand" zoneIndex={i}></CardView>
         ))}
       </div>
     </>

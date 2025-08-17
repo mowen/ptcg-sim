@@ -8,20 +8,29 @@ import "./cardView.css";
 
 function CardView({
   card,
+  zoneId,
+  zoneIndex,
   faceUp = true,
   wrapWithDiv = true,
   style = {},
 }: {
   card: Card;
+  zoneId: string;
+  zoneIndex: number;
   faceUp?: boolean;
   wrapWithDiv?: boolean;
   style?: CSSProperties;
 }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: card.id,
+    data: {
+      zoneId,
+      zoneIndex,
+    },
   });
   const dragStyle = {
     transform: CSS.Translate.toString(transform),
+    touchAction: "none",
   };
 
   const cardImage = faceUp ? (

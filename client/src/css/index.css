@@ -213,6 +213,9 @@ li {
 #topButtonContainer button:not(.selected-page):hover {
   color: rgb(50, 50, 50);
 }
+#tableTop {
+  width: 75%;
+}
 .sidebox {
   background: rgb(231, 228, 228);
   position: fixed;
@@ -1062,8 +1065,4 @@ a:hover {
   100% {
     transform: rotate(360deg);
   } /* End at 360 degrees (full circle) */
-}
-
-#root {
-  width: 75%;
 }
