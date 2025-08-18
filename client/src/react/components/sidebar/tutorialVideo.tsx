@@ -1,5 +1,5 @@
-export default function TutorialVideo({ show }: { show: boolean }) {
-  return show ? (
+export default function TutorialVideo() {
+  return (
     <div id="videoContainer" style={{ display: "flex" }}>
       <iframe
         width="560"
@@ -7,5 +7,5 @@ export default function TutorialVideo({ show }: { show: boolean }) {
         src="https://www.youtube.com/embed/t3qAhO_p3mk?si=jxysgkLxaAoaSw1I"
       ></iframe>
     </div>
-  ) : null;
+  );
 }

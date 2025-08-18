@@ -1,3 +1,4 @@
+import { MissingCardError } from "../errors";
 import { CardDTO, CardType, PlayerStateDTO } from "./data";
 
 class Card {
@@ -67,6 +68,15 @@ class Card {
 
   public get isEnergy(): boolean {
     return this._cardData.type === CardType.Energy;
+  }
+
+  public getZoneIndex(zoneId: string): number {
+    const zoneArray = this._playerState.boardState[zoneId] as Array<number>;
+    const zoneIndex = zoneArray.indexOf(this.id);
+    if (zoneIndex < 0) {
+      throw new MissingCardError(`Card ID ${this.id} not found in zoneId`);
+    }
+    return zoneIndex;
   }
 
   public toString(): string {

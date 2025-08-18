@@ -1,5 +1,5 @@
-function P2Box({ selected }: { selected: boolean }) {
-  return selected ? (
+function P2Box() {
+  return (
     <div id="p2Box" className="sidebox">
       <div id="p2ExplanationBox">
         <strong>Online Multiplayer Mode</strong>
@@ -80,7 +80,7 @@ function P2Box({ selected }: { selected: boolean }) {
         </div>
       </div>
     </div>
-  ) : null;
+  );
 }
 
 export default P2Box;

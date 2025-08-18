@@ -1,5 +1,5 @@
-function DeckImport({ selected }: { selected: boolean }) {
-  return selected ? (
+function DeckImport() {
+  return (
     <div id="deckImport" className="sidebox">
       <div>
         <button id="deckBuilderButton">Deck Builder</button>
@@ -78,7 +78,7 @@ function DeckImport({ selected }: { selected: boolean }) {
         Save Current Deck
       </button>
     </div>
-  ) : null;
+  );
 }
 
 export default DeckImport;

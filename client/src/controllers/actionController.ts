@@ -1,3 +1,4 @@
+import { DragEndEvent } from "@dnd-kit/core";
 import { MissingCardError } from "../errors/missingCardError";
 import {
   ActionDTO,
@@ -73,7 +74,27 @@ export default class ActionController {
     });
   }
 
-  public moveCard(
+  public handleCardDragEnd(event: DragEndEvent) {
+    const { active, over } = event;
+    if (active && active.data.current) {
+      if (over) {
+        this.moveCard(
+          active.id.toString(),
+          active.data.current.zoneId,
+          active.data.current.zoneIndex,
+          over.id.toString(),
+          over.data?.current?.zoneId,
+          over.data?.current?.zoneIndex,
+        );
+      } else {
+        console.warn(`DragEndevent had no over`);
+      }
+    } else {
+      console.warn(`DragEndevent had no active`);
+    }
+  }
+
+  private moveCard(
     sourceCardIdString: string,
     sourceZoneId: string,
     sourceZoneIndex: string,
@@ -115,11 +136,5 @@ export default class ActionController {
     };
     console.log(action);
     this._processAction(action);
-  }
-
-  private indexInZone(cardId: number, zoneId: string): number | undefined {
-    const zoneArray = this._playerState.boardState[zoneId] as Array<number>;
-    const sourceZoneIndex = zoneArray.indexOf(cardId);
-    return sourceZoneIndex < 0 ? undefined : sourceZoneIndex;
   }
 }

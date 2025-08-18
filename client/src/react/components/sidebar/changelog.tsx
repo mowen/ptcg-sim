@@ -1,11 +1,11 @@
-import { ReactComponent } from "../../../../../CHANGELOG.md";
+import { ReactComponent as ChangelogMarkdown } from "../../../../../CHANGELOG.md";
 
-function Changelog({ show }: { show: boolean }) {
-  return show ? (
+function Changelog() {
+  return (
     <div id="changelog">
-      <ReactComponent />
+      <ChangelogMarkdown />
     </div>
-  ) : null;
+  );
 }
 
 export default Changelog;

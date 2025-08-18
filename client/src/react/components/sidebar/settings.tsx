@@ -1,5 +1,5 @@
-function Settings({ selected }: { selected: boolean }) {
-  return selected ? (
+function Settings() {
+  return (
     <div id="settings" className="sidebox">
       <div id="settingsToggles">
         <div>
@@ -40,7 +40,7 @@ function Settings({ selected }: { selected: boolean }) {
         </a>
       </div>
     </div>
-  ) : null;
+  );
 }
 
 export default Settings;

@@ -78,17 +78,18 @@ function Sidebar({
       </div>
       <div id="greyFiller"></div>
 
-      <P1Box
-        state={state}
-        selected={selectedPage == SelectedPage.P1}
-        showChangelog={() => uiController.showChangelog()}
-        showDonations={() => uiController.showDonations()}
-      />
-      <P2Box selected={selectedPage == SelectedPage.P2} />
-      <DeckImport selected={selectedPage == SelectedPage.DeckImport} />
-      <Settings selected={selectedPage == SelectedPage.Settings} />
+      {uiState.selectedPage == SelectedPage.P1 && (
+        <P1Box
+          state={state}
+          showChangelog={() => uiController.showChangelog()}
+          showDonations={() => uiController.showDonations()}
+        />
+      )}
+      {uiState.selectedPage == SelectedPage.P2 && <P2Box />}
+      {uiState.selectedPage == SelectedPage.DeckImport && <DeckImport />}
+      {uiState.selectedPage == SelectedPage.Settings && <Settings />}
 
-      <Options show={uiState.showOptions} />
+      {uiState.showOptions && <Options />}
 
       <table id="decklistTable">
         <thead>
@@ -105,9 +106,9 @@ function Sidebar({
       <table id="selfCurrentDecklistTable" style={{ display: "none" }}></table>
       <table id="oppCurrentDecklistTable" style={{ display: "none" }}></table>
 
-      <TutorialVideo show={uiState.showTutorial} />
-      <Changelog show={uiState.showChangelog} />
-      <Donations show={uiState.showDonations} />
+      {uiState.showTutorial && <TutorialVideo />}
+      {uiState.showChangelog && <Changelog />}
+      {uiState.showDonations && <Donations />}
     </>
   );
 }

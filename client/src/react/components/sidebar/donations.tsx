@@ -1,5 +1,5 @@
-function Donations({ show }: { show: boolean }) {
-  return show ? (
+function Donations() {
+  return (
     <div id="donationsPage">
       <h2>Sponsors & Donations</h2>
 
@@ -137,7 +137,7 @@ function Donations({ show }: { show: boolean }) {
         </li>
       </ul>
     </div>
-  ) : null;
+  );
 }
 
 export default Donations;

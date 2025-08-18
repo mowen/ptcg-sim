@@ -1,17 +1,15 @@
 import { useContext } from "react";
-import { UiStateDTO, UndoableGameStateDTO } from "../../../models";
+import { UndoableGameStateDTO } from "../../../models";
 import { ActionController, UiController } from "../../../controllers";
 import { AppDispatchContext } from "../../context/appContext";
 import { UiDispatchContext } from "../../context/uiContext";
 
 function P1Box({
   state,
-  selected,
   showChangelog,
   showDonations,
 }: {
   state: UndoableGameStateDTO;
-  selected: boolean;
   showChangelog: () => void;
   showDonations: () => void;
 }) {
@@ -27,7 +25,7 @@ function P1Box({
     processUiAction,
   );
 
-  return selected ? (
+  return (
     <div id="p1Box" className="sidebox">
       <div id="chatbox">
         <strong>Welcome to PTCG-sim!</strong>
@@ -141,7 +139,7 @@ function P1Box({
         </button>
       </div>
     </div>
-  ) : null;
+  );
 }
 
 export default P1Box;

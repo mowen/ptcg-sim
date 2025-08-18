@@ -1,5 +1,5 @@
-function KeybindModal({ show }: { show: boolean }) {
-  return show ? (
+function KeybindModal() {
+  return (
     <div id="keybindModal">
       <div className="keybind-section-container">
         <div className="keybind-section">
@@ -203,7 +203,7 @@ function KeybindModal({ show }: { show: boolean }) {
         </p>
       </div>
     </div>
-  ) : null;
+  );
 }
 
 export default KeybindModal;
