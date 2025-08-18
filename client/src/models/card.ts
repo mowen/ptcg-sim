@@ -70,6 +70,30 @@ class Card {
     return this._cardData.type === CardType.Energy;
   }
 
+  public get isPoisoned(): boolean {
+    return !!this.specialCondition && this.specialCondition === "P";
+  }
+
+  public get isBurned(): boolean {
+    return !!this.specialCondition && this.specialCondition === "B";
+  }
+
+  public get isParalyzed(): boolean {
+    return !!this.specialCondition && this.specialCondition === "PA";
+  }
+
+  public get isConfused(): boolean {
+    return !!this.specialCondition && this.specialCondition === "C";
+  }
+
+  public get isAsleep(): boolean {
+    return !!this.specialCondition && this.specialCondition === "A";
+  }
+
+  private get specialCondition(): string | undefined {
+    return this._playerState.boardState.specialCondition[this.id];
+  }
+
   public getZoneIndex(zoneId: string): number {
     const zoneArray = this._playerState.boardState[zoneId] as Array<number>;
     const zoneIndex = zoneArray.indexOf(this.id);

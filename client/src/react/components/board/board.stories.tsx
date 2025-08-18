@@ -465,6 +465,9 @@ export const Default: Story = {
           "0": 40,
         },
         abilityUsed: [],
+        specialCondition: {
+          "0": "P",
+        },
         turn: 5,
       },
       [immerable]: true,

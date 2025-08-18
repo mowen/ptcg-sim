@@ -251,6 +251,28 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
       delete draft[user].boardState.damage[sourceDeckListIndex];
       break;
     }
+    case "addSpecialCondition": {
+      const [oZoneId, sourceIndex] = action.parameters as [string, number];
+      const sourceDeckListIndex = draft[user].boardState[oZoneId][sourceIndex];
+      draft[user].boardState.specialCondition[sourceDeckListIndex] = "P"; // Poisoned (P) is initial special condition in current implementation
+      break;
+    }
+    case "removeSpecialCondition": {
+      const [oZoneId, sourceIndex] = action.parameters as [string, number];
+      const sourceDeckListIndex = draft[user].boardState[oZoneId][sourceIndex];
+      delete draft[user].boardState.specialCondition[sourceDeckListIndex];
+      break;
+    }
+    case "updateSpecialCondition": {
+      const [oZoneId, sourceIndex, condition] = action.parameters as [
+        string,
+        number,
+        string,
+      ];
+      const sourceDeckListIndex = draft[user].boardState[oZoneId][sourceIndex];
+      draft[user].boardState.specialCondition[sourceDeckListIndex] = condition;
+      break;
+    }
     default:
       console.warn(`Action type ${action.type} was not processed`, action);
       break;

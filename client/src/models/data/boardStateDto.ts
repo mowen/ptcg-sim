@@ -19,6 +19,7 @@ class BoardStateDTO {
   public attached: Record<number, Array<number>> = {};
   public damage: Record<number, number> = {};
   public abilityUsed: Array<number> = new Array<number>();
+  public specialCondition: Record<number, string> = {};
   public turn: number = 0;
 }
 
