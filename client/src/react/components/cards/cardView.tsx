@@ -8,15 +8,11 @@ import "./cardView.css";
 
 function CardView({
   card,
-  zoneId,
-  zoneIndex,
   faceUp = true,
   wrapWithDiv = true,
   style = {},
 }: {
   card: Card;
-  zoneId: string;
-  zoneIndex: number;
   faceUp?: boolean;
   wrapWithDiv?: boolean;
   style?: CSSProperties;
@@ -24,8 +20,8 @@ function CardView({
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: card.id,
     data: {
-      zoneId,
-      zoneIndex,
+      zoneId: card.zoneId,
+      zoneIndex: card.zoneIndex,
     },
   });
   const dragStyle = {

@@ -40,8 +40,6 @@ export const TwoEvolutions: Story = {
     } as Card,
     boardUser: "self",
     cssUser: "self",
-    zoneId: "bench",
-    zoneIndex: 0,
   },
 };
 
@@ -67,8 +65,6 @@ export const OneEvolution: Story = {
     } as Card,
     boardUser: "self",
     cssUser: "self",
-    zoneId: "bench",
-    zoneIndex: 0,
   },
 };
 
@@ -101,8 +97,6 @@ export const DamageCounters: Story = {
     } as Card,
     boardUser: "self",
     cssUser: "self",
-    zoneId: "bench",
-    zoneIndex: 0,
   },
 };
 
@@ -178,7 +172,5 @@ export const Energy: Story = {
     } as Card,
     boardUser: "self",
     cssUser: "self",
-    zoneId: "bench",
-    zoneIndex: 0,
   },
 };

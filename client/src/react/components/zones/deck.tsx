@@ -9,12 +9,7 @@ export function Deck({ user, cards }: { user: string; cards: Array<Card> }) {
           (<span id="deckCount">{cards.length}</span>)
         </div>
         {cards.length > 0 ? (
-          <CardView
-            card={cards[0]}
-            zoneId="deck"
-            zoneIndex={0}
-            faceUp={false}
-          ></CardView>
+          <CardView card={cards[0]} faceUp={false}></CardView>
         ) : null}
       </div>
     </>

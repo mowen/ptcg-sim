@@ -15,7 +15,7 @@ export function LostZone({
           (<span id="lostZoneCount">{cards.length}</span>)
         </div>
         {cards.map((c: Card, i) => (
-          <CardView key={i} card={c} zoneId="lostZone" zoneIndex={i}></CardView>
+          <CardView key={i} card={c}></CardView>
         ))}
       </div>
     </>

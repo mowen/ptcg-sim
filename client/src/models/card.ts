@@ -1,11 +1,51 @@
 import { MissingCardError } from "../errors";
-import { CardDTO, CardType, PlayerStateDTO } from "./data";
+import { CardDTO, CardLocation, CardType, PlayerStateDTO } from "./data";
+
+enum SpecialCondition {
+  Poisoned = "P",
+  Burned = "B",
+  Asleep = "A",
+  Paralyzed = "PA",
+  Confused = "C",
+}
 
 class Card {
+  public readonly zoneId: CardLocation;
+  public readonly zoneIndex: number;
+
   constructor(
     private _playerState: PlayerStateDTO,
     public readonly id: number,
-  ) {}
+  ) {
+    this.zoneId = this.getCardLocation(this.id);
+    this.zoneIndex = this._playerState.boardState[
+      this.zoneId.valueOf()
+    ].indexOf(this.id);
+  }
+
+  private getCardLocation(cardId: number): CardLocation {
+    const cardLocation = Object.values(CardLocation).find((zId) =>
+      this._playerState.boardState[zId].includes(cardId),
+    );
+    if (cardLocation === undefined) {
+      const attachedCardId = Object.keys(
+        this._playerState.boardState.attached,
+      ).find((cId) =>
+        this._playerState.boardState.attached[parseInt(cId)].includes(cardId),
+      );
+      if (attachedCardId === undefined) {
+        throw new MissingCardError(
+          `Card ID ${this.id} was not found in any zones`,
+        );
+      } else {
+        // I don't like recursion but this should only go one level
+        // down - to the parent card
+        return this.getCardLocation(parseInt(attachedCardId));
+      }
+    } else {
+      return cardLocation as CardLocation;
+    }
+  }
 
   public get name(): string {
     return this._cardData.name;
@@ -71,27 +111,44 @@ class Card {
   }
 
   public get isPoisoned(): boolean {
-    return !!this.specialCondition && this.specialCondition === "P";
+    return (
+      !!this.specialCondition &&
+      this.specialCondition === SpecialCondition.Poisoned
+    );
   }
 
   public get isBurned(): boolean {
-    return !!this.specialCondition && this.specialCondition === "B";
+    return (
+      !!this.specialCondition &&
+      this.specialCondition === SpecialCondition.Burned
+    );
   }
 
   public get isParalyzed(): boolean {
-    return !!this.specialCondition && this.specialCondition === "PA";
+    return (
+      !!this.specialCondition &&
+      this.specialCondition === SpecialCondition.Paralyzed
+    );
   }
 
   public get isConfused(): boolean {
-    return !!this.specialCondition && this.specialCondition === "C";
+    return (
+      !!this.specialCondition &&
+      this.specialCondition === SpecialCondition.Confused
+    );
   }
 
   public get isAsleep(): boolean {
-    return !!this.specialCondition && this.specialCondition === "A";
+    return (
+      !!this.specialCondition &&
+      this.specialCondition === SpecialCondition.Asleep
+    );
   }
 
-  private get specialCondition(): string | undefined {
-    return this._playerState.boardState.specialCondition[this.id];
+  private get specialCondition(): SpecialCondition | undefined {
+    return this._playerState.boardState.specialCondition[
+      this.id
+    ] as SpecialCondition;
   }
 
   public getZoneIndex(zoneId: string): number {

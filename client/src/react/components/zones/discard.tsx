@@ -14,11 +14,7 @@ export function Discard({ user, cards }: { user: string; cards: Array<Card> }) {
           (<span id="discardCount">{cards.length}</span>)
         </div>
         {cards.length > 0 ? (
-          <CardView
-            card={cards[cards.length - 1]}
-            zoneId="discard"
-            zoneIndex={0}
-          ></CardView>
+          <CardView card={cards[cards.length - 1]}></CardView>
         ) : null}
       </div>
     </>

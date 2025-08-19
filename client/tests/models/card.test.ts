@@ -1,6 +1,12 @@
 import { expect, test } from "vitest";
 import { BoardState } from "../../src/models/boardState";
-import { BoardStateDTO, Card, CardDTO, PlayerStateDTO } from "../../src/models";
+import {
+  BoardStateDTO,
+  Card,
+  CardDTO,
+  CardLocation,
+  PlayerStateDTO,
+} from "../../src/models";
 import { immerable } from "immer";
 
 const deckList = [
@@ -38,6 +44,16 @@ const playerState = {
   boardState,
   deckList,
 } as PlayerStateDTO;
+
+test("a Card has a correct zoneId", () => {
+  const card = new Card(playerState, 3);
+  expect(card.zoneId).toBe(CardLocation.Hand);
+});
+
+test("a Card has a correct zoneIndex", () => {
+  const card = new Card(playerState, 3);
+  expect(card.zoneIndex).toBe(1);
+});
 
 test("a Card has special condition 'P'. the card isPoisoned", () => {
   playerState.boardState.specialCondition[4] = "P";

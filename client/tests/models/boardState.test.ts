@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import { BoardState } from "../../src/models/boardState";
 import { BoardStateDTO, CardDTO, PlayerStateDTO } from "../../src/models";
-import { InvalidBoardStateError } from "../../src/errors";
+import { InvalidBoardStateError, MissingCardError } from "../../src/errors";
 
 const deckList = [
   new CardDTO(0, "Martin", "Pokemon", "https://blah.com/martin.png"),
@@ -15,7 +15,7 @@ const deckList = [
 
 const boardStateData = new BoardStateDTO();
 
-test("a board state with only 5 cards and a decklist of 7 cards throws an InvalidBoardStateError", () => {
+test("a board state with only 5 cards and a decklist of 7 cards throws a MissingCardError", () => {
   boardStateData.active = [4];
   boardStateData.hand = [1, 0];
   boardStateData.deck = [5];
@@ -28,11 +28,7 @@ test("a board state with only 5 cards and a decklist of 7 cards throws an Invali
         boardState: boardStateData,
         deckList,
       } as PlayerStateDTO),
-  ).toThrow(
-    new InvalidBoardStateError(
-      "Total number of cards on board is only 5, should be 7. Missing cards: [Whooopy [2] (Trainer),\nCafe [3] (Energy)]",
-    ),
-  );
+  ).toThrow(new MissingCardError("Card ID 2 was not found in any zones"));
 });
 
 test("a board state with only 2 duplicate cards and a decklist of 7 cards throws an InvalidBoardStateError", () => {

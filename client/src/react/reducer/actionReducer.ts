@@ -5,6 +5,7 @@ import {
   Card,
   CardDTO,
   CardLocation,
+  CardType,
   GameStateDTO,
   UserType,
 } from "../../models";
@@ -120,7 +121,9 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
         }
       }
 
-      const sourceCard = new Card(draft[user], sourceDeckListIndex);
+      // We can't create a Card as the card has been removed from
+      // 'attached' so has no location at this point
+      const sourceCardData = draft[user].deckList[sourceDeckListIndex];
 
       if (typeof targetIndex === "number") {
         // We are attaching a card
@@ -143,7 +146,7 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
         const activeIndex = draft[user].boardState.active[0];
         if (
           dZoneId === CardLocation.Active &&
-          sourceCard.isPokemon &&
+          sourceCardData.type === CardType.Pokemon &&
           activeIndex !== undefined // Just checking (activeIndex) won't work as could be 0 which is falsey
         ) {
           // Only one Pokemon can be active, so bump the old active to the bench

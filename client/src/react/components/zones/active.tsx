@@ -23,8 +23,6 @@ export function Active({
           card={c}
           boardUser={boardUser}
           cssUser={cssUser}
-          zoneId="active"
-          zoneIndex={i}
         ></PokemonCard>
       ))}
     </div>

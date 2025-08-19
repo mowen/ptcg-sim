@@ -16,8 +16,6 @@ export function PrizeCards({ cards }: { cards: Array<Card> }) {
         <CardView
           key={i}
           card={c}
-          zoneId="prizes"
-          zoneIndex={i}
           faceUp={false}
           style={prizeStyle(i)}
         ></CardView>

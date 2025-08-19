@@ -4,12 +4,10 @@ import CardView from "../cards/cardView";
 export function AttachedCards({
   cssUser,
   cards,
-  zoneId,
   onClose = () => {},
 }: {
   cssUser: string;
   cards: Array<Card>;
-  zoneId: string;
   onClose: () => void;
 }) {
   return (
@@ -58,7 +56,7 @@ export function AttachedCards({
         </button>
       </div>
       {cards.map((c: Card, i: number) => (
-        <CardView key={i} card={c} zoneId={zoneId} zoneIndex={i}></CardView>
+        <CardView key={i} card={c}></CardView>
       ))}
     </div>
   );
