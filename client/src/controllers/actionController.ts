@@ -134,7 +134,6 @@ export default class ActionController {
         "move",
       ],
     };
-    console.log(action);
     this._processAction(action);
   }
 }

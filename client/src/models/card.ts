@@ -151,15 +151,6 @@ class Card {
     ] as SpecialCondition;
   }
 
-  public getZoneIndex(zoneId: string): number {
-    const zoneArray = this._playerState.boardState[zoneId] as Array<number>;
-    const zoneIndex = zoneArray.indexOf(this.id);
-    if (zoneIndex < 0) {
-      throw new MissingCardError(`Card ID ${this.id} not found in zoneId`);
-    }
-    return zoneIndex;
-  }
-
   public toString(): string {
     let s = `${this._cardData.name} [${this.id}] (${this.type})`;
 
@@ -169,20 +160,6 @@ class Card {
     }
 
     return s;
-  }
-
-  /**
-   * Returns the index of a card within the attached array for this Card.
-   * Used for generating the moveCardBundle Action.
-   *
-   * @param card - The Card we want to find the index of
-   * @returns The index of `card` within the attached array of this Card
-   */
-  public attachedIndexOf(card: Card): number | null {
-    const attachedIndexes =
-      this._playerState.boardState.attached[this.id] ?? [];
-    const indexOf = attachedIndexes.indexOf(card.id);
-    return indexOf < 0 ? null : indexOf;
   }
 
   private get _cardData(): CardDTO {

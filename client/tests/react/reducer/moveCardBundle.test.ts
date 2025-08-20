@@ -323,3 +323,88 @@ reducerTest(
     reducerTest.todo("not implemented yet");
   },
 );
+
+reducerTest(
+  "move pokemon from hand to active pokemon with attachments bumps active pokemon",
+  ({ setupState }) => {
+    assert.sameOrderedMembers(
+      setupState.self.boardState.hand,
+      [3, 56, 31, 41, 32, 0, 47],
+    );
+
+    const moveToActiveAction = {
+      user: "self",
+      emit: true,
+      type: "moveCardBundle",
+      parameters: ["self", "hand", "active", 5, false, "move"],
+    };
+
+    actionReducer(setupState, moveToActiveAction);
+
+    expect(setupState.self.boardState.active[0]).toBe(0);
+    assert.sameOrderedMembers(
+      setupState.self.boardState.hand,
+      [3, 56, 31, 41, 32, 47],
+    );
+
+    let activeCards = setupState.self.boardState.active.map(
+      (i) => setupState.self.deckList[i],
+    );
+    expect(activeCards).toBeDefined();
+    expect(activeCards.length).toBe(1);
+    expect(activeCards[0].name).toBe("Dreepy");
+
+    assert.sameOrderedMembers(
+      setupState.self.boardState.hand,
+      [3, 56, 31, 41, 32, 47],
+    );
+    assert.sameOrderedMembers(setupState.self.boardState.bench, []);
+
+    const moveHandToActiveAction = {
+      user: "self",
+      emit: true,
+      type: "moveCardBundle",
+      parameters: ["self", "hand", "active", 0, 0, "move"],
+    };
+    actionReducer(setupState, moveHandToActiveAction);
+
+    assert.sameOrderedMembers(setupState.self.boardState.active, [0]);
+    assert.sameOrderedMembers(setupState.self.boardState.attached[0], [3]);
+
+    const drawAction = {
+      user: "self",
+      emit: true,
+      type: "draw",
+      parameters: ["self", 7],
+    };
+    actionReducer(setupState, drawAction);
+
+    assert.sameOrderedMembers(
+      setupState.self.boardState.hand,
+      [56, 31, 41, 32, 47, 16, 52, 36, 57, 15, 53, 38],
+    );
+
+    const attachToPokemonInHandAction = {
+      user: "self",
+      emit: true,
+      type: "moveCardBundle",
+      parameters: ["self", "hand", "hand", 9, 5, "move"],
+    };
+    actionReducer(setupState, attachToPokemonInHandAction);
+
+    const moveAttachedToActiveAction = {
+      user: "self",
+      emit: true,
+      type: "moveCardBundle",
+      parameters: ["self", "hand", "active", 5, 0, "move"],
+    };
+    actionReducer(setupState, moveAttachedToActiveAction);
+
+    assert.sameOrderedMembers(setupState.self.boardState.active, [16]);
+    assert.sameOrderedMembers(setupState.self.boardState.attached[16], [15]);
+    assert.sameOrderedMembers(setupState.self.boardState.bench, [0]);
+    assert.sameOrderedMembers(setupState.self.boardState.attached[0], [3]);
+
+    expect(setupState).toHaveValidBoardStates();
+  },
+);

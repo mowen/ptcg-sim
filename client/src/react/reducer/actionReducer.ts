@@ -125,7 +125,10 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
       // 'attached' so has no location at this point
       const sourceCardData = draft[user].deckList[sourceDeckListIndex];
 
-      if (typeof targetIndex === "number") {
+      const sourceCardHasAttachments =
+        !!draft[user].boardState.attached[sourceDeckListIndex];
+
+      if (typeof targetIndex === "number" && !sourceCardHasAttachments) {
         // We are attaching a card
         const targetDeckListIndex =
           draft[user].boardState[dZoneId][targetIndex];
