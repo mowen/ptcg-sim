@@ -17,7 +17,7 @@ const cardWidth = 6.3;
 function Evolutions({ parent }: { parent: Card }) {
   const evoStyle = (level: number): CSSProperties => ({
     zIndex: level + 1,
-    top: `${(level + 1) * evoVertOffset - evoVertOffset}em`,
+    top: `${level * evoVertOffset - evoVertOffset}em`,
     position: parent.evolutions.length != level + 2 ? "relative" : "absolute",
   });
 
@@ -29,7 +29,7 @@ function Evolutions({ parent }: { parent: Card }) {
 function Energies({ parent }: { parent: Card }) {
   const energyStyle = (level: number): CSSProperties => ({
     zIndex: (level + 1) * -1,
-    top: "0px",
+    top: `${(parent.evolutions.length - 2) * evoVertOffset}em`,
     left: `${energyHorizOffset + level * energyHorizOffset}em`,
     position: "absolute",
   });
@@ -73,7 +73,7 @@ function PokemonCard({
 
   const cardStyle: CSSProperties = {
     zIndex: 0,
-    top: `${card.evolutions.length * -1 * evoVertOffset}em`,
+    top: `${-2 * evoVertOffset}em`,
     left: "0em",
     position: card.evolutions.length == 0 ? "relative" : "absolute",
   };

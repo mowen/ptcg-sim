@@ -100,7 +100,67 @@ export const DamageCounters: Story = {
   },
 };
 
-export const Energy: Story = {
+export const EnergyNoEvolutions: Story = {
+  args: {
+    card: {
+      id: 1,
+      name: "Dreepy",
+      type: "Pokémon",
+      imageUrl:
+        "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN.png",
+      damage: 0,
+      energy: [
+        {
+          id: 52,
+          name: "Psychic Energy",
+          type: "Energy",
+          imageUrl:
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png",
+        },
+        {
+          id: 56,
+          name: "Fire Energy",
+          type: "Energy",
+          imageUrl:
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN.png",
+        },
+        {
+          id: 57,
+          name: "Fire Energy",
+          type: "Energy",
+          imageUrl:
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN.png",
+        },
+        {
+          id: 53,
+          name: "Psychic Energy",
+          type: "Energy",
+          imageUrl:
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png",
+        },
+        {
+          id: 54,
+          name: "Psychic Energy",
+          type: "Energy",
+          imageUrl:
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png",
+        },
+        {
+          id: 55,
+          name: "Psychic Energy",
+          type: "Energy",
+          imageUrl:
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png",
+        },
+      ],
+      evolutions: [] as Array<Card>,
+    } as Card,
+    boardUser: "self",
+    cssUser: "self",
+  },
+};
+
+export const EnergyWithTwoEvolutions: Story = {
   args: {
     card: {
       id: 1,
