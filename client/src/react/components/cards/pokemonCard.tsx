@@ -17,7 +17,7 @@ const cardWidth = 6.3;
 function Evolutions({ parent }: { parent: Card }) {
   const evoStyle = (level: number): CSSProperties => ({
     zIndex: level + 1,
-    top: `${level * evoVertOffset - evoVertOffset}em`,
+    top: `${(level + 1) * evoVertOffset}em`,
     position: parent.evolutions.length != level + 2 ? "relative" : "absolute",
   });
 
@@ -29,7 +29,7 @@ function Evolutions({ parent }: { parent: Card }) {
 function Energies({ parent }: { parent: Card }) {
   const energyStyle = (level: number): CSSProperties => ({
     zIndex: (level + 1) * -1,
-    top: `${(parent.evolutions.length - 2) * evoVertOffset}em`,
+    top: `${parent.evolutions.length * evoVertOffset}em`,
     left: `${energyHorizOffset + level * energyHorizOffset}em`,
     position: "absolute",
   });
@@ -50,8 +50,12 @@ function Tool({ parent, tool }: { parent: Card; tool: Card }) {
 }
 
 function Damage({ parent }: { parent: Card }) {
+  const topOffset = -7.5;
+  const style: CSSProperties = {
+    top: `${topOffset + evoVertOffset * parent.evolutions.length}em`,
+  };
   return parent.damage > 0 ? (
-    <div className="damage-counter" contentEditable="true">
+    <div className="damage-counter" contentEditable="true" style={style}>
       {parent.damage}
     </div>
   ) : null;
@@ -73,16 +77,21 @@ function PokemonCard({
 
   const cardStyle: CSSProperties = {
     zIndex: 0,
-    top: `${-2 * evoVertOffset}em`,
     left: "0em",
     position: card.evolutions.length == 0 ? "relative" : "absolute",
   };
 
   const pokemonStyle: CSSProperties = {
     width: `${cardWidth + card.energy.length * energyHorizOffset}em`,
-    top: `${evoVertOffset}em`,
     position: "relative",
   };
+
+  if (card.damage > 0) {
+    // For some reason adding the damage counter requires increasing the top
+    pokemonStyle.top = `${evoVertOffset * (2 - card.evolutions.length)}em`;
+  } else if (card.evolutions.length == 0) {
+    pokemonStyle.top = `${evoVertOffset}em`;
+  }
 
   const showAttached =
     uiState?.showAttached &&

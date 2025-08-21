@@ -14,19 +14,20 @@ button {
 }
 
 .zone {
-  min-height: 9.8em;
+  min-height: 10.8em;
   display: inline-flex;
   justify-content: center;
   align-items: center;
 
   .plain,
   .pokemon {
-    width: 6.3em;
-    max-height: 9.5em;
+    bottom: 0px;
+    max-height: 9.9em;
   }
 
   .plain {
-    margin-top: auto;
+    padding-bottom: 1.5em;
+    width: 6.3em;
   }
 }
 

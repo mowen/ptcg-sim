@@ -1,4 +1,4 @@
-- [ ] It would be good to have ZoneId and ZoneIndex on the Card, but it requires the BoardState to obtain them, and the BoardState depends on Card.
+- [x] It would be good to have ZoneId and ZoneIndex on the Card, but it requires the BoardState to obtain them, and the BoardState depends on Card.
 
 # UI
 

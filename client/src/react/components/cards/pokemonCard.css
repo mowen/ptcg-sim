@@ -1,11 +1,10 @@
 .damage-counter {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   z-index: 3;
-  display: inline-block;
+  /* display: inline-block; */
   left: 0.5em;
-  top: -7.5em;
   width: 2em;
-  height: 2em;
+  /* height: 2em; */
   line-height: 2em;
   font-size: 1em;
   position: relative;
