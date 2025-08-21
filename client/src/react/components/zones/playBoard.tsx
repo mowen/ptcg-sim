@@ -15,7 +15,7 @@ export function PlayBoard({
 
   return (
     <div id="board" className={`${user}-board zone`} ref={setNodeRef}>
-      {cards.map((c: Card, i) => (
+      {cards.map((c: Card, i: number) => (
         <CardView key={i} card={c}></CardView>
       ))}
     </div>
