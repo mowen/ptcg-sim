@@ -1,5 +1,11 @@
 import { MissingCardError } from "../errors";
-import { CardDTO, CardLocation, CardType, PlayerStateDTO } from "./data";
+import {
+  CardDTO,
+  CardLocation,
+  CardType,
+  PlayerStateDTO,
+  UserType,
+} from "./data";
 
 enum SpecialCondition {
   Poisoned = "P",
@@ -149,6 +155,14 @@ class Card {
     return this._playerState.boardState.specialCondition[
       this.id
     ] as SpecialCondition;
+  }
+
+  public get player(): UserType {
+    return this._playerState.player;
+  }
+
+  public isEqual(player: UserType, id: number) {
+    return player == this.player && id == this.id;
   }
 
   public toString(): string {

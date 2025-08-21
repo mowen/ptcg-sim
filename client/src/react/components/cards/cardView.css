@@ -4,3 +4,7 @@
   display: block;
   max-height: 8.4em;
 }
+
+.selected {
+  border: red;
+}

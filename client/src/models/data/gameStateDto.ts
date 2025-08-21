@@ -9,6 +9,7 @@ enum UserType {
 class PlayerStateDTO {
   [immerable] = true;
 
+  public player: UserType = UserType.Self;
   public deckList: Array<CardDTO> = new Array<CardDTO>();
   public boardState: BoardStateDTO = new BoardStateDTO();
 }

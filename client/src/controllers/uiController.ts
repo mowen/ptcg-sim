@@ -45,4 +45,12 @@ export default class UiController {
       parameters: [card.id],
     });
   }
+
+  public selectCard(card: Card) {
+    this._processUiAction({
+      type: "selectCard",
+      user: card.player,
+      parameters: [card.id],
+    });
+  }
 }

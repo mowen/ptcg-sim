@@ -1,5 +1,10 @@
 import { produce } from "immer";
-import { UiActionDTO, UiStateDTO } from "../../models";
+import {
+  SelectedCardDTO,
+  UiActionDTO,
+  UiStateDTO,
+  UserType,
+} from "../../models";
 import { SelectedPage } from "../components/sidebar/sidebar";
 
 function clearModal(uiState: UiStateDTO): void {
@@ -51,6 +56,14 @@ export const uiActionReducer = (
       case "selectPage":
         if (action.parameters === undefined) return;
         draft.selectedPage = action.parameters[0] as SelectedPage;
+        break;
+      case "selectCard":
+        if (action.user === undefined || action.parameters === undefined) {
+          return;
+        }
+        const player = action.user as UserType;
+        const selectedCardId = action.parameters[0] as number;
+        draft.selectedCard = new SelectedCardDTO(player, selectedCardId);
         break;
       case "clearModal":
         clearModal(draft);

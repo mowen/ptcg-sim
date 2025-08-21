@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import { Board } from "./board";
 import { immerable } from "immer";
-import { CardDTO } from "../../../models";
+import { CardDTO, UserType } from "../../../models";
 
 const meta = {
   component: Board,
@@ -17,6 +17,7 @@ export const Default: Story = {
     cssUser: "self",
     boardUser: "self",
     playerState: {
+      player: UserType.Self,
       deckList: [
         {
           deckListIndex: 0,

@@ -1,9 +1,19 @@
 import { immerable } from "immer";
 import { SelectedPage } from "../../react";
 
+class SelectedCardDTO {
+  [immerable] = true;
+
+  constructor(
+    public player: string,
+    public id: number,
+  ) {}
+}
+
 class UiStateDTO {
   [immerable] = true;
 
+  public selectedCard?: SelectedCardDTO;
   public selectedPage: SelectedPage = SelectedPage.P1;
   public showChangelog: boolean = false;
   public showDonations: boolean = false;
@@ -13,4 +23,4 @@ class UiStateDTO {
   public showAttached?: Record<string, number> = {};
 }
 
-export { UiStateDTO };
+export { UiStateDTO, SelectedCardDTO };

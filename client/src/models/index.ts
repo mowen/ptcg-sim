@@ -15,6 +15,7 @@ import {
 import { Card } from "./card";
 import { BoardState } from "./boardState";
 import { UndoableGameState } from "./undoableGameState";
+import { SelectedCardDTO } from "./data/uiStateDto";
 
 export {
   ActionDTO,
@@ -26,6 +27,7 @@ export {
   PlayerStateDTO,
   GameStateDTO,
   BoardStateDTO,
+  SelectedCardDTO,
   UserType,
   UndoPatches,
   UndoableGameStateDTO,
