@@ -118,7 +118,7 @@ function PokemonCard({
   const uiState = useContext(UiContext);
   const state = useContext(AppContext);
   const processUiAction = useContext(UiDispatchContext);
-  const uiController = new UiController(processUiAction);
+  const uiController = new UiController(processUiAction, uiState);
 
   const cardStyle: CSSProperties = {
     zIndex: 0,

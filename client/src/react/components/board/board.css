@@ -23,6 +23,12 @@ button {
   .pokemon {
     bottom: 0px;
     max-height: 9.9em;
+
+    .selected {
+      border: 2px solid orangered;
+      border-radius: 10px;
+      padding: 0px;
+    }
   }
 
   .plain {

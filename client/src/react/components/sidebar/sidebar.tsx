@@ -28,7 +28,7 @@ function Sidebar({
   uiState: UiStateDTO;
 }) {
   const processUiAction = useContext(UiDispatchContext);
-  const uiController = new UiController(processUiAction);
+  const uiController = new UiController(processUiAction, uiState);
 
   const selectedPageClass = (selected: boolean) =>
     selected ? "selected-page" : "not-selected-page";
@@ -78,6 +78,7 @@ function Sidebar({
       {uiState.selectedPage == SelectedPage.P1 && (
         <P1Box
           state={state}
+          uiState={uiState}
           showChangelog={() => uiController.showChangelog()}
           showDonations={() => uiController.showDonations()}
         />

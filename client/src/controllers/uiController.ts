@@ -1,10 +1,19 @@
-import { Card, UiActionDTO } from "../models";
+import { UndefinedStateError } from "../errors";
+import { Card, UiActionDTO, UiStateDTO } from "../models";
 import { SelectedPage } from "../react";
 
 export default class UiController {
+  public readonly uiState: UiStateDTO;
+
   constructor(
     private readonly _processUiAction: (action: UiActionDTO) => void,
-  ) {}
+    uiState: UiStateDTO | undefined,
+  ) {
+    if (uiState === undefined) {
+      throw new UndefinedStateError(`UiStateDTO undefined in UiController`);
+    }
+    this.uiState = uiState;
+  }
 
   public showKeybinds() {
     this._processUiAction({ type: "showKeybinds" });
@@ -46,7 +55,6 @@ export default class UiController {
   }
 
   public selectCard(card: Card) {
-    console.debug(`selected ${card.toString()}`);
     this._processUiAction({
       type: "selectCard",
       user: card.player,

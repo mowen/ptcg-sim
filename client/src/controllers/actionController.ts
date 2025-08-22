@@ -5,18 +5,20 @@ import {
   CardLocation,
   PlayerStateDTO,
   UndoableGameStateDTO,
+  UserType,
 } from "../models";
 import UiController from "./uiController";
 
 export default class ActionController {
+  private readonly _activeUser: UserType;
   private readonly _playerState: PlayerStateDTO;
 
   constructor(
-    private readonly _activeUser: string,
     private readonly _processAction: (action: ActionDTO) => void,
     private readonly _state: UndoableGameStateDTO,
     private readonly _uiController: UiController,
   ) {
+    this._activeUser = this._state.gameState.activeUser;
     this._playerState = this._state.gameState[this._activeUser];
   }
 
@@ -83,9 +85,10 @@ export default class ActionController {
     });
   }
 
-  public moveSelectedTo(cardId: number | undefined, zone: CardLocation) {
-    if (cardId === undefined) return;
-    const card = new Card(this._playerState, cardId);
+  public moveSelectedTo(zone: CardLocation) {
+    const selectedCardId = this._uiController.uiState.selectedCard?.id;
+    if (selectedCardId === undefined) return;
+    const card = new Card(this._playerState, selectedCardId);
     const action = {
       user: this._activeUser,
       emit: true,

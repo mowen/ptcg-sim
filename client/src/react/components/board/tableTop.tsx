@@ -37,9 +37,8 @@ function TableTop({
     ? [activeUser, notActiveUser]
     : [notActiveUser, activeUser];
 
-  const uiController = new UiController(processUiAction);
+  const uiController = new UiController(processUiAction, uiState);
   const actionController = new ActionController(
-    activeUser,
     processAction,
     state,
     uiController,
@@ -63,53 +62,15 @@ function TableTop({
   useHotkeys("9", () => actionController.draw(9));
 
   useHotkeys("SPACE", () =>
-    actionController.moveSelectedTo(
-      uiState.selectedCard?.id,
-      CardLocation.Board,
-    ),
+    actionController.moveSelectedTo(CardLocation.Board),
   );
-  useHotkeys("h", () =>
-    actionController.moveSelectedTo(
-      uiState.selectedCard?.id,
-      CardLocation.Hand,
-    ),
-  );
-  useHotkeys("d", () =>
-    actionController.moveSelectedTo(
-      uiState.selectedCard?.id,
-      CardLocation.Discard,
-    ),
-  );
-  useHotkeys("b", () =>
-    actionController.moveSelectedTo(
-      uiState.selectedCard?.id,
-      CardLocation.Bench,
-    ),
-  );
-  useHotkeys("a", () =>
-    actionController.moveSelectedTo(
-      uiState.selectedCard?.id,
-      CardLocation.Active,
-    ),
-  );
-  useHotkeys("p", () =>
-    actionController.moveSelectedTo(
-      uiState.selectedCard?.id,
-      CardLocation.Prize,
-    ),
-  );
-  useHotkeys("l", () =>
-    actionController.moveSelectedTo(
-      uiState.selectedCard?.id,
-      CardLocation.LostZone,
-    ),
-  );
-  useHotkeys("s", () =>
-    actionController.moveSelectedTo(
-      uiState.selectedCard?.id,
-      CardLocation.Stadium,
-    ),
-  );
+  useHotkeys("h", () => actionController.moveSelectedTo(CardLocation.Hand));
+  useHotkeys("d", () => actionController.moveSelectedTo(CardLocation.Discard));
+  useHotkeys("b", () => actionController.moveSelectedTo(CardLocation.Bench));
+  useHotkeys("a", () => actionController.moveSelectedTo(CardLocation.Active));
+  useHotkeys("p", () => actionController.moveSelectedTo(CardLocation.Prize));
+  useHotkeys("l", () => actionController.moveSelectedTo(CardLocation.LostZone));
+  useHotkeys("s", () => actionController.moveSelectedTo(CardLocation.Stadium));
 
   const flipCoin = (boardUser: string) => {
     console.log(`${boardUser} flipped a coin`);

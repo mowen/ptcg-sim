@@ -1,23 +1,24 @@
 import { useContext } from "react";
-import { UndoableGameStateDTO } from "../../../models";
+import { UiStateDTO, UndoableGameStateDTO } from "../../../models";
 import { ActionController, UiController } from "../../../controllers";
 import { AppDispatchContext } from "../../context/appContext";
 import { UiDispatchContext } from "../../context/uiContext";
 
 function P1Box({
   state,
+  uiState,
   showChangelog,
   showDonations,
 }: {
   state: UndoableGameStateDTO;
+  uiState: UiStateDTO;
   showChangelog: () => void;
   showDonations: () => void;
 }) {
   const processUiAction = useContext(UiDispatchContext);
-  const uiController = new UiController(processUiAction);
+  const uiController = new UiController(processUiAction, uiState);
   const processAction = useContext(AppDispatchContext);
   const actionController = new ActionController(
-    state.gameState.activeUser,
     processAction,
     state,
     uiController,
