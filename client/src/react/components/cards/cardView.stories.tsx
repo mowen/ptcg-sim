@@ -18,14 +18,14 @@ export const Default: Story = {
       name: "Dreepy",
       type: "Pokémon",
       imageUrl:
-        "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN.png",
+        "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN_SM.png",
       evolutions: [
         {
           id: 5,
           name: "Drakloak",
           type: "Pokémon",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN_SM.png",
         } as Card,
       ],
     } as Card,
@@ -40,14 +40,14 @@ export const FaceDown: Story = {
       name: "Dreepy",
       type: "Pokémon",
       imageUrl:
-        "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN.png",
+        "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN_SM.png",
       evolutions: [
         {
           id: 5,
           name: "Drakloak",
           type: "Pokémon",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN_SM.png",
         } as Card,
       ],
     } as Card,

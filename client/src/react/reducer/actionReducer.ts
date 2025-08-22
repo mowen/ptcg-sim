@@ -176,6 +176,18 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
         } else {
           draft[user].boardState[oZoneId].splice(sourceIndex, 1);
           draft[user].boardState[dZoneId].push(sourceDeckListIndex);
+
+          // Card has attachments
+          if (!!draft[user].boardState.attached[sourceDeckListIndex]) {
+            // Attachments are allowed in these zones
+            if (["active", "bench"].includes(dZoneId)) break;
+            draft[user].boardState.attached[sourceDeckListIndex].forEach(
+              (attachedId) => {
+                draft[user].boardState[dZoneId].push(attachedId);
+              },
+            );
+            delete draft[user].boardState.attached[sourceDeckListIndex];
+          }
           break;
         }
       }

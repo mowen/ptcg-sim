@@ -18,7 +18,7 @@ export const TwoEvolutions: Story = {
       name: "Dreepy",
       type: "Pokémon",
       imageUrl:
-        "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN.png",
+        "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN_SM.png",
       damage: 0,
       energy: [] as Array<Card>,
       evolutions: [
@@ -27,14 +27,14 @@ export const TwoEvolutions: Story = {
           name: "Drakloak",
           type: "Pokémon",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN_SM.png",
         } as Card,
         {
           id: 8,
           name: "Dragapult ex",
           type: "Pokémon",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_130_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_130_R_EN_SM.png",
         } as Card,
       ],
     } as Card,
@@ -50,7 +50,7 @@ export const OneEvolution: Story = {
       name: "Dreepy",
       type: "Pokémon",
       imageUrl:
-        "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN.png",
+        "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN_SM.png",
       damage: 0,
       energy: [] as Array<Card>,
       evolutions: [
@@ -59,7 +59,7 @@ export const OneEvolution: Story = {
           name: "Drakloak",
           type: "Pokémon",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN_SM.png",
         } as Card,
       ],
     } as Card,
@@ -75,7 +75,7 @@ export const DamageCounters: Story = {
       name: "Dreepy",
       type: "Pokémon",
       imageUrl:
-        "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN.png",
+        "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN_SM.png",
       damage: 180,
       energy: [] as Array<Card>,
       evolutions: [
@@ -84,14 +84,14 @@ export const DamageCounters: Story = {
           name: "Drakloak",
           type: "Pokémon",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN_SM.png",
         } as Card,
         {
           id: 8,
           name: "Dragapult ex",
           type: "Pokémon",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_130_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_130_R_EN_SM.png",
         } as Card,
       ],
     } as Card,
@@ -107,7 +107,7 @@ export const EnergyNoEvolutions: Story = {
       name: "Dreepy",
       type: "Pokémon",
       imageUrl:
-        "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN.png",
+        "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN_SM.png",
       damage: 0,
       energy: [
         {
@@ -115,42 +115,42 @@ export const EnergyNoEvolutions: Story = {
           name: "Psychic Energy",
           type: "Energy",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN_SM.png",
         },
         {
           id: 56,
           name: "Fire Energy",
           type: "Energy",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN_SM.png",
         },
         {
           id: 57,
           name: "Fire Energy",
           type: "Energy",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN_SM.png",
         },
         {
           id: 53,
           name: "Psychic Energy",
           type: "Energy",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN_SM.png",
         },
         {
           id: 54,
           name: "Psychic Energy",
           type: "Energy",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN_SM.png",
         },
         {
           id: 55,
           name: "Psychic Energy",
           type: "Energy",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN_SM.png",
         },
       ],
       evolutions: [] as Array<Card>,
@@ -167,7 +167,7 @@ export const EnergyWithTwoEvolutions: Story = {
       name: "Dreepy",
       type: "Pokémon",
       imageUrl:
-        "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN.png",
+        "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN_SM.png",
       damage: 0,
       energy: [
         {
@@ -175,42 +175,42 @@ export const EnergyWithTwoEvolutions: Story = {
           name: "Psychic Energy",
           type: "Energy",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN_SM.png",
         },
         {
           id: 56,
           name: "Fire Energy",
           type: "Energy",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN_SM.png",
         },
         {
           id: 57,
           name: "Fire Energy",
           type: "Energy",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN_SM.png",
         },
         {
           id: 53,
           name: "Psychic Energy",
           type: "Energy",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN_SM.png",
         },
         {
           id: 54,
           name: "Psychic Energy",
           type: "Energy",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN_SM.png",
         },
         {
           id: 55,
           name: "Psychic Energy",
           type: "Energy",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN_SM.png",
         },
       ],
       evolutions: [
@@ -219,14 +219,40 @@ export const EnergyWithTwoEvolutions: Story = {
           name: "Drakloak",
           type: "Pokémon",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN_SM.png",
         } as Card,
         {
           id: 8,
           name: "Dragapult ex",
           type: "Pokémon",
           imageUrl:
-            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_130_R_EN.png",
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_130_R_EN_SM.png",
+        } as Card,
+      ],
+    } as Card,
+    boardUser: "self",
+    cssUser: "self",
+  },
+};
+
+export const AbilityUsed: Story = {
+  args: {
+    card: {
+      id: 1,
+      name: "Dreepy",
+      type: "Pokémon",
+      imageUrl:
+        "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN_SM.png",
+      damage: 180,
+      abilityUsed: true,
+      energy: [] as Array<Card>,
+      evolutions: [
+        {
+          id: 5,
+          name: "Drakloak",
+          type: "Pokémon",
+          imageUrl:
+            "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN_SM.png",
         } as Card,
       ],
     } as Card,

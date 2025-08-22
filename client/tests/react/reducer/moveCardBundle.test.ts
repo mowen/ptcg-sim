@@ -408,3 +408,52 @@ reducerTest(
     expect(setupState).toHaveValidBoardStates();
   },
 );
+
+reducerTest(
+  "move active pokemon with attachments to discard also discards the attachments",
+  ({ setupState }) => {
+    assert.sameOrderedMembers(
+      setupState.self.boardState.hand,
+      [3, 56, 31, 41, 32, 0, 47],
+    );
+
+    const moveToActiveAction = {
+      user: "self",
+      emit: true,
+      type: "moveCardBundle",
+      parameters: ["self", "hand", "active", 5, false, "move"],
+    };
+
+    actionReducer(setupState, moveToActiveAction);
+
+    let moveHandToActiveAction = {
+      user: "self",
+      emit: true,
+      type: "moveCardBundle",
+      parameters: ["self", "hand", "active", 0, 0, "move"],
+    };
+    actionReducer(setupState, moveHandToActiveAction);
+    moveHandToActiveAction = {
+      user: "self",
+      emit: true,
+      type: "moveCardBundle",
+      parameters: ["self", "hand", "active", 0, 0, "move"],
+    };
+    actionReducer(setupState, moveHandToActiveAction);
+
+    assert.sameOrderedMembers(setupState.self.boardState.active, [0]);
+    assert.sameOrderedMembers(setupState.self.boardState.attached[0], [3, 56]);
+
+    const moveActiveToDiscardAction = {
+      user: "self",
+      emit: true,
+      type: "moveCardBundle",
+      parameters: ["self", "active", "discard", 0, false, "move"],
+    };
+    actionReducer(setupState, moveActiveToDiscardAction);
+
+    assert.sameOrderedMembers(setupState.self.boardState.discard, [0, 3, 56]);
+
+    expect(setupState).toHaveValidBoardStates();
+  },
+);
