@@ -4,7 +4,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 DB="$SCRIPT_DIR/../server/database/db.sqlite"
 if [ ! -e "$DB" ]; then
-    mkdir -p ${dirname $DB}
+    mkdir -p `dirname $DB`
     touch "$DB"
     if [ $? -eq 0 ]; then
         echo "Created $DB"

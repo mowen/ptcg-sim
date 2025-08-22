@@ -19,7 +19,7 @@ export const Default: Story = {
         name: "Dreepy",
         type: "Pokémon",
         imageUrl:
-          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN.png",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN_SM.png",
         damage: 40,
         energy: [] as Array<Card>,
         isPokemon: true,
@@ -30,7 +30,7 @@ export const Default: Story = {
             type: "Pokémon",
             isPokemon: true,
             imageUrl:
-              "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN.png",
+              "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN_SM.png",
           } as Card,
           {
             id: 8,
@@ -38,7 +38,7 @@ export const Default: Story = {
             type: "Pokémon",
             isPokemon: true,
             imageUrl:
-              "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_130_R_EN.png",
+              "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_130_R_EN_SM.png",
           } as Card,
         ],
       } as Card,
@@ -48,7 +48,7 @@ export const Default: Story = {
         type: "Pokémon",
         isPokemon: true,
         imageUrl:
-          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN.png",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN_SM.png",
         damage: 450,
         energy: [
           {
@@ -56,42 +56,42 @@ export const Default: Story = {
             name: "Psychic Energy",
             type: "Energy",
             imageUrl:
-              "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png",
+              "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN_SM.png",
           },
           {
             id: 56,
             name: "Fire Energy",
             type: "Energy",
             imageUrl:
-              "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN.png",
+              "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN_SM.png",
           },
           {
             id: 57,
             name: "Fire Energy",
             type: "Energy",
             imageUrl:
-              "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN.png",
+              "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_010_R_EN_SM.png",
           },
           {
             id: 53,
             name: "Psychic Energy",
             type: "Energy",
             imageUrl:
-              "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png",
+              "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN_SM.png",
           },
           {
             id: 54,
             name: "Psychic Energy",
             type: "Energy",
             imageUrl:
-              "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png",
+              "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN_SM.png",
           },
           {
             id: 55,
             name: "Psychic Energy",
             type: "Energy",
             imageUrl:
-              "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN.png",
+              "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/SVE/SVE_013_R_EN_SM.png",
           },
         ],
         evolutions: [] as Array<Card>,
@@ -102,8 +102,9 @@ export const Default: Story = {
         type: "Pokémon",
         isPokemon: true,
         imageUrl:
-          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN.png",
+          "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_128_R_EN_SM.png",
         damage: 170,
+        abilityUsed: true,
         energy: [] as Array<Card>,
         evolutions: [
           {
@@ -111,7 +112,7 @@ export const Default: Story = {
             name: "Drakloak",
             type: "Pokémon",
             imageUrl:
-              "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN.png",
+              "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN_SM.png",
           } as Card,
         ],
       } as Card,

@@ -13,12 +13,17 @@ import "./pokemonCard.css";
 const evoVertOffset: number = 0.8;
 const energyHorizOffset: number = 0.8;
 const cardWidth = 6.3;
+const abilityUsedRotation = "15deg";
 
 function Evolutions({ parent }: { parent: Card }) {
   const evoStyle = (level: number): CSSProperties => ({
     zIndex: level + 1,
     top: `${(level + 1) * evoVertOffset}em`,
     position: parent.evolutions.length != level + 2 ? "relative" : "absolute",
+    rotate:
+      parent.abilityUsed && parent.evolutions.length != level + 2
+        ? abilityUsedRotation
+        : "none",
   });
 
   return parent.evolutions.map((pokemon, i) => (
@@ -118,6 +123,10 @@ function PokemonCard({
     transform: CSS.Translate.toString(transform),
     touchAction: "none",
   };
+
+  if (card.abilityUsed && card.evolutions.length == 0) {
+    cardStyle.rotate = abilityUsedRotation;
+  }
 
   return (
     <div
