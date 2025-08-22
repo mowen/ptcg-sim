@@ -1,17 +1,9 @@
 import { immerable } from "immer";
-import { BoardStateDTO, CardDTO } from "..";
+import { PlayerStateDTO } from "./playerStateDto";
 
 enum UserType {
   Self = "self",
   Opp = "opp",
-}
-
-class PlayerStateDTO {
-  [immerable] = true;
-
-  public player: UserType = UserType.Self;
-  public deckList: Array<CardDTO> = new Array<CardDTO>();
-  public boardState: BoardStateDTO = new BoardStateDTO();
 }
 
 class GameStateDTO {
@@ -21,8 +13,8 @@ class GameStateDTO {
 
   public activeUser: UserType = UserType.Self;
   public isTwoPlayer: boolean = false;
-  public self: PlayerStateDTO = new PlayerStateDTO();
-  public opp: PlayerStateDTO = new PlayerStateDTO();
+  public self: PlayerStateDTO = new PlayerStateDTO(UserType.Self);
+  public opp: PlayerStateDTO = new PlayerStateDTO(UserType.Opp);
 }
 
-export { GameStateDTO, UserType, PlayerStateDTO };
+export { GameStateDTO, UserType };

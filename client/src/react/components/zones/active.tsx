@@ -6,10 +6,12 @@ export function Active({
   cards,
   boardUser,
   cssUser,
+  onCardClick,
 }: {
   cards: Array<Card>;
   boardUser: string;
   cssUser: string;
+  onCardClick: (card: Card) => void;
 }) {
   const { setNodeRef } = useDroppable({
     id: "active",
@@ -23,6 +25,7 @@ export function Active({
           card={c}
           boardUser={boardUser}
           cssUser={cssUser}
+          onClick={(card) => onCardClick(card)}
         ></PokemonCard>
       ))}
     </div>

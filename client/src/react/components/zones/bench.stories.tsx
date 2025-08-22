@@ -119,5 +119,6 @@ export const Default: Story = {
     ] as Array<Card>,
     boardUser: "self",
     cssUser: "self",
+    onCardClick: (card: Card) => {},
   },
 };

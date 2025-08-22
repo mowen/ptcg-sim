@@ -18,15 +18,18 @@ enum SpecialCondition {
 class Card {
   public readonly zoneId: CardLocation;
   public readonly zoneIndex: number;
+  public readonly isSelected: boolean;
 
   constructor(
     private _playerState: PlayerStateDTO,
     public readonly id: number,
+    selectedCardId?: number,
   ) {
     this.zoneId = this.getCardLocation(this.id);
     this.zoneIndex = this._playerState.boardState[
       this.zoneId.valueOf()
     ].indexOf(this.id);
+    this.isSelected = selectedCardId === this.id;
   }
 
   private getCardLocation(cardId: number): CardLocation {

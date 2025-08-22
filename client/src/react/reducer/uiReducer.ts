@@ -65,8 +65,12 @@ export const uiActionReducer = (
         const selectedCardId = action.parameters[0] as number;
         draft.selectedCard = new SelectedCardDTO(player, selectedCardId);
         break;
-      case "clearModal":
+      case "clearSelectedCard":
+        delete draft.selectedCard;
+        break;
+      case "clearModal": // Rename to include clearing selected card
         clearModal(draft);
+        delete draft.selectedCard;
         break;
       default:
         console.warn(`Didn't handle UiAction Type ${action.type}`);

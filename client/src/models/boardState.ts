@@ -14,7 +14,10 @@ class BoardState {
 
   [key: string]: any;
 
-  constructor(private readonly _playerState: PlayerStateDTO) {
+  constructor(
+    private readonly _playerState: PlayerStateDTO,
+    private readonly _selectedCardId?: number,
+  ) {
     this.activeZone = this.zoneFactory(CardLocation.Active);
     this.handZone = this.zoneFactory(CardLocation.Hand);
     this.benchZone = this.zoneFactory(CardLocation.Bench);
@@ -124,7 +127,10 @@ class BoardState {
     const allZoneCardIds = this.allZoneCards().map((zc: ZoneCard) => zc.cardId);
     return this._playerState.deckList
       .filter((c: CardDTO) => !allZoneCardIds.includes(c.deckListIndex))
-      .map((c) => new Card(this._playerState, c.deckListIndex));
+      .map(
+        (c) =>
+          new Card(this._playerState, c.deckListIndex, this._selectedCardId),
+      );
   }
 
   private allZoneCards(): Array<ZoneCard> {
@@ -147,7 +153,7 @@ class BoardState {
   }
 
   private zoneFactory(zoneId: CardLocation): CardZone {
-    return new CardZone(this._playerState, zoneId);
+    return new CardZone(this._playerState, zoneId, this._selectedCardId);
   }
 }
 
@@ -177,6 +183,7 @@ class CardZone {
   constructor(
     private readonly _playerState: PlayerStateDTO,
     public readonly zone: CardLocation,
+    private readonly _selectedCardId?: number,
   ) {
     this.id = zone;
     this.cards = this.loadCards();
@@ -219,7 +226,7 @@ class CardZone {
 
   private loadCards(): Array<Card> {
     return this._playerState.boardState[this.id].map(
-      (i: number) => new Card(this._playerState, i),
+      (i: number) => new Card(this._playerState, i, this._selectedCardId),
     );
   }
 }

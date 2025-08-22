@@ -28,10 +28,7 @@ function Sidebar({
   uiState: UiStateDTO;
 }) {
   const processUiAction = useContext(UiDispatchContext);
-  const uiController = new UiController(
-    state.gameState.activeUser,
-    processUiAction,
-  );
+  const uiController = new UiController(processUiAction);
 
   const selectedPageClass = (selected: boolean) =>
     selected ? "selected-page" : "not-selected-page";

@@ -13,16 +13,14 @@ function P1Box({
   showChangelog: () => void;
   showDonations: () => void;
 }) {
+  const processUiAction = useContext(UiDispatchContext);
+  const uiController = new UiController(processUiAction);
   const processAction = useContext(AppDispatchContext);
   const actionController = new ActionController(
     state.gameState.activeUser,
     processAction,
     state,
-  );
-  const processUiAction = useContext(UiDispatchContext);
-  const uiController = new UiController(
-    state.gameState.activeUser,
-    processUiAction,
+    uiController,
   );
 
   return (

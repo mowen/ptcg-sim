@@ -1,23 +1,23 @@
 import { DragEndEvent } from "@dnd-kit/core";
-import { MissingCardError } from "../errors/missingCardError";
 import {
   ActionDTO,
-  BoardState,
+  Card,
+  CardLocation,
   PlayerStateDTO,
   UndoableGameStateDTO,
 } from "../models";
+import UiController from "./uiController";
 
 export default class ActionController {
   private readonly _playerState: PlayerStateDTO;
-  private readonly _boardState: BoardState;
 
   constructor(
     private readonly _activeUser: string,
     private readonly _processAction: (action: ActionDTO) => void,
     private readonly _state: UndoableGameStateDTO,
+    private readonly _uiController: UiController,
   ) {
     this._playerState = this._state.gameState[this._activeUser];
-    this._boardState = new BoardState(this._playerState);
   }
 
   public attack() {
@@ -74,6 +74,35 @@ export default class ActionController {
     });
   }
 
+  public draw(cardCount: number) {
+    this._processAction({
+      user: this._activeUser,
+      emit: true,
+      type: "draw",
+      parameters: [this._activeUser, cardCount],
+    });
+  }
+
+  public moveSelectedTo(cardId: number | undefined, zone: CardLocation) {
+    if (cardId === undefined) return;
+    const card = new Card(this._playerState, cardId);
+    const action = {
+      user: this._activeUser,
+      emit: true,
+      type: "moveCardBundle",
+      parameters: [
+        this._activeUser,
+        card.zoneId,
+        zone.valueOf(),
+        card.zoneIndex,
+        false,
+        "move",
+      ],
+    };
+    this._processAction(action);
+    this._uiController.clearSelectedCard();
+  }
+
   public handleCardDragEnd(event: DragEndEvent) {
     const { active, over } = event;
     if (active && active.data.current) {
@@ -87,10 +116,10 @@ export default class ActionController {
           over.data?.current?.zoneIndex,
         );
       } else {
-        console.warn(`DragEndevent had no over`);
+        console.warn(`DragEndEvent had no over`);
       }
     } else {
-      console.warn(`DragEndevent had no active`);
+      console.warn(`DragEndEvent had no active`);
     }
   }
 

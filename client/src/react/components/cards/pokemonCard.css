@@ -13,3 +13,7 @@
   color: white;
   text-align: center;
 }
+
+.selected {
+  border: 2px solid red;
+}

@@ -7,6 +7,7 @@ import { AppContext } from "../../context/appContext";
 import { UiController } from "../../../controllers";
 import { useDraggable, useDroppable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
+import classNames from "classnames";
 
 import "./pokemonCard.css";
 
@@ -15,7 +16,13 @@ const energyHorizOffset: number = 0.8;
 const cardWidth = 6.3;
 const abilityUsedRotation = "15deg";
 
-function Evolutions({ parent }: { parent: Card }) {
+function Evolutions({
+  parent,
+  onClick,
+}: {
+  parent: Card;
+  onClick: (card: Card) => void;
+}) {
   const evoStyle = (level: number): CSSProperties => ({
     zIndex: level + 1,
     top: `${(level + 1) * evoVertOffset}em`,
@@ -27,11 +34,22 @@ function Evolutions({ parent }: { parent: Card }) {
   });
 
   return parent.evolutions.map((pokemon, i) => (
-    <CardView card={pokemon} wrapWithDiv={false} style={evoStyle(i)} />
+    <CardView
+      card={pokemon}
+      wrapWithDiv={false}
+      style={evoStyle(i)}
+      onClick={() => onClick(pokemon)}
+    />
   ));
 }
 
-function Energies({ parent }: { parent: Card }) {
+function Energies({
+  parent,
+  onClick,
+}: {
+  parent: Card;
+  onClick: (card: Card) => void;
+}) {
   const energyStyle = (level: number): CSSProperties => ({
     zIndex: (level + 1) * -1,
     top: `${parent.evolutions.length * evoVertOffset}em`,
@@ -40,18 +58,38 @@ function Energies({ parent }: { parent: Card }) {
   });
 
   return parent.energy.map((energy, i) => (
-    <CardView card={energy} wrapWithDiv={false} style={energyStyle(i)} />
+    <CardView
+      card={energy}
+      wrapWithDiv={false}
+      style={energyStyle(i)}
+      onClick={() => onClick(energy)}
+    />
   ));
 }
 
-function Tool({ parent, tool }: { parent: Card; tool: Card }) {
+function Tool({
+  parent,
+  tool,
+  onClick,
+}: {
+  parent: Card;
+  tool: Card;
+  onClick: (card: Card) => void;
+}) {
   const toolStyle: CSSProperties = {
     transform: "rotate(-90deg)",
     zIndex: -1 * (parent.energy.length + 1),
     position: "absolute",
     left: "-0.5em",
   };
-  return <CardView card={tool} wrapWithDiv={false} style={toolStyle} />;
+  return (
+    <CardView
+      card={tool}
+      wrapWithDiv={false}
+      style={toolStyle}
+      onClick={() => onClick(tool)}
+    />
+  );
 }
 
 function Damage({ parent }: { parent: Card }) {
@@ -70,15 +108,17 @@ function PokemonCard({
   card,
   boardUser,
   cssUser,
+  onClick = (card: Card) => {},
 }: {
   card: Card;
   boardUser: string;
   cssUser: string;
+  onClick?: (card: Card) => void;
 }) {
   const uiState = useContext(UiContext);
   const state = useContext(AppContext);
   const processUiAction = useContext(UiDispatchContext);
-  const uiController = new UiController(boardUser, processUiAction);
+  const uiController = new UiController(processUiAction);
 
   const cardStyle: CSSProperties = {
     zIndex: 0,
@@ -128,11 +168,16 @@ function PokemonCard({
     cardStyle.rotate = abilityUsedRotation;
   }
 
+  const pokemonClassNames = classNames({
+    pokemon: true,
+    selected: card.isSelected,
+  });
+
   return (
     <div
-      className="pokemon"
+      className={pokemonClassNames}
       style={pokemonStyle}
-      onClick={() => uiController.showAttached(boardUser, card)}
+      onClick={() => onClick(card)}
       ref={droppable.setNodeRef}
     >
       <div
@@ -142,10 +187,15 @@ function PokemonCard({
         {...listeners}
         {...attributes}
       >
-        <CardView card={card} wrapWithDiv={false} style={cardStyle} />
-        <Evolutions parent={card} />
-        <Energies parent={card} />
-        {card.tool && <Tool parent={card} tool={card.tool} />}
+        <CardView
+          card={card}
+          wrapWithDiv={false}
+          style={cardStyle}
+          onClick={onClick}
+        />
+        <Evolutions parent={card} onClick={onClick} />
+        <Energies parent={card} onClick={onClick} />
+        {card.tool && <Tool parent={card} tool={card.tool} onClick={onClick} />}
         <Damage parent={card} />
         {showAttached && (
           <AttachedCards

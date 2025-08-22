@@ -3,7 +3,6 @@ import { SelectedPage } from "../react";
 
 export default class UiController {
   constructor(
-    private readonly _activeUser: string,
     private readonly _processUiAction: (action: UiActionDTO) => void,
   ) {}
 
@@ -38,19 +37,26 @@ export default class UiController {
     });
   }
 
-  public showAttached(user: string, card: Card) {
+  public showAttached(card: Card) {
     this._processUiAction({
       type: "showAttached",
-      user: user,
+      user: card.player,
       parameters: [card.id],
     });
   }
 
   public selectCard(card: Card) {
+    console.debug(`selected ${card.toString()}`);
     this._processUiAction({
       type: "selectCard",
       user: card.player,
       parameters: [card.id],
+    });
+  }
+
+  public clearSelectedCard() {
+    this._processUiAction({
+      type: "clearSelectedCard",
     });
   }
 }

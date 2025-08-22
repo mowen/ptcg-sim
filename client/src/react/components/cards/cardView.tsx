@@ -1,38 +1,25 @@
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
-import { CSSProperties, useContext } from "react";
+import { CSSProperties } from "react";
 import cardBackImage from "../../../assets/cardback.png";
-import { Card, UserType } from "../../../models";
-import { UiContext, UiDispatchContext } from "../../context/uiContext";
-import { UiController } from "../../../controllers";
-import { AppContext } from "../../context/appContext";
+import { Card } from "../../../models";
+import classNames from "classnames";
 
 import "./cardView.css";
-import classNames from "classnames";
 
 function CardView({
   card,
   faceUp = true,
   wrapWithDiv = true,
   style = {},
+  onClick = (card: Card) => {},
 }: {
   card: Card;
   faceUp?: boolean;
   wrapWithDiv?: boolean;
   style?: CSSProperties;
+  onClick?: (card: Card) => void;
 }) {
-  const processUiAction = useContext(UiDispatchContext);
-  const uiState = useContext(UiContext);
-  const state = useContext(AppContext);
-  if (state === undefined) {
-    console.warn("State undefined");
-    return;
-  }
-  const uiController = new UiController(
-    state.gameState.activeUser,
-    processUiAction,
-  );
-
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: card.id,
     data: {
@@ -45,15 +32,9 @@ function CardView({
     touchAction: "none",
   };
 
-  const isSelected =
-    !!uiState?.selectedCard &&
-    card.isEqual(
-      uiState.selectedCard.player as UserType,
-      uiState.selectedCard.id,
-    );
   const imgClass = classNames({
     card: true,
-    selected: isSelected,
+    selected: card.isSelected,
   });
 
   const cardImage = faceUp ? (
@@ -62,7 +43,7 @@ function CardView({
       alt={card.name}
       className={imgClass}
       style={style}
-      onClick={() => uiController.selectCard(card)}
+      onClick={() => onClick(card)}
     />
   ) : (
     <img

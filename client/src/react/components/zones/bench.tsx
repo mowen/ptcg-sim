@@ -1,5 +1,5 @@
 import { useDroppable } from "@dnd-kit/core";
-import { Card } from "../../../models";
+import { Card, UiStateDTO, UserType } from "../../../models";
 import CardView from "../cards/cardView";
 import PokemonCard from "../cards/pokemonCard";
 
@@ -7,10 +7,12 @@ export function Bench({
   cards,
   boardUser,
   cssUser,
+  onCardClick,
 }: {
   cards: Array<Card>;
   boardUser: string;
   cssUser: string;
+  onCardClick: (card: Card) => void;
 }) {
   const { setNodeRef } = useDroppable({
     id: "bench",
@@ -26,9 +28,14 @@ export function Bench({
               card={c}
               boardUser={boardUser}
               cssUser={cssUser}
+              onClick={(card) => onCardClick(card)}
             ></PokemonCard>
           ) : (
-            <CardView key={i} card={c}></CardView>
+            <CardView
+              key={i}
+              card={c}
+              onClick={(card) => onCardClick(card)}
+            ></CardView>
           ),
         )}
       </div>

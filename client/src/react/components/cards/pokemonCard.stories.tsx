@@ -246,6 +246,7 @@ export const AbilityUsed: Story = {
       damage: 180,
       abilityUsed: true,
       energy: [] as Array<Card>,
+      player: "self",
       evolutions: [
         {
           id: 5,
@@ -253,6 +254,7 @@ export const AbilityUsed: Story = {
           type: "Pokémon",
           imageUrl:
             "https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/TWM/TWM_129_R_EN_SM.png",
+          player: "self",
         } as Card,
       ],
     } as Card,
