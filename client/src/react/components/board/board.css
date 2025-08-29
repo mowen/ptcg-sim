@@ -37,6 +37,34 @@ button {
   }
 }
 
+.view-card-zone {
+  position: fixed;
+  background-color: rgba(169, 169, 169, 0.867);
+  border: 1px solid #ccc;
+  border-radius: 15px 15px 15px 15px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  padding: 0px 20px 20px 20px;
+  width: 85%;
+  height: 75%;
+  overflow-y: auto;
+  z-index: 10;
+
+  .plain {
+    display: inline-block;
+    height: auto;
+    margin: 1px;
+  }
+
+  img {
+    opacity: 1;
+    position: relative;
+    bottom: 0%;
+    z-index: 0;
+    left: 0px;
+    transform: rotate(0deg);
+  }
+}
+
 .board {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -112,6 +140,11 @@ button {
   font-size: clamp(10px, 4vh, 20px);
   transform: scaleX(-1) scaleY(-1);
   position: fixed;
+}
+.self-view {
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
 }
 #shuffleDiscardButton {
   background: linear-gradient(
@@ -198,9 +231,6 @@ button {
   border-radius: 10%;
   background-color: rgba(59, 141, 173, 0.708);
 }
-#viewCards {
-  display: none;
-}
 .self-zone-button-container {
   position: absolute;
   bottom: 0%;
@@ -249,12 +279,6 @@ button {
 #lostZone label {
   position: relative;
   cursor: pointer;
-}
-#deck img {
-  display: inline-block;
-  width: 8%;
-  height: auto;
-  margin: 1px;
 }
 #lostZone img {
   display: inline-block;

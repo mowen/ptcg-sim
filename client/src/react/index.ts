@@ -29,6 +29,7 @@ import TableTop from "./components/board/tableTop";
 import { Sidebar, SelectedPage } from "./components/sidebar/sidebar";
 import { UiContext, UiDispatchContext } from "./context/uiContext";
 import TutorialVideo from "./components/sidebar/tutorialVideo";
+import { ViewDeck } from "./components/popups/viewDeck";
 
 export {
   actionReducer,
@@ -54,6 +55,7 @@ export {
   AttachedCards,
   KeybindModal,
   ViewCards,
+  ViewDeck,
   Settings,
   Sidebar,
   SpecialMoves,

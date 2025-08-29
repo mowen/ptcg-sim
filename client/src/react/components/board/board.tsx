@@ -4,7 +4,6 @@ import {
   Card,
   PlayerStateDTO,
   SelectedCardDTO,
-  UiStateDTO,
 } from "../../../models";
 import {
   Active,
@@ -47,7 +46,11 @@ export function Board({
 
   return board ? (
     <div id={`${cssUser}Container`} className={`${cssUser} board`}>
-      <Deck user={cssUser} cards={board.deck}></Deck>
+      <Deck
+        user={cssUser}
+        cards={board.deck}
+        onCardClick={(card) => onCardClick(card)}
+      ></Deck>
       <Discard user={cssUser} cards={board.discard}></Discard>
       <LostZone user={cssUser} cards={board.lostZone}></LostZone>
       <Hand
