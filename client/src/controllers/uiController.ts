@@ -15,6 +15,14 @@ export default class UiController {
     this.uiState = uiState;
   }
 
+  public showAttached(card: Card) {
+    this._processUiAction({
+      type: "showAttached",
+      user: card.player,
+      parameters: [card.id],
+    });
+  }
+
   public showKeybinds() {
     this._processUiAction({ type: "showKeybinds" });
   }
@@ -35,6 +43,22 @@ export default class UiController {
     this._processUiAction({ type: "showTutorial" });
   }
 
+  public showDeck() {
+    this._processUiAction({ type: "showDeck" });
+  }
+
+  public showDiscard() {
+    this._processUiAction({ type: "showDiscard" });
+  }
+
+  public showLostZone() {
+    this._processUiAction({ type: "showLostZone" });
+  }
+
+  public showPrizes() {
+    this._processUiAction({ type: "showPrizes" });
+  }
+
   public clearModal() {
     this._processUiAction({ type: "clearModal" });
   }
@@ -43,14 +67,6 @@ export default class UiController {
     this._processUiAction({
       type: "selectPage",
       parameters: [selectedPage],
-    });
-  }
-
-  public showAttached(card: Card) {
-    this._processUiAction({
-      type: "showAttached",
-      user: card.player,
-      parameters: [card.id],
     });
   }
 

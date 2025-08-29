@@ -8,12 +8,18 @@ import {
 import { SelectedPage } from "../components/sidebar/sidebar";
 
 function clearModal(uiState: UiStateDTO): void {
+  uiState.showAttached = {};
+
   uiState.showChangelog = false;
   uiState.showDonations = false;
   uiState.showKeybinds = false;
   uiState.showOptions = false;
   uiState.showTutorial = false;
-  uiState.showAttached = {};
+
+  uiState.showDeck = false;
+  uiState.showDiscard = false;
+  uiState.showLostZone = false;
+  uiState.showPrizes = false;
 }
 
 export const uiActionReducer = (
@@ -22,6 +28,17 @@ export const uiActionReducer = (
 ): UiStateDTO => {
   return produce(uiState, (draft) => {
     switch (action.type) {
+      case "showAttached":
+        if (
+          action.user === undefined ||
+          action.parameters === undefined ||
+          draft.showAttached === undefined
+        )
+          return;
+        clearModal(draft);
+        let cardId = action.parameters[0] as number;
+        draft.showAttached[action.user] = cardId;
+        break;
       case "showKeybinds":
         clearModal(draft);
         draft.showKeybinds = true;
@@ -42,16 +59,21 @@ export const uiActionReducer = (
         clearModal(draft);
         draft.showTutorial = true;
         break;
-      case "showAttached":
-        if (
-          action.user === undefined ||
-          action.parameters === undefined ||
-          draft.showAttached === undefined
-        )
-          return;
+      case "showDeck":
         clearModal(draft);
-        let cardId = action.parameters[0] as number;
-        draft.showAttached[action.user] = cardId;
+        draft.showDeck = true;
+        break;
+      case "showDiscard":
+        clearModal(draft);
+        draft.showDiscard = true;
+        break;
+      case "showLostZone":
+        clearModal(draft);
+        draft.showLostZone = true;
+        break;
+      case "showPrizes":
+        clearModal(draft);
+        draft.showPrizes = true;
         break;
       case "selectPage":
         if (action.parameters === undefined) return;

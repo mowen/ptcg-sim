@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { Card } from "../../../models";
-import { CardView, ViewDeck } from "../..";
+import { CardView, UiContext, UiDispatchContext, ViewDeck } from "../..";
+import { UiController } from "../../../controllers";
 
 export function Deck({
   user,
@@ -11,10 +12,17 @@ export function Deck({
   cards: Array<Card>;
   onCardClick: (card: Card) => void;
 }) {
-  const [showDeck, setShowDeck] = useState(false);
+  const uiState = useContext(UiContext);
+  const processUiAction = useContext(UiDispatchContext);
+  const uiController = new UiController(processUiAction, uiState);
+
   return (
     <>
-      <div id="deckCover" className="zone" onClick={() => setShowDeck(true)}>
+      <div
+        id="deckCover"
+        className="zone"
+        onClick={() => uiController.showDeck()}
+      >
         <div id="deckText" className={`${user}-text`}>
           (<span id="deckCount">{cards.length}</span>)
         </div>
@@ -22,10 +30,10 @@ export function Deck({
           <CardView card={cards[0]} faceUp={false}></CardView>
         ) : null}
       </div>
-      {showDeck && (
+      {uiState?.showDeck && (
         <ViewDeck
           cards={cards}
-          onClose={() => setShowDeck(false)}
+          onClose={() => uiController.clearModal()}
           cssUser={user}
           onCardClick={(card) => onCardClick(card)}
         ></ViewDeck>

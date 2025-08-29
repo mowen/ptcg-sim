@@ -65,6 +65,13 @@ button {
   }
 }
 
+#deck label,
+#discard label,
+#lostZone label {
+  position: relative;
+  cursor: pointer;
+}
+
 .board {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -274,25 +281,6 @@ button {
   z-index: 1;
   box-sizing: border-box;
 }
-#deck label,
-#discard label,
-#lostZone label {
-  position: relative;
-  cursor: pointer;
-}
-#lostZone img {
-  display: inline-block;
-  width: 12%;
-  height: auto;
-  margin: 1px;
-}
-#discard img {
-  display: inline-block;
-  width: 10%;
-  height: auto;
-  margin: 1px;
-}
-
 .default-rotation {
   transform: rotate(0deg) !important;
 }

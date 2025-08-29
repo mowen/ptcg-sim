@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { CardView } from "../..";
 import { Card } from "../../../models";
 
@@ -12,6 +13,18 @@ function ViewDeck({
   onCardClick: (card: Card) => void;
   onClose: () => void;
 }) {
+  // const [cardList, setCardList] = useState(cards);
+
+  const sortCards = (cards: Array<Card>): Array<Card> => {
+    return cards.sort((a, b) => {
+      const keyFunc = (c: Card) => `${c.type}_${c.name}`;
+      const aKey = keyFunc(a);
+      const bKey = keyFunc(b);
+      return aKey.localeCompare(bKey);
+    });
+  };
+  const cardList = sortCards(cards);
+
   return (
     <div id="deck" className={`view-card-zone ${cssUser}-view`}>
       <div className="zone-button-container">
@@ -28,7 +41,7 @@ function ViewDeck({
         <input type="checkbox" id="sortDeckCheckbox" />
         <label htmlFor="sortDeckCheckbox">Sort</label>
       </div>
-      {cards.map((c: Card, i: number) => (
+      {cardList.map((c: Card, i: number) => (
         <CardView
           key={i}
           card={c}

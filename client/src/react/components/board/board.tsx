@@ -51,7 +51,11 @@ export function Board({
         cards={board.deck}
         onCardClick={(card) => onCardClick(card)}
       ></Deck>
-      <Discard user={cssUser} cards={board.discard}></Discard>
+      <Discard
+        user={cssUser}
+        cards={board.discard}
+        onCardClick={(card) => onCardClick(card)}
+      ></Discard>
       <LostZone user={cssUser} cards={board.lostZone}></LostZone>
       <Hand
         user={cssUser}

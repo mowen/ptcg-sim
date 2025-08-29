@@ -14,12 +14,18 @@ class UiStateDTO {
   [immerable] = true;
 
   public selectedCard?: SelectedCardDTO;
+
   public selectedPage: SelectedPage = SelectedPage.P1;
   public showChangelog: boolean = false;
   public showDonations: boolean = false;
   public showKeybinds: boolean = false;
   public showOptions: boolean = false;
   public showTutorial: boolean = false;
+
+  public showDeck: boolean = false;
+  public showDiscard: boolean = false;
+  public showLostZone: boolean = false;
+  public showPrizes: boolean = false;
   public showAttached?: Record<string, number> = {};
 }
 
