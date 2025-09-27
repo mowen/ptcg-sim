@@ -42,6 +42,7 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
   const deckSize: number = 60;
   const handSize: number = 7;
   const prizeCount: number = 6;
+  const pokemonZones: Array<string> = ["active", "bench"];
 
   const user = action.user as UserType;
 
@@ -289,6 +290,36 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
       ];
       const sourceDeckListIndex = draft[user].boardState[oZoneId][sourceIndex];
       draft[user].boardState.specialCondition[sourceDeckListIndex] = condition;
+      break;
+    }
+    case "addAbilityCounter": {
+      const [user, oZoneId, sourceIndex] = action.parameters as [
+        string,
+        string,
+        number,
+      ];
+      if (!pokemonZones.includes(oZoneId)) return;
+      const sourceDeckListIndex = draft[user].boardState[oZoneId][sourceIndex];
+      if (!draft[user].boardState.abilityUsed.includes(sourceDeckListIndex)) {
+        draft[user].boardState.abilityUsed.push(sourceDeckListIndex);
+      }
+      break;
+    }
+    case "removeAbilityCounter": {
+      const [user, oZoneId, sourceIndex] = action.parameters as [
+        string,
+        string,
+        number,
+      ];
+      if (!pokemonZones.includes(oZoneId)) return;
+      const sourceDeckListIndex = draft[user].boardState[oZoneId][sourceIndex];
+      if (draft[user].boardState.abilityUsed.includes(sourceDeckListIndex)) {
+        let index =
+          draft[user].boardState.abilityUsed.indexOf(sourceDeckListIndex);
+        if (index !== -1) {
+          draft[user].boardState.abilityUsed.splice(index, 1);
+        }
+      }
       break;
     }
     default:

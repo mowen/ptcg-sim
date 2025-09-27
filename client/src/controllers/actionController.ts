@@ -126,6 +126,19 @@ export default class ActionController {
     }
   }
 
+  public useAbilityOfSelected() {
+    const selectedCardId = this._uiController.uiState.selectedCard?.id;
+    if (selectedCardId === undefined) return;
+    const card = new Card(this._playerState, selectedCardId);
+    const action = {
+      user: this._activeUser,
+      emit: true,
+      type: "addAbilityCounter",
+      parameters: [this._activeUser, card.zoneId, card.zoneIndex],
+    };
+    this._processAction(action);
+  }
+
   private moveCard(
     sourceCardIdString: string,
     sourceZoneId: string,

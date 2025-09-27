@@ -70,7 +70,9 @@ function TableTop({
   useHotkeys("a", () => actionController.moveSelectedTo(CardLocation.Active));
   useHotkeys("p", () => actionController.moveSelectedTo(CardLocation.Prize));
   useHotkeys("l", () => actionController.moveSelectedTo(CardLocation.LostZone));
-  useHotkeys("s", () => actionController.moveSelectedTo(CardLocation.Stadium));
+  useHotkeys("g", () => actionController.moveSelectedTo(CardLocation.Stadium));
+
+  useHotkeys("w", () => actionController.useAbilityOfSelected());
 
   const flipCoin = (boardUser: string) => {
     console.log(`${boardUser} flipped a coin`);
