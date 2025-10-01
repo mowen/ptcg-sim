@@ -89,10 +89,9 @@ function TableTop({
   );
 
   const mouseSensor = useSensor(MouseSensor, {
-    // Press delay of 250ms, with tolerance of 5px of movement
     activationConstraint: {
-      delay: 200,
-      tolerance: 5,
+      delay: 80, // Press delay in ms
+      tolerance: 5, // Tolerance of movement in pixels
     },
   });
   const sensors = useSensors(mouseSensor);

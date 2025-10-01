@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "start": "pnpm -C server start",
-    "build": "tsc -b server && pnpm -C client build",
+    "build": "pnpm -C server build && pnpm -C client build",
     "clean": "rm -rf server/dist client/dist client/storybook-static",
     "lint": "pnpm -C server lint && pnpm -C client lint",
     "format": "pnpm -C server format && pnpm -C client format"

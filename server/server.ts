@@ -97,10 +97,11 @@ async function main() {
   app.use(express.static(clientDir));
   app.get(
     "/import/:key",
-    (req: express.Request, res: express.Response): any => {
+    (req: express.Request, res: express.Response): void => {
       const key = req.params.key;
       if (!key) {
-        return res.status(400).json({ error: "Key parameter is missing" });
+        res.status(400).json({ error: "Key parameter is missing" });
+        return;
       }
 
       db.get<{ value: string }>(
@@ -108,10 +109,14 @@ async function main() {
         [key],
         (err, row) => {
           if (err) {
-            return res.status(500).json({ error: "Internal server error" });
+            res.status(500).json({ error: "Internal server error" });
+            return;
           }
           if (row) {
-            return res.json({ actions: JSON.parse(row.value) });
+            res.json({
+              actions: JSON.parse(row.value),
+            });
+            return;
           } else {
             res.status(404).json({ error: "Key not found" });
           }
@@ -155,7 +160,7 @@ async function main() {
       }
     };
     // Function to handle event emission
-    const emitToRoom = (eventName: string, data: any) => {
+    const emitToRoom = (eventName: string, data: any): void => {
       socket.broadcast.to(data.roomId).emit(eventName, data);
       if (eventName === "leaveRoom") {
         socket.leave(data.roomId);
@@ -267,7 +272,6 @@ async function main() {
 
   const port = 4000;
   server.listen(port, () => {
-    // eslint-disable-next-line no-console
     console.log(`Server is running at http://localhost:${port}`);
   });
 }

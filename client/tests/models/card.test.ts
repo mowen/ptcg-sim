@@ -10,11 +10,11 @@ import {
 import { immerable } from "immer";
 
 const deckList = [
-  new CardDTO(0, "Martin", "Pokemon", "https://blah.com/martin.png"),
-  new CardDTO(1, "Brian", "Pokemon", "https://blah.com/brian.png"),
+  new CardDTO(0, "Martin", "Pokémon", "https://blah.com/martin.png"),
+  new CardDTO(1, "Brian", "Pokémon", "https://blah.com/brian.png"),
   new CardDTO(2, "Whooopy", "Trainer", "https://blah.com/whooopy.png"),
   new CardDTO(3, "Cafe", "Energy", "https://blah.com/cafe.png"),
-  new CardDTO(4, "Blah", "Pokemon", "https://blah.com/blah.png"),
+  new CardDTO(4, "Blah", "Pokémon", "https://blah.com/blah.png"),
   new CardDTO(5, "Whatever", "Trainer", "https://blah.com/what.png"),
   new CardDTO(6, "Hello", "Trainer", "https://blah.com/hello.png"),
 ];
@@ -53,6 +53,26 @@ test("a Card has a correct zoneId", () => {
 test("a Card has a correct zoneIndex", () => {
   const card = new Card(playerState, 3);
   expect(card.zoneIndex).toBe(1);
+});
+
+test("a Card has a correct name", () => {
+  const card = new Card(playerState, 3);
+  expect(card.name).toBe("Cafe");
+});
+
+test("a Card is a trainer. card isTrainer is true", () => {
+  const card = new Card(playerState, 2);
+  expect(card.isTrainer).toBeTruthy();
+});
+
+test("a Card is a pokemon. card isPokemon is true", () => {
+  const card = new Card(playerState, 0);
+  expect(card.isPokemon).toBeTruthy();
+});
+
+test("a Card is an energy. card isEnergy is true", () => {
+  const card = new Card(playerState, 3);
+  expect(card.isEnergy).toBeTruthy();
 });
 
 test("a Card has special condition 'P'. the card isPoisoned", () => {
@@ -108,4 +128,32 @@ test("a Card has special condition 'B'. the card isBurned", () => {
   expect(card.isConfused).toBeFalsy();
   expect(card.isBurned).toBeTruthy();
   expect(card.isAsleep).toBeFalsy();
+});
+
+test("a Card has damage 140. the card damage is 140", () => {
+  playerState.boardState.damage[4] = 140;
+  const card = new Card(playerState, 4);
+
+  expect(card.damage).toEqual(140);
+});
+
+test("a Card has no damage. the card damage is 0", () => {
+  playerState.boardState.damage[4] = 140;
+  const card = new Card(playerState, 5);
+
+  expect(card.damage).toEqual(0);
+});
+
+test("a Card's ability is used. the card abilityUsed is true", () => {
+  playerState.boardState.abilityUsed = [4];
+  const card = new Card(playerState, 4);
+
+  expect(card.abilityUsed).toBeTruthy();
+});
+
+test("a Card's ability is not used. the card abilityUsed is false", () => {
+  playerState.boardState.abilityUsed = [4];
+  const card = new Card(playerState, 5);
+
+  expect(card.abilityUsed).toBeFalsy();
 });
