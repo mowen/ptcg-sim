@@ -1,11 +1,11 @@
 import { expect, test } from "vitest";
-import { BoardState } from "../../src/models/boardState";
 import {
   BoardStateDTO,
   Card,
   CardDTO,
   CardLocation,
   PlayerStateDTO,
+  UserType,
 } from "../../src/models";
 import { immerable } from "immer";
 
@@ -16,7 +16,7 @@ const deckList = [
   new CardDTO(3, "Cafe", "Energy", "https://blah.com/cafe.png"),
   new CardDTO(4, "Blah", "Pokémon", "https://blah.com/blah.png"),
   new CardDTO(5, "Whatever", "Trainer", "https://blah.com/what.png"),
-  new CardDTO(6, "Hello", "Trainer", "https://blah.com/hello.png"),
+  new CardDTO(6, "Hello Tool", "Trainer", "https://blah.com/hello.png"),
 ];
 
 const boardState = {
@@ -43,6 +43,7 @@ const playerState = {
   [immerable]: true,
   boardState,
   deckList,
+  player: UserType.Self,
 } as PlayerStateDTO;
 
 test("a Card has a correct zoneId", () => {
@@ -58,6 +59,11 @@ test("a Card has a correct zoneIndex", () => {
 test("a Card has a correct name", () => {
   const card = new Card(playerState, 3);
   expect(card.name).toBe("Cafe");
+});
+
+test("a Card has a correct imageUrl", () => {
+  const card = new Card(playerState, 3);
+  expect(card.imageUrl).toBe("https://blah.com/cafe.png");
 });
 
 test("a Card is a trainer. card isTrainer is true", () => {
@@ -156,4 +162,34 @@ test("a Card's ability is not used. the card abilityUsed is false", () => {
   const card = new Card(playerState, 5);
 
   expect(card.abilityUsed).toBeFalsy();
+});
+
+test("a Card has a trainer attached. the trainer is a tool", () => {
+  playerState.boardState.attached = { 4: [6] };
+  const card = new Card(playerState, 4);
+  const toolCard = new Card(playerState, 6);
+
+  expect(card.tool).toEqual(toolCard);
+});
+
+test("a Card has pokemon cards attached. the card has evolutions", () => {
+  playerState.boardState.attached = { 1: [0, 4] };
+  const card = new Card(playerState, 1);
+  const evo1 = new Card(playerState, 0);
+  const evo2 = new Card(playerState, 4);
+
+  expect(card.evolutions[0]).toEqual(evo1);
+  expect(card.evolutions[1]).toEqual(evo2);
+});
+
+test("a Card has the same player and id as another card. they are equal", () => {
+  const card = new Card(playerState, 1);
+
+  expect(card.isEqual(UserType.Self, 1)).toBeTruthy();
+});
+
+test("a Card has a different player and the same id as another card. they are not equal", () => {
+  const card = new Card(playerState, 1);
+
+  expect(card.isEqual(UserType.Opp, 1)).toBeFalsy();
 });

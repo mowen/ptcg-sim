@@ -322,6 +322,19 @@ export default function reducer(draft: GameStateDTO, action: ActionDTO): void {
       }
       break;
     }
+    case "switchWithDeckTop": {
+      const [user, oZoneId, sourceIndex] = action.parameters as [
+        string,
+        string,
+        number,
+      ];
+      const sourceDeckListIndex = draft[user].boardState[oZoneId][sourceIndex];
+      const topDeckIndex = draft[user].boardState.deck.shift();
+      draft[user].boardState.deck.unshift(sourceDeckListIndex);
+      draft[user].boardState[oZoneId].splice(sourceIndex, 1);
+      draft[user].boardState[oZoneId].push(topDeckIndex);
+      break;
+    }
     default:
       console.warn(`Action type ${action.type} was not processed`, action);
       break;

@@ -22,6 +22,12 @@ export default class ActionController {
     this._playerState = this._state.gameState[this._activeUser];
   }
 
+  private get _selectedCard(): Card | null {
+    const selectedCardId = this._uiController.uiState.selectedCard?.id;
+    if (!selectedCardId) return null;
+    return new Card(this._playerState, selectedCardId);
+  }
+
   public attack() {
     this._processAction({
       user: this._activeUser,
@@ -86,18 +92,16 @@ export default class ActionController {
   }
 
   public moveSelectedTo(zone: CardLocation) {
-    const selectedCardId = this._uiController.uiState.selectedCard?.id;
-    if (selectedCardId === undefined) return;
-    const card = new Card(this._playerState, selectedCardId);
+    if (!this._selectedCard) return;
     const action = {
       user: this._activeUser,
       emit: true,
       type: "moveCardBundle",
       parameters: [
         this._activeUser,
-        card.zoneId,
+        this._selectedCard.zoneId,
         zone.valueOf(),
-        card.zoneIndex,
+        this._selectedCard.zoneIndex,
         false,
         "move",
       ],
@@ -127,14 +131,16 @@ export default class ActionController {
   }
 
   public useAbilityOfSelected() {
-    const selectedCardId = this._uiController.uiState.selectedCard?.id;
-    if (selectedCardId === undefined) return;
-    const card = new Card(this._playerState, selectedCardId);
+    if (!this._selectedCard) return;
     const action = {
       user: this._activeUser,
       emit: true,
       type: "addAbilityCounter",
-      parameters: [this._activeUser, card.zoneId, card.zoneIndex],
+      parameters: [
+        this._activeUser,
+        this._selectedCard.zoneId,
+        this._selectedCard.zoneIndex,
+      ],
     };
     this._processAction(action);
   }
@@ -177,6 +183,21 @@ export default class ActionController {
         sourceZoneIndex,
         target,
         "move",
+      ],
+    };
+    this._processAction(action);
+  }
+
+  public switchSelectedWithDeckTop() {
+    if (!this._selectedCard) return;
+    const action = {
+      user: this._activeUser,
+      emit: true,
+      type: "switchWithDeckTop",
+      parameters: [
+        this._activeUser,
+        this._selectedCard.zoneId,
+        this._selectedCard.zoneIndex,
       ],
     };
     this._processAction(action);

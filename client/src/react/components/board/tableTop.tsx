@@ -44,8 +44,8 @@ function TableTop({
     uiController,
   );
 
-  useHotkeys(["left", "u"], () => actionController.undo());
-  useHotkeys("right", () => actionController.redo());
+  useHotkeys("ctrl+z", () => actionController.undo());
+  useHotkeys("ctrl+y", () => actionController.redo());
   useHotkeys("?", () => uiController.showKeybinds(), { useKey: true });
   useHotkeys("ESC", () => uiController.clearModal());
   useHotkeys("ENTER", () => actionController.discardBoard());
@@ -71,6 +71,14 @@ function TableTop({
   useHotkeys("p", () => actionController.moveSelectedTo(CardLocation.Prize));
   useHotkeys("l", () => actionController.moveSelectedTo(CardLocation.LostZone));
   useHotkeys("g", () => actionController.moveSelectedTo(CardLocation.Stadium));
+
+  // useHotkeys("up", () => actionController.moveSelectedTo(CardLocation.Deck, 0));
+  useHotkeys("right", () => actionController.switchSelectedWithDeckTop());
+  // useHotkeys("down", () =>
+  //   actionController.moveSelectedTo(CardLocation.Deck, -1),
+  // );
+
+  // useHotkeys("s", () => actionController.shuffleDeck());
 
   useHotkeys("w", () => actionController.useAbilityOfSelected());
 
