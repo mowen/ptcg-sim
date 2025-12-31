@@ -20,5 +20,5 @@ FROM base AS build
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 RUN pnpm -C client run build-storybook
 
-FROM nginx as deploy
+FROM nginx AS deploy
 COPY --from=build /app/client/storybook-static /usr/share/nginx/html

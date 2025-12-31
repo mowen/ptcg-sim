@@ -1,12 +1,14 @@
-from fastapi_sqlalchemy import db
+from sqlalchemy import String, Column
+from sqlalchemy.orm import Mapped
+
+from data.model.base_model import Base
 
 
-class Card(db.Model):
-    __tablename__ = "cards"
+class Card(Base):
+    __tablename__ = "card"
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(128))
+    id: Mapped[int] = Column(primary_key=True)
+    name: Mapped[str] = Column(String(128))
 
-    @classmethod
-    def find_by_id(cls, _id):
-        return cls.query.get(_id)
+    def __repr__(self) -> str:
+        return f"Card(id={self.id!r}, name={self.name!r})"
