@@ -1,14 +1,16 @@
-from sqlalchemy import Column
-from sqlalchemy.orm import Mapped, relationship
+from sqlalchemy import String
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from data.model.base_model import Base
+from data.model.base import Base
 from data.model.card import Card
 
 
 class DeckList(Base):
     __tablename__ = "deck_list"
 
-    id: Mapped[int] = Column(primary_key=True)
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(String(128))
     cards: Mapped[list[Card]] = relationship(back_populates="deck")
 
-
+    def __repr__(self) -> str:
+        return f"DeckList(id={self.id!r}, name={self.name!r}, cards={self.cards!r})"

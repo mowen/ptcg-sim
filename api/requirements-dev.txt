@@ -3,5 +3,3 @@
 black==25.12.0
 mypy==1.19.1
 isort==7.0.0
-
-types-SQLAlchemy==1.4.53.38
