@@ -3,8 +3,8 @@ from typing import Optional
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from data.model.base import Base
-from data.model.game_state import GameState
+from app.data.model.base import Base
+from app.data.model.game_state import GameState
 
 # ORM relationship documentation: https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html#declarative-vs-imperative-forms
 

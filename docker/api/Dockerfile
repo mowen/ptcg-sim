@@ -6,4 +6,4 @@ COPY api/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY api .
 
-CMD ["fastapi", "run", "main.py", "--port", "8000"]
+CMD ["fastapi", "run", "app/main.py", "--port", "8000"]

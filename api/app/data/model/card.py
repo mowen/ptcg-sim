@@ -1,7 +1,7 @@
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column
 
-from data.model.base import Base
+from app.data.model.base import Base
 
 
 class Card(Base):

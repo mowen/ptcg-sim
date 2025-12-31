@@ -1,8 +1,8 @@
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from data.model.base import Base
-from data.model.card import Card
+from app.data.model.base import Base
+from app.data.model.card import Card
 
 
 class DeckList(Base):

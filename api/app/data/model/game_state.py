@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from data.model.action import Action
-from data.model.base import Base
-from data.model.deck_list import DeckList
+from app.data.model.action import Action
+from app.data.model.base import Base
+from app.data.model.deck_list import DeckList
 
 
 class GameState(Base):
