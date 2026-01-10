@@ -9,6 +9,8 @@ import * as dotenv from "dotenv";
 import sqlite3 from "sqlite3";
 import * as fs from "fs";
 import { fileURLToPath } from "url";
+import { generateRandomKey } from "./db/schema.js";
+import { gameStateController } from "./controllers/gameStateController.js";
 
 // Handle __dirname in ES modules and adjust for client folder
 const __filename = fileURLToPath(import.meta.url);
@@ -17,17 +19,6 @@ const clientDir = path.join(__dirname, "../../client/dist");
 
 const envFilePath = path.join(__dirname, "socket-admin-password.env");
 dotenv.config({ path: envFilePath });
-
-function generateRandomKey(length: number) {
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let key = "";
-  for (let i = 0; i < length; i++) {
-    const randomIndex = Math.floor(Math.random() * characters.length);
-    key += characters.charAt(randomIndex);
-  }
-  return key;
-}
 
 async function main() {
   const app = express();
@@ -104,24 +95,16 @@ async function main() {
         return;
       }
 
-      db.get<{ value: string }>(
-        "SELECT value FROM KeyValuePairs WHERE key = ?",
-        [key],
-        (err, row) => {
-          if (err) {
-            res.status(500).json({ error: "Internal server error" });
-            return;
-          }
-          if (row) {
-            res.json({
-              actions: JSON.parse(row.value),
-            });
-            return;
-          } else {
-            res.status(404).json({ error: "Key not found" });
-          }
-        },
-      );
+      gameStateController.getGameState(key).then((actions) => {
+        if (actions) {
+          res.json({
+            actions: actions,
+          });
+          return;
+        } else {
+          res.status(404).json({ error: "Key not found" });
+        }
+      });
     },
   );
 
