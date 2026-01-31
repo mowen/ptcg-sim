@@ -1,11 +1,21 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
+import { withReactContext } from "storybook-react-context";
 import { Board } from "./board";
 import { immerable } from "immer";
-import { Card, CardDTO, UserType } from "../../../models";
+import {
+  Card,
+  CardDTO,
+  GameStateDTO,
+  UiStateDTO,
+  UserType,
+} from "../../../models";
+import { UiContext } from "../../context/uiContext";
+import { AppContext } from "../../context/appContext";
 
 const meta = {
   component: Board,
+  decorators: [withReactContext],
 } satisfies Meta<typeof Board>;
 
 export default meta;
@@ -13,6 +23,22 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  parameters: {
+    reactContext: {
+      contexts: [
+        {
+          context: AppContext,
+          contextValue: {
+            gameState: new GameStateDTO(),
+          },
+        },
+        {
+          context: UiContext,
+          contextValue: new UiStateDTO(),
+        },
+      ],
+    },
+  },
   args: {
     cssUser: "self",
     boardUser: "self",

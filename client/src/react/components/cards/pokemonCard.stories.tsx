@@ -1,10 +1,30 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import PokemonCard from "./pokemonCard";
-import { Card } from "../../../models";
+import { Card, GameStateDTO, UiStateDTO } from "../../../models";
+import { withReactContext } from "storybook-react-context";
+import { AppContext } from "../../context/appContext";
+import { UiContext } from "../../context/uiContext";
 
 const meta = {
   component: PokemonCard,
+  decorators: [withReactContext],
+  parameters: {
+    reactContext: {
+      contexts: [
+        {
+          context: AppContext,
+          contextValue: {
+            gameState: new GameStateDTO(),
+          },
+        },
+        {
+          context: UiContext,
+          contextValue: new UiStateDTO(),
+        },
+      ],
+    },
+  },
 } satisfies Meta<typeof PokemonCard>;
 
 export default meta;
